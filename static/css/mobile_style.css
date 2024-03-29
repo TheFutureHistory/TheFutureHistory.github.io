@@ -12,7 +12,6 @@ align-items: center;
 height: 50vh;
 width: 90vw;
 padding: 25vh 0px;
-border: 1px solid red;
 }
 #hero_background{
 z-index: -1;
@@ -97,7 +96,6 @@ margin-bottom: 0px;
 width: 100%;
 height: auto;
 margin-bottom: 5vh;
-border: 1px solid red;
 }
 .section_title{
 display: flex;
