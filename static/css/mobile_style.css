@@ -10,7 +10,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 height: 50vh;
-width: 90vw;
+width: 100%;
 padding: 25vh 0px;
 }
 #hero_background{
@@ -80,130 +80,40 @@ cursor: pointer;
 color: var(--black);
 background-color: var(--white);
 }
-
-
-/* ------------------------------------------------------ PROGRAMS */
-#programs_container{
-display: none;
-}
-
-
-#designs,
-#work{
-margin-bottom: 0px;
-}
+/* ------------------------------------------------------ ABOUT */
+#aboutMe{
+    width: 100%;
+    height: auto;
+    padding: 10vh 0vw;
+  }
+  .aboutMe_info{
+    flex-direction: column;
+    padding: 5% 5%;
+    height: auto;
+  }
+  .aboutMe_infoCont{
+    height: 47.5%;
+    width: 100%; 
+    order: 2;
+  }
+  .aboutMe_img{
+    height: 47.5%;
+    width: 100%; 
+    order : 1;
+    margin-bottom: 1vh;
+  }
+/* ------------------------------------------------------ PROJECTS */
 #projects_container{
-width: 100%;
-height: auto;
-margin-bottom: 5vh;
-}
-.section_title{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 10vh;
-margin-bottom: 0px;
-width: 100%;
-}
-.section_title_txt{
-font-size: var(--font_size_lg);
-transform: translateX(0px) !important;
-margin-left: 0px;
-}
-.section_title_txt:nth-child(2){
-display: none;
-}
-#design_images_container{
-width: 100%;
-cursor: default;
-margin-left: 0px;
-}
-.design_image {
-height: auto;
-width: 100%;
-background-color: var(--main);
-margin-bottom: 5vh;
-border-radius: 20px;
-transition: 0.3s;
-object-fit: contain;
+    flex-direction: column;
+    width: 100%;
 }
 .project_cont{
-flex-direction: column;
-width: 100%;
-height: auto;
-padding: 5vh 0px;
-margin: 5vh 0px;
-border-bottom: 1px solid var(--black_10_op);
-}
-.project_cont_col a{
-margin-bottom: 2.5vh;
-}
-#work_container{
-margin-top: 0px;
-}
-.section_title_work{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 10vh;
-margin-bottom: 0px;
-width: 100%;
-}
-.section_title_txt_work{
-font-size: var(--font_size_lg);
-transform: translateX(0px) !important;
-margin-left: 0px;
-}
-.section_title_txt_work:nth-child(2){
-display: none;
-}
-#work_images_container{
-width: 100%;
-cursor: default;
-margin-left: 0px;
-}
-.work_image {
-height: auto;
-width: 100%;
-background-color: var(--main);
-margin-bottom: 5vh;
-border-radius: 20px;
-transition: 0.3s;
-object-fit: contain;
+    width: 95%;
+    height: auto;
+    margin-bottom: 2.5vh;
 }
 
-#contact_container{
-    width:80vw;
-    height: auto;
-}
-#contact_section{
-    height: auto;
-}
-#contact_title{
-font-size: var(--font_size_md);
-}
-#contact_input_container{
-flex-direction: column;
-padding-top: 0px;
-padding-bottom: 5vh;
-}
-#contact_container_left{
-width: 100%;
-}
-.msg_input,
-#msg_project{
-width: 100%;
-padding: 0px;
-}
-#contact_container_right{
-width: 100%;
-}
-#msg_button{
-font-size: var(--font_size_sm);
-}
-#contact_footer h5{
-    font-size: 3vw;
-}
+
 }
 
 @media only screen and (max-width: 1100px) {
