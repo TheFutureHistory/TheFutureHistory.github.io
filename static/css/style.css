@@ -200,7 +200,7 @@ padding: 25vh 0px;
   color: var(--white);
   text-wrap: wrap;
   line-height: 1.25;
-  margin-bottom: 1em;
+  margin-bottom: 2.5em;
 }
 .aboutMe_infoCont a{
   color: var(--white);
@@ -251,6 +251,10 @@ background-color: var(--white_10_op);
 backdrop-filter: blur(50px);
 border-radius: 10px;
 margin-bottom: 2.5%;
+transition: 0.3s;
+}
+.project_cont:hover{
+  transform: scale(1.01);
 }
 .project_image{
   width: 100%;
@@ -301,6 +305,106 @@ margin-bottom: 2.5%;
   margin-bottom: 4vh;
   color: var(--white_50_op);
 }
+
+/* ------------------------------------------------------ TESTIMONIALS */
+#testimonials{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 50vh;
+  padding: 10vh 0vw;
+  margin-top: 10vh;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.testimonials_title{
+  font-size: var(--font_size_lg);
+  font-weight: var(--font_weight_md);
+  color: var(--white);
+  margin: 0px;
+  margin-bottom: 5vh;
+}
+.testimonials_cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 110vw;
+  white-space: nowrap;
+}
+.fade {
+  width: 100%;
+  position: absolute;
+  background: linear-gradient(
+      90deg,
+      #000,
+      transparent 30%,
+      transparent 90%,
+      #000
+  );
+  inset: 0;
+  cursor: pointer;
+}
+.testimonial_card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  height: 80%;
+  max-width: 20vw;
+  padding: 2.5%;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 0px 1px 1px 0px;
+  border-color: var(--white_20_op);
+  margin: 0px 1.25%;
+  white-space: nowrap;
+}
+.testimonial_text{
+  font-family: roboto, sans-serif;
+  font-size: var(--font_size_sm);
+  color: var(--white);
+  line-height: 1.5;
+  text-wrap: wrap;
+}
+.testimonial_person{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: left;
+}
+.testimonial_img{
+ width: 4rem;
+ height: 4rem;
+ border-radius: 5px;
+ object-fit: cover;
+ margin-right: 2vw;
+}
+.testimonial_personInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  width: auto;
+}
+.testimonial_name{
+  color: var(--white);
+  font-size: var(--font_size_sm);
+  font-weight: var(--font_weight_md);
+  margin: 0px;
+}
+.testimonial_position{
+  color: var(--white_50_op);
+  font-size: var(--font_size_sm);
+  font-weight: var(--font_weight_sm);
+  margin: 0px;
+}
+
 
 
 /* ------------------------------------------------------ CONTACT */
