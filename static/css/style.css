@@ -354,16 +354,17 @@ transition: 0.3s;
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-  height: 80%;
-  max-width: 20vw;
-  padding: 2.5%;
+  height: 90%;
+  max-width: 18vw;
+  padding: 1.5%;
   backdrop-filter: blur(20px);
   border-radius: 10px;
   border-style: solid;
   border-width: 0px 1px 1px 0px;
   border-color: var(--white_20_op);
-  margin: 0px 1.25%;
+  margin: 0px 0.5%;
   white-space: nowrap;
+  overflow: hidden;
 }
 .testimonial_text{
   font-family: roboto, sans-serif;
@@ -379,11 +380,11 @@ transition: 0.3s;
   align-items: left;
 }
 .testimonial_img{
- width: 4rem;
- height: 4rem;
+ width: 3.5rem;
+ height: 3.5rem;
  border-radius: 5px;
  object-fit: cover;
- margin-right: 2vw;
+ margin-right: 1vw;
 }
 .testimonial_personInfo{
   display: flex;

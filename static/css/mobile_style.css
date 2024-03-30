@@ -112,6 +112,59 @@ background-color: var(--white);
     height: auto;
     margin-bottom: 2.5vh;
 }
+/* ------------------------------------------------------ TESTIMONIALS */
+#testimonials{
+  height: auto;
+  width: 100%;
+  padding: 0px;
+}
+.testimonials_title{
+  font-size: var(--font_size_md);
+}
+.testimonials_cont{
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+.fade {
+  width: 0%;
+}
+.testimonial_card{
+  height: auto;
+  max-width: 90%;
+  margin-bottom: 2.5vh;
+}
+.testimonial_text{
+  margin-bottom: 1vh;
+}
+.testimonial_img{
+ width: 3.5rem;
+ height: 3.5rem;
+ border-radius: 5px;
+ object-fit: cover;
+ margin-right: 2vw;
+}
+.testimonial_personInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  width: auto;
+}
+.testimonial_name{
+  color: var(--white);
+  font-size: var(--font_size_sm);
+  font-weight: var(--font_weight_md);
+  margin: 0px;
+}
+.testimonial_position{
+  color: var(--white_50_op);
+  font-size: var(--font_size_sm);
+  font-weight: var(--font_weight_sm);
+  margin: 0px;
+}
 
 
 }
