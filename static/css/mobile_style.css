@@ -15,7 +15,7 @@ padding: 25vh 0px;
 }
 #hero_background{
 z-index: -1;
-position: absolute;
+position: fixed;
 width: 100vw;
 height: 100vh;
 object-fit: contain;
