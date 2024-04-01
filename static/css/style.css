@@ -101,7 +101,7 @@ justify-content: space-between;
 align-items: center;
 width: 100vw;
 height: 10vh;
-padding: 0vh 0px 10vh 0px;
+padding: 20vh 0px 10vh 0px;
 background-color: transparent;
 }
 
@@ -371,7 +371,7 @@ justify-content: flex-start;
 align-items: center;
 height: 80vh;
 width: 70vw;
-padding: 20vh 15vw 5vh 15vw;
+padding: 20vh 15vw 0vh 15vw;
 text-wrap: nowrap;
 background-color: var(--white);
 z-index: 100;
@@ -501,7 +501,7 @@ margin-bottom: 1em;
 
 /* ------------------------------------------------------ Pricing */
 .pricingSection{
-display: flex;
+display: none;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
@@ -662,7 +662,7 @@ justify-content: center;
 align-items: center;
 width: 100vw;
 height: auto;
-padding: 0vh 0vw 10vh 0vw;
+padding: 20vh 0vw 10vh 0vw;
 position: relative;
 overflow: hidden;
 white-space: nowrap;
@@ -811,7 +811,7 @@ align-items: center;
 flex-wrap: wrap;
 height: 80vh;
 width: 70vw;
-padding: 0vh 15vh 10vh 15vw;
+padding: 10vh 15vh 10vh 15vw;
 }
 .aboutMe_info{
 display: flex;
