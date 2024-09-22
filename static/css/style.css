@@ -224,6 +224,9 @@ background-color: var(--white);
 }
 
 /* ------------------------------------------------------ PROJECT BANNER */
+#work{
+  padding-bottom: 0vh;
+}
 .projectsBanner {
 width: 100vw;
 overflow-x: hidden;
@@ -365,7 +368,7 @@ margin: 0px;
 
 /* ------------------------------------------------------ SERVICES */
 .servicesSection{
-display: flex;
+display: none;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
@@ -409,7 +412,7 @@ color: var(--black_50_op)
 
 /* ------------------------------------------------------ BENEFITS */
 .benefitsSection{
-display: flex;
+display: none;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
