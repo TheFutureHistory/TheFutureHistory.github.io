@@ -1,0 +1,557 @@
+ <!-- <div id="working"></div>
+    <section class="title_section">
+      <p class="section_titles">
+        Explore Our Work
+      </p>
+      <p class="section_subtitles">
+        Check out some of the latest work with our clients
+      </p>
+    </section> -->
+    <!-- <section id="projects_container"> -->
+        <!-- MAPS -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/MAPSCanada.webp" alt="MAPS Canada Website preview" 
+              srcset="static/images/projects/MAPSCanada-1000.webp 1000w, static/images/projects/MAPSCanada-500.webp 500w" 
+              loading="lazy"
+          >
+          <p class="project_title">MAPS CANADA</p>
+          <p class="project_type">Psychedelic Medicine Organisation</p>
+          <a class="project_link" href="https://www.mapscanada.org" target="_blank">Visit Site</a>
+          <p class="project_description">After meeting with their supervising team, I worked closely with their marketing lead to re-vamp the whole website's design.
+            The old one was very static and needed a modern look. After having provided them with multiple design ideas, they decide to go with the one they felt was the most alligned with their vision. 
+            I updated the website to a whole new brand identity.
+          </p>
+          <p class="project_tools">Wordpress, Elementor, Figma, Html, Css</p>
+        </div> -->
+
+        <!-- XAG -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/xaraguaHotel.webp" alt="" 
+          srcset="static/images/projects/xaraguaHotel-1000.webp 1000w, static/images/projects/xaraguaHotel-500.webp 500w" loading="lazy">
+          <p class="project_title">Xaragua Hotel</p>
+          <p class="project_type">Beach Hotel</p>
+          <a class="project_link" href="https://www.xaraguahotel.com" target="_blank">Visit Site</a>
+          <p class="project_description">Xaragua Hotel needed a website to be able to connect with their clientel online. 
+            I developped the site and implemented a booking system to let their guest book directly with them without needing to go through a Travel agency.
+          </p>
+          <p class="project_tools">Wordpress, Elementor, Figma, Html, Css</p>
+        </div> -->
+
+        <!-- SAGE -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/SAGE.webp" alt="SAGE website preview"           
+          srcset="static/images/projects/SAGE-1000.webp 1000w, static/images/projects/SAGE-500.webp 500w" loading="lazy"> 
+          <p class="project_title">SAGE</p>
+          <p class="project_type">Official Gaming Clan</p>
+          <a class="project_link" href="https://www.sageclan.org" target="_blank">Visit Site</a>
+          <p class="project_description">
+            Sage already had a great website setup. I came in to provide a fresh perspective and a straight to the point design to help increase the UI & UX. 
+          </p>
+          <p class="project_tools">Squarespace, E-commerce, Figma</p>
+        </div> -->
+
+        <!-- TIX -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/TicketPRO.webp" alt="Ticket PRO website preview"           
+          srcset="static/images/projects/TicketPRO-1000.webp 1000w, static/images/projects/TicketPRO-500.webp 500w" loading="lazy"> 
+          <p class="project_title">TicketPRO</p>
+          <p class="project_type">Onward Ticket Seller</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            TicketPro is a website I started building to help travellers purchase Onward Ticket reservations without having to face a hassle.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Figma</p>
+        </div>   -->
+
+        <!-- TERA APP -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/TerastacksApp.webp" alt="Terastacks App website preview"           
+          srcset="static/images/projects/TerastacksApp-1000.webp 1000w, static/images/projects/TerastacksApp-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Terastacks</p>
+          <p class="project_type">Blockchain Currency</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            A financial institution I've developed which offers the limited sale of Teracodes.
+            The members transactions with the Terastacks vault allow the Teracode’s value to increase or decrease. 
+            The Teracode is the network of blockchained transactions between all members by using a crypto-graphic hash.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Railway, Heroku, Figma</p>
+        </div>   -->
+
+        <!-- OYO -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/OwnYourOwn.webp" alt="Own Your Own Website Preview"           
+          srcset="static/images/projects/OwnYourOwn-1000.webp 1000w, static/images/projects/OwnYourOwn-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Own Your Own</p>
+          <p class="project_type">Web Development Agency</p>
+          <a class="project_link" href="https://www.behance.net/gallery/154690527/Own-Your-Own-UI-Design" target="_blank">Gallery</a>
+          <p class="project_description">
+            Using my expertise in web design, programming and digital marketing, I developped a website for a Web Development Agency that I was starting. 
+            Unfortunately, I was not able to complete the company due to personal matters.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Heroku, Figma</p>
+        </div>          -->
+
+        <!-- GLOBE -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/GlobeTrotters.webp" alt="Globe Trotters website preview"           
+          srcset="static/images/projects/GlobeTrotters-1000.webp 1000w, static/images/projects/GlobeTrotters-500.webp 500w" loading="lazy"> 
+          <p class="project_title">CASUAL GLOBETROTTERS</p>
+          <p class="project_type">Travel Agency</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            CG is a website that I have started to built which aims to help people plan trips to visit the world. 
+            By receiving the user's custom request, the system will build a unique travel plan that will fit perfectly with their desires.
+            <br><br> Currently in development.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Figma</p>
+        </div>      -->
+
+        <!-- TERA -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/Terastacks.webp" alt="Terastacks website preview"           
+          srcset="static/images/projects/Terastacks-1000.webp 1000w, static/images/projects/Terastacks-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Terastacks App</p>
+          <p class="project_type">Money Transfer Platform</p>
+          <a class="project_link" href="https://www.Terastacks.com" target="_blank">Visit Site</a>
+          <p class="project_description">
+            Terastacks is a platform which I've developped that lets users send money to other members via online ebanks such as Paypal, Apple Pay, Venmo, Google Pay, Cash-app.
+            The platform was built as a middle man that connects all these eBank and makes it easier to make transfers between them.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Railway, Heroku, Figma</p>
+        </div>     -->
+
+        <!-- WG -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/WorkGambit.webp" alt="work gambit website preview"           
+          srcset="static/images/projects/WorkGambit-1000.webp 1000w, static/images/projects/WorkGambit-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Work Gambit</p>
+          <p class="project_type">Job Board</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            Work Gambit is a website I've developed to help companies connect with talented job seekers. 
+            It allowed companies to quickly and easily post job offers for a minor fee.<br><br> Codes available to purchase.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Heroku, Figma, AWS</p>
+        </div>       -->
+
+        <!-- Diggit -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/Diggit.webp" alt="Diggit website preview"           
+          srcset="static/images/projects/Diggit-1000.webp 1000w, static/images/projects/Diggit-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Diggit</p>
+          <p class="project_type">Social Network</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            Diggit is a text-only based social network platform that allows people to post, repost, comment, like and share posts on the platform.
+            It also allows you to follow your favorite users and your favorite hashtags.
+            <br><br> Codes available to purchase.
+          </p>
+          <p class="project_tools">Html, Css, Javascript, Django, Python, Heroku, Figma, AWS, S3</p>
+        </div>     -->
+
+        <!-- MF -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/MadFresh.webp" alt="mad fresh website preview"           
+          srcset="static/images/projects/MadFresh-1000.webp 1000w, static/images/projects/MadFresh-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Mad Fresh</p>
+          <p class="project_type">Streetwear & Design Brand</p>
+          <a class="project_link" href="" target="_blank">Offline</a>
+          <p class="project_description">
+            Mad Fresh was a clothing and Art design company aimed at selling clothes online. 
+            Unfortunately, the store is no longer online as I shifted my priorities.
+          </p>
+          <p class="project_tools">Shopify, Html, Css, Figma</p>
+        </div>    -->
+   
+        <!-- BEHANCE -->
+        <!-- <div class="project_cont">
+          <img class="project_image" src="static/images/projects/FrontendPortfolio.webp" alt="front end portfolio preview"           
+          srcset="static/images/projects/FrontendPortfolio-1000.webp 1000w, static/images/projects/FrontendPortfolio-500.webp 500w" loading="lazy"> 
+          <p class="project_title">Front-End Portfolio</p>
+          <p class="project_type">Various Designs</p>
+          <a class="project_link" href="https://www.behance.net/collection/209765547/Front-End-Design" target="_blank">Gallery</a>
+          <p class="project_description">
+            Here you fill find multiple UI/UX designs that I've created.
+          </p>
+          <p class="project_tools">Figma, Photoshop, Illustrator</p>
+        </div>    -->
+    <!-- </section>  -->
+
+
+
+<!-- <section id="testimonialsSection">
+      <p class="section_titles">
+        What People Have To Say
+      </p>
+      <p class="section_subtitles">
+        Check out some of the latest work with our clients
+      </p>
+      <div class="testimonials_cont">
+        <section class="testimonials_card">
+          <p class="testimonial_text">
+            "Working with Sebastien was a game-changer for our website. Their strategic insights and cutting-edge designs transformed our site, resulting in increased traffic, engagement, and ultimately, business growth."
+          </p>
+          <div class="testimonial_person">
+            <img class="testimonial_img" src="static/images/Testimony/BreHamilton.png" alt="bre Hamilton testimonial picture" loading="lazy">
+            <div class="testimonial_personInfo">
+              <p class="testimonial_name">Bre Hamilton</p>
+              <p class="testimonial_position">MAPS Canada</p>
+            </div>
+          </div>
+        </section>
+        <section class="testimonials_card">
+          <p class="testimonial_text">
+            "Having Sebastien work with us during our startup's early stages was a game-changer. Their innovative solutions and agile approach helped us navigate challenges and establish a strong online presence from day one." 
+          </p>
+          <div class="testimonial_person">
+            <img class="testimonial_img" src="static/images/Testimony/LaurentVincent.png" alt="Laurent vincent testimonial picture" loading="lazy">
+            <div class="testimonial_personInfo">
+              <p class="testimonial_name">Laurent Vincent</p>
+              <p class="testimonial_position">CEO of Stack Influence</p>
+            </div>
+          </div>
+        </section>
+        <section class="testimonials_card">
+          <p class="testimonial_text">
+            "Our website has received countless compliments, all thanks to Sebastien and their expertise. The seamless user experience they created has significantly boosted our online presence. Highly impressed!"
+          </p>
+          <div class="testimonial_person">
+            <img class="testimonial_img" src="static/images/Testimony/YvetteEdouard.JPG" alt="Yvette Edouard testimonial picture" loading="lazy">
+            <div class="testimonial_personInfo">
+              <p class="testimonial_name">Yvette Edouard</p>
+              <p class="testimonial_position">Owner of Xaragua Hotel</p>
+            </div>
+          </div>
+        </section>
+        <section class="testimonials_card">
+          <p class="testimonial_text">
+            "We're thrilled to have Sebastien as part of our agency team. Their proactive approach, collaborative spirit, and commitment to excellence have contributed to our success in delivering top-notch web solutions to our clients." 
+          </p>
+          <div class="testimonial_person">
+            <img class="testimonial_img" src="static/images/Testimony/Robert Mielnik.png" alt="Robert Mielnik testimonial picture" loading="lazy">
+            <div class="testimonial_personInfo">
+              <p class="testimonial_name">Robert Mielnik</p>
+              <p class="testimonial_position">COO of Design In DC</p>
+            </div>
+          </div>
+        </section>
+        <section class="testimonials_card">
+          <p class="testimonial_text">
+            "Thanks to Sebastien, our website now sets industry standards. Their innovative solutions and meticulous attention to detail have propelled our online presence to new heights, attracting a wider audience and boosting conversions." 
+          </p>
+          <div class="testimonial_person">
+            <img class="testimonial_img" src="static/images/Testimony/BryanVincent.jpg" alt="Bryan Vincent testimonial picture" loading="lazy">
+            <div class="testimonial_personInfo">
+              <p class="testimonial_name">Bryan Vincent</p>
+              <p class="testimonial_position">CEO of VIP Maintenance</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="fade"></div>
+      <section class="testimonialBanner">
+        <div class="testimonialBannerFirst">
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Working with Sebastien was a game-changer for our website. Their strategic insights and cutting-edge designs transformed our site, resulting in increased traffic, engagement, and ultimately, business growth."
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/BreHamilton.png" alt="bre Hamilton testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Bre Hamilton</p>
+                <p class="testimonial_position">MAPS Canada</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Having Sebastien work with us during our startup's early stages was a game-changer. Their innovative solutions and agile approach helped us navigate challenges and establish a strong online presence from day one." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/LaurentVincent.png" alt="Laurent vincent testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Laurent Vincent</p>
+                <p class="testimonial_position">CEO of Stack Influence</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Our website has received countless compliments, all thanks to Sebastien and their expertise. The seamless user experience they created has significantly boosted our online presence. Highly impressed!"
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/YvetteEdouard.JPG" alt="Yvette Edouard testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Yvette Edouard</p>
+                <p class="testimonial_position">Owner of Xaragua Hotel</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "We're thrilled to have Sebastien as part of our agency team. Their proactive approach, collaborative spirit, and commitment to excellence have contributed to our success in delivering top-notch web solutions to our clients." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/Robert Mielnik.png" alt="Robert Mielnik testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Robert Mielnik</p>
+                <p class="testimonial_position">COO of Design In DC</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Thanks to Sebastien, our website now sets industry standards. Their innovative solutions and meticulous attention to detail have propelled our online presence to new heights, attracting a wider audience and boosting conversions." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/BryanVincent.jpg" alt="Bryan Vincent testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Bryan Vincent</p>
+                <p class="testimonial_position">CEO of VIP Maintenance</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="testimonialBannerSecond">
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Working with Sebastien was a game-changer for our website. Their strategic insights and cutting-edge designs transformed our site, resulting in increased traffic, engagement, and ultimately, business growth."
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/BreHamilton.png" alt="bre Hamilton testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Bre Hamilton</p>
+                <p class="testimonial_position">MAPS Canada</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Having Sebastien work with us during our startup's early stages was a game-changer. Their innovative solutions and agile approach helped us navigate challenges and establish a strong online presence from day one." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/LaurentVincent.png" alt="Laurent vincent testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Laurent Vincent</p>
+                <p class="testimonial_position">CEO of Stack Influence</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Our website has received countless compliments, all thanks to Sebastien and their expertise. The seamless user experience they created has significantly boosted our online presence. Highly impressed!"
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/YvetteEdouard.JPG" alt="Yvette Edouard testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Yvette Edouard</p>
+                <p class="testimonial_position">Owner of Xaragua Hotel</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "We're thrilled to have Sebastien as part of our agency team. Their proactive approach, collaborative spirit, and commitment to excellence have contributed to our success in delivering top-notch web solutions to our clients." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/Robert Mielnik.png" alt="Robert Mielnik testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Robert Mielnik</p>
+                <p class="testimonial_position">COO of Design In DC</p>
+              </div>
+            </div>
+          </section>
+          <section class="testimonials_card">
+            <p class="testimonial_text">
+              "Thanks to Sebastien, our website now sets industry standards. Their innovative solutions and meticulous attention to detail have propelled our online presence to new heights, attracting a wider audience and boosting conversions." 
+            </p>
+            <div class="testimonial_person">
+              <img class="testimonial_img" src="static/images/Testimony/BryanVincent.jpg" alt="Bryan Vincent testimonial picture" loading="lazy">
+              <div class="testimonial_personInfo">
+                <p class="testimonial_name">Bryan Vincent</p>
+                <p class="testimonial_position">CEO of VIP Maintenance</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="fade"></div>
+      </section>
+    </section> -->
+
+
+    <!-- <div id="about"></div>
+    <section id="aboutMe">
+      <div class="aboutMe_info">
+        <div class="aboutMe_infoCont">
+          <p class="aboutMe_title">About</p>
+          <p class="aboutMe_description">
+            With over 10+ years in Web Development and Graphic Design, I have a proven track record of success in crafting dynamic digital experiences.<br><br>
+            I craft visually appealing and seamlessly functional websites. My skills span both Frontend and Backend, for developing robust Web Applications. 
+            Experienced in deployment, I smoothly transition from development to production.<br><br>
+            Driven by a passion for innovation and a commitment to excellence, I am adept at translating client visions into tangible digital solutions that exceed expectations. 
+          </p>
+          <a href="https://www.linkedin.com/in/sebastien-augustin/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="https://www.behance.net/SebastienAugustin" target="_blank"><i class="fa-brands fa-square-behance"></i> Behance</a>
+          <a href="https://github.com/TheFutureHistory" target="_blank"><i class="fa-brands fa-square-github"></i> Github</a>
+          <a href="mailto:koooxi.agency@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i>  Email</a>
+        </div>
+        <img class="aboutMe_img" src="static/images/SebastienAugustin.webp" alt="A profile picture of Sebastien Augustin" 
+        srcset="static/images/SebastienAugustin-1000.webp 1000w, static/images/SebastienAugustin-500.webp 500w" loading="lazy">
+      </div>
+    </section> -->
+
+        <section class="servicesSection">
+      <p class="section_titles" id="benefitsTitle">
+        Why Partner with Us?
+      </p>
+      <p class="section_subtitles" id="benefitsSubtitle">
+        Gain competitive advantage through strategic partnership
+      </p>
+      <div class="services_cont">
+        <div class="services_card">
+          <p class="services_cardTitle">Design</p>
+          <p class="services_cardDescription">
+            Visually stunning designs that capture your brand essence and leave a lasting impression on your audience, 
+            ensuring your message stands out in a crowded digital landscape.
+          </p>
+        </div>
+        <div class="services_card">
+          <p class="services_cardTitle">Web Development</p>
+          <p class="services_cardDescription">
+            Websites tailored to your needs, blending creativity with functionality to deliver seamless user experiences and drive conversions, 
+            all while adhering to the latest web standards.
+          </p>
+        </div>
+        <div class="services_card">
+          <p class="services_cardTitle">Web Application</p>
+          <p class="services_cardDescription">
+            Dynamic web applications that empower your business with enhanced functionality, efficiency, and scalability, 
+            providing users with intuitive interfaces and robust features for optimal performance.
+          </p>
+        </div>
+        <div class="services_card">
+          <p class="services_cardTitle">UI/UX Research</p>
+          <p class="services_cardDescription">
+            In-depth research to understand user behaviors and preferences, informing the design process to create intuitive interfaces and delightful 
+            user experiences that foster engagement and loyalty.
+          </p>
+        </div>
+        <div class="services_card">
+          <p class="services_cardTitle">SEO + Copy</p>
+          <p class="services_cardDescription">
+            Proven SEO strategies to improve your website's visibility and ranking on search engines, 
+            driving organic traffic and maximizing your online presence to attract and retain customers.</p>
+        </div>
+        <div class="services_card">
+          <p class="services_cardTitle">Branding + Social Media</p>
+          <p class="services_cardDescription">
+            Develop compelling brand stories and messaging that resonate with your target audience, 
+            alongside strategic branding solutions that reinforce your brand identity and build trust, ensuring consistency across all touchpoints.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefitsSection">
+      <p class="section_titles" id="benefitsTitle">
+        What Are The Benefits?
+      </p>
+      <p class="section_subtitles" id="benefitsSubtitle">
+        Achieve your goals faster with enhanced efficiency strategies.
+      </p>
+      <div class="benefits_cont">
+        <div class="benefits_smallCont">
+          <p class="benefits_boxSubtitle">Rapid Delivery</p>
+          <p class="benefits_boxDescription">Requests completed in less than 24 hours</p>
+          <img class="benefits_boxSmallIMG" src="static/images/timesand.webp" alt="">
+        </div>
+        <div class="benefits_largeCont">
+          <p class="benefits_boxSubtitle">Client Satisfaction</p>
+          <p class="benefits_boxTitle">Reduced meetings + Increased productivity</p>
+          <ul class="benefits_boxList">
+            <li><p><i class="fa-solid fa-circle-check"></i>Streamlined meeting schedules with clearer communication channels</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Enhanced time management strategies with Heightened efficiency in task execution</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Sharp focus on project objectives with elevated output quality through reduced distractions</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Maximized use of resources to improve project momentum leading to timely deliverables</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>faster decision-making collaboration and increased client satisfaction due to swift progress.</p></li>
+          </ul>
+        </div>
+        <div class="benefits_largeCont">
+          <p class="benefits_boxSubtitle">Unlimited Possibilities</p>
+          <p class="benefits_boxTitle">Tailored Designs for custom Websites</p>
+          <ul class="benefits_boxList">
+            <li><p><i class="fa-solid fa-circle-check"></i>Transforming concepts into captivating digital experiences.</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Unparalleled flexibility avoiding site building platforms.</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Custom solutions tailored specifically to your brand.</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Insights and solutions that cater to your industry.</p></li>
+            <li><p><i class="fa-solid fa-circle-check"></i>Unique design and codes, no templates.</p></li>
+          </ul>
+        </div>
+        <div class="benefits_smallCont">
+          <p class="benefits_boxSubtitle">Maintenance</p>
+          <p class="benefits_boxDescription">Seamless Operation + Peace of Mind</p>
+          <img class="benefits_boxSmallIMG" src="static/images/maintenance.webp" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="pricingSection">
+      <div id="pricing"></div>
+      <p class="section_titles">
+        What Are The Pricing Options?
+      </p>
+      <p class="section_subtitles">
+        Transparent pricing models crafted to suit your unique budgetary requirements.
+      </p>
+      <div class="pricing_cardCont">
+        <div class="pricing_card">
+          <div class="pricing_cardHeader">
+            <p class="pricing_cardTitle">CUSTOM</p>
+            <p class="pricing_cardStatus"><span class="dot"></span>2 Spots Remaining</p>
+          </div>
+          <p class="pricing_cardPrice">$$$ <span class="pricing_cardMonthly">/ monthly</span></p>
+          <p class="pricing_cardCancelPolicy">Cancel Anytime</p>
+          <div class="pricing_cardIncluded">
+            <p class="pricing_cardIncludedTitle">What's included :</p>
+            <ul class="pricing_cardList">
+              <li><p><i class="fa-regular fa-circle-check"></i>Seasoned Designer with wealth of experience</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Limited Revisions</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>24 hours turnaround per request</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Communication via Teams, Zoom, Gmail, Whatsapp</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Weekly progress updates</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Scheduled Maintenance + updates</p></li>
+            </ul>
+          </div>
+          <p class="pricing_cardDescription">
+            Experience personalized design solutions by a seasoned designer based in North America, 
+            ensuring meticulous attention to your ongoing project requirements.
+          </p>
+          <a class="pricing_cardButton" href="https://calendly.com/koooxi/30min" target="_blank" >Schedule a meeting</a>
+        </div>
+
+        <div class="pricing_card">
+          <div class="pricing_cardHeader">
+            <p class="pricing_cardTitle">STANDARD</p>
+            <p class="pricing_cardStatus">Most Popular</p>
+          </div>
+          <p class="pricing_cardPrice">$3,999 <span class="pricing_cardMonthly">/ monthly</span></p>
+          <p class="pricing_cardCancelPolicy">Cancel Anytime</p>
+          <div class="pricing_cardIncluded">
+            <p class="pricing_cardIncludedTitle">What's included :</p>
+            <ul class="pricing_cardList">
+              <li><p><i class="fa-regular fa-circle-check"></i>Seasoned Designer with wealth of experience</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Unlimited Revisions</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>12 hours turnaround per request</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Communication via Teams, Zoom, Gmail, Whatsapp</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>Weekly progress updates</p></li>
+              <li><p><i class="fa-regular fa-circle-check"></i>24/7 Maintenance + updates</p></li>
+            </ul>
+          </div>
+          <p class="pricing_cardDescription">
+            Have in-house design solutions by a seasoned designer based in North America, 
+            ensuring constant meticulous attention to your ongoing projects requirements.
+          </p>
+          <a class="pricing_cardButton" href="https://calendly.com/koooxi/30min" target="_blank" >Schedule a meeting</a>
+        </div>
+      </div>
+    </section>

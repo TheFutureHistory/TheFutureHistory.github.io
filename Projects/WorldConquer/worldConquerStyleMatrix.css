@@ -1,0 +1,219 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: black;
+}
+
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 98%;
+    height: 98%;
+    padding: 1% 1%;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    overflow: hidden;
+}
+.rowTwo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 26%;
+}
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 74%;
+    margin: 1% 0px;
+}
+.singleBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 75%;
+    width: 26.5%;
+    padding: 2.5% 2.5%;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid green;
+}
+.singleBox h3{
+    font-family: Poppins, sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    margin: 0px;
+    color: green;
+}
+
+.singleBox p {
+    font-family: Poppins, sans-serif;
+    font-weight: 200; 
+    font-size: 45px;
+    margin: 10px 0px;
+    color: green;
+}
+.stats{
+    margin: 0px;
+    margin-top: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 0; /* iOS */
+}
+::-webkit-slider-runnable-track {
+    background: white;
+    border: 1px solid #ddd;
+    height: 100%;
+}
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; /* 1 */
+    height: 40px;
+    background: #4bdc73;
+    box-shadow: -200px 0 0 200px #4bdc73; /* 2 */
+    border: 0px solid #999; /* 1 */
+}
+::-webkit-slider-thumb:nth-child(0) {
+    background: #ff5e62
+}
+::-moz-range-track {
+    height: 40px;
+    background: #ddd;
+}
+::-moz-range-thumb {
+    background: #4bdc73;
+    height: 40px;
+    width: 20px; /* 1 */
+    border: 3px solid #999; /* 1 */
+    border-radius: 0 !important;
+    box-shadow: -200px 0 0 200px dodgerblue;
+    box-sizing: border-box;
+}
+::-moz-range-thumb:nth-child(1){
+    background: #4bdc73;
+}
+::-ms-fill-lower { 
+    background: dodgerblue;
+}
+::-ms-thumb { 
+    background: yellow;
+    border: 2px solid #999; /* 1 */
+    height: 40px;
+    width: 20px; /* 1 */
+    box-sizing: border-box;
+}
+::-ms-ticks-after { 
+    display: none; 
+}
+::-ms-ticks-before { 
+    display: none; 
+}
+::-ms-track { 
+    background: #ddd;
+    color: transparent;
+    height: 40px;
+    border: none;
+}
+#map{
+    height: 89%;
+    width: 100%;
+    background-color: black;
+    border: 1px solid green;
+    padding: 2% 0%;
+    border-radius: 10px;
+}
+.boxControl{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 24%;
+    margin: 1% 0px;
+}
+.singleBoxControl{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 83%;
+    width: 90%;
+    padding: 5% 5%;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px solid green;
+}
+.singleBoxControlRow{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.singleBoxControlRow label{
+    color: white;
+    width: auto;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: Poppins, sans-serif;
+}
+#nameInput,
+#favCountry{
+    width: auto;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins, sans-serif;
+    background-color: transparent;
+    color: white;
+    padding: 0.5em 0.5em;
+    border: none;
+}
+#nameInput:focus,
+#favCountry:focus{
+    outline: none;
+}
+#favCountryLabel{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Poppins, sans-serif;
+    color: white;
+}
+#screenshotBTN,
+#resetBTN{
+    width: 100%;
+    height: auto;
+    border: 0.5px solid white;
+    padding: 10px 0px;
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: auto;
+    transition: 0.3s;
+}
+#screenshotBTN:hover,
+#resetBTN:hover{
+    opacity: 50%;
+}

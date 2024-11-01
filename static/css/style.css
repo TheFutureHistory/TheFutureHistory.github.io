@@ -225,7 +225,7 @@ background-color: var(--white);
 
 /* ------------------------------------------------------ PROJECT BANNER */
 #work{
-  padding-bottom: 0vh;
+  padding-bottom: 0vh !important;
 }
 .projectsBanner {
 width: 100vw;
@@ -294,7 +294,7 @@ align-items: center;
 height: 80vh;
 width: 70vw;
 padding: 10vh 15vw;
-background: linear-gradient(var(--black_10_op)0%, black 100%);
+background: linear-gradient(var(--black_10_op)0%, var(--black_10_op)0%);
 }
 .process_cont{
 display: flex;
@@ -959,6 +959,126 @@ font-size: var(--font_size_sm);
 font-weight: var(--font_weight_sm);
 margin-bottom: 4vh;
 color: var(--white_50_op);
+}
+
+/* ------------------------------------------------------ PORTFOLIO */
+.portfolioSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  height: 80vh;
+  padding: 10vh 10vw 10vh 10vw;
+  background: linear-gradient(var(--black_10_op)0%, var(--black_10_op)0%);
+}
+.portfolioGallery{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: left;
+  flex-wrap: wrap;
+  width: 80vw;
+  height: 80vw;
+  padding: 10vh 10vw;
+}
+.portfolioItem{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: left;
+height: 20vh;
+width: 32%;
+transition: 0.3s;
+opacity: 75%;
+margin: 2vh 0.5vw;
+}
+.portfolioItem:hover{
+  opacity: 100%;
+}
+.portfolioItem:hover .portfolioItemPhoto{
+  border: 1px solid white;
+  filter: grayscale(0%);
+}
+.portfolioItem:hover .portfolioItemInformation{
+  opacity: 100%;
+}
+.portfolioItemPhoto{
+  height: 80%;
+  max-height: 80%;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.5);
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+.portfolioItemInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.portfolioItemInformation{
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  border: 1px solid white;
+  padding: 2.5px 25px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0px 5px 0px 0px;
+  opacity: 50%;
+  transition: 0.3s;
+}
+.hydroFloraContainer{
+  position: fixed;
+  top: 0%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 70vw;
+  background-color: black;
+  transition: 0.3s;
+  z-index: 6000;
+  padding: 10vh 15vw;
+}
+.hydroFloraRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 1vh 0px;
+}
+.hydroFloraRow p{
+  color: white;
+}
+.hydroFloraRow video{
+  width: 100%;
+  height: auto;
+}
+#closeHydroFlora{
+  border: 1px solid white;
+  padding: 1em 1em;
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#closeHydroFlora:hover{
+  opacity: 50%;
 }
 
 /* ------------------------------------------------------ CONTACT */

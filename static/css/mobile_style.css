@@ -263,4 +263,20 @@ display: none;
 #header_contact_button{
 display: none;
 }
+.portfolioItem{
+  width: 100%;
 }
+.portfolioGallery{
+padding: 10vh 0vw;
+width: 100%;
+height: auto;
+}
+.portfolioSection{
+padding: 10vh 0px;
+width: 100%;
+justify-content: flex-start;
+height: auto;
+}
+}
+
+
