@@ -25,7 +25,7 @@ function appendPortfolioItems(items) {
       alt: 'Drum Machine',
       onClick: 'openDrumMachine()',
       title: 'Drum Machine',
-      category: 'Music',
+      category: 'Program',
       year: '2024'
     },
     {
@@ -33,7 +33,7 @@ function appendPortfolioItems(items) {
       alt: 'World Conquer',
       onClick: 'openWorldConquer()',
       title: 'World Conquer',
-      category: 'Travel',
+      category: 'Program',
       year: '2024'
     },
     {
@@ -41,7 +41,7 @@ function appendPortfolioItems(items) {
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
-    category: 'Non-profit',
+    category: 'Web Dev',
     year: '2022'
     },
     {
@@ -49,7 +49,7 @@ function appendPortfolioItems(items) {
     alt: 'Xaragua Hotel',
     onClick: 'openXaragua()',
     title: 'Xaragua Hotel',
-    category: 'Travel',
+    category: 'Web Dev',
     year: '2017'
     },
     {
@@ -71,11 +71,27 @@ function appendPortfolioItems(items) {
     {
     imageSrc: './static/images/projects/FrontendPortfolio-500.webp',
     alt: 'Front-end',
-    onClick: 'openBehance()',
+    onClick: 'openFrontend()',
     title: 'Front-end',
     category: 'Design',
     year: '0000'
-    }
+    },
+    {
+      imageSrc: './static/images/projects/SATURDAZE.webp',
+      alt: 'Front-end',
+      onClick: 'openGraphicDesign()',
+      title: 'Graphic Design',
+      category: 'Design',
+      year: '0000'
+    },
+    {
+      imageSrc: './static/images/projects/Logos.webp',
+      alt: 'Front-end',
+      onClick: 'openLogos()',
+      title: 'Logos',
+      category: 'Design',
+      year: '0000'
+      }
   ];
   
   // Call the function to append the items
