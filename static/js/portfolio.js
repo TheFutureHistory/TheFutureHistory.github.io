@@ -21,6 +21,14 @@ function appendPortfolioItems(items) {
   // Example usage:
   const portfolioItems = [
     {
+      imageSrc: './static/images/projects/alwaysSkilled.png',
+      alt: 'Always Skilled',
+      onClick: 'openAlwaysSkilled()',
+      title: 'Always Skilled',
+      category: 'Music',
+      year: '2005'
+    },
+    {
       imageSrc: './static/images/DrumMachine.png',
       alt: 'Drum Machine',
       onClick: 'openDrumMachine()',
@@ -37,6 +45,14 @@ function appendPortfolioItems(items) {
       year: '2024'
     },
     {
+      imageSrc: './static/images/projects/HighVibez.png',
+      alt: 'High Vibez',
+      onClick: 'openHighVibez()',
+      title: 'High Vibez',
+      category: 'Web Dev',
+      year: '2024'
+    },
+    {
     imageSrc: './static/images/projects/MAPSCanada-500.webp',
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
@@ -50,22 +66,6 @@ function appendPortfolioItems(items) {
     onClick: 'openXaragua()',
     title: 'Xaragua Hotel',
     category: 'Web Dev',
-    year: '2017'
-    },
-    {
-    imageSrc: './static/images/projects/alwaysSkilled.png',
-    alt: 'Always Skilled',
-    onClick: 'openAlwaysSkilled()',
-    title: 'Always Skilled',
-    category: 'Music',
-    year: '2005'
-    },
-    {
-    imageSrc: './static/images/projects/HydroFlora.jpg',
-    alt: 'Hydro Flora',
-    onClick: 'openHydroflora()',
-    title: 'Hydro Flora',
-    category: 'Music Production',
     year: '2017'
     },
     {
@@ -91,7 +91,15 @@ function appendPortfolioItems(items) {
       title: 'Logos',
       category: 'Design',
       year: '0000'
-      }
+    },
+    {
+      imageSrc: './static/images/projects/HydroFlora.jpg',
+      alt: 'Hydro Flora',
+      onClick: 'openHydroflora()',
+      title: 'Hydro Flora',
+      category: 'Music Production',
+      year: '2017'
+    }
   ];
   
   // Call the function to append the items

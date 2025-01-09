@@ -968,7 +968,7 @@ color: var(--white_50_op);
   justify-content: space-between;
   align-items: center;
   width: 80vw;
-  height: 80vh;
+  height: 110vh;
   padding: 10vh 10vw 10vh 10vw;
   background: linear-gradient(var(--black_10_op)0%, var(--black_10_op)0%);
 }
@@ -980,7 +980,7 @@ color: var(--white_50_op);
   flex-wrap: wrap;
   width: 80vw;
   height: 80vw;
-  padding: 10vh 10vw;
+  padding: 0vh 10vw;
 }
 .portfolioItem{
 display: flex;
@@ -1085,6 +1085,7 @@ margin: 2vh 0.5vw;
 #contact_footer{
 height: 5vh;
 width: 100%;
+margin: 5vh 0px;
 }
 #contact_footer p{
 color: var(--white_50_op);

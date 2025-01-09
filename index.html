@@ -34,20 +34,20 @@
 
     <section class="projectsBanner">
       <div class="projectsBanner_first">
+        <img class="projectsBanner_IMG" src="static/images/projects/Terastacks.webp" alt="Terastacks App website preview"           
+        srcset="static/images/projects/Terastacks-1000.webp 1000w, static/images/projects/Terastacks-500.webp 500w" loading="lazy"> 
+        <img class="projectsBanner_IMG" src="static/images/projects/OwnYourOwn.webp" alt="Own Your Own Website Preview"           
+        srcset="static/images/projects/OwnYourOwn-1000.webp 1000w, static/images/projects/OwnYourOwn-500.webp 500w" loading="lazy"> 
+        <img class="projectsBanner_IMG" src="static/images/projects/TicketPRO.webp" alt="Ticket PRO website preview"           
+        srcset="static/images/projects/TicketPRO-1000.webp 1000w, static/images/projects/TicketPRO-500.webp 500w" loading="lazy"> 
+      </div>
+      <div class="projectsBanner_second">
         <img class="projectsBanner_IMG" src="static/images/projects/MAPSCanada.webp" alt="MAPS Canada Website preview" 
         srcset="static/images/projects/MAPSCanada-1000.webp 1000w, static/images/projects/MAPSCanada-500.webp 500w" loading="lazy">
         <img class="projectsBanner_IMG" src="static/images/projects/xaraguaHotel.webp" alt="" 
         srcset="static/images/projects/xaraguaHotel-1000.webp 1000w, static/images/projects/xaraguaHotel-500.webp 500w" loading="lazy">
         <img class="projectsBanner_IMG" src="static/images/projects/SAGE.webp" alt="SAGE website preview"           
         srcset="static/images/projects/SAGE-1000.webp 1000w, static/images/projects/SAGE-500.webp 500w" loading="lazy"> 
-      </div>
-      <div class="projectsBanner_second">
-        <img class="projectsBanner_IMG" src="static/images/projects/TicketPRO.webp" alt="Ticket PRO website preview"           
-        srcset="static/images/projects/TicketPRO-1000.webp 1000w, static/images/projects/TicketPRO-500.webp 500w" loading="lazy"> 
-        <img class="projectsBanner_IMG" src="static/images/projects/TerastacksApp.webp" alt="Terastacks App website preview"           
-        srcset="static/images/projects/TerastacksApp-1000.webp 1000w, static/images/projects/TerastacksApp-500.webp 500w" loading="lazy"> 
-        <img class="projectsBanner_IMG" src="static/images/projects/OwnYourOwn.webp" alt="Own Your Own Website Preview"           
-        srcset="static/images/projects/OwnYourOwn-1000.webp 1000w, static/images/projects/OwnYourOwn-500.webp 500w" loading="lazy"> 
       </div>
       <div class="fade"></div>
     </section>
@@ -106,6 +106,7 @@
       </section>
     </section>
 
+    <!-- HydroFlora Video -->
     <section class="hydroFloraContainer" id="hydroFloraContainer">
       <div class="hydroFloraRow">
         <video controls>
@@ -119,20 +120,6 @@
         <button id="closeHydroFlora" onClick='openHydroflora()'>X</button>
       </div>
     </section>
-
-    <!-- <div id="contact"></div> -->
-    <!-- <div class="hero_container">
-      <h1 class="hero_subtitle">CREATIVE DIRECTOR</h1>
-      <h2 class="hero_title">SEBASTIEN AUGUSTIN</h2>
-      <hr class="hero_divider">
-      <p class="hero_description">Let's craft your digital vision into reality<br>
-        Elevate your online presence with expert craftsmanship and innovation.
-      </p>
-      <div class="hero_buttons">
-        <a class="hero_btn" href="mailto:koooxi.agency@gmail.com" >koooxi.agency@gmail.com</a>
-        <a class="hero_btn" href="https://calendly.com/koooxi/30min" target="_blank">CALENDLY</a>
-      </div>
-    </div> -->
 
     <section id="contact_footer">
       <p>© Sebastien Augustin 2024. All Rights Reserved.</p>
@@ -203,6 +190,9 @@
     </script>
         <!-- PORTFOLIO LINKS -->
     <script>
+      function openHighVibez() {
+        window.open('https://www.highvibezglobal.com', '_blank');
+      }
       function openDrumMachine() {
         window.open('./Projects/DrumMachine/index.html', '_blank');
       }
