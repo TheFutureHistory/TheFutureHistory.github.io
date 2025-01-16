@@ -61,7 +61,7 @@ function appendPortfolioItems(items) {
     year: '2022'
     },
     {
-    imageSrc: './static/images/projects/XaraguaHotel-500.webp',
+    imageSrc: './static/images/projects/xaraguaHotel-500.webp',
     alt: 'Xaragua Hotel',
     onClick: 'openXaragua()',
     title: 'Xaragua Hotel',
