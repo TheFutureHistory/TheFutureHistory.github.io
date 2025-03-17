@@ -85,14 +85,6 @@ function appendPortfolioItems(items) {
       year: '2024'
     },
     {
-      imageSrc: './static/images/projects/alwaysSkilled.png',
-      alt: 'Always Skilled',
-      onClick: 'openAlwaysSkilled()',
-      title: 'Always Skilled',
-      category: 'Music',
-      year: '2005'
-    },
-    {
       imageSrc: './static/images/projects/HydroFlora.jpg',
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
