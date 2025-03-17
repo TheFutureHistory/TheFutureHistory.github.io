@@ -21,30 +21,6 @@ function appendPortfolioItems(items) {
   // Example usage:
   const portfolioItems = [
     {
-      imageSrc: './static/images/projects/alwaysSkilled.png',
-      alt: 'Always Skilled',
-      onClick: 'openAlwaysSkilled()',
-      title: 'Always Skilled',
-      category: 'Music',
-      year: '2005'
-    },
-    {
-      imageSrc: './static/images/DrumMachine.png',
-      alt: 'Drum Machine',
-      onClick: 'openDrumMachine()',
-      title: 'Drum Machine',
-      category: 'Program',
-      year: '2024'
-    },
-    {
-      imageSrc: './static/images/projects/worldConquer.png',
-      alt: 'World Conquer',
-      onClick: 'openWorldConquer()',
-      title: 'World Conquer',
-      category: 'Program',
-      year: '2024'
-    },
-    {
       imageSrc: './static/images/projects/HighVibez.png',
       alt: 'High Vibez',
       onClick: 'openHighVibez()',
@@ -61,7 +37,7 @@ function appendPortfolioItems(items) {
     year: '2022'
     },
     {
-    imageSrc: './static/images/projects/xaraguaHotel-500.webp',
+    imageSrc: './static/images/projects/xaragua-500.webp',
     alt: 'Xaragua Hotel',
     onClick: 'openXaragua()',
     title: 'Xaragua Hotel',
@@ -91,6 +67,30 @@ function appendPortfolioItems(items) {
       title: 'Logos',
       category: 'Design',
       year: '0000'
+    },
+    {
+      imageSrc: './static/images/projects/worldConquer.png',
+      alt: 'World Conquer',
+      onClick: 'openWorldConquer()',
+      title: 'World Conquer',
+      category: 'Program',
+      year: '2024'
+    },
+    {
+      imageSrc: './static/images/DrumMachine.png',
+      alt: 'Drum Machine',
+      onClick: 'openDrumMachine()',
+      title: 'Drum Machine',
+      category: 'Program',
+      year: '2024'
+    },
+    {
+      imageSrc: './static/images/projects/alwaysSkilled.png',
+      alt: 'Always Skilled',
+      onClick: 'openAlwaysSkilled()',
+      title: 'Always Skilled',
+      category: 'Music',
+      year: '2005'
     },
     {
       imageSrc: './static/images/projects/HydroFlora.jpg',
