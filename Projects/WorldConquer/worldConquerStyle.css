@@ -134,7 +134,7 @@ color: var(--white);
 #detailsSection{
     display: none;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: fixed;
     height: 95vh;
@@ -150,7 +150,7 @@ color: var(--white);
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    height: 80%;
     width: 100%;
 }
 .detailsWishlist,
@@ -221,18 +221,43 @@ margin-bottom: 10px;
 /* NAME + STATS */
 .stickyMenu{
     position: fixed;
+    left: 2.5vw;
+    bottom: 5vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 15%;
+    background-color: transparent;
+    padding: 0.5% 1%;
+    overflow: hidden;
+    background-color: var(--black);
+    border-radius: 10px;
+    border: 1px solid var(--black_10_op);
+    box-shadow: 0px 2px 6px var(--black_10_op);
+}
+.stickyMenuTitle{
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 9%;
-    width: 96%;
-    background-color: transparent;
-    padding: 0% 1%;
-    overflow: hidden;
+    width: 100%;
+    height: 5%;
+}
+.stickyMenuTitle p{
+    font-family: Roboto, sans-serif;
+    cursor: pointer;
+    color: var(--white);
+}
+.stickyMenuTitle i{
+    color: var(--white); 
 }
 .nameInputContainer{
-    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
     width: 100%;
 }
 #nameInput{
@@ -240,54 +265,58 @@ margin-bottom: 10px;
     font-size: 15px;
     font-weight: 400;
     font-family: Roboto, sans-serif;
-    color: black;
+    color: var(--white);
     padding: 0.5% 1%;
-    border: none;
-    border-radius: 50px;
-    background-color: white;
-    box-shadow: 0px 2px 2px var(--black_20_op);
+    background-color: var(--black);
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: var(--white);
 }
 #nameInput:focus{
     outline: none;
 }
 .statsContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: left;
     width: 100%;
-    height: 30px;
-    overflow-y: scroll;
+    height: auto;
+    border-style: solid;
+    padding: 5% 0px;
+    border-width: 0px;
 }
 .singleBox{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    height: auto;
+    height:auto;
     width: auto;
-    border-radius: 50px;
-    padding: 0px 10px;
-    background-color: white;
-    margin-right: 10px;
-    box-shadow: 0px 0px 4px var(--black_20_op);
+    background-color: var(--black);
+    border-width: 0px 0px 0.5px 0px;
+    border-style: dotted;
+    border-color: var(--white);
 }
 .square{
     height: 10px;
     width: 10px;
     margin-right: 10px;
     border-radius: 50px;
+
 }
 .fa-globe{
     margin-right: 5px;
+    color: var(--white) !important;
 }
 .boxTitles{
     font-family: Roboto, sans-serif;
     font-weight: 400;
     font-size: 15px;
     margin: 0px;
-    color: black !important;
+    color: var(--white) !important;
     cursor: default;
+    background-color: var(--black);
 
 }
 .countriesAmt{
@@ -295,47 +324,42 @@ margin-bottom: 10px;
     font-weight: 400; 
     font-size: 16px;
     margin: 0px 0px 0px 10px;
-    color: black !important;
+    color: var(--white) !important;
     cursor: default;
+    margin-left: auto;
 }
 
 /* stickyMenuBottom */
 .stickyMenuBottom{
-    position: fixed;
-    top: 90%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-    width: 30%;
+    align-items: left;
+    width: 100%;
     height: auto;
-    padding: 0.5% 1.5%;
     background-color: var(--black);
     z-index: 3000;
-    /* border: 0.5px solid var(--white); */
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px var(--black_20_op);
 }
 
 #screenshotBTN,
 #resetBTN,
 .emptyBTN{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 19%;
-    height: auto;
+display: flex;
+flex-direction: row;
+align-items: left;
+width: 100%;
+height: auto;
 border: none;
-border: 1px solid white;
 border-radius: 5px;
-    padding: 10px 5px;
-    background-color: transparent;
-    color: var(--white);
-    cursor: pointer;
-    transition: 0.3s;
+padding: 10px 0px;
+background-color: transparent;
+color: var(--white);
+cursor: pointer;
+transition: 0.3s;
 }
 #screenshotBTN:hover,
-#resetBTN:hover{
+#resetBTN:hover,
+.emptyBTN:hover{
     opacity: 50%;
 }
 
@@ -356,15 +380,14 @@ border-radius: 5px;
     background-color: var(--black);
 }
 .stickyMenu{
-    width: 90%;
+    width: 80%;
+    padding: 2% 5%;
 }
 #nameInput{
-    height: 100%;
-    width: 90%;
-    padding: 0.5% 5%;
+    width: 100%;
 }
 .stickyMenuBottom{
-    width: 90%;
+    width: 100%;
 }
 .helpSection{
     width: 50vw;

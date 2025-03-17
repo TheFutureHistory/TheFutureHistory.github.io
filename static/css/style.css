@@ -965,7 +965,7 @@ color: var(--white_50_op);
 .portfolioSection{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 80vw;
   height: 110vh;
@@ -979,7 +979,7 @@ color: var(--white_50_op);
   align-items: left;
   flex-wrap: wrap;
   width: 80vw;
-  height: 80vw;
+  height: 40vw;
   padding: 0vh 10vw;
 }
 .portfolioItem{
@@ -997,7 +997,6 @@ margin: 2vh 0.5vw;
   opacity: 100%;
 }
 .portfolioItem:hover .portfolioItemPhoto{
-  border: 1px solid white;
   filter: grayscale(0%);
 }
 .portfolioItem:hover .portfolioItemInformation{
@@ -1035,7 +1034,7 @@ margin: 2vh 0.5vw;
   border-radius: 10px;
   text-align: center;
   margin: 0px 5px 0px 0px;
-  opacity: 50%;
+  opacity: 100%;
   transition: 0.3s;
 }
 .hydroFloraContainer{
