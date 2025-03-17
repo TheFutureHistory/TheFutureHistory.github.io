@@ -97,7 +97,7 @@ function appendPortfolioItems(items) {
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
       title: 'Hydro Flora',
-      category: 'Music Production',
+      category: 'Music',
       year: '2017'
     }
   ];
