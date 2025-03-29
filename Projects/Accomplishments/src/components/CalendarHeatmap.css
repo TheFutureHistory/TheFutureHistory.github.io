@@ -1,0 +1,66 @@
+/* Default styles for the React Calendar tiles */
+.react-calendar__tile,
+.react-calendar__year-view__months__month {
+  display: flex;
+  align-items: left;
+  transition: background-color 0.3s ease;
+  border: 0.5px solid #cbcbcb  !important;
+  border-radius: 0px;
+}
+
+.react-calendar__month-view__weekdays__weekday{
+  border-style: solid;
+  border-width: 0px 0.5px;
+  border-color: #cbcbcb;
+}
+/* Accomplishment Levels */
+.react-calendar__tile.no-accomplishment,
+.react-calendar__year-view__months__month.no-accomplishment,
+.react-calendar__decade-view__years__year.no-accomplishment,
+.react-calendar__century-view__centuries__century.no-accomplishment {
+  background-color: white; /* Gray */
+  color: black;
+}
+.react-calendar__tile.low-accomplishment,
+.react-calendar__year-view__months__month.low-accomplishment,
+.react-calendar__decade-view__years__year.low-accomplishment,
+.react-calendar__century-view__centuries__century.low-accomplishment {
+  background-color: rgba(0, 255, 0, 0.2); /* Light green */
+  color: black;
+}
+.react-calendar__tile.medium-accomplishment,
+.react-calendar__year-view__months__month.medium-accomplishment,
+.react-calendar__decade-view__years__year.medium-accomplishment,
+.react-calendar__century-view__centuries__century.medium-accomplishment {
+  background-color: rgba(0, 255, 0, 0.4); /* Medium green */
+  color: black;
+}
+.react-calendar__tile.high-accomplishment,
+.react-calendar__year-view__months__month.high-accomplishment,
+.react-calendar__decade-view__years__year.high-accomplishment,
+.react-calendar__century-view__centuries__century.high-accomplishment {
+  background-color: rgba(0, 255, 0, 0.6); /* Dark green */
+  color: black;
+}
+.react-calendar__tile.very-high-accomplishment,
+.react-calendar__year-view__months__month.very-high-accomplishment,
+.react-calendar__decade-view__years__year.very-high-accomplishment,
+.react-calendar__century-view__centuries__century.very-high-accomplishment {
+  background-color: rgba(0, 255, 0, 0.8); /* Very dark green */
+  color: black;
+}
+
+/* Weekends */
+.react-calendar__month-view__days__day--weekend{
+color: #166c2e !important;
+}
+/* Next Month */
+.react-calendar__month-view__days__day--neighboringMonth{
+  background-color:#ebebeb !important ;
+}
+
+.react-calendar__tile--now{
+background-color: black !important;
+color: white !important;
+}
+

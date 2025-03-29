@@ -1,0 +1,155 @@
+.AppData{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: first start;
+    width: 30%;
+    height: 100%;
+  }
+  .selectedDateSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: left;
+  }
+  .selectedDate{
+    text-align: left;
+  }
+  .DaysRating{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    color: darkgray;
+  }
+  .clearSelectedDateBTN{
+    background-color: transparent;
+    color: black;
+    height: 100%;
+    margin: auto 0px;
+    transition: 0.3s;
+    border: 0px solid black !important;
+  }
+  .clearSelectedDateBTN:hover{
+    border: 0px solid black !important;
+    opacity: 50% !important;
+  }
+  .add_buttonSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+  }
+  .add_buttonSection input{
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-width: 1px;
+    border: 0.5px solid #7c7c7c !important;
+    border-radius: 5px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 2vh 2%;
+    width: 95%;
+    height: 36%;
+    font-size: 1em;
+  }
+  input:focus, textarea:focus, button:focus {
+    outline: none;
+  }
+  .add_button{
+    background-color: mediumseagreen;
+    width: 100%;
+    height: 50%;
+    color: white;
+    font-weight: 700px;
+    border-radius: 5px;
+  }
+
+
+
+.list{
+    width: 95.5%;
+    height: 64%;
+    list-style-type: none;
+    text-align: left;
+    overflow: scroll;
+    padding: 2% 2% ;
+    border: 0.5px solid #7c7c7c !important;
+    border-radius: 5px;
+    background-color: white;
+  }
+  .list li{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 98%;
+    padding: 2% 0%;
+    border-width: 0px 0px 1px 0px;
+    border-color: #7c7c7c;
+    border-style: dashed;
+  }
+  .list li:hover .accomplishmentsMenu{
+    display: flex;
+  }
+  .accomplishmentsMenu:hover .accomplishmentsMenu button:nth-child(2){
+    display: flex;
+  }
+  .accomplishmentItem{
+    width: 70%;
+    height: 100%;
+    align-items: center;
+    margin: auto 0px;
+    color: black
+  }
+  .accomplishmentsMenu{
+    width: 30%;
+    height: 80%;
+    flex-direction: row;
+    display: none;
+    align-items: center;
+    justify-content:space-between ;
+  }
+  .accomplishmentsMenu button{
+    width: 50%;
+    height: 100%;
+    padding: 0px;
+    margin: auto;
+    color: black;
+    background-color: white;
+    font-size: 0.7em;
+    border: 0px solid black !important;
+  }
+  
+  .button:hover{
+    border-radius: 2px !important;
+  }
+  .editAcoomplishment:hover{
+    color: mediumseagreen;
+  }
+  .deleteAcoomplishment:hover {
+    color: red;
+  }
+
+
+.clearBTNSection{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+}
+.cleardataBTN,
+.nodataFound,
+.clearSelectedDateBTN{
+  background-color: transparent;
+  color: black;
+  font-size: 0.8em;
+  opacity: 50%;
+}
