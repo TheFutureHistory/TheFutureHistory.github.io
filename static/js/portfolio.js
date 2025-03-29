@@ -85,6 +85,14 @@ function appendPortfolioItems(items) {
       year: '2024'
     },
     {
+      imageSrc: './static/images/DrumMachine.png',
+      alt: 'Accomplishments',
+      onClick: 'openAccomplishments()',
+      title: 'Accomplishments',
+      category: 'Program',
+      year: '2025'
+    },
+    {
       imageSrc: './static/images/projects/HydroFlora.jpg',
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
