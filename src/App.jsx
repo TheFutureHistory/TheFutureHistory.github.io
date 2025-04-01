@@ -4,8 +4,9 @@ import 'react-calendar/dist/Calendar.css'; // Import the CSS for styling
 import './App.css';
 import './AppMobile.css';
 import './components/CalendarHeatmap.css';
-import './components/AccomplishmentsList.css'
-import './components/AccomplishmentsListMobile.css'
+import './components/AccomplishmentsList.css';
+import './components/AccomplishmentsListMobile.css';
+import Menu from './components/Menu.jsx'
 
 function App() {
   const [accomplishments, setAccomplishments] = useState([]);
@@ -38,7 +39,10 @@ function App() {
           date: dateString,
           time: timeString,  // Store the time of the accomplishment
           text: newAccomplishment,
+          
         };
+
+        console.log('new entry', newAccomplishment)
     
         const newAccomplishments = [...accomplishments, newEntry];
     
@@ -241,12 +245,16 @@ function App() {
   return (
     <div className="App">
 
+
+
       <div className='AppHeader'>
       <h1>Count Your Accomplishments ({accomplishments.length})</h1>
 
       </div>
 
       <div className='AppBody'>
+
+          {/* <Menu/> */}
 
           <Calendar
             onChange={handleDateChange}
