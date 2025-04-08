@@ -7,8 +7,10 @@ function fillCountryWithFlag(country) {
     if (countryCode) {
         const flagUrl = `WorldConquer/images/flags/${countryCode.toLowerCase()}.svg`;
         
-        // Create a pattern element
+        // Declare patternId before accessing it
         const patternId = `flag-${countryCode}`;
+        
+        // Try to find the pattern already created
         let pattern = document.getElementById(patternId);
 
         // Create pattern if it doesn't exist
@@ -29,7 +31,7 @@ function fillCountryWithFlag(country) {
             // Append image to pattern
             pattern.appendChild(image);
 
-            // Add pattern to SVG defs
+            // Add pattern to SVG defs if not present
             const defs = document.querySelector("svg defs") || document.querySelector("svg").insertBefore(document.createElementNS("http://www.w3.org/2000/svg", "defs"), document.querySelector("svg").firstChild);
             defs.appendChild(pattern);
         }
@@ -39,24 +41,10 @@ function fillCountryWithFlag(country) {
     }
 }
 
-function clearCountryFill(country) {
-    country.style.fill = ''; // Reset to original color
+// Example function to add the flag to all countries (like SVG path elements)
+function addFlagsToCountries() {
+    const countries = document.querySelectorAll('svg path');  // Change this to target the country elements (like paths in the SVG)
+    countries.forEach(country => {
+        fillCountryWithFlag(country);
+    });
 }
-
-function getCountryCode(countryName) {
-    // This is a simplified example. You'd need a more comprehensive mapping.
-    const countryMap = {
-        'Mexico': 'MX',
-        'United States': 'US',
-        'Canada': 'CA',
-        // Add more countries as needed
-    };
-    
-    return countryMap[countryName] || null;
-}
-
-// Usage
-document.querySelectorAll('path').forEach(country => {
-    country.addEventListener('mouseenter', () => fillCountryWithFlag(country));
-    country.addEventListener('mouseleave', () => clearCountryFill(country));
-});
