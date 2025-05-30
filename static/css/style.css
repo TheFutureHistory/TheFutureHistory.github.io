@@ -1007,11 +1007,11 @@ margin: 2vh 0.5vw;
   max-height: 80%;
   width: 100%;
   max-width: 100%;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.5);
+  /* border: 1px solid rgba(255,255,255,0.5); */
   object-fit: cover;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   transition: 0.3s;
 }
 .portfolioItemInfo{
@@ -1029,10 +1029,10 @@ margin: 2vh 0.5vw;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
   font-weight: 300;
-  border: 1px solid white;
-  padding: 2.5px 25px;
+  border: 0px solid white;
+  padding: 2.5px 0px;
   border-radius: 10px;
-  text-align: center;
+  text-align: left;
   margin: 0px 5px 0px 0px;
   opacity: 100%;
   transition: 0.3s;

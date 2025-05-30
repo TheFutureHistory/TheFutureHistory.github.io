@@ -10,14 +10,15 @@ function appendPortfolioItems(items) {
         <div class="portfolioItemInfo">
           <p class="portfolioItemInformation">${item.title}</p>
           <p class="portfolioItemInformation">${item.category}</p>
-          <p class="portfolioItemInformation">${item.year}</p>
+
         </div>
       `;
   
       portfolioContainer.appendChild(section);
     });
   }
-  
+
+  // <p class="portfolioItemInformation">${item.year}</p>
   // Example usage:
   const portfolioItems = [
     {
@@ -25,24 +26,21 @@ function appendPortfolioItems(items) {
       alt: 'High Vibez',
       onClick: 'openHighVibez()',
       title: 'High Vibez',
-      category: 'Web Dev',
-      year: '2024'
+      category: '.com',
     },
     {
     imageSrc: './static/images/projects/MAPSCanada-500.webp',
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
-    category: 'Web Dev',
-    year: '2022'
+    category: '.com',
     },
     {
-    imageSrc: './static/images/projects/xaragua-500.webp',
-    alt: 'Xaragua Hotel',
-    onClick: 'openXaragua()',
-    title: 'Xaragua Hotel',
-    category: 'Web Dev',
-    year: '2017'
+    imageSrc: './static/images/projects/mackandalStudios.PNG',
+    alt: 'Mackandal Studios',
+    onClick: 'openMackandal()',
+    title: 'Mackandal',
+    category: 'Studios',
     },
     {
     imageSrc: './static/images/projects/FrontendPortfolio-500.webp',
@@ -50,23 +48,20 @@ function appendPortfolioItems(items) {
     onClick: 'openFrontend()',
     title: 'Front-end',
     category: 'Design',
-    year: '0000'
     },
     {
       imageSrc: './static/images/projects/SATURDAZE.webp',
       alt: 'Front-end',
       onClick: 'openGraphicDesign()',
-      title: 'Graphic Design',
+      title: 'Graphic',
       category: 'Design',
-      year: '0000'
     },
     {
       imageSrc: './static/images/projects/Logos.webp',
       alt: 'Front-end',
       onClick: 'openLogos()',
-      title: 'Logos',
+      title: 'Logo',
       category: 'Design',
-      year: '0000'
     },
     {
       imageSrc: './static/images/projects/worldConquer.png',
@@ -74,7 +69,6 @@ function appendPortfolioItems(items) {
       onClick: 'openWorldConquer()',
       title: 'World Conquer',
       category: 'Program',
-      year: '2024'
     },
     {
       imageSrc: './static/images/DrumMachine.png',
@@ -82,7 +76,6 @@ function appendPortfolioItems(items) {
       onClick: 'openDrumMachine()',
       title: 'Drum Machine',
       category: 'Program',
-      year: '2024'
     },
     {
       imageSrc: './static/images/projects/HydroFlora.jpg',
@@ -90,7 +83,6 @@ function appendPortfolioItems(items) {
       onClick: 'openHydroflora()',
       title: 'Hydro Flora',
       category: 'Music',
-      year: '2017'
     }
   ];
   
