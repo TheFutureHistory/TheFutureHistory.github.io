@@ -30,7 +30,7 @@
   <body id="homepage">
     <div id="home"></div>
     <div class="hero_container">
-      <img id="hero_background" src="static/images/chromatic_orb.gif" alt="" />
+      <img id="hero_background" src="static/images/clouds.jpeg" alt="" />
       <h1 class="hero_subtitle">CREATIVE DIRECTOR</h1>
       <h2 class="hero_title">SEBASTIEN AUGUSTIN</h2>
       <hr class="hero_divider" />
@@ -43,74 +43,6 @@
         <a class="hero_btn" href="#about">ABOUT</a>
       </div>
     </div>
-
-    <!-- <section class="projectsBanner">
-      <div class="projectsBanner_first">
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/Terastacks.webp"
-          alt="Terastacks App website preview"
-          srcset="
-            static/images/projects/Terastacks-1000.webp 1000w,
-            static/images/projects/Terastacks-500.webp   500w
-          "
-          loading="lazy"
-        />
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/OwnYourOwn.webp"
-          alt="Own Your Own Website Preview"
-          srcset="
-            static/images/projects/OwnYourOwn-1000.webp 1000w,
-            static/images/projects/OwnYourOwn-500.webp   500w
-          "
-          loading="lazy"
-        />
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/TicketPRO.webp"
-          alt="Ticket PRO website preview"
-          srcset="
-            static/images/projects/TicketPRO-1000.webp 1000w,
-            static/images/projects/TicketPRO-500.webp   500w
-          "
-          loading="lazy"
-        />
-      </div>
-      <div class="projectsBanner_second">
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/MAPSCanada.webp"
-          alt="MAPS Canada Website preview"
-          srcset="
-            static/images/projects/MAPSCanada-1000.webp 1000w,
-            static/images/projects/MAPSCanada-500.webp   500w
-          "
-          loading="lazy"
-        />
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/xaragua.webp"
-          alt=""
-          srcset="
-            static/images/projects/xaragua-1000.webp 1000w,
-            static/images/projects/xaragua-500.webp   500w
-          "
-          loading="lazy"
-        />
-        <img
-          class="projectsBanner_IMG"
-          src="static/images/projects/SAGE.webp"
-          alt="SAGE website preview"
-          srcset="
-            static/images/projects/SAGE-1000.webp 1000w,
-            static/images/projects/SAGE-500.webp   500w
-          "
-          loading="lazy"
-        />
-      </div>
-      <div class="fade"></div>
-    </section> -->
 
     <div id="about"></div>
     <section class="processSection">
@@ -157,7 +89,6 @@
       </div>
     </section>
 
-    <div class="portfolio"></div>
     <div id="work"></div>
     <section class="portfolioSection">
       <p class="section_titles">WORK</p>
@@ -223,31 +154,16 @@
       });
     </script>
     <script>
-      function loadPage(pageName) {
-        // Load the content of the corresponding HTML file
-        fetch(pageName)
-          .then((response) => response.text())
-          .then((html) => {
-            document.body.innerHTML = html;
-            // Update the URL in the browser without reloading the page
-            history.pushState({}, "", "work");
-          })
-          .catch((error) => {
-            console.error("Error fetching page:", error);
-          });
-      }
-    </script>
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const workSection = document.getElementById("work");
         const herobtn_work = document.getElementById("herobtn_work");
         herobtn_work.addEventListener("click", function (event) {
           event.preventDefault(); // Prevent default anchor behavior
           console.log("clicked");
-          workSection.style.paddingBottom = "25vh";
         });
       });
     </script>
+
     <!-- PORTFOLIO LINKS -->
     <script>
       function openHighVibez() {
