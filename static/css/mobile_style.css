@@ -1,21 +1,4 @@
 @media only screen and (max-width: 800px) {
-nav{
-justify-content: center;
-align-items: center;
-width: 100%;
-padding: 0px;
-margin: 2.5vh 0px;
-}
-.logo{
-  display:none;
-}
-.navMenu li{
-  padding: 0px;
-}
-.navMenu{
-  width: 100%;
-  justify-content: space-between;
-}
 #homepage, #workpage {
 padding:0px 4vw;
 width: 92vw;
@@ -39,14 +22,14 @@ z-index: -1;
 position: fixed;
 width: 100vw;
 height: 100vh;
-object-fit: contain;
+object-fit: fill;
 opacity: 0.25;
 }
 .hero_subtitle{
-    width: 70vw;
+width: 100vw;
 margin: 0px;
-color: var(--white_50_op);
-font-size: 3vw;
+color: var(--black_50_op);
+font-size: 4vw;
 font-weight: var(--font_weight_sm);
 letter-spacing: 10px;
 text-align: center;
@@ -55,14 +38,14 @@ margin-bottom: 2vh;
 .hero_title{
 margin: 0px;
 margin-bottom: 2vh;
-font-size: 6vw;
+font-size: 8vw;
 font-weight: var(--font_weight_lg);
-color: var(--white);
+color: var(--black);
 }
 .hero_divider{
 margin: 0px;
 margin-bottom: 4vh;
-border: 1px solid var(--white);
+border: 1px solid var(--black);
 width: 20vw;
 color: var(--white_70_op);
 }
@@ -70,15 +53,15 @@ color: var(--white_70_op);
     width: 80vw;
 margin: 0px;
 margin-bottom: 5vh;
-text-align: left;
+text-align: center;
 font-size: 4vw;
 font-weight: var(--font_weight_sm);
-color: var(--white)
+color: var(--black)
 }
 .hero_buttons{
 display: flex;
 flex-direction: row;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
 width: 80vw;
 height: 7vh;
@@ -87,19 +70,19 @@ height: 7vh;
 display: flex;
 justify-content: center;
 align-items: center;
-flex-basis: 45%;
+flex-basis: 40%;
 height: 100%;
-border: 1px solid white;
+border: 1px solid var(--black);
 font-size: 3vw;
 text-decoration: none;
-color: var(--white);
+color: var(--black);
 background-color: transparent;
 transition: 0.3s;
 cursor: pointer;
 }
 .hero_btn:hover{
-color: var(--black);
-background-color: var(--white);
+color: var(--white);
+background-color: var(--back);
 }
 /* ------------------------------------------------------ BANNER */
 .projectsBanner{
@@ -121,61 +104,7 @@ padding: 10vh 0px;
   height: 30%;
   margin-bottom: 5vh;
 }
-/* ------------------------------------------------------ SERVICES */
-.servicesSection{
-  width: 100%;
-  height: auto;
-  padding: 10vh 0px;
-  border-radius: 15px;
-}
-.services_cont{
-  flex-direction: column;
-  flex-wrap: nowrap;
-}
-.services_card{
-  max-width: 90%;
-  margin-bottom: 4vh;
-}
-.benefitsSection{
-  display: none;
-}
-/* ------------------------------------------------------ PRICING */
-.pricingSection{
-  width: 100%;
-  height: auto;
-  padding: 10vh 0px
-}
-.pricing_cardCont{
-  flex-direction: column;
-  height: auto;
-}
-.pricing_card{
-  width: 95%;
-  margin-bottom: 5vh;
-}
 
-/* ------------------------------------------------------ ABOUT */
-#aboutMe{
-    width: 100%;
-    height: auto;
-    padding: 10vh 0vw;
-  }
-  .aboutMe_info{
-    flex-direction: column;
-    padding: 5% 5%;
-    height: auto;
-  }
-  .aboutMe_infoCont{
-    height: 47.5%;
-    width: 100%; 
-    order: 2;
-  }
-  .aboutMe_img{
-    height: 47.5%;
-    width: 100%; 
-    order : 1;
-    margin-bottom: 1vh;
-  }
 /* ------------------------------------------------------ PROJECTS */
 #projects_container{
     flex-direction: column;
@@ -186,68 +115,12 @@ padding: 10vh 0px;
     height: auto;
     margin-bottom: 2.5vh;
 }
-/* ------------------------------------------------------ TESTIMONIALS */
-#testimonialsSection{
-  width: 100%;
-  text-wrap: wrap;
+#contact_footer p{
+color: var(--black_50_op);
+font-size: 3vw;
+font-weight: var(--font_weight_sm);
+text-align: center;
 }
-#testimonials{
-  height: auto;
-  width: 100%;
-  padding: 0px;
-}
-.testimonials_title{
-  font-size: var(--font_size_md);
-}
-.testimonials_cont{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: auto;
-  width: 100%;
-}
-.testimonialBanner{
-  display: none;
-}
-.fade {
-  width: 0%;
-}
-.testimonials_card{
-  height: auto;
-  max-width: 90%;
-  margin-bottom: 2.5vh;
-}
-.testimonials_text{
-  margin-bottom: 1vh;
-}
-.testimonials_img{
- width: 3.5rem;
- height: 3.5rem;
- border-radius: 5px;
- object-fit: cover;
- margin-right: 2vw;
-}
-.testimonials_personInfo{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  width: auto;
-}
-.testimonials_name{
-  color: var(--white);
-  font-size: var(--font_size_sm);
-  font-weight: var(--font_weight_md);
-  margin: 0px;
-}
-.testimonials_position{
-  color: var(--white_50_op);
-  font-size: var(--font_size_sm);
-  font-weight: var(--font_weight_sm);
-  margin: 0px;
-}
-
 
 }
 

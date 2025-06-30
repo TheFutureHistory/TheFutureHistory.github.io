@@ -78,6 +78,13 @@ function appendPortfolioItems(items) {
       category: 'Program',
     },
     {
+      imageSrc: './static/images/projects/InvoiceBuilder.png',
+      alt: 'Invoice Builder',
+      onClick: 'openInvoiceBuilder()',
+      title: 'Invoice Builder',
+      category: 'Program',
+    },
+    {
       imageSrc: './static/images/projects/HydroFlora.jpg',
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
