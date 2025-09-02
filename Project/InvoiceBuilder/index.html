@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVOICE MAKER - SEBASTIEN AUGUSTIN</title>
+        <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .invoice-preview {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: white;
+            min-height: 842px;
+            width: 595px;
+            padding: 2rem;
+        }
+        
+        .divider {
+            border-top: 1px solid #e2e8f0;
+            margin: 1rem 0;
+        }
+        
+        .item-row:hover {
+            background-color: #f8fafc;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .invoice-preview {
+                width: 100%;
+                min-height: auto;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 p-4 md:p-6 h-screen">
+    <div class="max-w-7xl mx-auto h-full w-full scale-[0.75] origin-top transform">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+            Invoice Maker
+        </h1>
+        
+        <div class="container flex flex-col lg:flex-row gap-6">
+            <!-- Invoice Preview -->
+            <div class="flex-1">
+                <div class="sticky top-4">
+                    <div class="invoice-preview mx-auto" id="invoicePreview">
+                        <div class="flex justify-between mb-8">
+                            <div>
+                                <h1 class="text-3xl font-bold text-blue-600">INVOICE</h1>
+                                <p class="text-gray-500 mt-1">#<span id="preview-invoice-number">INV-001</span></p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-700"><span id="preview-date">May 15, 2023</span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row justify-between gap-8 mb-8">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-700 mb-1">From</h3>
+                                <div id="preview-from" class="text-gray-600 whitespace-pre-line">Your Company Name
+                                    Email
+                                    Phone Number
+                                    Address
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-700 mb-1">To</h3>
+                                <div id="preview-to" class="text-gray-600 whitespace-pre-line">Client Name
+                                    Email
+                                    Phone Number
+                                    Address
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <div class="mb-6 overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr class="bg-gray-100 text-left text-gray-700 text-sm">
+                                        <th class="py-2 px-4 font-medium">Item</th>
+                                        <th class="py-2 px-4 font-medium text-right">Qty</th>
+                                        <th class="py-2 px-4 font-medium text-right">Unit Price</th>
+                                        <th class="py-2 px-4 font-medium text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="preview-items">
+                                    <tr>
+                                        <td class="py-3 px-4 border-b">Sample Item</td>
+                                        <td class="py-3 px-4 border-b text-right">1</td>
+                                        <td class="py-3 px-4 border-b text-right">$100.00</td>
+                                        <td class="py-3 px-4 border-b text-right">$100.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="flex justify-end mb-8">
+                            <div class="w-full md:w-1/3">
+                                <div class="flex justify-between py-2">
+                                    <span class="font-medium">Subtotal:</span>
+                                    <span id="preview-subtotal">$100.00</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="font-medium">Tax (0%):</span>
+                                    <span id="preview-tax">$0.00</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="flex justify-between py-2 font-bold text-lg">
+                                    <span>Total:</span>
+                                    <span id="preview-total">$100.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="divider"></div>
+                        
+                        <div class="mt-6">
+                            <h3 class="font-semibold text-gray-700 mb-2">Payment Info</h3>
+                            <div id="preview-payment" class="text-gray-600 whitespace-pre-line">
+                                Please make payment to:
+                                Bank: Sample Bank
+                                Account: 123456789
+                                Routing: 987654321
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 text-center text-gray-500 text-sm">
+                            <p>Thank you for your business!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Invoice Form -->
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-md p-6 h-full">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-6">Invoice Details</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label for="invoice-number" class="block text-sm font-medium text-gray-700 mb-1">Invoice Number</label>
+                            <input type="text" id="invoice-number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" value="INV-001">
+                        </div>
+                        <div>
+                            <label for="date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                            <input type="date" id="date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="from" class="block text-sm font-medium text-gray-700 mb-1">From</label>
+                        <textarea id="from" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Your Company Name
+Email
+Phone Number
+Address
+</textarea>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="to" class="block text-sm font-medium text-gray-700 mb-1">To</label>
+                        <textarea id="to" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Client Name
+Email
+Phone Number
+Address
+</textarea>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-sm font-medium text-gray-700">Items</label>
+                            <button id="add-item" class="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md flex items-center">
+                                <i class="fas fa-plus mr-1"></i> Add Item
+                            </button>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr class="bg-gray-100 text-left text-gray-700 text-sm">
+                                        <th class="py-2 px-3 font-medium">Item</th>
+                                        <th class="py-2 px-3 font-medium w-20">Qty</th>
+                                        <th class="py-2 px-3 font-medium w-28">Unit Price</th>
+                                        <th class="py-2 px-3 font-medium w-28">Total</th>
+                                        <th class="py-2 px-3 font-medium w-10"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="items-container">
+                                    <tr class="item-row">
+                                        <td class="py-2 px-3 border-b">
+                                            <input type="text" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-name" value="Sample Item">
+                                        </td>
+                                        <td class="py-2 px-3 border-b">
+                                            <input type="number" min="1" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-qty" value="1">
+                                        </td>
+                                        <td class="py-2 px-3 border-b">
+                                            <input type="number" min="0" step="0.01" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-price" value="100.00">
+                                        </td>
+                                        <td class="py-2 px-3 border-b text-right item-total">$100.00</td>
+                                        <td class="py-2 px-3 border-b text-center">
+                                            <button class="text-red-500 hover:text-red-700 delete-item">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="payment" class="block text-sm font-medium text-gray-700 mb-1">Payment Info</label>
+                        <textarea id="payment" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Please make payment to:
+Bank: Sample Bank
+Account: 123456789
+Routing: 987654321</textarea>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button id="reset" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md flex items-center">
+                            <i class="fas fa-redo mr-2"></i> Reset
+                        </button>
+                        <div class="flex gap-2">
+                            <button id="downloadPdf" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md flex items-center">
+                                <i class="fas fa-download mr-2"></i> Download 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize jsPDF
+        const { jsPDF } = window.jspdf;
+        
+        // Set today's date as default
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('date').value = formattedDate;
+            
+            // Format the date for display
+            updatePreviewDate();
+            
+            // Calculate initial totals
+            calculateTotals();
+        });
+        
+        // Add item row
+        document.getElementById('add-item').addEventListener('click', function() {
+            const itemsContainer = document.getElementById('items-container');
+            const newRow = document.createElement('tr');
+            newRow.className = 'item-row';
+            newRow.innerHTML = `
+                <td class="py-2 px-3 border-b">
+                    <input type="text" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-name">
+                </td>
+                <td class="py-2 px-3 border-b">
+                    <input type="number" min="1" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-qty" value="1">
+                </td>
+                <td class="py-2 px-3 border-b">
+                    <input type="number" min="0" step="0.01" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-price" value="0.00">
+                </td>
+                <td class="py-2 px-3 border-b text-right item-total">$0.00</td>
+                <td class="py-2 px-3 border-b text-center">
+                    <button class="text-red-500 hover:text-red-700 delete-item">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            `;
+            itemsContainer.appendChild(newRow);
+            
+            // Add event listeners to new inputs
+            addItemEventListeners(newRow);
+        });
+        
+        // Delete item row
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-item') || e.target.parentElement.classList.contains('delete-item')) {
+                const button = e.target.classList.contains('delete-item') ? e.target : e.target.parentElement;
+                const row = button.closest('tr');
+                row.remove();
+                calculateTotals();
+                updatePreviewItems();
+            }
+        });
+        
+        // Add event listeners to all item inputs
+        function addItemEventListeners(row) {
+            const qtyInput = row.querySelector('.item-qty');
+            const priceInput = row.querySelector('.item-price');
+            
+            qtyInput.addEventListener('input', function() {
+                calculateRowTotal(row);
+                calculateTotals();
+                updatePreviewItems();
+            });
+            
+            priceInput.addEventListener('input', function() {
+                calculateRowTotal(row);
+                calculateTotals();
+                updatePreviewItems();
+            });
+        }
+        
+        // Calculate total for a single row
+        function calculateRowTotal(row) {
+            const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
+            const price = parseFloat(row.querySelector('.item-price').value) || 0;
+            const total = qty * price;
+            row.querySelector('.item-total').textContent = '$' + total.toFixed(2);
+            return total;
+        }
+        
+        // Calculate all totals (subtotal, tax, total)
+        function calculateTotals() {
+            const rows = document.querySelectorAll('.item-row');
+            let subtotal = 0;
+            
+            rows.forEach(row => {
+                subtotal += calculateRowTotal(row);
+            });
+            
+            const tax = subtotal * 0.00; // Assuming 0% tax for this example
+            const total = subtotal + tax;
+            
+            // Update preview totals
+            document.getElementById('preview-subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('preview-tax').textContent = '$' + tax.toFixed(2);
+            document.getElementById('preview-total').textContent = '$' + total.toFixed(2);
+        }
+        
+        // Update preview items table
+        function updatePreviewItems() {
+            const previewItems = document.getElementById('preview-items');
+            previewItems.innerHTML = '';
+            
+            const rows = document.querySelectorAll('.item-row');
+            
+            rows.forEach(row => {
+                const name = row.querySelector('.item-name').value || '';
+                const qty = row.querySelector('.item-qty').value || '0';
+                const price = row.querySelector('.item-price').value || '0.00';
+                const total = row.querySelector('.item-total').textContent;
+                
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td class="py-3 px-4 border-b">${name}</td>
+                    <td class="py-3 px-4 border-b text-right">${qty}</td>
+                    <td class="py-3 px-4 border-b text-right">$${parseFloat(price).toFixed(2)}</td>
+                    <td class="py-3 px-4 border-b text-right">${total}</td>
+                `;
+                previewItems.appendChild(newRow);
+            });
+        }
+        
+        // Update preview date
+        function updatePreviewDate() {
+            const dateInput = document.getElementById('date');
+            const dateValue = new Date(dateInput.value);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = dateValue.toLocaleDateString('en-US', options);
+            document.getElementById('preview-date').textContent = formattedDate;
+        }
+        
+        // Add event listeners to all inputs for real-time preview
+        document.getElementById('invoice-number').addEventListener('input', function() {
+            document.getElementById('preview-invoice-number').textContent = this.value;
+        });
+        
+        document.getElementById('date').addEventListener('change', function() {
+            updatePreviewDate();
+        });
+        
+        document.getElementById('from').addEventListener('input', function() {
+            document.getElementById('preview-from').textContent = this.value;
+        });
+        
+        document.getElementById('to').addEventListener('input', function() {
+            document.getElementById('preview-to').textContent = this.value;
+        });
+        
+        document.getElementById('payment').addEventListener('input', function() {
+            document.getElementById('preview-payment').textContent = this.value;
+        });
+        
+        // Add event listeners to initial item inputs
+        document.querySelectorAll('.item-row').forEach(row => {
+            addItemEventListeners(row);
+        });
+        
+        // Reset form
+        document.getElementById('reset').addEventListener('click', function() {
+            if (confirm('Are you sure you want to reset the invoice? All data will be lost.')) {
+                localStorage.removeItem('invoice-data');
+                document.getElementById('invoice-number').value = 'INV-001';
+                
+                const today = new Date();
+                const formattedDate = today.toISOString().split('T')[0];
+                document.getElementById('date').value = formattedDate;
+                updatePreviewDate();
+                
+                document.getElementById('from').value = 'Your Company Name\n123 Business Rd.\nCity, State 12345\nCountry';
+                document.getElementById('to').value = 'Client Name\n456 Client Ave.\nCity, State 67890\nCountry';
+                document.getElementById('payment').value = 'Please make payment to:\nBank: Sample Bank\nAccount: 123456789\nRouting: 987654321';
+                
+                const itemsContainer = document.getElementById('items-container');
+                itemsContainer.innerHTML = `
+                    <tr class="item-row">
+                        <td class="py-2 px-3 border-b">
+                            <input type="text" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-name" value="Sample Item">
+                        </td>
+                        <td class="py-2 px-3 border-b">
+                            <input type="number" min="1" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-qty" value="1">
+                        </td>
+                        <td class="py-2 px-3 border-b">
+                            <input type="number" min="0" step="0.01" class="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 item-price" value="100.00">
+                        </td>
+                        <td class="py-2 px-3 border-b text-right item-total">$100.00</td>
+                        <td class="py-2 px-3 border-b text-center">
+                            <button class="text-red-500 hover:text-red-700 delete-item">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                
+                // Add event listeners to the reset item
+                addItemEventListeners(itemsContainer.querySelector('.item-row'));
+                
+                // Update all previews
+                document.getElementById('preview-invoice-number').textContent = 'INV-001';
+                document.getElementById('preview-from').textContent = 'Your Company Name\n123 Business Rd.\nCity, State 12345\nCountry';
+                document.getElementById('preview-to').textContent = 'Client Name\n456 Client Ave.\nCity, State 67890\nCountry';
+                document.getElementById('preview-payment').textContent = 'Please make payment to:\nBank: Sample Bank\nAccount: 123456789\nRouting: 987654321';
+                
+                updatePreviewItems();
+                calculateTotals();
+            }
+        });
+        
+        // Generate PDF
+        function generatePDF() {
+            const invoicePreview = document.getElementById('invoicePreview');
+            
+            html2canvas(invoicePreview, {
+                scale: 2,
+                logging: false,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 295; // A4 height in mm
+                const imgHeight = canvas.height * imgWidth / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                const invoiceNumber = document.getElementById('invoice-number').value || 'invoice';
+                pdf.save(`${invoiceNumber}.pdf`);
+            });
+        }
+        
+        // Add event listeners to download buttons
+        document.getElementById('downloadPdf').addEventListener('click', generatePDF);
+
+        const storageKey = 'invoice-data';
+
+        // Save data to localStorage
+        function saveInvoiceData() {
+        const items = [];
+        document.querySelectorAll('.item-row').forEach(row => {
+            items.push({
+            name: row.querySelector('.item-name').value,
+            qty: row.querySelector('.item-qty').value,
+            price: row.querySelector('.item-price').value,
+            });
+        });
+
+        const data = {
+            invoiceNumber: document.getElementById('invoice-number').value,
+            date: document.getElementById('date').value,
+            from: document.getElementById('from').value,
+            to: document.getElementById('to').value,
+            payment: document.getElementById('payment').value,
+            items: items,
+        };
+
+        localStorage.setItem(storageKey, JSON.stringify(data));
+        }
+
+        // Load data from localStorage
+        function loadInvoiceData() {
+        const saved = localStorage.getItem(storageKey);
+        if (!saved) return;
+        const data = JSON.parse(saved);
+
+        document.getElementById('invoice-number').value = data.invoiceNumber;
+        document.getElementById('date').value = data.date;
+        document.getElementById('from').value = data.from;
+        document.getElementById('to').value = data.to;
+        document.getElementById('payment').value = data.payment;
+
+        const itemsContainer = document.getElementById('items-container');
+        itemsContainer.innerHTML = '';
+
+        data.items.forEach(item => {
+            const row = document.createElement('tr');
+            row.className = 'item-row';
+            row.innerHTML = `
+            <td class="py-2 px-3 border-b">
+                <input type="text" class="w-full px-2 py-1 border border-gray-300 rounded item-name" value="${item.name}">
+            </td>
+            <td class="py-2 px-3 border-b">
+                <input type="number" class="w-full px-2 py-1 border border-gray-300 rounded item-qty" value="${item.qty}">
+            </td>
+            <td class="py-2 px-3 border-b">
+                <input type="number" class="w-full px-2 py-1 border border-gray-300 rounded item-price" value="${item.price}">
+            </td>
+            <td class="py-2 px-3 border-b text-right item-total">$0.00</td>
+            <td class="py-2 px-3 border-b text-center">
+                <button class="text-red-500 hover:text-red-700 delete-item">
+                <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+            `;
+            itemsContainer.appendChild(row);
+            addItemEventListeners(row); // reuse your existing function
+        });
+
+        calculateTotals();
+        updatePreviewDate();
+        updatePreviewItems();
+        }
+
+        // Hook into inputs to save changes
+        ['invoice-number', 'date', 'from', 'to', 'payment'].forEach(id => {
+        document.getElementById(id).addEventListener('input', saveInvoiceData);
+        });
+        document.addEventListener('input', e => {
+        if (e.target.matches('.item-name, .item-qty, .item-price')) {
+            saveInvoiceData();
+        }
+        });
+
+        // Load data on page ready
+        document.addEventListener('DOMContentLoaded', loadInvoiceData);
+
+        // Save "from" field and update preview + localStorage
+        document.getElementById('from').addEventListener('input', function() {
+            const val = this.value;
+            document.getElementById('preview-from').textContent = val;
+            localStorage.setItem('invoiceFrom', val);
+        });
+
+        // Save "to" field and update preview + localStorage
+        document.getElementById('to').addEventListener('input', function() {
+            const val = this.value;
+            document.getElementById('preview-to').textContent = val;
+            localStorage.setItem('invoiceTo', val);
+        });
+
+        // Save "payment" info and update preview + localStorage
+        document.getElementById('payment').addEventListener('input', function() {
+            const val = this.value;
+            document.getElementById('preview-payment').textContent = val;
+            localStorage.setItem('invoicePayment', val);
+        });
+
+        // Save invoice number and update preview + localStorage
+        document.getElementById('invoice-number').addEventListener('input', function() {
+            const val = this.value;
+            document.getElementById('preview-invoice-number').textContent = val;
+            localStorage.setItem('invoiceNumber', val);
+        });
+
+        // Save date and update preview + localStorage
+        document.getElementById('date').addEventListener('change', function() {
+            const val = this.value;
+            const dateObj = new Date(val);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formatted = dateObj.toLocaleDateString('en-US', options);
+            document.getElementById('preview-date').textContent = formatted;
+            localStorage.setItem('invoiceDate', val);
+        });
+
+        // On page load, populate all fields and previews
+        document.addEventListener('DOMContentLoaded', () => {
+            const from = localStorage.getItem('invoiceFrom');
+            if (from) {
+                document.getElementById('from').value = from;
+                document.getElementById('preview-from').textContent = from;
+            }
+            const to = localStorage.getItem('invoiceTo');
+            if (to) {
+                document.getElementById('to').value = to;
+                document.getElementById('preview-to').textContent = to;
+            }
+            const payment = localStorage.getItem('invoicePayment');
+            if (payment) {
+                document.getElementById('payment').value = payment;
+                document.getElementById('preview-payment').textContent = payment;
+            }
+            const invoiceNumber = localStorage.getItem('invoiceNumber');
+            if (invoiceNumber) {
+                document.getElementById('invoice-number').value = invoiceNumber;
+                document.getElementById('preview-invoice-number').textContent = invoiceNumber;
+            }
+            const invoiceDate = localStorage.getItem('invoiceDate');
+            if (invoiceDate) {
+                document.getElementById('date').value = invoiceDate;
+                const dateObj = new Date(invoiceDate);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const formatted = dateObj.toLocaleDateString('en-US', options);
+                document.getElementById('preview-date').textContent = formatted;
+            }
+        });
+
+const itemsContainer = document.getElementById('items-container');
+let dragSrcEl = null;
+
+function handleDragStart(e) {
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.innerHTML);
+  this.classList.add('dragging');
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) e.preventDefault(); // Necessary to allow drop
+  e.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function handleDragEnter() {
+  this.classList.add('drag-over');
+}
+
+function handleDragLeave() {
+  this.classList.remove('drag-over');
+}
+
+function handleDrop(e) {
+  if (e.stopPropagation) e.stopPropagation(); // Stops some browsers from redirecting
+  if (dragSrcEl !== this) {
+    dragSrcEl.innerHTML = this.innerHTML;
+    this.innerHTML = e.dataTransfer.getData('text/html');
+
+    // Reapply event listeners after swapping innerHTML
+    addItemEventListeners(dragSrcEl);
+    addItemEventListeners(this);
+
+    updatePreviewItems();  // Update preview after reorder
+    calculateTotals();     // Recalculate totals after reorder
+    saveItemsToLocalStorage(); // Save new order
+  }
+  return false;
+}
+
+function handleDragEnd() {
+  this.classList.remove('dragging');
+  itemsContainer.querySelectorAll('tr').forEach(row => row.classList.remove('drag-over'));
+}
+
+function addDragAndDropHandlers(row) {
+  row.setAttribute('draggable', true);
+  row.addEventListener('dragstart', handleDragStart);
+  row.addEventListener('dragenter', handleDragEnter);
+  row.addEventListener('dragover', handleDragOver);
+  row.addEventListener('dragleave', handleDragLeave);
+  row.addEventListener('drop', handleDrop);
+  row.addEventListener('dragend', handleDragEnd);
+}
+
+// Apply drag and drop to all existing item rows
+itemsContainer.querySelectorAll('tr').forEach(addDragAndDropHandlers);
+
+
+    </script>
+</body>
+</html>

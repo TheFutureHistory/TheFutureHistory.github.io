@@ -1,0 +1,278 @@
+@media only screen and (max-width: 800px) {
+#homepage, #workpage {
+padding:0px 4vw;
+width: 92vw;
+}
+.section_titles{
+  width: 100%;
+  font-size: var(--font_size_md);
+}
+.hero_container{
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 50vh;
+width: 100%;
+padding: 25vh 0px;
+}
+#hero_background{
+z-index: -1;
+position: fixed;
+width: 100vw;
+height: 100vh;
+object-fit: fill;
+opacity: 0.25;
+}
+.hero_subtitle{
+width: 100vw;
+margin: 0px;
+color: var(--black_50_op);
+font-size: 4vw;
+font-weight: var(--font_weight_sm);
+letter-spacing: 10px;
+text-align: center;
+margin-bottom: 2vh;
+}
+.hero_title{
+margin: 0px;
+margin-bottom: 2vh;
+font-size: 8vw;
+font-weight: var(--font_weight_lg);
+color: var(--black);
+}
+.hero_divider{
+margin: 0px;
+margin-bottom: 4vh;
+border: 1px solid var(--black);
+width: 20vw;
+color: var(--white_70_op);
+}
+.hero_description{
+    width: 80vw;
+margin: 0px;
+margin-bottom: 5vh;
+text-align: center;
+font-size: 4vw;
+font-weight: var(--font_weight_sm);
+color: var(--black)
+}
+.hero_buttons{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 80vw;
+height: 7vh;
+}
+.hero_btn{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-basis: 40%;
+height: 100%;
+border: 1px solid var(--black);
+font-size: 3vw;
+text-decoration: none;
+color: var(--black);
+background-color: transparent;
+transition: 0.3s;
+cursor: pointer;
+}
+.hero_btn:hover{
+color: var(--white);
+background-color: var(--back);
+}
+/* ------------------------------------------------------ BANNER */
+.projectsBanner{
+  height: 25vh;
+  width:100%;
+}
+/* ------------------------------------------------------ PROCESS */
+.processSection{
+width:100%;
+height: auto;
+padding: 10vh 0px;
+}
+.process_cont{
+  flex-direction: column;
+  height: auto;
+}
+.process_cardCont{
+  width: 100%;
+  height: 30%;
+  margin-bottom: 5vh;
+}
+
+/* ------------------------------------------------------ PROJECTS */
+#projects_container{
+    flex-direction: column;
+    width: 100%;
+}
+.project_cont{
+    width: 95%;
+    height: auto;
+    margin-bottom: 2.5vh;
+}
+#contact_footer p{
+color: var(--black_50_op);
+font-size: 3vw;
+font-weight: var(--font_weight_sm);
+text-align: center;
+}
+
+}
+
+@media only screen and (max-width: 1100px) {
+.skill_title{
+font-size: 1.5rem;
+font-weight: var(--font_weight_lg);
+color: var(--main_50);
+}
+.programs_container{
+display: none;
+}
+#header_contact_button{
+display: none;
+}
+.portfolioItem{
+  width: 100%;
+}
+.portfolioGallery{
+padding: 10vh 0vw;
+width: 100%;
+height: auto;
+}
+.portfolioSection{
+padding: 10vh 0px;
+width: 100%;
+justify-content: flex-start;
+height: auto;
+}
+
+
+/* ------------------------------------------------------ PROJECTS */
+#projectPage{
+margin:0;
+padding:0 0;
+height: auto;
+overflow-x: hidden;
+background-size: 100vh 100vw;
+background-repeat: no-repeat;
+background-position: top;
+background-attachment: fixed;
+background-color: var(--white);
+scroll-snap-type: y mandatory;
+}
+.project_container{
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+height: auto;
+width: 100vw;
+padding: 10vh 0px 2.5vh 0px;
+}
+#project_background{
+z-index: -1;
+position: fixed;
+width: 100vw;
+height: 100vh;
+object-fit: fill;
+opacity:0.25;
+}
+.project_title{
+margin: 0px;
+color: var(--black);
+font-size: var(--font_size_sm);
+font-weight: var(--font_weight_lg);
+letter-spacing: 10px;
+margin-bottom: 2.5vh;
+}
+.project_description{
+margin: 0px;
+margin-bottom: 5vh;
+text-align: center;
+font-size: 4.5vw;
+width: 85%;
+font-weight: var(--font_weight_sm);
+color: var(--black);
+font-family: 'Times New Roman', Times, serif;
+text-align: left;
+}
+.project_preview{
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: auto;
+width: 100vw;
+padding: 0vh 0px 10vh 0px;
+}
+.project_pictures{
+  width: 75%;
+  height: auto;
+  border-radius: 10px;
+}
+.project_gallery{
+  width: 75%;
+  height: auto;
+  border-radius: 10px;
+  margin: 2.5vh 0px;
+}
+.project_site{
+  margin: 0px;
+color: var(--black);
+font-size: 16px;
+font-weight: var(--font_weight_sm);
+letter-spacing: 0px;
+margin-bottom: 2.5vh;
+text-decoration: none;
+font-family: 'Times New Roman', Times, serif;
+text-transform: uppercase;
+}
+.project_caseStudy{
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin: 0px;
+margin-bottom: 5vh;
+margin-top: 5vh;
+height: auto;
+width: 80%;
+color: var(--black);
+font-family: 'Times New Roman', Times, serif;
+}
+.project_caseStudy h3{
+  font-weight: var(--font_size_md);
+  margin: 0px;
+  margin-bottom: 2vh;
+  text-align: left;
+  width: 100%;
+}
+.close_project {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+  z-index: 1000;
+}
+
+#MackandalPortfolioSection{
+    padding: 0vh 5vw !important;
+    width: 90vw;
+}
+
+}
+
+

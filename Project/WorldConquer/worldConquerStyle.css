@@ -1,0 +1,398 @@
+:Root{
+    --none: rgba(0,0,0,0);
+    --black: black;
+    --black_90_op: rgba(26, 26, 26, 0.9);
+    --black_80_op: rgba(26, 26, 26, 0.8);
+    --black_70_op: rgba(26, 26, 26, 0.7);
+    --black_60_op: rgba(26, 26, 26, 0.6);
+    --black_50_op: rgba(26, 26, 26, 0.5);
+    --black_40_op: rgba(26, 26, 26, 0.4);
+    --black_30_op: rgba(26, 26, 26, 0.3);
+    --black_20_op: rgba(26, 26, 26, 0.2);
+    --black_10_op: rgba(26, 26, 26, 0.1);
+    --black_5_op: rgba(26, 26, 26, 0.05);
+    --white: white;
+    --white_90_op: rgba(255, 255, 255, 0.9);
+    --white_80_op: rgba(255, 255, 255, 0.8);
+    --white_70_op: rgba(255, 255, 255, 0.7);
+    --white_60_op: rgba(255, 255, 255, 0.6);
+    --white_50_op: rgba(255, 255, 255, 0.5);
+    --white_40_op: rgba(255, 255, 255, 0.4);
+    --white_30_op: rgba(255, 255, 255, 0.3);
+    --white_20_op: rgba(255, 255, 255, 0.2);
+    --white_10_op: rgba(255, 255, 255, 0.1);
+    --white_5_op: rgba(255, 255, 255, 0.05);
+    --main: #1467E3;
+    --greyTwo: #181818;
+    --grey: black;
+    --main_90 : rgba(20, 103, 227, 0.9);
+    --main_80 : rgba(20, 103, 227, 0.8);
+    --main_70 : rgba(20, 103, 227, 0.7);
+    --main_60 : rgba(20, 103, 227, 0.6);
+    --main_50 : rgba(20, 103, 227, 0.5);
+    --main_40 : rgba(20, 103, 227, 0.4);
+    --main_30 : rgba(20, 103, 227, 0.3);
+    --main_20 : rgba(20, 103, 227, 0.2);
+    --main_10 : rgba(20, 103, 227, 0.1);
+    --main_05 : rgba(20, 103, 227, 0.05);
+    --font_size_lgr : 3rem;
+    --font_size_lg : 2rem;
+    --font_size_md : 1.5rem;
+    --font_size_sm : 1rem;
+    --font_size_tiny : 0.8rem;
+    --font_weight_lg : 700;
+    --font_weight_md : 500;
+    --font_weight_sm : 300;
+}
+:Root.dark{
+    --black: white;
+    --white: black;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: var(--black);
+}
+
+/* DASHBOARD + OVERLAY */
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    height: 98%;
+    padding: 1% 1%;
+    background-color: var(--black);
+}
+#overlay{
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--black);
+    opacity: 75%;
+    z-index: 4000;
+    transition: 0.3s;
+}
+
+/* HELP MENU */
+.helpSection{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    height: 45vh;
+    width: 45vw;
+    padding: 2.5vh 2.5vw;
+    background-color: var(--black);
+    z-index: 5000;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.helpSection h5{
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'poppins', sans-serif;
+    margin: 0px;
+}
+.helpSection p {
+    font-family: 'Roboto', sans-serif;
+color: var(--white);
+}
+#dataWarning{
+    font-size: 12px;
+    color: var(--white);
+    opacity: 50%;
+}
+#closeHelp,
+#closeDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    width: 10%;
+    padding: 5px 50px;
+    border: 1px solid var(--white);
+    background-color: var(--black);
+    transition: 0.3s;
+    cursor: pointer;
+}
+#closeHelp:hover,
+#closeDetails:hover{
+    opacity: 50%;
+}
+
+/* DETAISL SECTION */
+#detailsSection{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    height: 95vh;
+    width: 80vw;
+    padding: 2.5vh 10vw;
+    background-color: var(--black);
+    z-index: 5000;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.detailsColumns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+.detailsWishlist,
+.detailsVisited,
+.detailsRejected{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    width: 30%;
+    height: 90%;
+    overflow: hidden;
+}
+#wishlistUl,
+#rejectedUl,
+#visitedUl{
+    height: 550px;
+    overflow-y: scroll;
+    margin: 0px;;
+    list-style-type: none;      
+    margin: 0;
+    padding: 0px;
+}
+#wishlistUl li,
+#visitedUl li,
+#rejectedUl li{
+    font-family: 'poppins', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+}
+.detailsWishlist h5,
+.detailsVisited h5,
+.detailsRejected h5{
+font-family: 'poppins', sans-serif;
+font-size: 20px;
+color: var(--white);
+margin: 0px;
+margin-bottom: 10px;
+}
+#wishlistDetails,
+#VisitedDetails,
+#RejectedDetails{
+    height: auto;
+    width: 100%;
+}
+
+/* MAP AREA */
+#screenshotArea{
+    width: 100%;
+    height: 100%;
+}
+.row{
+    width: 100%;
+    height: 100%;
+    display: block; /* Or remove display: flex */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap;
+}
+#map{
+    min-width: 1000px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--black);
+    padding: 2% 0%;
+    border-radius: 10px;
+}
+
+/* NAME + STATS */
+.stickyMenu{
+    position: fixed;
+    left: 2.5vw;
+    bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    width: 15%;
+    background-color: transparent;
+    padding: 0.5% 1%;
+    overflow: hidden;
+    background-color: var(--black);
+    border-radius: 10px;
+    border: 1px solid var(--black_10_op);
+    box-shadow: 0px 2px 6px var(--black_10_op);
+}
+.stickyMenuTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+}
+.stickyMenuTitle p{
+    font-family: Roboto, sans-serif;
+    cursor: pointer;
+    color: var(--white);
+}
+.stickyMenuTitle i{
+    color: var(--white); 
+}
+.nameInputContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    width: 100%;
+}
+#nameInput{
+    width: 98%;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Roboto, sans-serif;
+    color: var(--white);
+    padding: 0.5% 1%;
+    background-color: var(--black);
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: var(--white);
+}
+#nameInput:focus{
+    outline: none;
+}
+.statsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    width: 100%;
+    height: auto;
+    border-style: solid;
+    padding: 5% 0px;
+    border-width: 0px;
+}
+.singleBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height:auto;
+    width: auto;
+    background-color: var(--black);
+    border-width: 0px 0px 0.5px 0px;
+    border-style: dotted;
+    border-color: var(--white);
+}
+.square{
+    height: 10px;
+    width: 10px;
+    margin-right: 10px;
+    border-radius: 50px;
+
+}
+.fa-globe{
+    margin-right: 5px;
+    color: var(--white) !important;
+}
+.boxTitles{
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0px;
+    color: var(--white) !important;
+    cursor: default;
+    background-color: var(--black);
+
+}
+.countriesAmt{
+    font-family: Poppins, sans-serif;
+    font-weight: 400; 
+    font-size: 16px;
+    margin: 0px 0px 0px 10px;
+    color: var(--white) !important;
+    cursor: default;
+    margin-left: auto;
+}
+
+/* stickyMenuBottom */
+.stickyMenuBottom{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    width: 100%;
+    height: auto;
+    background-color: var(--black);
+    z-index: 3000;
+}
+
+#screenshotBTN,
+#resetBTN,
+.emptyBTN{
+display: flex;
+flex-direction: row;
+align-items: left;
+width: 100%;
+height: auto;
+border: none;
+border-radius: 5px;
+padding: 10px 0px;
+background-color: transparent;
+color: var(--white);
+cursor: pointer;
+transition: 0.3s;
+}
+#screenshotBTN:hover,
+#resetBTN:hover,
+.emptyBTN:hover{
+    opacity: 50%;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+.nameInput{
+    height: 100%;
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    padding: 5% 5%;
+    background-color: var(--black);
+}
+.stickyMenu{
+    width: 80%;
+    padding: 2% 5%;
+}
+#nameInput{
+    width: 100%;
+}
+.stickyMenuBottom{
+    width: 100%;
+}
+.helpSection{
+    width: 50vw;
+}
+
+}
+
+

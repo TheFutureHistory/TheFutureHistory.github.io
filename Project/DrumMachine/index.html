@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRUM MACHINE - SEBASTIEN AUGUSTIN</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"
+    />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.lordicon.com/lordicon-1.1.0.js"></script>
+<script src="https://kit.fontawesome.com/12a535f370.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<link rel="stylesheet" href="./drumMachineStyle.css">
+</head>
+<body>
+
+  <div class="app">
+    <div id="genre-container">
+      <button class="genreBtn active" id="trap" style="background-color: white; color: black;">Hard</button>
+      <button class="genreBtn " id="boombap" >Mellow</button>
+      <button class="genreBtn " id="groovy" >Groovy</button>
+      <button class="genreBtn " id="dirty" >Dirty</button>
+      <button class="genreBtn " id="bounce" >Bounce</button>
+    </div>
+  
+    <div id="track-container">
+    </div>
+  
+    <div class="controls">
+      <input type="number" id="bpm" min="60" max="200" value="120">
+      <button class="controlBtns" id="playBpm"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <!-- <p id="time">0:00</p> -->
+      <button class="controlBtns" id="play"><i class="fa-solid fa-play"></i></button>
+      <button class="controlBtns" id="pause"><i class="fa-solid fa-stop"></i></button>
+      <button class="controlBtns" id="record"><i class="fa-solid fa-circle"></i></button>
+      <button id="pattern32">32</button>
+    </div>
+  </div>
+
+  <script src="./js/beatmaker.js"></script>
+  <script src="./js/playFunctions.js"></script>
+  <script src="./js/bpmPlayer.js"></script>
+  <script src="./js/waveform.js"></script>
+</body>
+</html>
