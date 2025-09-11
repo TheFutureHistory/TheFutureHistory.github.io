@@ -1,0 +1,43 @@
+<!-- <section class="processSection">
+      <p class="section_titles">What's the process?</p>
+      <p class="section_subtitles">
+        Enhance efficiency in design by breaking project into smaller tasks.
+      </p>
+      <div class="process_cont">
+        <div class="process_cardCont">
+          <div class="process_card">
+            <p class="process_cardTitle">Consultation</p>
+            <p class="process_cardDescription">
+              In-depth discussion between you and the Creative Director.
+              <br /><br />
+              Providing insights and guidance regarding design trends, technical
+              feasibility, and potential solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="process_cardCont">
+          <div class="process_card">
+            <p class="process_cardTitle">Prototype</p>
+            <p class="process_cardDescription">
+              A mockup of the idea is created based on the requirements.
+              <br /><br />
+              You review the prototype and provide feedback on aspects such as
+              layout, functionality, and aesthetics.
+            </p>
+          </div>
+        </div>
+
+        <div class="process_cardCont">
+          <div class="process_card">
+            <p class="process_cardTitle">Release</p>
+            <p class="process_cardDescription">
+              Work on the MVP (Minimal Viable Product) until the public release.
+              <br /><br />
+              You are kept updated on the progress and may request revisions or
+              adjustments as needed.
+            </p>
+          </div>
+        </div>
+      </div>
+      </section> -->

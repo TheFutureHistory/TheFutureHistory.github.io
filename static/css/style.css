@@ -192,7 +192,7 @@ justify-content: center;
 align-items: center;
 height: 80vh;
 width: 70vw;
-padding: 10vh 15vw;
+padding: 10vh 15vw 0px 15vw;
 }
 .process_cont{
 display: flex;
@@ -498,6 +498,68 @@ font-family: 'Times New Roman', Times, serif;
 
 
 /* ------------------------------------------------------ CONTACT */
+.contactSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80vw;
+  height: 100vh;
+  padding: 10vh 10vw 0vh 10vw;
+  margin-bottom: 2vh;
+}
+.contactSection h2{
+  margin-bottom: 5vh;
+}
+.contactSection form{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  width: 50%;
+}
+.contactSection label{
+font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+}
+.contactSection form input,
+.contactSection form select,
+.contactSection form textarea{
+  margin-bottom: 2.5vh;
+  border: 1px solid var(--black_50_op);
+  background-color: transparent;
+  border-radius: 2.5px;
+  height: 40px;
+  padding: 0px 1vw;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
+.contactSection form textarea{
+  height: 100px !important;
+}
+.contactSection form button{
+    margin-bottom: 2.5vh;
+  border: 1px solid var(--black);
+  background-color: black;
+  border-radius: 2.5px;
+  height: 40px;
+  color: var(--white);
+
+}
+.contactSection form button:hover{
+  transition: 0.3s;
+  cursor: pointer;
+  border: 1px solid var(--black);
+  background-color: transparent;
+  border-radius: 2.5px;
+  height: 40px;
+  color: var(--black);
+}
 #contact_footer{
 height: 5vh;
 width: 100%;

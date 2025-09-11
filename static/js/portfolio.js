@@ -22,13 +22,6 @@ function appendPortfolioItems(items) {
   // Example usage:
   const portfolioItems = [
     {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/work%20gambit%20homepage?updatedAt=1756840652364',
-      alt: 'Work Gambit',
-      onClick: 'openWorkGambit()',
-      title: 'Work Gambit',
-      category: '.com',
-    },
-    {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/high%20vibez%20homepage?updatedAt=1756840668734',
       alt: 'High Vibez',
       onClick: 'openHighVibez()',
@@ -41,6 +34,20 @@ function appendPortfolioItems(items) {
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
     category: '.com',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922',
+      alt: 'Work Gambit',
+      onClick: 'openWorkGambit()',
+      title: 'Work Gambit',
+      category: '.com',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ThrillGrindBell.png?updatedAt=1757628114692',
+      alt: 'Thrill Grind',
+      onClick: 'openThrillGrind()',
+      title: 'Thrill Grind',
+      category: '.com',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/mackandalStudios.PNG?updatedAt=1756756223603',

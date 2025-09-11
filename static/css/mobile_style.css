@@ -273,6 +273,16 @@ font-family: 'Times New Roman', Times, serif;
     width: 90vw;
 }
 
+.contactSection{
+  padding: 10vh 0px;
+width: 100%;
+justify-content: flex-start;
+height: auto;
+}
+.contactSection form{
+  width: 92%;
+}
+
 }
 
 
