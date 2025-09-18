@@ -26,42 +26,42 @@ function appendPortfolioItems(items) {
       alt: 'High Vibez',
       onClick: 'openHighVibez()',
       title: 'High Vibez',
-      category: '.com',
+      category: 'CTO, Brand Manager, Web Design & Development',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/MAPSCanada.png?updatedAt=1756756484999',
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
-    category: '.com',
+    category: 'Web Design & Implementation',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922',
       alt: 'Work Gambit',
       onClick: 'openWorkGambit()',
       title: 'Work Gambit',
-      category: '.com',
+      category: 'Web Development',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ThrillGrindBell.png?updatedAt=1757628114692',
       alt: 'Thrill Grind',
       onClick: 'openThrillGrind()',
       title: 'Thrill Grind',
-      category: '.com',
+      category: 'Web Design & Development',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/mackandalStudios.PNG?updatedAt=1756756223603',
     alt: 'Mackandal Studios',
     onClick: 'openMackandal()',
     title: 'Mackandal',
-    category: 'Studios',
+    category: 'Visual Studio',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/TheCatalyst/TheCatalyst_Frame4056.jpg?updatedAt=1756756600325',
     alt: 'The Catalyst',
     onClick: 'openTheCatalyst()',
     title: 'The Catalyst',
-    category: 'Concept Art',
+    category: 'Movie Concept Art',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/FrontendPortfolio-1000.webp?updatedAt=1756756236423',
@@ -74,7 +74,7 @@ function appendPortfolioItems(items) {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign2.png?updatedAt=1756756329601',
       alt: 'Graphic Design',
       onClick: 'openGraphicDesign()',
-      title: 'Graphic',
+      title: 'Graphic Design',
       category: 'Design',
     },
     {
@@ -103,7 +103,7 @@ function appendPortfolioItems(items) {
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
       title: 'Hydro Flora',
-      category: 'Music',
+      category: 'Music Production',
     }
   ];
   

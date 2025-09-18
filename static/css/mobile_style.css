@@ -1,7 +1,7 @@
 @media only screen and (max-width: 800px) {
 #homepage, #workpage {
-padding:0px 4vw;
-width: 92vw;
+padding:0px 0vw;
+width: 100vw;
 }
 .section_titles{
   width: 100%;
@@ -13,9 +13,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-height: 50vh;
-width: 100%;
-padding: 25vh 0px;
+height: auto;
+width: 90%;
+padding: 5vh 5%;
 }
 #hero_background{
 z-index: -1;
@@ -25,52 +25,26 @@ height: 100vh;
 object-fit: fill;
 opacity: 0.25;
 }
-.hero_subtitle{
-width: 100vw;
-margin: 0px;
-color: var(--black_50_op);
-font-size: 4vw;
-font-weight: var(--font_weight_sm);
-letter-spacing: 10px;
-text-align: center;
-margin-bottom: 2vh;
-}
 .hero_title{
 margin: 0px;
 margin-bottom: 2vh;
-font-size: 8vw;
+font-size: 6vw;
 font-weight: var(--font_weight_lg);
 color: var(--black);
-}
-.hero_divider{
-margin: 0px;
-margin-bottom: 4vh;
-border: 1px solid var(--black);
-width: 20vw;
-color: var(--white_70_op);
-}
-.hero_description{
-    width: 80vw;
-margin: 0px;
-margin-bottom: 5vh;
-text-align: center;
-font-size: 4vw;
-font-weight: var(--font_weight_sm);
-color: var(--black)
 }
 .hero_buttons{
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
-width: 80vw;
-height: 7vh;
+width: 100%;
+height: 5vh;
 }
 .hero_btn{
 display: flex;
 justify-content: center;
 align-items: center;
-flex-basis: 40%;
+flex-basis: 100%;
 height: 100%;
 border: 1px solid var(--black);
 font-size: 3vw;
@@ -83,26 +57,6 @@ cursor: pointer;
 .hero_btn:hover{
 color: var(--white);
 background-color: var(--back);
-}
-/* ------------------------------------------------------ BANNER */
-.projectsBanner{
-  height: 25vh;
-  width:100%;
-}
-/* ------------------------------------------------------ PROCESS */
-.processSection{
-width:100%;
-height: auto;
-padding: 10vh 0px;
-}
-.process_cont{
-  flex-direction: column;
-  height: auto;
-}
-.process_cardCont{
-  width: 100%;
-  height: 30%;
-  margin-bottom: 5vh;
 }
 
 /* ------------------------------------------------------ PROJECTS */
@@ -138,18 +92,23 @@ display: none;
 }
 .portfolioItem{
   width: 100%;
-}
-.portfolioGallery{
-padding: 10vh 0vw;
-width: 100%;
-height: auto;
+  margin-bottom: 0%;
 }
 .portfolioSection{
-padding: 10vh 0px;
-width: 100%;
+padding: 0vh 5%;
+width: 90%;
 justify-content: flex-start;
 height: auto;
 }
+.portfolioGallery{
+padding: 0vh 0vw;
+width: 100%;
+height: auto;
+}
+.portfolioItemInfo p:nth-child(1){
+  font-size: 20px;
+}
+
 
 
 /* ------------------------------------------------------ PROJECTS */
