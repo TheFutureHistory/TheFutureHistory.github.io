@@ -255,9 +255,6 @@ margin: 0px;
   padding: 0vh 5vw 0vh 5vw;
   margin-bottom: 2vh;
 }
-#MackandalPortfolioSection{
-    padding: 0vh 10vw 0vh 10vw !important;
-}
 .portfolioGallery{
   display: flex;
   flex-direction: row;
