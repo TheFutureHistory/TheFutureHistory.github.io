@@ -22,6 +22,13 @@ function appendPortfolioItems(items) {
   // Example usage:
   const portfolioItems = [
     {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/GoodMorningChat_Wlogo2.jpg?updatedAt=1759762841840',
+      alt: 'GoodMorningChat',
+      onClick: 'openGoodMorningChat()',
+      title: 'GoodMorningChat',
+      category: 'Web Development & Design',
+    },
+    {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/high%20vibez%20homepage?updatedAt=1756840668734',
       alt: 'High Vibez',
       onClick: 'openHighVibez()',
@@ -29,18 +36,18 @@ function appendPortfolioItems(items) {
       category: 'CTO, Brand Manager, Web Design & Development',
     },
     {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922',
+      alt: 'Work Gambit',
+      onClick: 'openWorkGambit()',
+      title: 'Work Gambit',
+      category: 'Web Development & Design',
+    },
+    {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/MAPSCanada.png?updatedAt=1756756484999',
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
     category: 'Web Design & Implementation',
-    },
-    {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922',
-      alt: 'Work Gambit',
-      onClick: 'openWorkGambit()',
-      title: 'Work Gambit',
-      category: 'Web Development',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ThrillGrindBell.png?updatedAt=1757628114692',
@@ -89,6 +96,13 @@ function appendPortfolioItems(items) {
       alt: 'Drum Machine',
       onClick: 'openDrumMachine()',
       title: 'Drum Machine',
+      category: 'Program',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/SubLogo.jpg?updatedAt=1758986126741',
+      alt: 'Expense Tracker',
+      onClick: 'openExpenseTracker()',
+      title: 'Expense Tracker',
       category: 'Program',
     },
     {

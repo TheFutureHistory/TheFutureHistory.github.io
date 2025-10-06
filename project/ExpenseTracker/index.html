@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPENSE MANAGER</title>
+    <meta name="description" content="Discover the best job boards and verified company career pages in North America all in one place. Browse our curated directory to find reliable job search resources and start applying today.">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="./static/images/SubLogo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+        <section id="dashboard">
+            <!-- Main Content Grid -->
+            <div class="main-grid">
+                <!-- Add Expense Form -->
+                <div class="form-container" id="addForm">
+                    <h1>EXPENSE MANAGER </h1>
+                    <form id="subscriptionForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" required placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">price:</label>
+                            <input type="number" id="price" step="0.01" min="0" required placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                            <label for="renewal">Renewal Date:</label>
+                            <input type="date" id="renewal" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Duration">Duration</label>
+                            <select id="duration" required>
+                                <option value="" selected disabled>Select Duration</option>
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                                <option value="Semi-Annual">Semi-Annual</option>
+                                <option value="Annual">Annual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Category">Category</label>
+                            <select id="category" required>
+                                <option value="" selected disabled>Select Category</option>
+                                <option value="Housing">Housing</option>
+                                <option value="Food">Food</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Personal Care">Personal Care</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="submit-btn">Add Expense</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Subscription Table -->
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table id="subscriptionTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th class="sortable" data-sort="price">
+                                        Price
+                                        <span class="sort-arrows">
+                                            <span class="sort-arrow sort-up" data-direction="asc">▲</span>
+                                            <span class="sort-arrow sort-down" data-direction="desc">▼</span>
+                                        </span>
+                                    </th>
+                                    <th class="sortable" data-sort="renewal">
+                                        Renewal 
+                                        <span class="sort-arrows">
+                                            <span class="sort-arrow sort-up" data-direction="asc">▲</span>
+                                            <span class="sort-arrow sort-down" data-direction="desc">▼</span>
+                                        </span>
+                                    </th>
+                                    <th class="sortable" data-sort="duration">
+                                        Duration 
+                                        <span class="sort-arrows">
+                                            <span class="sort-arrow sort-up" data-direction="asc">▲</span>
+                                            <span class="sort-arrow sort-down" data-direction="desc">▼</span>
+                                        </span>
+                                    </th>
+                                    <th class="sortable" data-sort="category">
+                                        Category 
+                                        <span class="sort-arrows">
+                                            <span class="sort-arrow sort-up" data-direction="asc">▲</span>
+                                            <span class="sort-arrow sort-down" data-direction="desc">▼</span>
+                                        </span>
+                                    </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Subscriptions will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Expenses Grid -->
+            <div class="grid">
+                <!-- Monthly Expenses -->
+                <div class="expense-container">
+                    <h2>Per Day</h2>
+                    <div class="expense-amount" id="dailyTotal">$0.00</div>
+                </div>
+
+                <div class="expense-container">
+                    <h2>Per Week</h2>
+                    <div class="expense-amount" id="weeklyTotal">$0.00</div>
+                </div> 
+
+                <div class="expense-container">
+                    <h2>Per Month</h2>
+                    <div class="expense-amount" id="monthlyTotal">$0.00</div>
+                </div>
+                
+                <div class="expense-container">
+                    <h2>Per Quarter</h2>
+                    <div class="expense-amount" id="quarterlyTotal">$0.00</div>
+                </div>
+                
+                <div class="expense-container">
+                    <h2>Per 6 Months</h2>
+                    <div class="expense-amount" id="semiAnnualTotal">$0.00</div>
+                </div>
+                
+                <div class="expense-container">
+                    <h2>Per Year</h2>
+                    <div class="expense-amount" id="annualTotal">$0.00</div>
+                </div>
+
+                <div class="expense-container">
+                    <div class="category-chart-container">
+                        <svg class="category-chart" id="categoryChart">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#e9ecef" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <div class="category-legend" id="categoryLegend"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h2>Edit Expense</h2>
+            <form id="editForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="editName">Name:</label>
+                        <input type="text" id="editName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPrice">Price ($):</label>
+                        <input type="number" id="editPrice" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editRenewal">Renewal Date:</label>
+                        <input type="date" id="editRenewal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDuration">Duration:</label>
+                        <select id="editDuration" required>
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                                <option value="Semi-Annual">Semi-Annual</option>
+                                <option value="Annual">Annual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategory">Category:</label>
+                        <select id="editCategory" required>
+                                <option value="" selected disabled>Select Category</option>
+                                <option value="Housing">Housing</option>
+                                <option value="Food">Food</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Personal Care">Personal Care</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="submit-btn">Update Expense</button>
+                    <button type="button" class="cancel-btn" id="closeModalBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="chartModal" class="modal">
+        <div class="chart-modal-content">
+            <div class="chart-modal-body">
+                <div class="fullscreen-chart-container">
+                    <div id="fullScreenChart"></div>
+                </div>
+                <div class="chart-details-panel">
+                    <div id="chartDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./static/js/manager.js"></script>
+    <script src="./static/js/largeChart.js"></script>
+</body>
+</html>
