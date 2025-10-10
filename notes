@@ -41,3 +41,375 @@
         </div>
       </div>
       </section> -->
+
+
+
+                      <div class="integrations-grid scroll-left">
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/VSC.jpeg?updatedAt=1760120392344">
+                        </div>
+                        <span>VSC</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/chatGPT.png?updatedAt=1760119825377">
+                        </div>
+                        <span>ChatGPT</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gemini.png?updatedAt=1760119826395">
+                        </div>
+                        <span>Gemini</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/claude.png?updatedAt=1760119825880">
+                        </div>
+                        <span>Claude</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/figma.avif?updatedAt=1760119996658">
+                        </div>
+                        <span>Figma</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/squar.png?updatedAt=1760119825298">
+                        </div>
+                        <span>Square</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/perplexity.png?updatedAt=1760119826703">
+                        </div>
+                        <span>Perplexity</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/googlelab.png?updatedAt=1760119825276">
+                        </div>
+                        <span>Google Studio</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gmail.jpg?updatedAt=1760119825440">
+                        </div>
+                        <span>Gmail</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/midjourney.png?updatedAt=1760120104757">
+                        </div>
+                        <span>Midjourney</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/x.png?updatedAt=1760120150473">
+                        </div>
+                        <span>X</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/minimax.jpeg?updatedAt=1760120214682">
+                        </div>
+                        <span>Minimax</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/netlify.png?updatedAt=1760120255427">
+                        </div>
+                        <span>Netlify</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/make.webp?updatedAt=1760120300206">
+                        </div>
+                        <span>Make</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/Screenshot%202025-10-10%20at%2012.18.56%20PM.png?updatedAt=1760120343912">
+                        </div>
+                        <span>Firebase</span>
+                    </a>
+
+                    <!-- COPY OF ITEMS -->
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/VSC.jpeg?updatedAt=1760120392344">
+                        </div>
+                        <span>VSC</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/chatGPT.png?updatedAt=1760119825377">
+                        </div>
+                        <span>ChatGPT</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gemini.png?updatedAt=1760119826395">
+                        </div>
+                        <span>Gemini</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/claude.png?updatedAt=1760119825880">
+                        </div>
+                        <span>Claude</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/figma.avif?updatedAt=1760119996658">
+                        </div>
+                        <span>Figma</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/squar.png?updatedAt=1760119825298">
+                        </div>
+                        <span>Square</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/perplexity.png?updatedAt=1760119826703">
+                        </div>
+                        <span>Perplexity</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/googlelab.png?updatedAt=1760119825276">
+                        </div>
+                        <span>Google Studio</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gmail.jpg?updatedAt=1760119825440">
+                        </div>
+                        <span>Gmail</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/midjourney.png?updatedAt=1760120104757">
+                        </div>
+                        <span>Midjourney</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/x.png?updatedAt=1760120150473">
+                        </div>
+                        <span>X</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/minimax.jpeg?updatedAt=1760120214682">
+                        </div>
+                        <span>Minimax</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/netlify.png?updatedAt=1760120255427">
+                        </div>
+                        <span>Netlify</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/make.webp?updatedAt=1760120300206">
+                        </div>
+                        <span>Make</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/Screenshot%202025-10-10%20at%2012.18.56%20PM.png?updatedAt=1760120343912">
+                        </div>
+                        <span>Firebase</span>
+                    </a>
+                </div>
+
+                <div class="integrations-grid scroll-right">
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/VSC.jpeg?updatedAt=1760120392344">
+                        </div>
+                        <span>VSC</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/chatGPT.png?updatedAt=1760119825377">
+                        </div>
+                        <span>ChatGPT</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gemini.png?updatedAt=1760119826395">
+                        </div>
+                        <span>Gemini</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/claude.png?updatedAt=1760119825880">
+                        </div>
+                        <span>Claude</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/figma.avif?updatedAt=1760119996658">
+                        </div>
+                        <span>Figma</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/squar.png?updatedAt=1760119825298">
+                        </div>
+                        <span>Square</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/perplexity.png?updatedAt=1760119826703">
+                        </div>
+                        <span>Perplexity</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/googlelab.png?updatedAt=1760119825276">
+                        </div>
+                        <span>Google Studio</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gmail.jpg?updatedAt=1760119825440">
+                        </div>
+                        <span>Gmail</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/midjourney.png?updatedAt=1760120104757">
+                        </div>
+                        <span>Midjourney</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/x.png?updatedAt=1760120150473">
+                        </div>
+                        <span>X</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/minimax.jpeg?updatedAt=1760120214682">
+                        </div>
+                        <span>Minimax</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/netlify.png?updatedAt=1760120255427">
+                        </div>
+                        <span>Netlify</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/make.webp?updatedAt=1760120300206">
+                        </div>
+                        <span>Make</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/Screenshot%202025-10-10%20at%2012.18.56%20PM.png?updatedAt=1760120343912">
+                        </div>
+                        <span>Firebase</span>
+                    </a>
+
+                    <!-- COPY OF ITEMS -->
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/VSC.jpeg?updatedAt=1760120392344">
+                        </div>
+                        <span>VSC</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/chatGPT.png?updatedAt=1760119825377">
+                        </div>
+                        <span>ChatGPT</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gemini.png?updatedAt=1760119826395">
+                        </div>
+                        <span>Gemini</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/claude.png?updatedAt=1760119825880">
+                        </div>
+                        <span>Claude</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/figma.avif?updatedAt=1760119996658">
+                        </div>
+                        <span>Figma</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/squar.png?updatedAt=1760119825298">
+                        </div>
+                        <span>Square</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/perplexity.png?updatedAt=1760119826703">
+                        </div>
+                        <span>Perplexity</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/googlelab.png?updatedAt=1760119825276">
+                        </div>
+                        <span>Google Studio</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/gmail.jpg?updatedAt=1760119825440">
+                        </div>
+                        <span>Gmail</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/midjourney.png?updatedAt=1760120104757">
+                        </div>
+                        <span>Midjourney</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/x.png?updatedAt=1760120150473">
+                        </div>
+                        <span>X</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/minimax.jpeg?updatedAt=1760120214682">
+                        </div>
+                        <span>Minimax</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/netlify.png?updatedAt=1760120255427">
+                        </div>
+                        <span>Netlify</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/make.webp?updatedAt=1760120300206">
+                        </div>
+                        <span>Make</span>
+                    </a>
+                    <a href="#" class="integration-card">
+                        <div class="integration-logo">
+                        <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/Screenshot%202025-10-10%20at%2012.18.56%20PM.png?updatedAt=1760120343912">
+                        </div>
+                        <span>Firebase</span>
+                    </a>
+                </div>

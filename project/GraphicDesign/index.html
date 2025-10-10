@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GRAPHIC DESIGN | SEBASTIEN AUGUSTIN</title>
+    <title>Sebastien Augustin - Graphic Design</title>
     <link
       rel="icon"
       type="image/x-icon"
       href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"
     />
     <link rel="stylesheet" href="../../static/css/style.css" />
-    <link rel="stylesheet" href="../../static/css/mobile_style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,24 +24,76 @@
       src="https://kit.fontawesome.com/12a535f370.js"
       crossorigin="anonymous"
     ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
   </head>
 
   <body id="projectPage">
-    <img id="project_background" src="https://ik.imagekit.io/sebastienaugustin/images/clouds.jpeg?updatedAt=1756756060838" alt="" />
-    <a href="../../" class="close_project">X</a>
+      <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="../../#sebastien">Sebastien Augustin</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../#about">About</a></li>
+                    <li><a href="../../#work">Work</a></li>
+                    <li><a href="" id="contactBTN">Contact</a></li>
+                </ul>
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Hire Me</button>
+            </div>
+        </div>
+    </nav>
     <div class="project_container">
-      <h1 class="project_title">GRAPHIC DESIGN</h1>
-      <a href="https://www.behance.net/moodboard/217226801/Graphic-Design" target="_blank" class="project_site">FULL GALLERY</a>
+      <h1 class="sectionTitle">Graphic Designs</h1>
     </div>
 
-    <div class="project_preview">
+      <div class="projectGridGD">
       <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign1.png?updatedAt=1756756217449" alt="" />
       <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign2.png?updatedAt=1756756329601" alt="" />
-    </div>
+      </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sebastien Augustin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-    <section id="contact_footer">
-      <p>© Sebastien Augustin 2024. All Rights Reserved.</p>
-    </section>
+    <!-- Open Virtual Assistant -->
+    <script>
+        document.getElementById('contactBTN').addEventListener('click', (e) => {
+        e.preventDefault();
+        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
+        if (chatbotButton) {
+            chatbotButton.click(); // simulate real click
+        } else {
+            console.warn('Chatbot trigger not found.');
+        }
+        });
+        document.getElementById('hireBTN').addEventListener('click', (e) => {
+        e.preventDefault();
+        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
+        if (chatbotButton) {
+            chatbotButton.click(); // simulate real click
+        } else {
+            console.warn('Chatbot trigger not found.');
+        }
+        });
+    </script>
+    <script src="../../GoodMorningChat.js" data-chatbot-id="sebastienaugustin" async defer></script>
+    <!-- Navbar Scroll -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        });
+    </script>
 
   </body>
 </html>
+

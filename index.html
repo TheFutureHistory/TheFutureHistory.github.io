@@ -1,168 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEBASTIEN AUGUSTIN</title>
-  <link rel="icon" type="image/x-icon"
-    href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921" />
-  <link rel="stylesheet" href="static/css/style.css" />
-  <link rel="stylesheet" href="static/css/mobile_style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/12a535f370.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastien Augustin · Virtual Assistant</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E143831F7B"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-E143831F7B');
+    </script>
 </head>
+<body>
+    <!-- Navigation --> 
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="#sebastien">Sebastien Augustin</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="" id="contactBTN">Contact</a></li>
+                </ul>
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Hire Me</button>
+            </div>
+        </div>
+    </nav>
 
-<body id="homepage">
-  <div id="home"></div>
-  <img id="hero_background" src="https://ik.imagekit.io/sebastienaugustin/images/clouds.jpeg?updatedAt=1756756060838"
-    alt="" />
-  <div class="hero_container">
-    <h2 class="hero_title">SEBASTIEN AUGUSTIN <span> || Creative Director</span></h2>
-    <div class="hero_buttons">
-      <a class="hero_btn" href="#contact">CONTACT</a>
-    </div>
-  </div>
+    <!-- Hero Section -->
+    <section class="hero" id="sebastien">
+        <div class="container" id="hero-content">
+            <h1>Sebastien Augustin <br><span id="h1Exceptional">Creative Director</span></h1>
+            <p class="hero-subtitle">Crafting visual stories and brand experiences <br> that resonate worldwide</p>
+            <button class="btn-cta" onclick="document.getElementById('work').scrollIntoView({ behavior: 'smooth' })">View Portfolio</button>
+            <div class="hero-badges">
+                <span class="badge">Forward Thinking</span>
+                <span class="badge">Innovative Concepts</span>
+                <span class="badge">International Work</span>
+            </div>
+        </div>
+        <img src="./static/images/Sebastien.png">
+    </section>
+    <!-- Features Grid -->
+    <!-- End-to-End Solution -->
+    <section class="solution-section" id="about">
+        <div class="container">
+            <h2 class="sectionTitle">From Vision to Reality</h2>
+            <div class="solution-cards">
+                <div class="solution-card">
+                    <span class="card-number">01</span>
+
+                    <h3>Discovery</h3>
+                    <p>We start by exploring your brand, goals, and creative aspirations to align our vision.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="card-number">02</span>
+
+                    <h3>Collaboration</h3>
+                    <p>I present ideas and prototypes, and we refine them together to ensure impact and originality.</p>
+                </div>
+                <div class="solution-card">
+                    <span class="card-number">03</span>
+
+                    <h3>Launch</h3>
+                    <p>We execute the creative strategy, producing visually stunning and strategically sound results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="features-intro" >
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card" >
+                    <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/diamond2.png?updatedAt=1760122392126" alt="" class="icon-box">
+                    <div>
+                        <h3>Development</h3>
+                        <p>strategies that elevate market presence</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/diamond1.png?updatedAt=1760122392212" alt="" class="icon-box">
+                    <div>
+                        <h3>Design</h3>
+                        <p>Impactful visuals that tell compelling stories</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="https://ik.imagekit.io/sebastienaugustin/images/projects/Company%20Logos/diamond3.png?updatedAt=1760122392374" alt="" class="icon-box">
+                    <div>
+                        <h3>Creative Direction</h3>
+                        <p>From concept to execution with precision</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Integrations Section -->
+    <section class="integrations-section">
+        <div class="container">    
+            <h2 class="sectionTitle">Favorite tools</h2> 
+            <div class="integrations-wrapper" id="integrations-wrapper">
+                <div class="integrations-grid scroll-left" id="integrations-left"></div>
+                <div class="integrations-grid scroll-right" id="integrations-right"></div>
+            </div> 
+        </div>
+    </section>
+    <!-- Build Section -->
+    <section class="build-section" id="work">
+        <div class="container">
+            <h2 class="sectionTitle">Companies, Partners & Products</h2>
+            <div class="build-menu" id="build-menu"></div>
+            <div class="build-grid" id="build-grid">
+            </div>
+        </div>
+    </section>
+    <!-- Contact Form Section -->
+    <!-- <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Get in touch</h2>
+                    <p class="contact-description">Have a question or want to learn more about Sebastien Augustin? We'd love to hear from you.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <div class="contact-icon --gray-600">
+                                <span>💬</span>
+                            </div>
+                            <div>
+                                <h3>Live Assistant</h3>
+                                <p>Available 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/alwaysskilledproductions@gmail.com" method="POST">
+                        <input type="text" name="_honey" style="display:none">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="John">
+                            </div>
+                            <div class="form-field">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Your company name">
+                        </div>
+                        <div class="form-field">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" required placeholder="How can we help?">
+                        </div>
+                        <div class="form-field">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us more about your inquiry..."></textarea>
+                        </div>
+                        <div class="form-field checkbox-field">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter" class="checkbox-label">
+                                I'd like to receive product updates and marketing emails
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                        <p class="form-note">We'll get back to you within 24 hours.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="hydroFloraPreview">
+        <video 
+            id="hydroFloraVideo"
+            src="./static/videos/Hydro Flora.mp4" 
+            muted 
+            playsinline 
+            loop 
+            controls
+        ></video>
+    </section>
+    
+    
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sebastien Augustin. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 
-
-
-
-  <section class="portfolioSection">
-    <div id="work"></div>
-    <section class="portfolioGallery" id="portfolioGallery"></section>
-  </section>
-
-  <div id="contact"></div>
-  <section class="contactSection">
-    <h2>CONTACT SEBASTIEN</h2>
-    <form action="https://formsubmit.co/alwaysskilledproductions@gmail.com" method="POST" data-recaptcha="true">
-      <label for="formName">Name</label>
-      <input type="text" name="name" id="formName" required>
-      <label for="formEmail">Email</label>
-      <input type="email" name="email" id="formEmail" required>
-      <label for="formCompany">Company</label>
-      <input type="text" name="company" id="formCompany" required>
-      <label for="formBudget">Budget</label>
-      <select name="budget" id="formBudget">
-        <option value="none" selected disabled>USD</option>
-        <option value="1000">$1000 - $5000</option>
-        <option value="5000">$5000 - $10,000</option>
-        <option value="10000">$10,000 - $15,000</option>
-        <option value="15000">$15,000 - $20,000</option>
-        <option value="20000">$20,000+</option>
-      </select>
-      <label for="formMessage">Message</label>
-      <textarea name="message" id="formMessage"></textarea>
-      <button type="submit">SEND MESSAGE</button>
-    </form>
-  </section>
-
-  <section id="contact_footer">
-    <p>© Sebastien Augustin 2024. All Rights Reserved.</p>
-  </section>
-
-  <script>
-    // SCROLL TO LINK FX
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
+    <!-- icon scroll -->
+    <script src="./static/js/integrationIcons.js"></script>
+    <!-- Open Virtual Assistant -->
+    <script>
+        document.getElementById('contactBTN').addEventListener('click', (e) => {
         e.preventDefault();
-
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth",
-        });
-      });
-    });
-  </script>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // Parse the query string to get the target section
-      const urlParams = new URLSearchParams(window.location.search);
-      const scrollTo = urlParams.get("scrollTo");
-
-      // Map scrollTo values to corresponding section IDs
-      const sectionIds = {
-        pricing: "pricing",
-        FAQs: "FAQs",
-        contact: "contact",
-      };
-
-      // Scroll to the target section if scrollTo is valid
-      if (scrollTo && sectionIds.hasOwnProperty(scrollTo)) {
-        const targetSectionId = sectionIds[scrollTo];
-        const targetSection = document.getElementById(targetSectionId);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-          // Get the base URL without the index.html part
-          const baseUrl = window.location.href.split("index.html")[0];
-          // Update URL to display domain.com/#pricing, domain.com/#FAQs, or domain.com/#contact
-          history.replaceState(null, null, `${baseUrl}#${targetSectionId}`);
+        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
+        if (chatbotButton) {
+            chatbotButton.click(); // simulate real click
+        } else {
+            console.warn('Chatbot trigger not found.');
         }
-      }
-    });
-  </script>
+        });
+        document.getElementById('hireBTN').addEventListener('click', (e) => {
+        e.preventDefault();
+        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
+        if (chatbotButton) {
+            chatbotButton.click(); // simulate real click
+        } else {
+            console.warn('Chatbot trigger not found.');
+        }
+        });
+    </script>
+    <!-- Navbar Scroll -->
+    <script>
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        });
+    </script>
   <!-- PORTFOLIO LINKS -->
-  <script>
-    function openGoodMorningChat() {
-      window.open("https://goodmorningchat.com/", "_self");
-    }
-    function openThrillGrind() {
-      window.open("https://www.thrillgrind.com", "_self");
-    }
-    function openWorkGambit() {
-      window.open("https://www.workgambit.com", "_self");
-    }
-    function openHighVibez() {
-      window.open("https://www.highvibezglobal.com", "_self");
-    }
-    function openDrumMachine() {
-      window.open("./project/DrumMachine/", "_self");
-    }
-    function openExpenseTracker() {
-      window.open("./project/ExpenseTracker/", "_self");
-    }
-    function openWorldConquer() {
-      window.open("./project/WorldConquer/", "_self");
-    }
-    function openInvoiceBuilder() {
-      window.open("./project/InvoiceBuilder/", "_self");
-    }
-    function openMapsCanada() {
-      window.open("https://www.mapscanada.org", "_self");
-    }
-    function openMackandal() {
-      window.open("./project/MackandalStudios/", "_self");
-    }
-    function openTheCatalyst() {
-      window.open("./project/TheCatalyst/", "_self");
-    }
-    function openAlwaysSkilled() {
-      window.open("https://www.AlwaysSkilled.com", "_self");
-    }
-    function openFrontend() {
-      window.open("./project/FrontEnd/", "_self");
-    }
-    function openLogos() {
-      window.open(
-        "https://www.behance.net/moodboard/217227131/Logo-Design",
-        "_self"
-      );
-    }
-    function openGraphicDesign() {
-      window.open("./project/GraphicDesign/", "_self");
-    }
-    function openHydroflora() {
-      window.open("./project/HydroFlora/", "_self");
-    }
-  </script>
-  <script src="./static/js/portfolio.js"></script>
-  <script src="https://www.goodmorningchat.com/.netlify/functions/getWidget?key=GOODMORNING" data-chatbot-id="sebastienaugustin" async defer></script>
-  </body>
+    <script>
+        function openGoodMorningChat() {
+        window.open("https://goodmorningchat.com/", "_self");
+        }
+        function openThrillGrind() {
+        window.open("https://www.thrillgrind.com", "_self");
+        }
+        function openWorkGambit() {
+        window.open("https://www.workgambit.com", "_self");
+        }
+        function openHighVibez() {
+        window.open("https://www.highvibezglobal.com", "_self");
+        }
+        function openDrumMachine() {
+        window.open("./project/DrumMachine/", "_self");
+        }
+        function openExpenseTracker() {
+        window.open("./project/ExpenseTracker/", "_self");
+        }
+        function openWorldConquer() {
+        window.open("./project/WorldConquer/", "_self");
+        }
+        function openInvoiceBuilder() {
+        window.open("./project/InvoiceBuilder/", "_self");
+        }
+        function openMapsCanada() {
+        window.open("https://www.mapscanada.org", "_self");
+        }
+        function openMackandal() {
+        window.open("./project/MackandalStudios/", "_self");
+        }
+        function openTheCatalyst() {
+        window.open("./project/TheCatalyst/", "_self");
+        }
+        function openAlwaysSkilled() {
+        window.open("https://www.AlwaysSkilled.com", "_self");
+        }
+        function openFrontend() {
+        window.open("./project/FrontEnd/", "_self");
+        }
+        function openLogos() {
+        window.open(
+            "https://www.behance.net/moodboard/217227131/Logo-Design",
+            "_self"
+        );
+        }
+        function openGraphicDesign() {
+        window.open("./project/GraphicDesign/", "_self");
+        }
+        function openHydroflora() {
+        window.open("./project/HydroFlora/", "_self");
+        }
+    </script>
+    <script src="./static/js/portfolio.js"></script>
+    <!-- Portfolio Hover -->
+    <script>
+        const builds = document.querySelectorAll('.build-visual');
+
+        builds.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            builds.forEach(other => {
+            if (other !== item) other.style.opacity = '0.5';
+            });
+        });
+
+        item.addEventListener('mouseleave', () => {
+            builds.forEach(other => {
+            other.style.opacity = '1';
+            });
+        });
+        });
+
+    </script>
+    <!-- Portfolio Menu -->
+    <script>
+            // 1. Get all existing build cards
+            const cards = document.querySelectorAll('.build-card');
+            // 2. Ensure each card has a data-status
+            cards.forEach(card => {
+            if (!card.dataset.status) {
+                const statusEl = card.querySelector('.build-status');
+                card.dataset.status = statusEl ? statusEl.textContent.trim() : 'Online';
+            }
+            });
+            // 3. Extract unique statuses
+            const statuses = Array.from(new Set(Array.from(cards).map(c => c.dataset.status)));
+            // 4. Get the menu container
+            const menu = document.getElementById('build-menu');
+            menu.innerHTML = ''; // clear previous menu
+            // 5. Create "All" button
+            const allBtn = document.createElement('button');
+            allBtn.textContent = 'All';
+            allBtn.dataset.status = 'All';
+            allBtn.className = 'filter-btn';
+            menu.appendChild(allBtn);
+            // 6. Create buttons for each status
+            statuses.forEach(status => {
+            const btn = document.createElement('button');
+            btn.textContent = status;
+            btn.dataset.status = status;
+            btn.className = 'filter-btn';
+            menu.appendChild(btn);
+            });
+            // 7. Hide/Show function
+            function filterBuildItems(status) {
+            cards.forEach(card => {
+                if (status === 'All' || card.dataset.status === status) {
+                card.style.display = ''; // show
+                } else {
+                card.style.display = 'none'; // hide
+                }
+            });
+            }
+            // 8. Add click listeners to buttons
+            menu.addEventListener('click', e => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const status = btn.dataset.status;
+            filterBuildItems(status);
+            });
+    </script>
+    <!-- HydroFlora vid -->
+    <script>
+        function openHydroflora() {
+            const preview = document.getElementById('hydroFloraPreview');
+            const video = document.getElementById('hydroFloraVideo');
+
+            // Reset video to start
+            video.pause();
+            video.currentTime = 0;
+            video.muted = false; // unmute if you want sound
+            video.play().catch(err => console.log('Video play failed:', err));
+
+            // Show the section
+            preview.style.display = 'block';
+
+            // Close on outside click
+            function hideVideo(e) {
+                if (!preview.contains(e.target)) {
+                    preview.style.display = 'none';
+                    video.pause();
+                    video.currentTime = 0;
+                    window.removeEventListener('click', hideVideo);
+                }
+            }
+
+            // Delay attaching listener to avoid immediate trigger
+            setTimeout(() => window.addEventListener('click', hideVideo), 0);
+        }
+
+    </script>
+    <script src="GoodMorningChat.js" data-chatbot-id="sebastienaugustin" async defer></script>
+</body>
 </html>
