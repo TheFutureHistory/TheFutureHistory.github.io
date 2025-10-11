@@ -1,26 +1,37 @@
 function captureScreenshot() {
-    const stats = document.getElementsByClassName("stats")
+    // Hide elements
+    const stickyMenuBottom = document.querySelector('.stickyMenuBottom');
+    const closeMenuBTN = document.getElementById('closeMenuBTN');
+    const map = document.getElementById("map");
+
+    stickyMenuBottom.style.display = 'none';
+    closeMenuBTN.style.display = 'none';
+
+    const stats = document.getElementsByClassName("stats");
     for (let i = 0; i < stats.length; i++) {
         stats[i].style.display = "none";
     }
 
-    whiteText()
-    html2canvas(document.querySelector('.dashboard')).then(function (canvas) {
-        // Create a temporary link element
-        var link = document.createElement('a');
-        var name = document.getElementById('nameInput').value
-        var date = new Date().toISOString().slice(0, 10);
-        if (name === "") {
-            link.download = 'screenshot_' + date + '.png';
-        } else {
-            link.download = name + ' - World Conquer Map - ' + date + '.png';
-        }
-        link.href = canvas.toDataURL();
+    // Wait briefly before capturing
+    setTimeout(() => {
+        whiteText();
 
-        // Trigger the download
-        link.click();
-    });
-    for (let i = 0; i < stats.length; i++) {
-        stats[i].style.display = "block";
-    }
+        html2canvas(document.querySelector('.dashboard')).then(function (canvas) {
+            const link = document.createElement('a');
+            const name = document.getElementById('nameInput').value;
+            const date = new Date().toISOString().slice(0, 10);
+            link.download = name
+                ? `${name} - World Conquer Map - ${date}.png`
+                : `screenshot_${date}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+
+            // Restore elements
+            stickyMenuBottom.style.display = 'flex';
+            closeMenuBTN.style.display = 'block';
+            for (let i = 0; i < stats.length; i++) {
+                stats[i].style.display = "block";
+            }
+        });
+    }, 100); // small delay (100ms)
 }

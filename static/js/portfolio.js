@@ -125,7 +125,7 @@ function appendPortfolioItems(items) {
       status: 'design',
     },
     {
-      imageSrc: './project/worldConquer/images/world.jpeg',
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/world.jpeg?updatedAt=1760137355015',
       alt: 'World Conquer',
       onClick: 'openWorldConquer()',
       title: 'World Conquer',
