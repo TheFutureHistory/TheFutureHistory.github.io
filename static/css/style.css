@@ -374,6 +374,14 @@ body {
   padding: 2px 12px;
   border-radius: 25px;
   background-color: red;
+  margin-bottom: 5px;
+}
+.build-category {
+  font-weight: 300 !important;
+  padding: 2px 12px;
+  border-radius: 25px;
+  background-color: var(--gray-100);
+  color: var(--gray-200);
 }
 .build-row:nth-child(2) {
   width: 100%;

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Generator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+
+   <body>
+    <div class="app">
+      <div>
+        <h1 class="appTitle">Email Generator</h1>
+        <section class="appRow">
+            <input put type="text" placeholder="First Name" class="nameInput" id="firstName">
+        </section>
+        <section class="appRow">
+            <input type="text" placeholder="Last Name" class="nameInput" id="lastName" onkeyup="checkInput()">
+        </section>
+        <section class="appRow">
+            <input type="text" placeholder="Company Name" class="nameInput" id="companyName" onkeyup="checkInput()">
+        </section>
+        <section class="appRow">
+            <input type="submit" value="Get Results" id="generateEmails"  >
+        </section>
+      </div>
+      <div>
+        <h2 class="appTitle" id="resultTitle">Results</h2>
+        <div class="results"></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+
+</html>

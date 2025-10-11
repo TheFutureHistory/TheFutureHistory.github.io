@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --accent-blue: #0066ff;
+  --gray-100: #f7f7f7;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-600: #6b7280;
+  --gray-900: #111827;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(180deg, #fff 0%, var(--gray-100) 100%);
+  overflow-x: hidden;
+  line-height: 1.6;
+  color: var(--gray-900);
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 30px;
+}
+
+.appTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.appRow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.nameInput {
+  font-size: 15px;
+  padding: 14px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--secondary-color);
+  color: var(--gray-900);
+  font-family: "Lexend", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.nameInput::placeholder {
+  color: var(--gray-600);
+  opacity: 0.6;
+}
+
+.nameInput:hover {
+  border-color: var(--gray-300);
+}
+
+.nameInput:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+#generateEmails {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  font-family: "Lexend", sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+#generateEmails:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+#generateEmails:active {
+  transform: translateY(0);
+}
+
+#generateEmails[style*="opacity: 25%"],
+#generateEmails:disabled {
+  background: var(--gray-200);
+  color: var(--gray-600);
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+#generateEmails[style*="opacity: 25%"]:hover,
+#generateEmails:disabled:hover {
+  transform: none;
+}
+
+#resultTitle {
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary-color);
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  min-height: 100px;
+  transition: all 0.3s ease;
+}
+
+.results:empty {
+  background: var(--gray-100);
+}
+
+.resultRow {
+  font-size: 14px;
+  font-family: "Lexend", sans-serif;
+  font-weight: 300;
+  color: var(--gray-900);
+  margin: 8px 0;
+  padding: 12px 16px;
+  background: var(--gray-100);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  word-break: break-all;
+}
+
+.resultRow:hover {
+  background: var(--gray-200);
+  transform: translateX(2px);
+}
+
+.btn-copy-all {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 24px;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--secondary-color);
+  color: var(--gray-900);
+  cursor: pointer;
+  font-family: "Lexend", sans-serif;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.btn-copy-all:hover {
+  border-color: var(--gray-900);
+  background: var(--gray-900);
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 60px 20px;
+  }
+
+  .appTitle {
+    font-size: 34px;
+  }
+
+  #resultTitle {
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

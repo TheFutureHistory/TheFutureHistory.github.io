@@ -10,11 +10,14 @@ function appendPortfolioItems(items) {
         <div class="build-visual" onclick="${item.onClick}">
           <div class="build-row">
             <img src="${item.imageSrc}" alt="${item.alt}" >
-            <p class="build-status">${status}</p>
+            <div>
+              <p class="build-status">${status}</p>
+            </div>
+
           </div>
           <div class="build-row">
             <h3>${item.title}</h3>
-            <p>${item.description || item.category}</p>
+            <p>${item.description}</p>
           </div>
         </div>
       `;
@@ -57,15 +60,16 @@ function appendPortfolioItems(items) {
       alt: 'GoodMorningChat',
       onClick: 'openGoodMorningChat()',
       title: 'GoodMorningChat',
-      category: 'A Virtual Assistant that businesses can add on their website to help customers with their inquiries and provide support.',
+      description: 'A Virtual Assistant that businesses can add on their website to help customers with their inquiries and provide support.',
       status: 'online',
+      category: 'Founder',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/High%20Vibez%20-%20Logo%20(Black)%20_Print_.png?updatedAt=1760058060512',
       alt: 'High Vibez Global',
       onClick: 'openHighVibez()',
       title: 'High Vibez Global',
-      category: 'The #1 black-owned entertainment and travel agency in Playa Del Carmen to help you plan your next trip to Mexico.',
+      description: 'The #1 black-owned entertainment and travel agency in Playa Del Carmen to help you plan your next trip to Mexico.',
       status: 'online',
     },
     {
@@ -73,7 +77,7 @@ function appendPortfolioItems(items) {
       alt: 'Work Gambit',
       onClick: 'openWorkGambit()',
       title: 'Work Gambit',
-      category: 'A directory with job boards, companies and tools to help job seekers with their career development.',
+      description: 'A directory with job boards, companies and tools to help job seekers with their career development.',
       status: 'online',
     },
     {
@@ -81,7 +85,7 @@ function appendPortfolioItems(items) {
     alt: 'MAPS Canada',
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
-    category: 'Web design and implementation of the Canadian charity committed to advancing psychedelic medicine in Canada.',
+    description: 'Web design and implementation of the Canadian charity committed to advancing psychedelic medicine in Canada.',
     status: 'online',
     },
     {
@@ -89,7 +93,7 @@ function appendPortfolioItems(items) {
       alt: 'Thrill Grind',
       onClick: 'openThrillGrind()',
       title: 'Thrill Grind',
-      category: 'Fitness and nutrition plans by a professional athlete, helping men lose weight, build muscle, and protect long-term health.',
+      description: 'Fitness and nutrition plans by a professional athlete, helping men lose weight, build muscle, and protect long-term health.',
       status: 'online',
     },
     {
@@ -97,7 +101,7 @@ function appendPortfolioItems(items) {
     alt: 'Mackandal Studios',
     onClick: 'openMackandal()',
     title: 'Mackandal Studios',
-    category: 'A creative studio specializing in concept art, storyboarding, and visual development for films, games, and animations.',
+    description: 'A creative studio specializing in concept art, storyboarding, and visual development for films, games, and animations.',
       status: 'art',
     },
     {
@@ -105,7 +109,7 @@ function appendPortfolioItems(items) {
     alt: 'The Catalyst',
     onClick: 'openTheCatalyst()',
     title: 'The Catalyst',
-    category: 'AI generated movie concept scenes exploring Haïti in 2050 as an alien invasion takes place.',
+    description: 'AI generated movie concept scenes exploring Haïti in 2050 as an alien invasion takes place.',
     status: 'art',
     },
     {
@@ -113,7 +117,7 @@ function appendPortfolioItems(items) {
     alt: 'Front-end',
     onClick: 'openFrontend()',
     title: 'Front-end Design',
-    category: 'Portfolio highlighting my creative vision, interactive layouts, and polished visual skills through engaging web heroes.',
+    description: 'Portfolio highlighting my creative vision, interactive layouts, and polished visual skills through engaging web heroes.',
     status: 'design',
     },
     {
@@ -121,7 +125,7 @@ function appendPortfolioItems(items) {
       alt: 'Graphic Design',
       onClick: 'openGraphicDesign()',
       title: 'Graphic Design',
-      category: 'A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.',
+      description: 'A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.',
       status: 'design',
     },
     {
@@ -129,23 +133,23 @@ function appendPortfolioItems(items) {
       alt: 'World Conquer',
       onClick: 'openWorldConquer()',
       title: 'World Conquer',
-      category: 'A program where users can track their world conquering quest by tagging countries as visited, wishlist or excluded.',
-      status: 'in progress',
+      description: 'A program where users can track their world conquering quest by tagging countries as visited, wishlist or excluded.',
+      status: 'project',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/SubLogo.jpg?updatedAt=1758986126741',
       alt: 'Expense Tracker',
       onClick: 'openExpenseTracker()',
       title: 'Expense Tracker',
-      category: 'A program that helps users manage their finances by manually tracking expenses.',
+      description: 'A program that helps users manage their finances by manually tracking expenses.',
       status: 'in progress',
     },
     {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/InvoiceBuilder.png?updatedAt=1756756431448',
-      alt: 'Invoice Builder',
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/invoicegenerator.jpg?updatedAt=1760220049982',
+      alt: 'Invoice Creator',
       onClick: 'openInvoiceBuilder()',
-      title: 'Invoice Builder',
-      category: 'A program that allows users to create and customize professional invoices for their business needs.',
+      title: 'Invoice Creator',
+      description: 'A program that allows users to create and customize professional invoices for their business needs.',
       status: 'project',
     },
     {
@@ -153,7 +157,15 @@ function appendPortfolioItems(items) {
       alt: 'Drum Machine',
       onClick: 'openDrumMachine()',
       title: 'Drum Machine',
-      category: 'A music production program that allows users to create drum patterns using a variety of sounds and effects.',
+      description: 'A music production program that allows users to create drum patterns using a variety of sounds and effects.',
+      status: 'project',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/emailgenerator.jpg?updatedAt=1760220049884',
+      alt: 'Email Generator',
+      onClick: 'openEmailGenerator()',
+      title: 'Email Generator',
+      description: 'Generate multiple professional email variations to reach business contacts with a single click.',
       status: 'project',
     },
     {
@@ -161,7 +173,7 @@ function appendPortfolioItems(items) {
       alt: 'Always Skilled',
       onClick: 'openAlwaysSkilled()',
       title: 'Always Skilled',
-      category: 'All my original music production for quick access for listeners.',
+      description: 'All my original music production for quick access for listeners.',
       status: 'Music',
     },
     {
@@ -169,23 +181,15 @@ function appendPortfolioItems(items) {
       alt: 'Hydro Flora',
       onClick: 'openHydroflora()',
       title: 'Hydro Flora',
-      category: 'A music composition project for an ad to match the Hydro Flora brand. Produced using Ableton Live.',
+      description: 'A music composition contracted for an ad to match the Hydro Flora brand. Produced using Ableton Live.',
       status: 'Music',
-    },
-    {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202025-10-09%20at%205.35.18%20PM.png?updatedAt=1760052944654',
-      alt: 'Xaragua Hotel',
-      onClick: '',
-      title: 'Xaragua Hotel',
-      category: 'Web Development & Design for a 50 room hotel located in the beautiful coast of Haïti.',
-      status: 'Offline',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/terastacks_logo.jpg?updatedAt=1760052999268',
       alt: 'Terastacks',
       onClick: '',
       title: 'Terastacks',
-      category: 'A blockchain infrastructure that allowed users to buy, sell and transfer a digital currency called Teracode.',
+      description: 'A blockchain infrastructure that allowed users to buy, sell and transfer a digital currency called Teracode.',
       status: 'Offline',
     },
     {
@@ -193,7 +197,7 @@ function appendPortfolioItems(items) {
       alt: 'Terastacks App',
       onClick: '',
       title: 'Terastacks App',
-      category: 'A SAAS facilitating fund transfers from Credit Cards to online payment accounts such as PayPal, Stripe, Cash App & more.',
+      description: 'A SAAS facilitating fund transfers from Credit Cards to online payment accounts such as PayPal, Stripe, Cash App & more.',
       status: 'Offline',
     },
     {
@@ -201,7 +205,31 @@ function appendPortfolioItems(items) {
       alt: 'Diggit',
       onClick: '',
       title: 'Diggit',
-      category: 'A microblogging website where users can post, repost, comment, like text posts and follow users and tags.',
+      description: 'A microblogging website where users can post, repost, comment, like text posts and follow users and tags.',
+      status: 'Offline',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ProductiveP.png?updatedAt=1760214036489',
+      alt: 'ProductivPro',
+      onClick: '',
+      title: 'ProductivPro',
+      description: 'A chrome extension that lets users block 5 specific URLs for a set time so they can focus on work.',
+      status: 'Offline',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/icon192.png?updatedAt=1760214942716',
+      alt: 'TodoList',
+      onClick: '',
+      title: 'TodoList',
+      description: 'A chrome extension that lets users save a TodoList directly in their browser for quick access.',
+      status: 'Offline',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202025-10-09%20at%205.35.18%20PM.png?updatedAt=1760052944654',
+      alt: 'Xaragua Hotel',
+      onClick: '',
+      title: 'Xaragua Hotel',
+      description: 'Web Development & Design for a 50 room hotel located in the beautiful coast of Haïti.',
       status: 'Offline',
     },
   ];
