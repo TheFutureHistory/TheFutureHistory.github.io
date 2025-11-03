@@ -89,6 +89,14 @@ function appendPortfolioItems(items) {
     status: 'online',
     },
     {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Logo.png?updatedAt=1762197005313',
+      alt: 'Akajou Library',
+      onClick: 'openAkajouLibrary()',
+      title: 'Akajou Library',
+      description: 'A curated collection of books written by Black authors from across the African, Caribbean, and other Black diasporas.',
+      status: 'online',
+    },
+    {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ThrillGrind_Logo%20(black%20background).png?updatedAt=1757627992165',
       alt: 'Thrill Grind',
       onClick: 'openThrillGrind()',
