@@ -118,7 +118,9 @@ body {
   border-radius: 8px;
   font-weight: 400;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .btn-primary:hover {
   transform: translateY(-2px);
@@ -173,7 +175,9 @@ body {
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .btn-cta:hover {
   transform: translateY(-2px);
@@ -213,7 +217,9 @@ body {
   gap: 25px;
   padding: 20px;
   border-radius: 16px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
   border: 1px solid var(--gray-200);
 }
 .feature-card:hover {
@@ -763,7 +769,9 @@ body {
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .btn-contact:hover {
   transform: translateY(-2px);
@@ -780,13 +788,13 @@ body {
   gap: 60px;
   align-items: start;
 }
-.contact-info h2 {
+/* .contact-info h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--gray-900);
   line-height: 1.2;
-}
+} */
 .contact-description {
   font-size: 18px;
   color: var(--gray-600);
@@ -983,13 +991,13 @@ body {
   gap: 60px;
   align-items: start;
 }
-.contact-info h2 {
+/* .contact-info h2 {
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--gray-900);
   line-height: 1.2;
-}
+} */
 .contact-description {
   font-size: 18px;
   color: var(--gray-600);
@@ -1195,7 +1203,9 @@ body {
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .btn-cta-large:hover {
   transform: translateY(-3px);

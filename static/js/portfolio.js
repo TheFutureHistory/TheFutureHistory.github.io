@@ -56,11 +56,11 @@ function appendPortfolioItems(items) {
   }
   const portfolioItems = [
     {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/GoodMorningChat_Wlogo2.jpg?updatedAt=1759762841840',
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/GMC_black.png',
       alt: 'GoodMorningChat',
       onClick: 'openGoodMorningChat()',
       title: 'GoodMorningChat',
-      description: 'A Virtual Assistant that businesses can add on their website to help customers with their inquiries and provide support.',
+      description: 'A Digital growth agency elevating Brands through strategic creativity & reputation management.',
       status: 'online',
       category: 'Founder',
     },
@@ -101,7 +101,7 @@ function appendPortfolioItems(items) {
       alt: 'Thrill Grind',
       onClick: 'openThrillGrind()',
       title: 'Thrill Grind',
-      description: 'Fitness and nutrition plans by a professional athlete, helping men lose weight, build muscle, and protect long-term health.',
+      description: 'A community for men by men serious about finance, health, and stoicism. Start building your empire.',
       status: 'online',
     },
     {

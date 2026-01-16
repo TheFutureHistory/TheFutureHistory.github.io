@@ -21,9 +21,9 @@
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#work">Work</a></li>
-                    <li><a href="" id="contactBTN">Contact</a></li>
+                    <li><a href="#contact" id="contactBTN">Contact</a></li>
                 </ul>
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Hire Me</button>
+                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Let's Work</button>
             </div>
         </div>
     </nav>
@@ -116,23 +116,12 @@
         </div>
     </section>
     <!-- Contact Form Section -->
-    <!-- <section class="contact-section" id="contact">
+    <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <h2>Get in touch</h2>
+                    <h2 class="sectionTitle">Get in touch</h2>
                     <p class="contact-description">Have a question or want to learn more about Sebastien Augustin? We'd love to hear from you.</p>
-                    <div class="contact-details">
-                        <div class="contact-detail-item">
-                            <div class="contact-icon --gray-600">
-                                <span>💬</span>
-                            </div>
-                            <div>
-                                <h3>Live Assistant</h3>
-                                <p>Available 24/7</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm" action="https://formsubmit.co/alwaysskilledproductions@gmail.com" method="POST">
@@ -163,19 +152,13 @@
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" rows="5" required placeholder="Tell us more about your inquiry..."></textarea>
                         </div>
-                        <div class="form-field checkbox-field">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter" class="checkbox-label">
-                                I'd like to receive product updates and marketing emails
-                            </label>
-                        </div>
                         <button type="submit" class="btn-submit">Send Message</button>
                         <p class="form-note">We'll get back to you within 24 hours.</p>
                     </form>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <section id="hydroFloraPreview">
         <video 
@@ -202,27 +185,6 @@
 
     <!-- icon scroll -->
     <script src="./static/js/integrationIcons.js"></script>
-    <!-- Open Virtual Assistant -->
-    <script>
-        document.getElementById('contactBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-        document.getElementById('hireBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-    </script>
     <!-- Navbar Scroll -->
     <script>
         const navbar = document.querySelector('.navbar');
@@ -392,6 +354,6 @@
         }
 
     </script>
-    <script src="https://www.goodmorningchat.com/.netlify/functions/getWidget?key=GOODMORNING" data-chatbot-id="sebastienaugustin" async defer></script>
+    <!-- <script src="https://www.goodmorningchat.com/.netlify/functions/getWidget?key=GOODMORNING" data-chatbot-id="sebastienaugustin" async defer></script> -->
 </body>
 </html>
