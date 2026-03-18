@@ -89,6 +89,14 @@ function appendPortfolioItems(items) {
     status: 'online',
     },
     {
+    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/LuxuryFleetFavicon.png',
+    alt: 'LuxuryFleetStudio',
+    onClick: 'openLuxuryFleetStudio()',
+    title: 'LuxuryFleetStudio',
+    description: 'Web Design/Development and Booking systems for private transporation services in the USA.',
+    status: 'online',
+    },
+    {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Logo.png?updatedAt=1762197005313',
       alt: 'Akajou Library',
       onClick: 'openAkajouLibrary()',
@@ -150,7 +158,7 @@ function appendPortfolioItems(items) {
       onClick: 'openExpenseTracker()',
       title: 'Expense Tracker',
       description: 'A program that helps users manage their finances by manually tracking expenses.',
-      status: 'in progress',
+      status: 'project',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/invoicegenerator.jpg?updatedAt=1760220049982',
@@ -205,7 +213,7 @@ function appendPortfolioItems(items) {
       alt: 'Always Skilled',
       onClick: 'openAlwaysSkilled()',
       title: 'Always Skilled',
-      description: 'All my original music production for quick access for listeners.',
+      description: 'All my original Music Production for quick access for listeners.',
       status: 'Music',
     },
     {
