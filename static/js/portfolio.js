@@ -4,7 +4,7 @@ function appendPortfolioItems(items) {
     items.forEach(item => {
       const card = document.createElement('div');
       card.className = 'build-card';
-      const status = item.status || 'Online';
+      const status = item.status || 'Website';
 
       card.innerHTML = `
         <div class="build-visual" onclick="${item.onClick}">
@@ -24,7 +24,7 @@ function appendPortfolioItems(items) {
 
       const statusEl = card.querySelector('.build-status');
       const lowerStatus = status.toLowerCase();
-      if (lowerStatus === 'online') {
+      if (lowerStatus === 'website') {
         statusEl.style.background = '#CFFAE4';
         statusEl.style.color = '#007A55';
       } else if (lowerStatus === 'offline') {
@@ -61,7 +61,7 @@ function appendPortfolioItems(items) {
       onClick: 'openGoodMorningChat()',
       title: 'GoodMorningChat',
       description: 'A Digital growth agency elevating Brands through strategic creativity & reputation management.',
-      status: 'online',
+      status: 'website',
       category: 'Founder',
     },
     {
@@ -70,7 +70,7 @@ function appendPortfolioItems(items) {
       onClick: 'openHighVibez()',
       title: 'High Vibez Global',
       description: 'The #1 black-owned entertainment and travel agency in Playa Del Carmen to help you plan your next trip to Mexico.',
-      status: 'online',
+      status: 'website',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922',
@@ -78,7 +78,7 @@ function appendPortfolioItems(items) {
       onClick: 'openWorkGambit()',
       title: 'Work Gambit',
       description: 'A directory with job boards, companies and tools to help job seekers with their career development.',
-      status: 'online',
+      status: 'website',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202025-10-09%20at%205.04.28%20PM.png?updatedAt=1760051086124',
@@ -86,7 +86,7 @@ function appendPortfolioItems(items) {
     onClick: 'openMapsCanada()',
     title: 'MAPS Canada',
     description: 'Web design and implementation of the Canadian charity committed to advancing psychedelic medicine in Canada.',
-    status: 'online',
+    status: 'website',
     },
     {
     imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/LuxuryFleetFavicon.png',
@@ -94,7 +94,7 @@ function appendPortfolioItems(items) {
     onClick: 'openLuxuryFleetStudio()',
     title: 'LuxuryFleetStudio',
     description: 'Web Design/Development and Booking systems for private transporation services in the USA.',
-    status: 'online',
+    status: 'website',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Logo.png?updatedAt=1762197005313',
@@ -102,7 +102,7 @@ function appendPortfolioItems(items) {
       onClick: 'openAkajouLibrary()',
       title: 'Akajou Library',
       description: 'A curated collection of books written by Black authors from across the African, Caribbean, and other Black diasporas.',
-      status: 'online',
+      status: 'website',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/ThrillGrind_Logo%20(black%20background).png?updatedAt=1757627992165',
@@ -110,39 +110,7 @@ function appendPortfolioItems(items) {
       onClick: 'openThrillGrind()',
       title: 'Thrill Grind',
       description: 'A community for men by men serious about finance, health, and stoicism. Start building your empire.',
-      status: 'online',
-    },
-    {
-    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/mackandalStudios.PNG?updatedAt=1756756223603',
-    alt: 'Mackandal Studios',
-    onClick: 'openMackandal()',
-    title: 'Mackandal Studios',
-    description: 'A creative studio specializing in concept art, storyboarding, and visual development for films, games, and animations.',
-      status: 'art',
-    },
-    {
-    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/TheCatalyst/TheCatalyst_Frame4056.jpg?updatedAt=1756756600325',
-    alt: 'The Catalyst',
-    onClick: 'openMackandal()',
-    title: 'The Catalyst',
-    description: 'AI generated movie concept scenes exploring Haïti in 2050 as an alien invasion takes place.',
-    status: 'art',
-    },
-    {
-    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/FrontendPortfolio-1000.webp?updatedAt=1756756236423',
-    alt: 'Front-end',
-    onClick: 'openFrontend()',
-    title: 'Front-end Design',
-    description: 'Portfolio highlighting my creative vision, interactive layouts, and polished visual skills through engaging web heroes.',
-    status: 'design',
-    },
-    {
-      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign2.png?updatedAt=1756756329601',
-      alt: 'Graphic Design',
-      onClick: 'openGraphicDesign()',
-      title: 'Graphic Design',
-      description: 'A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.',
-      status: 'design',
+      status: 'website',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/world.jpeg?updatedAt=1760137355015',
@@ -150,6 +118,14 @@ function appendPortfolioItems(items) {
       onClick: 'openWorldConquer()',
       title: 'World Conquer',
       description: 'A program where users can track their world conquering quest by tagging countries as visited, wishlist or excluded.',
+      status: 'project',
+    },
+    {
+    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202026-03-24%20at%2010.07.30%20AM.png',
+      alt: 'Palette Studio',
+      onClick: 'openPaletteStudio()',
+      title: 'Palette Studio',
+      description: 'A program that helps users create and compare color palettes in a quick manner.',
       status: 'project',
     },
     {
@@ -207,6 +183,38 @@ function appendPortfolioItems(items) {
       title: 'TodoList',
       description: 'A chrome extension that lets users save a To-do List directly in their browser for quick access.',
       status: 'extension',
+    },
+{
+    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/mackandalStudios.PNG?updatedAt=1756756223603',
+    alt: 'Mackandal Studios',
+    onClick: 'openMackandal()',
+    title: 'Mackandal Studios',
+    description: 'A creative studio specializing in concept art, storyboarding, and visual development for films, games, and animations.',
+      status: 'art',
+    },
+    {
+    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/TheCatalyst/TheCatalyst_Frame4056.jpg?updatedAt=1756756600325',
+    alt: 'The Catalyst',
+    onClick: 'openMackandal()',
+    title: 'The Catalyst',
+    description: 'AI generated movie concept scenes exploring Haïti in 2050 as an alien invasion takes place.',
+    status: 'art',
+    },
+    {
+    imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/FrontendPortfolio-1000.webp?updatedAt=1756756236423',
+    alt: 'Front-end',
+    onClick: 'openFrontend()',
+    title: 'Front-end Design',
+    description: 'Portfolio highlighting my creative vision, interactive layouts, and polished visual skills through engaging web heroes.',
+    status: 'design',
+    },
+    {
+      imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign2.png?updatedAt=1756756329601',
+      alt: 'Graphic Design',
+      onClick: 'openGraphicDesign()',
+      title: 'Graphic Design',
+      description: 'A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.',
+      status: 'design',
     },
     {
       imageSrc: 'https://ik.imagekit.io/sebastienaugustin/images/projects/IMG_0797.JPG?updatedAt=1760052758209',
