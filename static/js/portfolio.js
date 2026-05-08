@@ -66,22 +66,32 @@ const portfolioItems = [
   },
   {
     imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922",
+    alt: "Work Gambit",
+    onClick: "openWorkGambit()",
+    title: "Work Gambit",
+    description:
+      "A dashboard to manage every aspect of your life. From tasks to work, finance, events, contacts, health and more.",
+    status: "website",
+  },
+  {
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Nocturne/NocturneLogo.png?updatedAt=1778098060281",
+    alt: "Nocturne VIP",
+    onClick: "openNocturneVIP()",
+    title: "Nocturne VIP",
+    description:
+      "A VIP Sections Reservation service for the top venues in Montreal, Medellin & Punta Cana.",
+    status: "website",
+  },
+  {
+    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/High%20Vibez%20-%20Logo%20(Black)%20_Print_.png?updatedAt=1760058060512",
     alt: "High Vibez Global",
     onClick: "openHighVibez()",
     title: "High Vibez Global",
     description:
       "The #1 black-owned entertainment and travel agency in Playa Del Carmen to help you plan your next trip to Mexico.",
-    status: "website",
-  },
-  {
-    imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922",
-    alt: "Work Gambit",
-    onClick: "openWorkGambit()",
-    title: "Work Gambit",
-    description:
-      "A dashboard to manage every aspect of your life. From work to health, finances, and more.",
     status: "website",
   },
   {
@@ -142,16 +152,6 @@ const portfolioItems = [
     title: "Palette Studio",
     description:
       "A program that helps users create and compare color palettes in a quick manner.",
-    status: "project",
-  },
-  {
-    imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/SubLogo.jpg?updatedAt=1758986126741",
-    alt: "Expense Tracker",
-    onClick: "openExpenseTracker()",
-    title: "Expense Tracker",
-    description:
-      "A program that helps users manage their finances by manually tracking expenses.",
     status: "project",
   },
   {
