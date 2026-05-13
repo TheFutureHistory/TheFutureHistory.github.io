@@ -1,0 +1,1809 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>The Haïtian Runner</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://ik.imagekit.io/sebastienaugustin/images/projects/Haitiflag.jpg"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Asset&family=Bruno+Ace+SC&family=Stalinist+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        overflow: hidden;
+        background: #0a0a0a;
+        font-family: "Bruno Ace SC", sans-serif;
+        touch-action: none;
+      }
+      #gameCanvas {
+        display: block;
+        background-image: url("static/images/background.jpg");
+        touch-action: none;
+        height: 100vh;
+      }
+
+      #menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(10, 10, 10, 0.9);
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+        border-radius: 10px;
+        max-width: 600px;
+      }
+      #gameTitle {
+        width: 400px;
+        height: auto;
+      }
+      #menu h1 {
+        font-size: 30px;
+        color: #f8f398;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px #f8f398;
+        letter-spacing: 4px;
+      }
+      #menu h2 {
+        font-size: 20px;
+        color: white;
+        margin-bottom: 10px;
+        letter-spacing: 4px;
+      }
+      .story {
+        font-size: 14px;
+        color: white;
+        line-height: 1.8;
+        margin: 20px 0;
+        text-align: left;
+        padding-left: 15px;
+      }
+      #menu button {
+        font-size: 24px;
+        padding: 15px 50px;
+        background: transparent;
+        color: #f8f398;
+        border: 2px solid #f8f398;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+        letter-spacing: 2px;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+      #menu button:hover {
+        background: #f8f398;
+        color: #0a0a0a;
+        box-shadow: 0 0 20px #f8f398;
+      }
+
+      #gameOver {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(10, 10, 10, 0.95);
+        padding: 40px;
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+        border-radius: 10px;
+        max-width: 500px;
+      }
+      #gameOver h2 {
+        font-size: 42px;
+        color: #ff0000;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px #ff0000;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 20px 0;
+        text-align: left;
+      }
+      .stat-item {
+        background: rgba(0, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 5px;
+      }
+      .stat-value {
+        font-size: 20px;
+        color: #f8f398;
+        font-weight: bold;
+      }
+      #gameOver button {
+        font-size: 24px;
+        padding: 15px 50px;
+        background: transparent;
+        color: #f8f398;
+        border: 2px solid #f8f398;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 20px;
+        letter-spacing: 2px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="menu">
+      <img
+        src="/The-Stellar-Reveries-of-Capÿ/Game/static/images/gameTitle.png"
+        alt=""
+        id="gameTitle"
+      />
+      <div class="story">
+        In Port-au-Prince, life never got easier.<br /><br />
+        The streets flooded. Power failed. Prices rose.<br />
+        But the people kept moving. The city belongs to whoever can survive it.
+        Vendors hustle. Tap-taps race. Police watch.<br /><br />
+        Everybody's trying to make it through another day!<br /><br />
+        <strong style="color: #f8f398"
+          >Collect cash. Dodge the chaos.<br />
+          Keep moving forward and earn your escape!</strong
+        ><br /><br />
+        >>> TAP OR USE THE SPACE BAR TO JUMP
+      </div>
+      <button id="playBtn">START</button>
+    </div>
+
+    <div id="gameOver">
+      <h2>GAME OVER</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-label">DISTANCE</div>
+          <div class="stat-value"><span id="finalDistance">0</span>m</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">LEVEL</div>
+          <div class="stat-value" id="finalHeatLevel">1</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">MONEY COLLECTED</div>
+          <div class="stat-value" id="finalMoney">$0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">COINS COLLECTED</div>
+          <div class="stat-value" id="finalBags">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">DEALERS KILLED</div>
+          <div class="stat-value" id="finalDealers">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">WOMEN PAID</div>
+          <div class="stat-value" id="finalGirls">0</div>
+        </div>
+      </div>
+      <button id="restartBtn">RETRY</button>
+    </div>
+
+    <script>
+      // ========================================
+      // CANVAS SETUP
+      // ========================================
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+      const menu = document.getElementById("menu");
+      const gameOverScreen = document.getElementById("gameOver");
+
+      // ========================================
+      // SAFE DRAW HELPER
+      // Prevents "broken state" crash — skips draw if image failed or isn't ready
+      // ========================================
+      function imgOk(img) {
+        return img && img.complete && img.naturalWidth > 0 && !img.broken;
+      }
+      function safeDraw(img, ...args) {
+        if (!imgOk(img)) return false;
+        try {
+          ctx.drawImage(img, ...args);
+          return true;
+        } catch (e) {
+          img.broken = true;
+          return false;
+        }
+      }
+
+      // ========================================
+      // ASSET URLS
+      // ========================================
+      const PLAYER_IMAGE_URL = "static/images/MC1.png";
+      const MOSQUITOS = "static/images/mosquitos.png";
+      const BACKGROUND_IMAGE_URL = "static/images/background.jpg";
+      const GROUND_IMAGE_URL = "static/images/street5.png";
+      const COIN_IMAGE_URL = "static/images/coinH.png";
+      const DUFFLEBAG = "static/images/duffleBag.png";
+      const DUFFLEBAG2 = "static/images/duffleBag2.png";
+      const DUFFLEBAG3 = "static/images/duffleBag3.png";
+      const DUFFLEBAG4 = "static/images/duffleBag4.png";
+      const DUFFLEBAG5 = "static/images/duffleBag5.png";
+      const DUFFLEBAGRED = "static/images/duffleBagRed 2.png";
+      const FRUITSTAND = "static/images/FruitStand.png";
+      const FRUITSTAND2 = "static/images/FruitStand2.png";
+      const FRUITSTAND3 = "static/images/FruitStand3.png";
+      const FRUITSTAND4 = "static/images/FruitStand4.png";
+      const TAPTAP = "static/images/taptapH.png";
+      const TAPTAP2 = "static/images/taptapH2.png";
+      const TAPTAP3 = "static/images/taptapH3.png";
+      const LIFEPACK_URL = "static/images/lifePack.png"; // ← add your image here
+
+      // Ground enemy image list (index must match ENEMY_BEHAVIORS & ENEMY_SIZES)
+      const GROUND_ENEMY_IMAGES = [
+        "static/images/dealer.png", // 0
+        "static/images/girl.png", // 1
+        "static/images/barrel.png", // 2
+        "static/images/blocks.png", // 3
+        "static/images/block2.png", // 4
+        "static/images/block3.png", // 5
+        "static/images/block4.png", // 6
+        "static/images/dish.png", // 7
+        "static/images/dog.png", // 8
+        "static/images/goat.png", // 9
+        "static/images/musicians.png", // 10
+        "static/images/police.png", // 11
+        "static/images/police2.png", // 12
+        "static/images/policebarricade.png", // 13
+        "static/images/rooster.png", // 14
+        "static/images/tires.png", // 15
+        "static/images/trash2.png", // 16
+        "static/images/vendor.png", // 17
+        "static/images/vendor2.png", // 18
+        "static/images/vendor3.png", // 19
+      ];
+
+      // -----------------------------------------------
+      // BEHAVIORS
+      //   kill            → instant death on side-touch
+      //   push            → push back only, no penalty
+      //   push_coins_5    → push back + lose 5 coins (scattered)
+      //   push_coins_50   → push back + lose 50 coins (scattered)
+      //   push_coins_100  → push back + lose 100 coins (scattered)
+      //   push_life       → push back + lose 1 life
+      //   block_money_large → stomp = money gain (dealer)
+      //   block_money_medium → stomp clear (girl)
+      // -----------------------------------------------
+      const ENEMY_BEHAVIORS = [
+        "block_money_large", // 0  dealer
+        "block_money_medium", // 1  girl
+        "push_life", // 2  barrel (fire)
+        "push_coins_5", // 3  blocks
+        "push_coins_5", // 4  block2
+        "push_coins_5", // 5  block3
+        "push_coins_5", // 6  block4
+        "push_life", // 7  dish (satellite)
+        "kill", // 8  dog
+        "kill", // 9  goat
+        "push_coins_50", // 10 musicians
+        "push_coins_100", // 11 police
+        "push_coins_100", // 12 police2
+        "platform", // 13 policebarricade
+        "kill", // 14 rooster
+        "push_life", // 15 tires (fire)
+        "push", // 16 trash2
+        "push_coins_5", // 17 vendor
+        "push_coins_5", // 18 vendor2
+        "push_coins_5", // 19 vendor3
+      ];
+
+      // Sizes matching debug values exactly
+      const ENEMY_SIZES = [
+        { w: 120, h: 200 }, // 0  dealer
+        { w: 100, h: 180 }, // 1  girl
+        { w: 140, h: 180 }, // 2  barrel
+        { w: 90, h: 90 }, // 3  blocks
+        { w: 120, h: 120 }, // 4  block2
+        { w: 90, h: 90 }, // 5  block3
+        { w: 140, h: 140 }, // 6  block4
+        { w: 150, h: 160 }, // 7  dish
+        { w: 105, h: 80 }, // 8  dog
+        { w: 105, h: 80 }, // 9  goat
+        { w: 320, h: 200 }, // 10 musicians
+        { w: 100, h: 190 }, // 11 police
+        { w: 100, h: 190 }, // 12 police2
+        { w: 200, h: 120 }, // 13 policebarricade
+        { w: 45, h: 60 }, // 14 rooster
+        { w: 180, h: 160 }, // 15 tires
+        { w: 340, h: 250 }, // 16 trash2
+        { w: 120, h: 160 }, // 17 vendor
+        { w: 120, h: 180 }, // 18 vendor2
+        { w: 120, h: 200 }, // 19 vendor3
+      ];
+
+      // Audio
+      const BACKGROUND_MUSIC_URL = "static/sounds/summerMusic.mp3";
+      const BAG_COLLECT_SOUND_URL = "static/sounds/ding.mp3";
+      const ROBOT_KILL_SOUND_URL = "static/sounds/bomb.wav";
+      const DEALER_KILL_SOUND_URL = "static/sounds/dealer.m4a";
+      const GIRL_KILL_SOUND_URL = "static/sounds/girl.wav";
+      const DRONE_KILL_SOUND_URL = "static/sounds/bomb.wav";
+
+      // ========================================
+      // IMAGE STORAGE
+      // ========================================
+      let playerImage = null;
+      let mcRun1Image = null;
+      let mcRun2Image = null;
+      let mcJumpImage = null;
+      let groundEnemyImages = [];
+      let droneImage = null;
+      let bgImage = null;
+      let coinImage = null;
+      let bagImage0 = null,
+        bagImage1 = null,
+        bagImage2 = null;
+      let bagImage3 = null,
+        bagImage4 = null,
+        bagImageRed = null;
+      let fruitStandImages = [];
+      let tapTapImages = [];
+      let groundImage = null;
+      let explosionImage = null;
+      let dogExplosionImage = null;
+      let goatExplosionImage = null;
+      let roosterExplosionImage = null;
+      let droneExplosionImage = null;
+      let lifePackImage = null;
+      let bgOffset = 0;
+      let groundOffset = 0;
+
+      // ========================================
+      // AUDIO STORAGE
+      // ========================================
+      let backgroundMusic = null;
+      let bagCollectAudio = null;
+      let robotKillAudio = null;
+      let dealerKillAudio = null;
+      let girlKillAudio = null;
+      let droneKillAudio = null;
+
+      // ========================================
+      // LOAD IMAGES
+      // ========================================
+      function loadImg(src, onLoad, onError) {
+        const img = new Image();
+        img.onload = () => {
+          if (onLoad) onLoad(img);
+        };
+        img.onerror = () => {
+          if (onError) onError(img);
+        };
+        img.src = src;
+        return img;
+      }
+
+      function loadImages() {
+        mcRun1Image = loadImg("static/images/MC2.png");
+        mcRun2Image = loadImg("static/images/MC3.png");
+        mcJumpImage = loadImg("static/images/MCjump.png");
+        explosionImage = loadImg("static/images/mosquitosStomped.png");
+        dogExplosionImage = loadImg("static/images/dogStomped.png");
+        goatExplosionImage = loadImg("static/images/goatStomped.png");
+        roosterExplosionImage = loadImg("static/images/roosterStomped.png");
+        droneExplosionImage = loadImg("static/images/mosquitosStomped.png");
+        droneImage = loadImg(MOSQUITOS);
+        bgImage = loadImg(BACKGROUND_IMAGE_URL);
+        groundImage = loadImg(GROUND_IMAGE_URL);
+        coinImage = loadImg(COIN_IMAGE_URL);
+        bagImage0 = loadImg(DUFFLEBAG);
+        bagImage1 = loadImg(DUFFLEBAG2);
+        bagImage2 = loadImg(DUFFLEBAG3);
+        bagImage3 = loadImg(DUFFLEBAG4);
+        bagImage4 = loadImg(DUFFLEBAG5);
+        bagImageRed = loadImg(DUFFLEBAGRED);
+        lifePackImage = loadImg(LIFEPACK_URL);
+
+        GROUND_ENEMY_IMAGES.forEach((url, i) => {
+          groundEnemyImages[i] = loadImg(url);
+        });
+
+        [FRUITSTAND, FRUITSTAND2, FRUITSTAND3, FRUITSTAND4].forEach(
+          (url, i) => {
+            fruitStandImages[i] = loadImg(url);
+          },
+        );
+
+        [TAPTAP, TAPTAP2, TAPTAP3].forEach((url, i) => {
+          tapTapImages[i] = loadImg(url);
+        });
+      }
+      loadImages();
+
+      // ========================================
+      // LOAD AUDIO
+      // ========================================
+      function tryAudio(url) {
+        try {
+          const a = new Audio(url);
+          a.onerror = () => {};
+          return a;
+        } catch (e) {
+          return null;
+        }
+      }
+      function loadAudio() {
+        backgroundMusic = tryAudio(BACKGROUND_MUSIC_URL);
+        if (backgroundMusic) {
+          backgroundMusic.loop = true;
+          backgroundMusic.volume = 0.3;
+        }
+        bagCollectAudio = tryAudio(BAG_COLLECT_SOUND_URL);
+        robotKillAudio = tryAudio(ROBOT_KILL_SOUND_URL);
+        dealerKillAudio = tryAudio(DEALER_KILL_SOUND_URL);
+        girlKillAudio = tryAudio(GIRL_KILL_SOUND_URL);
+        droneKillAudio = tryAudio(DRONE_KILL_SOUND_URL);
+      }
+      loadAudio();
+
+      // ========================================
+      // AUDIO HELPERS
+      // ========================================
+      let audioContext = null;
+      function initAudio() {
+        if (!audioContext)
+          audioContext = new (
+            window.AudioContext || window.webkitAudioContext
+          )();
+      }
+      function startBackgroundMusic() {
+        if (backgroundMusic) {
+          backgroundMusic.currentTime = 0;
+          backgroundMusic.play().catch(() => {});
+        }
+      }
+      function stopBackgroundMusic() {
+        if (backgroundMusic) {
+          backgroundMusic.pause();
+          backgroundMusic.currentTime = 0;
+        }
+      }
+      function playFallbackCoinSound() {
+        initAudio();
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.frequency.setValueAtTime(988, audioContext.currentTime);
+        osc.frequency.setValueAtTime(1319, audioContext.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.01,
+          audioContext.currentTime + 0.2,
+        );
+        osc.start(audioContext.currentTime);
+        osc.stop(audioContext.currentTime + 0.2);
+      }
+      function playBagCollectSound() {
+        if (bagCollectAudio) {
+          try {
+            bagCollectAudio.currentTime = 0;
+            bagCollectAudio.play().catch(playFallbackCoinSound);
+          } catch (e) {
+            playFallbackCoinSound();
+          }
+        } else {
+          playFallbackCoinSound();
+        }
+      }
+      function playAudio(audio) {
+        if (audio) {
+          try {
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
+          } catch (e) {}
+        }
+      }
+      function playEnemyKillSound(type) {
+        if (type === 0) playAudio(robotKillAudio);
+        else if (type === 1) playAudio(dealerKillAudio);
+        else if (type === 2) playAudio(girlKillAudio);
+      }
+      function playDroneKillSound() {
+        playAudio(droneKillAudio);
+      }
+
+      // ========================================
+      // CANVAS RESIZE
+      // ========================================
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      // ========================================
+      // GAME STATE
+      // ========================================
+      let gameRunning = false;
+      let score = 0;
+      let money = 0;
+      let bagsCollected = 0;
+      let dealersKilled = 0;
+      let girlsKilled = 0;
+      let dronesKilled = 0;
+      let lives = 3; // ← NEW
+      let gameSpeed = 6;
+      let groundY;
+      let frameCount = 0;
+      let runFrame = 0;
+      let lastLevel = 0;
+      let debugMode = false;
+      let debugScrollX = 0;
+
+      // Notification system
+      let levelUpText = null;
+      let levelUpAlpha = 0;
+      let centerMessageText = null; // ← used for lives lost too
+      let centerMessageAlpha = 0;
+      let moneyNotifText = null;
+      let moneyNotifAlpha = 0;
+      let moneyNotifAmount = 0;
+
+      // Invincibility after losing a life
+      let invincible = false;
+      let invincibleTimer = 0;
+      const INVINCIBLE_FRAMES = 120; // 2 seconds at 60fps
+
+      // Player
+      const player = {
+        x: 50,
+        y: 0,
+        width: 160,
+        height: 200,
+        velocityY: 0,
+        gravity: 0.6,
+        jumpPower: -12,
+        alive: true,
+      };
+
+      // Game arrays
+      let obstacles = [];
+      let drones = [];
+      let coinsList = [];
+      let platforms = [];
+      let duffleBags = [];
+      let lifePacks = []; // ← NEW
+      let scatterCoins = []; // ← NEW – flying coins from Sonic effect
+
+      groundY = canvas.height - 80;
+      player.y = groundY - player.height;
+
+      // ========================================
+      // SCATTER COIN (Sonic visual effect)
+      // ========================================
+      class ScatterCoin {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.vx = (Math.random() - 0.5) * 10;
+          this.vy = -(Math.random() * 8 + 4);
+          this.gravity = 0.4;
+          this.life = 60 + Math.random() * 30; // frames
+          this.maxLife = this.life;
+          this.size = 20 + Math.random() * 14;
+        }
+        update() {
+          this.x += this.vx;
+          this.vy += this.gravity;
+          this.y += this.vy;
+          this.life--;
+        }
+        draw() {
+          const alpha = Math.max(0, this.life / this.maxLife);
+          ctx.save();
+          ctx.globalAlpha = alpha;
+          if (
+            !safeDraw(
+              coinImage,
+              this.x - this.size / 2,
+              this.y - this.size / 2,
+              this.size,
+              this.size,
+            )
+          ) {
+            ctx.fillStyle = "#f8f398";
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        isDead() {
+          return this.life <= 0;
+        }
+      }
+
+      function spawnScatterCoins(x, y, count) {
+        for (let i = 0; i < count; i++) {
+          scatterCoins.push(new ScatterCoin(x, y));
+        }
+      }
+
+      // ========================================
+      // PLATFORM CLASS
+      // ========================================
+      class Platform {
+        constructor(x) {
+          this.type = Math.random() < 0.5 ? 0 : 1;
+          if (this.type === 0) {
+            this.width = 400 + Math.random() * 120;
+            this.height = 320 + Math.random() * 60;
+            this.imgIndex = Math.floor(Math.random() * fruitStandImages.length);
+          } else {
+            this.width = 760 + Math.random() * 120;
+            this.height = 400 + Math.random() * 60;
+            this.imgIndex = Math.floor(Math.random() * tapTapImages.length);
+          }
+          this.x = x;
+          this.y = groundY - this.height;
+          this.ledgeHeight = 10;
+        }
+        update() {
+          this.x -= gameSpeed;
+        }
+        draw() {
+          const img =
+            this.type === 0
+              ? fruitStandImages[this.imgIndex]
+              : tapTapImages[this.imgIndex];
+          if (safeDraw(img, this.x, this.y, this.width, this.height)) {
+            // drawn
+          } else {
+            ctx.fillStyle = this.type === 0 ? "#2a8a2a" : "#cc6600";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.strokeStyle = "#F8F398";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(this.x, this.y, this.width, this.height);
+            ctx.fillStyle = "#fff";
+            ctx.font = "14px Bruno Ace SC";
+            ctx.fillText(
+              this.type === 0 ? "FRUIT STAND" : "TAP-TAP",
+              this.x + 8,
+              this.y + this.height / 2,
+            );
+          }
+        }
+        checkCollision(p) {
+          const top = this.y;
+          if (
+            p.x + p.width > this.x + 10 &&
+            p.x < this.x + this.width - 10 &&
+            p.velocityY >= 0 &&
+            p.y + p.height >= top &&
+            p.y + p.height <= top + p.velocityY + 10
+          ) {
+            p.y = top - p.height;
+            p.velocityY = 0;
+            return true;
+          }
+          if (
+            p.x + p.width > this.x &&
+            p.x < this.x + this.width &&
+            p.y + p.height > this.y + 10 &&
+            p.y < this.y + this.height
+          ) {
+            if (p.x + p.width - gameSpeed <= this.x + 5) p.x = this.x - p.width;
+          }
+          return false;
+        }
+      }
+
+      // ========================================
+      // OBSTACLE CLASS
+      // ========================================
+      class Obstacle {
+        constructor() {
+          // FIX: set enemyType FIRST, then derive everything from it
+          this.enemyType = Math.floor(
+            Math.random() * GROUND_ENEMY_IMAGES.length,
+          );
+          const size = ENEMY_SIZES[this.enemyType] || { w: 120, h: 200 };
+          this.width = size.w;
+          this.height = size.h;
+          this.x = canvas.width;
+          this.y = groundY - this.height;
+          this.behavior = ENEMY_BEHAVIORS[this.enemyType];
+          this.dead = false;
+          this.exploding = false;
+          this.explosionTimer = 0;
+          this.explosionDuration = 15;
+        }
+
+        // Coin penalty amount from behavior string
+        getCoinLoss() {
+          if (this.behavior === "push_coins_5") return 5;
+          if (this.behavior === "push_coins_50") return 50;
+          if (this.behavior === "push_coins_100") return 100;
+          return 0;
+        }
+
+        update() {
+          if (this.exploding) {
+            this.explosionTimer++;
+            if (this.explosionTimer >= this.explosionDuration) this.dead = true;
+            return;
+          }
+          this.x -= gameSpeed;
+        }
+
+        draw() {
+          if (this.exploding) {
+            const expImg =
+              this.enemyType === 8
+                ? dogExplosionImage
+                : this.enemyType === 9
+                  ? goatExplosionImage
+                  : this.enemyType === 14
+                    ? roosterExplosionImage
+                    : explosionImage;
+            if (
+              !safeDraw(
+                expImg,
+                this.frozenX,
+                this.frozenY,
+                this.width,
+                this.height,
+              )
+            ) {
+              ctx.fillStyle = "#ff6600";
+              ctx.shadowColor = "#ff0000";
+              ctx.shadowBlur = 30;
+              ctx.beginPath();
+              ctx.arc(
+                this.x + this.width / 2,
+                this.y + this.height / 2,
+                this.width / 2,
+                0,
+                Math.PI * 2,
+              );
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+            return;
+          }
+          const img = groundEnemyImages[this.enemyType];
+          if (!safeDraw(img, this.x, this.y, this.width, this.height)) {
+            ctx.fillStyle = this.behavior === "kill" ? "#ff0000" : "#ff6600";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.strokeStyle = "#fff";
+            ctx.lineWidth = 2;
+            ctx.strokeRect(this.x, this.y, this.width, this.height);
+          }
+        }
+
+        collidesWith(p) {
+          if (this.exploding || this.dead) return false;
+          return (
+            p.x < this.x + this.width - 5 &&
+            p.x + p.width - 5 > this.x &&
+            p.y < this.y + this.height - 5 &&
+            p.y + p.height - 5 > this.y
+          );
+        }
+
+        checkStomp(p) {
+          if (this.dead || this.exploding) return false;
+          return (
+            p.velocityY > 0 &&
+            p.x < this.x + this.width - 5 &&
+            p.x + p.width - 5 > this.x &&
+            p.y + p.height > this.y &&
+            p.y + p.height < this.y + this.height * 0.3
+          );
+        }
+
+        checkSideCollision(p) {
+          if (this.exploding || this.dead) return false;
+          const col =
+            p.x < this.x + this.width - 5 &&
+            p.x + p.width - 5 > this.x &&
+            p.y < this.y + this.height - 5 &&
+            p.y + p.height - 5 > this.y;
+          const notStomp = !(
+            p.velocityY > 0 &&
+            p.y + p.height > this.y &&
+            p.y + p.height < this.y + this.height * 0.3
+          );
+          return col && notStomp;
+        }
+
+        triggerExplosion() {
+          this.exploding = true;
+          this.explosionTimer = 0;
+          this.frozenX = this.x; // freeze position
+          this.frozenY = this.y;
+        }
+
+        overlapsWith(other) {
+          return (
+            this.x < other.x + other.width + 20 &&
+            this.x + this.width + 20 > other.x
+          );
+        }
+      }
+
+      // ========================================
+      // DRONE CLASS
+      // ========================================
+      class Drone {
+        constructor() {
+          this.baseX = canvas.width;
+          this.x = canvas.width;
+          this.width = 200;
+          this.height = 140;
+          this.y = groundY - 150 - Math.random() * 300;
+          this.hoverOffset = Math.random() * Math.PI * 2;
+          this.hoverSpeed = 0.05;
+          this.dead = false;
+          this.exploding = false;
+          this.explosionTimer = 0;
+          this.explosionDuration = 15;
+        }
+        update() {
+          if (this.exploding) {
+            this.explosionTimer++;
+            if (this.explosionTimer >= this.explosionDuration) this.dead = true;
+            return;
+          }
+          this.baseX -= gameSpeed;
+          this.hoverOffset += this.hoverSpeed;
+          this.x = this.baseX + Math.sin(this.hoverOffset) * 30;
+        }
+        draw() {
+          if (this.exploding) {
+            if (
+              !safeDraw(
+                droneExplosionImage,
+                this.frozenX,
+                this.frozenY,
+                this.width,
+                this.height,
+              )
+            ) {
+              ctx.fillStyle = "#ff6600";
+              ctx.shadowColor = "#ff0000";
+              ctx.shadowBlur = 30;
+              ctx.beginPath();
+              ctx.arc(
+                this.x + this.width / 2,
+                this.y + this.height / 2,
+                this.width / 2,
+                0,
+                Math.PI * 2,
+              );
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+            return;
+          }
+          if (!safeDraw(droneImage, this.x, this.y, this.width, this.height)) {
+            ctx.fillStyle = "#ff6600";
+            ctx.beginPath();
+            ctx.moveTo(this.x + this.width / 2, this.y);
+            ctx.lineTo(this.x + this.width, this.y + this.height / 2);
+            ctx.lineTo(this.x + this.width / 2, this.y + this.height);
+            ctx.lineTo(this.x, this.y + this.height / 2);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+        collidesWith(p) {
+          if (this.exploding) return false;
+          return (
+            p.x < this.x + this.width - 5 &&
+            p.x + p.width - 5 > this.x &&
+            p.y < this.y + this.height - 5 &&
+            p.y + p.height - 5 > this.y
+          );
+        }
+        checkStomp(p) {
+          if (this.dead || this.exploding) return false;
+          return (
+            p.velocityY > 0 &&
+            p.x < this.x + this.width - 5 &&
+            p.x + p.width - 5 > this.x &&
+            p.y + p.height > this.y &&
+            p.y + p.height < this.y + this.height * 0.4
+          );
+        }
+        triggerExplosion() {
+          this.exploding = true;
+          this.explosionTimer = 0;
+
+          this.frozenX = this.x;
+          this.frozenY = this.y;
+
+          this.x = this.frozenX;
+          this.y = this.frozenY;
+
+          this.baseX = this.x;
+        }
+      }
+
+      // ========================================
+      // COIN CLASS
+      // ========================================
+      class Coin {
+        constructor(x, y) {
+          this.x = x || canvas.width;
+          this.y = y || groundY - 80 - Math.random() * 100;
+          this.width = 50;
+          this.height = 50;
+          this.collected = false;
+          this.pulse = 0;
+        }
+        update() {
+          this.x -= gameSpeed;
+          this.pulse += 0.05;
+        }
+        draw() {
+          if (this.collected) return;
+          ctx.save();
+          const s = 1 + Math.sin(this.pulse) * 0.08;
+          ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+          ctx.scale(s, s);
+          if (
+            !safeDraw(
+              coinImage,
+              -this.width / 2,
+              -this.height / 2,
+              this.width,
+              this.height,
+            )
+          ) {
+            ctx.font = "50px Arial";
+            ctx.fillText("💰", -19, 12);
+          }
+          ctx.restore();
+        }
+        collidesWith(p) {
+          if (this.collected) return false;
+          return (
+            p.x < this.x + this.width &&
+            p.x + p.width > this.x &&
+            p.y < this.y + this.height &&
+            p.y + p.height > this.y
+          );
+        }
+        overlapsWith(other) {
+          return (
+            this.x < other.x + other.width + 30 &&
+            this.x + this.width + 30 > other.x &&
+            Math.abs(this.y - other.y) < 40
+          );
+        }
+      }
+
+      // ========================================
+      // DUFFLE BAG CLASS
+      // ========================================
+      class DuffleBag {
+        constructor() {
+          this.x = canvas.width;
+          this.y = groundY - 100;
+          this.width = 100;
+          this.height = 100;
+          this.collected = false;
+          this.pulse = 0;
+          this.imgIndex = Math.floor(Math.random() * 6);
+          this.isRed = this.imgIndex === 5;
+          this.value = this.isRed ? 10000 : 5000;
+        }
+        update() {
+          this.x -= gameSpeed;
+          this.pulse += 0.05;
+        }
+        draw() {
+          if (this.collected) return;
+          const bagImages = [
+            bagImage0,
+            bagImage1,
+            bagImage2,
+            bagImage3,
+            bagImage4,
+            bagImageRed,
+          ];
+          const img = bagImages[this.imgIndex];
+          ctx.save();
+          const s = 1 + Math.sin(this.pulse) * 0.08;
+          ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+          ctx.scale(s, s);
+          if (
+            !safeDraw(
+              img,
+              -this.width / 2,
+              -this.height / 2,
+              this.width,
+              this.height,
+            )
+          ) {
+            ctx.fillStyle = this.isRed ? "#ff0000" : "#ff6600";
+            ctx.fillRect(
+              -this.width / 2,
+              -this.height / 2,
+              this.width,
+              this.height,
+            );
+          }
+          ctx.restore();
+        }
+        collidesWith(p) {
+          if (this.collected) return false;
+          return (
+            p.x < this.x + this.width &&
+            p.x + p.width > this.x &&
+            p.y < this.y + this.height &&
+            p.y + p.height > this.y
+          );
+        }
+      }
+
+      // ========================================
+      // LIFE PACK CLASS  (new collectible)
+      // ========================================
+      class LifePack {
+        constructor() {
+          this.x = canvas.width;
+          this.y = groundY - 120 - Math.random() * 80;
+          this.width = 70;
+          this.height = 70;
+          this.collected = false;
+          this.pulse = 0;
+        }
+        update() {
+          this.x -= gameSpeed;
+          this.pulse += 0.06;
+        }
+        draw() {
+          if (this.collected) return;
+          ctx.save();
+          const s = 1 + Math.sin(this.pulse) * 0.1;
+          ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+          ctx.scale(s, s);
+          // Glow
+          ctx.shadowColor = "#ff4444";
+          ctx.shadowBlur = 20;
+          if (
+            !safeDraw(
+              lifePackImage,
+              -this.width / 2,
+              -this.height / 2,
+              this.width,
+              this.height,
+            )
+          ) {
+            ctx.fillStyle = "#ff2222";
+            ctx.font = "50px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("❤️", 0, 0);
+          }
+          ctx.restore();
+        }
+        collidesWith(p) {
+          if (this.collected) return false;
+          return (
+            p.x < this.x + this.width &&
+            p.x + p.width > this.x &&
+            p.y < this.y + this.height &&
+            p.y + p.height > this.y
+          );
+        }
+      }
+
+      // ========================================
+      // LIVES HELPER
+      // ========================================
+      function loseLife() {
+        if (invincible) return; // already in grace period
+        lives--;
+        if (lives <= 0) {
+          lives = 0;
+          endGame();
+          return;
+        }
+        // Show "LIFE LOST" message
+        centerMessageText = `${lives} ${lives === 1 ? "LIFE" : "LIVES"} REMAINING`;
+        centerMessageAlpha = 1;
+
+        // Push player back a bit, bounce up
+        player.velocityY = -6;
+        player.x -= gameSpeed * 8;
+
+        // Grant invincibility frames
+        invincible = true;
+        invincibleTimer = INVINCIBLE_FRAMES;
+      }
+
+      // ========================================
+      // JUMP
+      // ========================================
+      function jump() {
+        if (gameRunning && player.alive) player.velocityY = player.jumpPower;
+      }
+
+      // ========================================
+      // INPUT
+      // ========================================
+      canvas.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        jump();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+          e.preventDefault();
+          jump();
+        }
+        if (e.code === "KeyD" && e.shiftKey) {
+          if (!gameRunning) startGame();
+          debugMode = !debugMode;
+          if (debugMode) {
+            gameSpeed = 0;
+            debugScrollX = 0;
+            spawnDebugEnemies();
+          } else gameSpeed = 6;
+        }
+        if (debugMode && e.code === "ArrowRight") debugScrollX -= 200;
+        if (debugMode && e.code === "ArrowLeft") debugScrollX += 200;
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.code === "Space" && e.target === document.body)
+          e.preventDefault();
+      });
+
+      // ========================================
+      // DEBUG SPAWN
+      // ========================================
+      function spawnDebugEnemies() {
+        obstacles = [];
+        GROUND_ENEMY_IMAGES.forEach((url, index) => {
+          const obs = new Obstacle();
+          obs.enemyType = index;
+          obs.behavior = ENEMY_BEHAVIORS[index];
+          const size = ENEMY_SIZES[index] || { w: 120, h: 200 };
+          obs.width = size.w;
+          obs.height = size.h;
+          obs.x = 100 + index * 200;
+          obs.y = groundY - obs.height;
+          obstacles.push(obs);
+        });
+      }
+
+      // ========================================
+      // START GAME
+      // ========================================
+      function startGame() {
+        gameRunning = true;
+        score = 0;
+        money = 0;
+        bagsCollected = 0;
+        dealersKilled = 0;
+        girlsKilled = 0;
+        dronesKilled = 0;
+        lives = 3;
+        gameSpeed = 6;
+        frameCount = 0;
+        lastLevel = 0;
+        invincible = false;
+        invincibleTimer = 0;
+        levelUpText = null;
+        levelUpAlpha = 0;
+        centerMessageText = null;
+        centerMessageAlpha = 0;
+        moneyNotifText = null;
+        moneyNotifAlpha = 0;
+        moneyNotifAmount = 0;
+        obstacles = [];
+        drones = [];
+        coinsList = [];
+        duffleBags = [];
+        platforms = [];
+        lifePacks = [];
+        scatterCoins = [];
+        bgOffset = 0;
+        groundOffset = 0;
+        player.y = groundY - player.height;
+        player.x =
+          canvas.width < 768 ? canvas.width * 0.025 : canvas.width * 0.05;
+        player.velocityY = 0;
+        player.alive = true;
+        menu.style.display = "none";
+        gameOverScreen.style.display = "none";
+        initAudio();
+        startBackgroundMusic();
+        gameLoop();
+      }
+
+      // ========================================
+      // END GAME
+      // ========================================
+      function endGame() {
+        if (!player.alive) return;
+        player.alive = false;
+        gameRunning = false;
+        stopBackgroundMusic();
+        gameOverScreen.style.display = "block";
+        setTimeout(() => {
+          const set = (id, val) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = val;
+          };
+          set("finalDistance", Math.floor(score));
+          set("finalHeatLevel", Math.floor(score / 100) + 1);
+          set("finalMoney", money.toLocaleString());
+          set("finalBags", bagsCollected);
+          set("finalDealers", dealersKilled);
+          set("finalGirls", girlsKilled);
+        }, 0);
+      }
+
+      // ========================================
+      // SPAWN TIMERS
+      // ========================================
+      let lastObstacleSpawn = 0;
+      let lastDroneSpawn = 0;
+      let lastPlatformSpawn = 0;
+      let lastLifePackSpawn = 0;
+
+      function getObstacleSpacing() {
+        return Math.max(160, 300 - Math.floor(score / 50) * 10);
+      }
+
+      // ========================================
+      // DRAW GROUND
+      // ========================================
+      function drawGround() {
+        if (imgOk(groundImage)) {
+          const tiles = Math.ceil(canvas.width / groundImage.width) + 1;
+          for (let i = 0; i < tiles; i++) {
+            safeDraw(
+              groundImage,
+              groundOffset + i * groundImage.width,
+              groundY,
+              groundImage.width,
+              canvas.height - groundY,
+            );
+          }
+        } else {
+          ctx.fillStyle = "#2a2a2a";
+          ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+        }
+      }
+
+      // ========================================
+      // DRAW HUD (lives included)
+      // ========================================
+      function drawHUD() {
+        ctx.fillStyle = "#F8F398";
+        ctx.font = 'bold 20px "Bruno Ace SC"';
+        ctx.textAlign = "left";
+        ctx.shadowColor = "#F8F398";
+        ctx.shadowBlur = 5;
+
+        const lvl = Math.floor(score / 100) + 1;
+        ctx.fillText(`LEVEL: ${lvl}`, 20, 35);
+        ctx.fillText(`DISTANCE: ${Math.floor(score)}m`, 20, 60);
+        ctx.fillText(`MONEY: $${money.toLocaleString()}`, 20, 85);
+
+        // Lives row
+        ctx.shadowBlur = 0;
+        ctx.font = 'bold 18px "Bruno Ace SC"';
+        ctx.fillStyle = "#F8F398";
+        ctx.fillText("LIVES: ", 20, 112);
+
+        ctx.font = "22px Arial";
+        let heartsStr = "";
+        for (let i = 0; i < 3; i++) heartsStr += i < lives ? "❤️" : "🖤";
+        ctx.fillText(heartsStr, 95, 112);
+
+        ctx.shadowBlur = 0;
+      }
+
+      // ========================================
+      // MAIN GAME LOOP
+      // ========================================
+      function gameLoop() {
+        if (!gameRunning || !player.alive) return;
+
+        // ─── DEBUG MODE ───
+        if (debugMode) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawGround();
+          ctx.save();
+          ctx.translate(debugScrollX, 0);
+          obstacles.forEach((obs, i) => {
+            obs.draw();
+            ctx.fillStyle = "#F8F398";
+            ctx.font = "11px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText(
+              `[${i}] ${obs.width}x${obs.height}`,
+              obs.x + obs.width / 2,
+              obs.y - 22,
+            );
+            ctx.fillStyle = "#fff";
+            ctx.fillText(
+              GROUND_ENEMY_IMAGES[i].split("/").pop().replace(".png", ""),
+              obs.x + obs.width / 2,
+              obs.y - 8,
+            );
+          });
+          ctx.restore();
+          ctx.fillStyle = "#ffff00";
+          ctx.font = "bold 15px monospace";
+          ctx.textAlign = "left";
+          ctx.fillText("🛠 DEBUG — Shift+D exit | ← → scroll", 20, 30);
+          requestAnimationFrame(gameLoop);
+          return;
+        }
+
+        // ─── FRAME TICK ───
+        frameCount++;
+        groundY = canvas.height - 80;
+        groundOffset -= gameSpeed;
+        if (imgOk(groundImage) && groundOffset <= -groundImage.width)
+          groundOffset = 0;
+
+        // Invincibility countdown
+        if (invincible) {
+          invincibleTimer--;
+          if (invincibleTimer <= 0) invincible = false;
+        }
+
+        // Animation frame selection
+        if (player.velocityY !== 0) {
+          playerImage = mcJumpImage;
+        } else {
+          if (frameCount % 8 === 0) runFrame = (runFrame + 1) % 2;
+          playerImage = runFrame === 0 ? mcRun1Image : mcRun2Image;
+        }
+
+        // Level up check
+        const currentLevel = Math.floor(score / 100);
+        if (currentLevel > lastLevel) {
+          lastLevel = currentLevel;
+          levelUpText = `LEVEL ${currentLevel + 1}`;
+          levelUpAlpha = 1;
+        }
+
+        // Fade notifications
+        if (levelUpAlpha > 0) levelUpAlpha -= 0.01;
+        if (centerMessageAlpha > 0) centerMessageAlpha -= 0.012;
+        if (moneyNotifAlpha > 0) moneyNotifAlpha -= 0.015;
+
+        // ─── BACKGROUND ───
+        if (imgOk(bgImage)) {
+          bgOffset -= gameSpeed * 0.3;
+          if (bgOffset <= -bgImage.width) bgOffset = 0;
+          const reps = Math.ceil(canvas.width / bgImage.width) + 1;
+          for (let i = 0; i < reps; i++)
+            safeDraw(
+              bgImage,
+              bgOffset + i * bgImage.width,
+              0,
+              bgImage.width,
+              canvas.height,
+            );
+        } else {
+          const g = ctx.createLinearGradient(0, 0, 0, canvas.height);
+          g.addColorStop(0, "#1a1a2e");
+          g.addColorStop(1, "#0a0a14");
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        drawGround();
+
+        // ─── PLAYER PHYSICS ───
+        player.velocityY += player.gravity;
+        player.y += player.velocityY;
+        if (player.y >= groundY - player.height) {
+          player.y = groundY - player.height;
+          player.velocityY = 0;
+        }
+
+        // Off-screen left = game over (pushed off)
+        if (player.x + player.width < 0 || player.y > canvas.height) {
+          endGame();
+          return;
+        }
+
+        // Platform collisions
+        platforms.forEach((p) => p.checkCollision(player));
+
+        // ─── DRAW PLAYER (flash when invincible) ───
+        const showPlayer =
+          !invincible || Math.floor(invincibleTimer / 6) % 2 === 0;
+        if (showPlayer) {
+          if (
+            !safeDraw(
+              playerImage,
+              player.x,
+              player.y,
+              player.width,
+              player.height,
+            )
+          ) {
+            ctx.fillStyle = "#F8F398";
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+          }
+        }
+
+        // ─── SPAWN OBSTACLES ───
+        lastObstacleSpawn++;
+        if (lastObstacleSpawn > getObstacleSpacing()) {
+          const newObs = new Obstacle();
+          const overlaps = obstacles.some((o) => newObs.overlapsWith(o));
+          if (!overlaps) {
+            obstacles.push(newObs);
+            lastObstacleSpawn = 0;
+          }
+        }
+
+        // ─── SPAWN DRONES ───
+        lastDroneSpawn++;
+        if (lastDroneSpawn > 200 + Math.random() * 100) {
+          drones.push(new Drone());
+          lastDroneSpawn = 0;
+        }
+
+        // ─── SPAWN PLATFORMS ───
+        lastPlatformSpawn++;
+        if (lastPlatformSpawn > 500 + Math.random() * 300) {
+          const plat = new Platform(canvas.width);
+          platforms.push(plat);
+          const bagCount = plat.type === 1 ? 4 : 2;
+          for (let i = 0; i < bagCount; i++) {
+            const cx = plat.x + 20 + i * (plat.width / bagCount);
+            const cy = plat.y - 80;
+            const nc = new Coin(cx, cy);
+            if (!coinsList.some((c) => nc.overlapsWith(c))) coinsList.push(nc);
+          }
+          lastPlatformSpawn = 0;
+        }
+
+        // ─── SPAWN RANDOM COINS ───
+        if (Math.random() < 0.008) {
+          const nc = new Coin();
+          if (!coinsList.some((c) => nc.overlapsWith(c))) coinsList.push(nc);
+        }
+
+        // ─── SPAWN DUFFLE BAGS ───
+        if (Math.random() < 0.004) duffleBags.push(new DuffleBag());
+
+        // ─── SPAWN LIFE PACKS ─── (rare, every ~1500 frames)
+        lastLifePackSpawn++;
+        if (lastLifePackSpawn > 1200 + Math.random() * 600) {
+          lifePacks.push(new LifePack());
+          lastLifePackSpawn = 0;
+        }
+
+        // ─── UPDATE PLATFORMS ───
+        for (let i = platforms.length - 1; i >= 0; i--) {
+          platforms[i].update();
+          platforms[i].draw();
+          if (platforms[i].x + platforms[i].width < 0) platforms.splice(i, 1);
+        }
+
+        // ─── UPDATE OBSTACLES ───
+        for (let i = obstacles.length - 1; i >= 0; i--) {
+          const obs = obstacles[i];
+          obs.update();
+          obs.draw();
+
+          const beh = obs.behavior;
+
+          // BARRICADE PLATFORM — land on top
+          if (obs.behavior === "platform" && !obs.exploding && !obs.dead) {
+            const top = obs.y;
+            if (
+              player.x + player.width > obs.x + 10 &&
+              player.x < obs.x + obs.width - 10 &&
+              player.velocityY >= 0 &&
+              player.y + player.height >= top &&
+              player.y + player.height <= top + player.velocityY + 10
+            ) {
+              player.y = top - player.height;
+              player.velocityY = 0;
+            }
+          }
+
+          // STOMP
+          if (obs.checkStomp(player)) {
+            if (beh === "kill") {
+              obs.triggerExplosion();
+              playEnemyKillSound(0);
+              player.velocityY = -8;
+              score += 20;
+            } else if (beh === "block_money_medium") {
+              playEnemyKillSound(2);
+              girlsKilled++;
+              money += 1000;
+              moneyNotifAmount = 1000;
+              moneyNotifText = "+$1,000";
+              moneyNotifAlpha = 1;
+              obstacles.splice(i, 1);
+              player.velocityY = -8;
+              score += 20;
+            } else if (beh === "block_money_large") {
+              moneyNotifAmount = 5000;
+              moneyNotifText = "+$5,000";
+              moneyNotifAlpha = 1;
+              obstacles.splice(i, 1);
+              player.velocityY = -8;
+              score += 20;
+            } else if (beh === "push_life") {
+              loseLife();
+              player.velocityY = -8;
+              if (!player.alive) return;
+            } else {
+              // All pushers → stomp clears, no penalty
+              playEnemyKillSound(0);
+              if (
+                beh !== "push_coins_5" &&
+                beh !== "push_coins_50" &&
+                beh !== "push_coins_100"
+              ) {
+                obstacles.splice(i, 1);
+              }
+              player.velocityY = -8;
+              score += 20;
+            }
+            continue;
+          }
+
+          // SIDE COLLISION
+          if (!invincible && obs.checkSideCollision(player)) {
+            if (beh === "kill") {
+              endGame();
+              return;
+            } else if (beh === "push_life") {
+              // Satellite dish, barrel, tires → lose 1 life
+              playEnemyKillSound(0);
+              loseLife();
+              obstacles.splice(i, 1);
+              if (!player.alive) return;
+            } else if (
+              beh === "push_coins_5" ||
+              beh === "push_coins_50" ||
+              beh === "push_coins_100"
+            ) {
+              const loss = obs.getCoinLoss();
+              money = Math.max(0, money - loss);
+              moneyNotifAmount = -loss;
+              moneyNotifText = `-${loss} COINS`;
+              moneyNotifAlpha = 1;
+              // Scatter coins visually
+              spawnScatterCoins(
+                player.x + player.width / 2,
+                player.y + player.height / 2,
+                Math.min(loss, 20),
+              );
+
+              if (beh === "push_coins_100") {
+                playEnemyKillSound(1);
+                player.velocityY = -4;
+                player.x -= gameSpeed * 12;
+                invincible = true;
+                invincibleTimer = INVINCIBLE_FRAMES;
+              } else {
+                playEnemyKillSound(0);
+              }
+            } else if (beh === "platform") {
+              player.velocityY = -4;
+              player.x -= gameSpeed * 12;
+              invincible = true;
+              invincibleTimer = INVINCIBLE_FRAMES;
+            } else if (beh === "push") {
+              // Pure push, no penalty
+              playEnemyKillSound(0);
+              player.velocityY = -4;
+              player.x -= gameSpeed * 12;
+              obstacles.splice(i, 1);
+            } else if (beh === "block_money_large") {
+              playEnemyKillSound(1);
+              dealersKilled++;
+              money = Math.max(0, money - 5000);
+              moneyNotifAmount = -5000;
+              moneyNotifText = "-$5,000";
+              moneyNotifAlpha = 1;
+              spawnScatterCoins(
+                player.x + player.width / 2,
+                player.y + player.height / 2,
+                20,
+              );
+              invincible = true;
+              invincibleTimer = INVINCIBLE_FRAMES;
+              // no push, no splice — walk through
+            } else if (beh === "block_money_medium") {
+              playEnemyKillSound(2);
+              girlsKilled++;
+              money = Math.max(0, money - 1000);
+              moneyNotifAmount = -1000;
+              moneyNotifText = "-$1,000";
+              moneyNotifAlpha = 1;
+              spawnScatterCoins(
+                player.x + player.width / 2,
+                player.y + player.height / 2,
+                10,
+              );
+              invincible = true;
+              invincibleTimer = INVINCIBLE_FRAMES;
+              // no push, no splice — walk through
+            } else {
+              player.velocityY = -4;
+              player.x -= gameSpeed * 12;
+              obstacles.splice(i, 1);
+            }
+            continue;
+          }
+
+          if (obs.x + obs.width < 0 || obs.dead) obstacles.splice(i, 1);
+        }
+
+        // ─── UPDATE DRONES ───
+        for (let i = drones.length - 1; i >= 0; i--) {
+          drones[i].update();
+          drones[i].draw();
+          if (drones[i].checkStomp(player)) {
+            drones[i].triggerExplosion();
+            playDroneKillSound();
+            dronesKilled++;
+            player.velocityY = -8;
+            score += 20;
+            continue;
+          }
+          if (!invincible && drones[i].collidesWith(player)) {
+            endGame();
+            return;
+          }
+          if (drones[i].x + drones[i].width < 0 || drones[i].dead)
+            drones.splice(i, 1);
+        }
+
+        // ─── UPDATE COINS ───
+        for (let i = coinsList.length - 1; i >= 0; i--) {
+          coinsList[i].update();
+          coinsList[i].draw();
+          if (coinsList[i].collidesWith(player)) {
+            coinsList[i].collected = true;
+            bagsCollected++;
+            money += 1;
+            score += 5;
+            playBagCollectSound();
+          }
+          if (coinsList[i].x + coinsList[i].width < 0) coinsList.splice(i, 1);
+        }
+
+        // ─── UPDATE DUFFLE BAGS ───
+        for (let i = duffleBags.length - 1; i >= 0; i--) {
+          duffleBags[i].update();
+          duffleBags[i].draw();
+          if (duffleBags[i].collidesWith(player)) {
+            duffleBags[i].collected = true;
+            money += duffleBags[i].value;
+            bagsCollected++;
+            score += 10;
+            playBagCollectSound();
+            moneyNotifAmount = duffleBags[i].value;
+            moneyNotifText = `+$${duffleBags[i].value.toLocaleString()}`;
+            moneyNotifAlpha = 1;
+          }
+          if (
+            duffleBags[i].x + duffleBags[i].width < 0 ||
+            duffleBags[i].collected
+          )
+            duffleBags.splice(i, 1);
+        }
+
+        // ─── UPDATE LIFE PACKS ───
+        for (let i = lifePacks.length - 1; i >= 0; i--) {
+          lifePacks[i].update();
+          lifePacks[i].draw();
+          if (lifePacks[i].collidesWith(player)) {
+            lifePacks[i].collected = true;
+            if (lives < 3) {
+              lives++;
+              centerMessageText = `❤️ LIFE RESTORED!`;
+              centerMessageAlpha = 1;
+            }
+          }
+          if (lifePacks[i].x + lifePacks[i].width < 0 || lifePacks[i].collected)
+            lifePacks.splice(i, 1);
+        }
+
+        // ─── UPDATE SCATTER COINS ───
+        for (let i = scatterCoins.length - 1; i >= 0; i--) {
+          scatterCoins[i].update();
+          scatterCoins[i].draw();
+          if (scatterCoins[i].isDead()) scatterCoins.splice(i, 1);
+        }
+
+        // ─── SCORE / SPEED ───
+        score += 0.1;
+        gameSpeed = 6 + Math.floor(score / 100) * 0.5;
+
+        // ─── HUD ───
+        drawHUD();
+
+        // Level up notification
+        if (levelUpAlpha > 0) {
+          ctx.save();
+          ctx.fillStyle = `rgba(255,243,152,${levelUpAlpha})`;
+          ctx.font = 'bold 50px "Bruno Ace SC"';
+          ctx.textAlign = "center";
+          ctx.shadowColor = "#F8F398";
+          ctx.shadowBlur = 20;
+          ctx.fillText(levelUpText, canvas.width / 2, canvas.height / 2 - 60);
+          ctx.restore();
+        }
+
+        // Centre message (lives lost / gained)
+        if (centerMessageAlpha > 0) {
+          ctx.save();
+          ctx.fillStyle = `rgba(255,80,80,${centerMessageAlpha})`;
+          ctx.font = 'bold 44px "Bruno Ace SC"';
+          ctx.textAlign = "center";
+          ctx.shadowColor = "#ff0000";
+          ctx.shadowBlur = 20;
+          ctx.fillText(centerMessageText, canvas.width / 2, canvas.height / 2);
+          ctx.restore();
+        }
+
+        // Money notification
+        if (moneyNotifAlpha > 0) {
+          const color = moneyNotifAmount >= 0 ? "0,255,0" : "255,0,0";
+          ctx.save();
+          ctx.fillStyle = `rgba(${color},${moneyNotifAlpha})`;
+          ctx.font = 'bold 40px "Bruno Ace SC"';
+          ctx.textAlign = "center";
+          ctx.shadowColor = moneyNotifAmount >= 0 ? "#00ff00" : "#ff0000";
+          ctx.shadowBlur = 20;
+          ctx.fillText(
+            moneyNotifText,
+            canvas.width / 2,
+            canvas.height / 2 + 60,
+          );
+          ctx.restore();
+        }
+
+        requestAnimationFrame(gameLoop);
+      }
+
+      // ========================================
+      // BUTTON LISTENERS
+      // ========================================
+      document.getElementById("playBtn").addEventListener("click", startGame);
+      document
+        .getElementById("restartBtn")
+        .addEventListener("click", startGame);
+    </script>
+  </body>
+</html>

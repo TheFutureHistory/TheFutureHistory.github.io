@@ -209,12 +209,12 @@ body {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 .feature-card {
   display: flex;
-  flex-direction: row;
-  gap: 25px;
+  flex-direction: column;
   padding: 20px;
   border-radius: 16px;
   transition:
@@ -223,7 +223,7 @@ body {
   border: 1px solid var(--gray-200);
 }
 .feature-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-1px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 .feature-card div {
@@ -251,32 +251,45 @@ body {
 }
 .feature-card h3 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 5px;
+  color: var(--gray-600);
+}
+.feature-card h3 span {
   color: var(--primary-color);
+  font-weight: 600;
 }
 .feature-card p {
   font-size: 14px;
+  font-weight: 300;
   color: var(--gray-600);
   line-height: 1.6;
 }
 /* Solution Section */
 .solution-section {
-  padding: 80px 0px 30px 0px;
+  padding: 80px 0px 10px 0px;
   background: var(--secondary-color);
 }
 
 .solution-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+  gap: 10px;
 }
 .solution-card {
   background: var(--secondary-color);
   padding: 40px;
   border-radius: 16px;
   position: relative;
-  border: 1px solid var(--gray-200);
+}
+.solution-card:nth-child(1) {
+  background: linear-gradient(135deg, #ff4d4d, #ff944d, #ffd24d);
+}
+.solution-card:nth-child(2) {
+  background: linear-gradient(135deg, #4d79ff, #4dd2ff, #4dffb8);
+}
+.solution-card:nth-child(3) {
+  background: linear-gradient(135deg, #6d28d9, #8b5cf6, #a855f7);
 }
 .card-number {
   font-size: 48px;
@@ -290,9 +303,10 @@ body {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 12px;
+  color: white;
 }
 .solution-card p {
-  color: var(--gray-600);
+  color: white;
   line-height: 1.6;
 }
 /* Build Section */

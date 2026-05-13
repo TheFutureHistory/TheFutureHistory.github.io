@@ -27,10 +27,15 @@ function appendPortfolioItems(items) {
     if (lowerStatus === "website") {
       statusEl.style.background = "#CFFAE4";
       statusEl.style.color = "#007A55";
+    } else if (lowerStatus === "web app") {
+      statusEl.style.background = "#CFFAE4";
+      statusEl.style.color = "#007A55";
     } else if (lowerStatus === "offline") {
       statusEl.style.background = "#FEE2E2";
       statusEl.style.color = "#C2000C";
     } else if (lowerStatus === "art") {
+      statusEl.style.background = "#FFF0D9";
+    } else if (lowerStatus === "game") {
       statusEl.style.background = "#FFF0D9"; // new light orange for art
       statusEl.style.color = "#B35C00";
     } else if (lowerStatus === "music") {
@@ -72,7 +77,7 @@ const portfolioItems = [
     title: "Work Gambit",
     description:
       "A dashboard to manage every aspect of your life. From tasks to work, finance, events, contacts, health and more.",
-    status: "website",
+    status: "Web App",
   },
   {
     imageSrc:
@@ -132,6 +137,16 @@ const portfolioItems = [
     title: "Thrill Grind",
     description:
       "A community for men by men serious about finance, health, and stoicism. Start building your empire.",
+    status: "website",
+  },
+  {
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/MelinaPalacios-icons.png",
+    alt: "Melina Palacios",
+    onClick: "openMelinaPalacios()",
+    title: "Melina Palacios",
+    description:
+      "A stylist in CDMX specializing in hair care, offering personalized consultations to enhance natural beauty.",
     status: "website",
   },
   {
@@ -213,6 +228,16 @@ const portfolioItems = [
     description:
       "A chrome extension that lets users save a To-do List directly in their browser for quick access.",
     status: "extension",
+  },
+  {
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Haitiflag.jpg",
+    alt: "Haiti Runner Game",
+    onClick: "openHaitiGame()",
+    title: "The Haïtian Runner",
+    description:
+      "A 2D Haïti themed running game with objective of collecting coins and avoiding obstacles.",
+    status: "Game",
   },
   {
     imageSrc:
