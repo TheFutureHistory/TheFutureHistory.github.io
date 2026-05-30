@@ -81,6 +81,16 @@ const portfolioItems = [
   },
   {
     imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/ItineraryFlow%20-%20logo4.png?updatedAt=1779992391487",
+    alt: "Itinerary Flow",
+    onClick: "openItineraryFlow()",
+    title: "Itinerary Flow",
+    description:
+      "Create travel itineraries and easily manage your trips via a dashboard and CRM.",
+    status: "Web App",
+  },
+  {
+    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/Nocturne/NocturneLogo.png?updatedAt=1778098060281",
     alt: "Nocturne VIP",
     onClick: "openNocturneVIP()",
