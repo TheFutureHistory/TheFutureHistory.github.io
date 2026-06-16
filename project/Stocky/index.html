@@ -1,0 +1,1857 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STOCKY - Free Stocks Watchlists</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f5f6fa;
+        --bg2: #ffffff;
+        --bg3: #f0f1f5;
+        --border: rgba(0, 0, 0, 0.06);
+        --border2: rgba(0, 0, 0, 0.1);
+        --text: #1a1d23;
+        --muted: #9ca3af;
+        --accent10: #eef0ff;
+        --accent20: #dce0ff;
+        --accent30: #cbd0ff;
+        --accent40: #b9c0ff;
+        --accent50: #a8b0ff;
+        --accent60: #96a0ff;
+        --accent70: #8590ff;
+        --accent80: #7380ff;
+        --accent90: #6270ff;
+        --accent100: #5160ff;
+        --accent: #5160ff;
+        --green: #22c87a;
+        --red: #f75a5a;
+        --green-bg: rgba(34, 200, 122, 0.08);
+        --red-bg: rgba(247, 90, 90, 0.08);
+        --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --mono: "SF Mono", "Fira Code", monospace;
+        --black: #000;
+        --white: #fff;
+        --gray10: #f8f9fb;
+        --gray20: #e8eaed;
+        --gray30: #d1d5db;
+        --gray40: #9ca3af;
+        --gray50: #6b7280;
+        --gray60: #4b5563;
+        --gray70: #374151;
+        --gray80: #1f2937;
+        --gray90: #111827;
+        --gray100: #030712;
+        --shadow-sm:
+          0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-md:
+          0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+        --radius: 12px;
+      }
+
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* ── HEADER ── */
+      #header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: var(--white);
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .headerRow {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+        border-bottom: 1px solid var(--gray20);
+        padding: 10px 20px;
+      }
+      .headerRowBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        width: auto;
+      }
+
+      #header h1 {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        color: var(--text);
+        white-space: nowrap;
+        margin-right: 4px;
+      }
+
+      .watchlist-tabs {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        padding: 5px 14px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        font-weight: 400;
+        cursor: pointer;
+        border: 1px solid var(--gray20);
+        background: transparent;
+        color: var(--gray40);
+        transition: all 0.15s;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .tab:hover {
+        background: var(--gray10);
+        border-color: var(--gray30);
+        color: var(--text);
+      }
+      .tab.active {
+        background: var(--white);
+        border-color: var(--accent100);
+        color: var(--accent100);
+        font-weight: 500;
+      }
+      .tab .del {
+        font-size: 11px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .tab .del:hover {
+        opacity: 1;
+        color: var(--red);
+      }
+
+      #btn-new-list {
+        padding: 5px 15px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1;
+        border: 1px solid var(--accent100);
+        background: var(--accent100);
+        color: var(--white);
+        cursor: pointer;
+      }
+      #btn-new-list:hover {
+        background-color: var(--accent90);
+        border-color: var(--accent90);
+        color: var(--white);
+      }
+
+      .header-spacer {
+        flex: 1;
+      }
+
+      #search-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+      #search-bar input {
+        background: var(--white);
+        border: 1px solid var(--gray20);
+        border-radius: 8px;
+        color: var(--text);
+        padding: 6px 12px 6px 32px;
+        font-size: 13px;
+        width: 300px;
+        outline: none;
+      }
+      #search-bar input::placeholder {
+        color: var(--muted);
+      }
+      #search-bar input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(81, 96, 255, 0.1);
+      }
+      #search-bar .icon {
+        position: absolute;
+        left: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        pointer-events: none;
+      }
+
+      #btn-add {
+        padding: 6px 16px;
+        background: var(--accent100);
+        border: 1px solid var(--accent100);
+        border-radius: 5px;
+        color: #fff;
+        font-size: 12.5px;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      #btn-add:hover {
+        background: var(--accent90);
+      }
+
+      .filter-group {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .filter-group label {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .filter-group select {
+        background: var(--white);
+        border: 1px solid var(--gray20);
+        border-radius: 6px;
+        color: var(--text);
+        font-size: 11px;
+        padding: 6px 6px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      #btn-refresh {
+        background: var(--white);
+        border: 1px solid var(--gray20);
+        border-radius: 8px;
+        color: var(--gray50);
+        font-size: 12px;
+        padding: 6px 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      #btn-refresh:hover {
+        color: var(--text);
+        border-color: var(--gray30);
+      }
+      #btn-refresh.spinning svg {
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ── API KEY NOTICE ── */
+      #api-notice {
+        background: rgba(81, 96, 255, 0.05);
+        border: 1px solid rgba(81, 96, 255, 0.15);
+        border-radius: 8px;
+        margin: 0 20px 12px;
+        padding: 8px 14px;
+        font-size: 12px;
+        color: var(--gray50);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+      #api-notice input {
+        background: var(--white);
+        border: 1px solid var(--gray20);
+        border-radius: 6px;
+        color: var(--text);
+        padding: 4px 10px;
+        font-size: 12px;
+        font-family: var(--mono);
+        width: 220px;
+        outline: none;
+      }
+      #api-notice input:focus {
+        border-color: var(--accent);
+      }
+      #api-notice button {
+        padding: 4px 12px;
+        background: var(--accent100);
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 11px;
+        cursor: pointer;
+      }
+      #api-notice.hidden {
+        display: none;
+      }
+
+      /* ── MAIN BODY ── */
+      #main {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1.4fr;
+        gap: 16px;
+        flex: 1;
+        overflow: hidden;
+        padding: 0 20px;
+        margin-bottom: 20px;
+      }
+
+      /* ── TABLE PANEL ── */
+      #table-panel {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border-radius: var(--radius);
+        border: 1px solid var(--gray20);
+        background-color: var(--white);
+      }
+
+      #table-scroll {
+        overflow-y: auto;
+        flex: 1;
+      }
+
+      #table-scroll::-webkit-scrollbar {
+        width: 4px;
+      }
+      #table-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      #table-scroll::-webkit-scrollbar-thumb {
+        background: var(--gray20);
+        border-radius: 2px;
+      }
+
+      th:nth-child(1) {
+        width: auto;
+      }
+      th:nth-child(2) {
+        width: auto;
+        text-align: right;
+      }
+      th:nth-child(3) {
+        width: auto;
+        text-align: right;
+      }
+      th:nth-child(4) {
+        width: auto;
+        text-align: right;
+      }
+      th:nth-child(5) {
+        width: auto;
+        text-align: right;
+      }
+      th:nth-child(6) {
+        width: 44px;
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+        table-layout: auto; /* changed from fixed */
+      }
+
+      thead th {
+        position: sticky;
+        top: 0;
+        background: var(--gray10);
+        padding: 12px 12px;
+        text-align: left;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--gray40);
+        border-bottom: 1px solid var(--gray20);
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+      thead th:hover {
+        color: var(--text);
+      }
+      thead th.sorted {
+        color: var(--accent);
+      }
+
+      tbody tr {
+        border-bottom: 1px solid var(--gray20);
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      tbody tr:hover {
+        background: var(--gray10);
+      }
+      tbody tr.selected {
+        background: rgba(81, 96, 255, 0.05);
+        border-left: 2px solid var(--accent);
+      }
+
+      td {
+        padding: 10px 12px;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 13px;
+      }
+
+      /* Checkbox column */
+      td.col-check {
+        text-align: center;
+      }
+      td.col-check input[type="checkbox"] {
+        accent-color: var(--accent);
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+      }
+
+      /* Quantity */
+      td.col-qty {
+        font-weight: 500;
+        color: var(--gray60);
+        font-size: 13px;
+      }
+
+      /* Stock name with logo */
+      td.col-name {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .stock-logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .stock-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .stock-name-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .stock-ticker {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 12.5px;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+      .stock-fullname {
+        font-size: 10.5px;
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      /* Mini sparkline area */
+      td.col-chart {
+        padding: 8px 12px;
+      }
+      .sparkline {
+        display: block;
+      }
+
+      /* Price columns */
+      td.col-price,
+      td.col-invested,
+      td.col-current {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        text-align: right;
+        color: var(--gray70);
+      }
+      td.col-current {
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      /* Returns */
+      td.col-returns {
+        text-align: right;
+        font-family: var(--mono);
+        font-size: 12px;
+      }
+      .return-up {
+        color: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 3px;
+      }
+      .return-down {
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 3px;
+      }
+      .return-arrow {
+        font-size: 10px;
+      }
+
+      /* Buy button */
+      td.col-action {
+        text-align: center;
+      }
+      .btn-buy {
+        padding: 4px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--gray20);
+        background: var(--white);
+        color: var(--gray60);
+        font-size: 11.5px;
+        cursor: pointer;
+        font-weight: 400;
+        transition: all 0.15s;
+      }
+      .btn-buy:hover {
+        background: var(--accent100);
+        border-color: var(--accent100);
+        color: var(--white);
+      }
+
+      /* Old pct-badge kept for backward compat */
+      td.change {
+        font-family: var(--mono);
+        text-align: right;
+        font-size: 12px;
+      }
+      td.change.up {
+        color: var(--green);
+      }
+      td.change.down {
+        color: var(--red);
+      }
+      td.pct {
+        text-align: right;
+        font-size: 11px;
+        font-family: var(--mono);
+      }
+      .pct-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 10.5px;
+      }
+      .pct-badge.up {
+        background: var(--green-bg);
+        color: var(--green);
+      }
+      .pct-badge.down {
+        background: var(--red-bg);
+        color: var(--red);
+      }
+
+      td.price {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        text-align: right;
+      }
+      td.ticker {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 12px;
+        color: var(--text);
+      }
+      td.week-range {
+        text-align: right;
+        font-size: 10.5px;
+        font-family: var(--mono);
+        color: var(--muted);
+      }
+      td.remove {
+        text-align: center;
+      }
+      .remove-btn {
+        background: transparent;
+        border: none;
+        color: var(--gray20);
+        cursor: pointer;
+        font-size: 14px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        line-height: 1;
+      }
+      .remove-btn:hover {
+        color: var(--red);
+        background: var(--red-bg);
+      }
+
+      /* Pagination */
+      #pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px 16px;
+        border-top: 1px solid var(--gray20);
+        flex-shrink: 0;
+      }
+      .page-btn {
+        min-width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        border: 1px solid var(--gray20);
+        background: var(--white);
+        color: var(--gray60);
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+      }
+      .page-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .page-btn.active {
+        background: var(--accent100);
+        border-color: var(--accent100);
+        color: white;
+        font-weight: 600;
+      }
+      .page-btn.next {
+        padding: 0 14px;
+      }
+
+      #empty-state {
+        padding: 40px 20px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      #empty-state strong {
+        color: var(--text);
+        font-size: 14px;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      /* ── CHART PANEL ── */
+      #chart-panel {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 0;
+        border-radius: var(--radius);
+        border: 1px solid var(--gray20);
+        background-color: var(--white);
+      }
+
+      #chart-header {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--gray20);
+        flex-shrink: 0;
+      }
+
+      #chart-ticker {
+        font-family: var(--mono);
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      #chart-price {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--text);
+      }
+
+      #chart-change-badge {
+        font-family: var(--mono);
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-weight: 600;
+      }
+
+      .range-btns {
+        display: flex;
+        gap: 3px;
+      }
+
+      .range-btn {
+        background: transparent;
+        border: 1px solid var(--gray20);
+        border-radius: 6px;
+        color: var(--gray50);
+        font-size: 11px;
+        padding: 3px 9px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+      .range-btn:hover {
+        color: var(--text);
+        border-color: var(--gray30);
+      }
+      .range-btn.active {
+        background: var(--accent100);
+        border-color: var(--accent100);
+        color: #fff;
+      }
+
+      #chart-wrap {
+        flex: 1;
+        padding: 12px 16px;
+        position: relative;
+        min-height: 0;
+      }
+
+      #chart-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: var(--muted);
+        font-size: 13px;
+        gap: 8px;
+      }
+      #chart-placeholder svg {
+        opacity: 0.25;
+      }
+
+      #loading-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        color: var(--muted);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      #loading-overlay.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .spinner {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--gray20);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        margin-right: 8px;
+      }
+
+      #error-msg {
+        padding: 6px 16px;
+        font-size: 11px;
+        color: var(--red);
+        background: var(--red-bg);
+        border-bottom: 1px solid rgba(247, 90, 90, 0.1);
+        display: none;
+        flex-shrink: 0;
+        border-radius: 0;
+      }
+
+      /* ── MODAL ── */
+      #modal-bg {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+      #modal-bg.open {
+        display: flex;
+      }
+      #modal {
+        background: var(--white);
+        border: 1px solid var(--gray20);
+        border-radius: var(--radius);
+        padding: 22px;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: var(--shadow-md);
+      }
+      #modal h2 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      #modal input {
+        background: var(--gray10);
+        border: 1px solid var(--gray20);
+        border-radius: 7px;
+        color: var(--text);
+        padding: 8px 12px;
+        font-size: 13px;
+        outline: none;
+        width: 100%;
+      }
+      #modal input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(81, 96, 255, 0.1);
+        background: var(--white);
+      }
+      #modal-btns {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+      #modal-btns button {
+        padding: 7px 16px;
+        border-radius: 7px;
+        font-size: 12.5px;
+        cursor: pointer;
+        border: 1px solid var(--gray20);
+        background: var(--white);
+        color: var(--gray60);
+        font-weight: 400;
+      }
+      #modal-btns button:hover {
+        background: var(--gray10);
+      }
+      #modal-btns button.primary {
+        background: var(--accent100);
+        border-color: var(--accent100);
+        color: #fff;
+        font-weight: 500;
+        box-shadow: 0 2px 6px rgba(81, 96, 255, 0.25);
+      }
+      #modal-btns button.primary:hover {
+        background: var(--accent90);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          overflow: hidden;
+        }
+
+        /* HEADER */
+
+        #header {
+          margin-bottom: 10px;
+        }
+
+        .headerRow {
+          padding: 10px;
+          flex-direction: column;
+          width: 100%;
+          justify-content: flex-start;
+        }
+        .headerRowBox {
+          width: 100%;
+        }
+
+        /* Row 2 - tabs */
+        .watchlist-tabs {
+          width: 100%;
+          flex-wrap: nowrap;
+          overflow-y: scroll;
+        }
+
+        .watchlist-tabs::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* Hide sort controls */
+        .filter-group {
+          display: none;
+        }
+
+        /* Search takes available width */
+        #search-bar {
+          flex: 1;
+        }
+
+        #search-bar input {
+          width: 100%;
+          min-width: 0;
+        }
+
+        /* Add + Refresh row */
+        #btn-add,
+        #btn-refresh {
+          flex: 1;
+        }
+
+        /* MAIN */
+
+        #main {
+          display: flex;
+          flex-direction: column;
+          height: auto;
+          gap: 15px;
+          padding: 0 10px 10px;
+          overflow: scroll;
+        }
+
+        #table-panel,
+        #chart-panel,
+        #info-panel,
+        #details-panel {
+          min-height: 33vh;
+          overflow: hidden;
+        }
+
+        /* Internal scrolling */
+
+        #table-scroll {
+          overflow-y: auto;
+        }
+
+        #chart-wrap {
+          overflow-y: auto;
+        }
+
+        #details-panel {
+          overflow-y: auto;
+        }
+
+        /* Slightly tighter spacing */
+
+        td,
+        th {
+          padding-left: 8px;
+          padding-right: 8px;
+        }
+
+        #search-bar input {
+          font-size: 16px; /* prevents iOS zoom */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div id="header">
+      <div class="headerRow">
+        <div class="headerRowBox">
+          <h1>STOCKY</h1>
+          <button id="btn-new-list">+ New list</button>
+        </div>
+        <div class="watchlist-tabs" id="tabs"></div>
+      </div>
+      <div class="headerRow">
+        <div class="filter-group">
+          <label>Sort</label>
+          <select id="sort-select">
+            <option value="ticker">Ticker</option>
+            <option value="price">Price</option>
+            <option value="change">Change %</option>
+          </select>
+        </div>
+        <div class="headerRowBox">
+          <div id="search-bar" style="position: relative">
+            <span class="icon">⌕</span>
+            <input
+              type="text"
+              id="ticker-input"
+              placeholder="Add ticker (e.g. AAPL)"
+              maxlength="10"
+            />
+            <div
+              id="ticker-suggestions"
+              style="
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                border: 1px solid var(--border2);
+                border-radius: 7px;
+                z-index: 50;
+                display: none;
+                max-height: 200px;
+                overflow-y: auto;
+                margin-top: 2px;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div class="headerRowBox">
+          <button id="btn-add">Add</button>
+          <button id="btn-refresh">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12a9 9 0 1 1-9-9" />
+              <polyline points="21 3 21 9 15 9" />
+            </svg>
+            Refresh
+          </button>
+        </div>
+      </div>
+
+      <div class="header-spacer"></div>
+    </div>
+
+    <!-- API KEY NOTICE -->
+    <div id="api-notice">
+      <span
+        >🔑 Finnhub API key required — get one free at
+        <strong>finnhub.io</strong></span
+      >
+      <input
+        type="text"
+        id="api-key-input"
+        placeholder="d8mugrpr01qp7ubo2vcgd8mugrpr01qp7ubo2vd0"
+      />
+      <button id="btn-save-key">Save</button>
+      <span id="key-status" style="color: var(--green); display: none"
+        >✓ Key saved</span
+      >
+    </div>
+
+    <div id="error-msg" id="error-msg"></div>
+
+    <!-- MAIN -->
+    <div id="main">
+      <!-- TABLE -->
+      <div id="table-panel">
+        <div id="table-scroll">
+          <div id="empty-state">
+            <strong>No stocks yet</strong>
+            Type a ticker above and click Add
+          </div>
+          <table id="stock-table" style="display: none">
+            <thead>
+              <tr>
+                <th data-col="ticker">Ticker</th>
+                <th data-col="price" style="text-align: right">Price</th>
+                <th data-col="change" style="text-align: right">Change $</th>
+                <th data-col="pct" style="text-align: right">%</th>
+                <th data-col="week52" style="text-align: right">52W Range</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="stock-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INFO PANEL -->
+      <div
+        id="info-panel"
+        style="
+          border-right: 1px solid var(--border);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          border-radius: 15px;
+          border: 1px solid var(--gray20);
+          background-color: var(--white);
+        "
+      >
+        <div
+          style="
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          "
+        >
+          <span
+            id="info-ticker"
+            style="
+              font-family: var(--mono);
+              font-weight: 700;
+              font-size: 14px;
+              color: var(--black);
+            "
+            >—</span
+          >
+          <span
+            id="info-name"
+            style="font-size: 11px; color: var(--muted)"
+          ></span>
+        </div>
+        <div
+          id="info-scroll"
+          style="
+            overflow-y: auto;
+            flex: 1;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          "
+        >
+          <div
+            id="info-placeholder"
+            style="
+              color: var(--muted);
+              font-size: 12px;
+              margin-top: 20px;
+              text-align: center;
+            "
+          >
+            Select a stock to see details & news
+          </div>
+          <div id="info-desc" style="display: none">
+            <div
+              style="
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+                margin-bottom: 6px;
+              "
+            >
+              About
+            </div>
+            <p
+              id="info-desc-text"
+              style="font-size: 12px; line-height: 1.6; color: var(--text)"
+            ></p>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                margin-top: 10px;
+              "
+              id="info-stats"
+            ></div>
+          </div>
+          <div id="info-news" style="display: none">
+            <div
+              style="
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+                margin-bottom: 8px;
+              "
+            >
+              Latest News
+            </div>
+            <div id="news-list"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div id="chart-panel">
+        <div id="chart-header">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <span id="chart-ticker" style="color: var(--muted)">—</span>
+            <span id="chart-price"></span>
+            <span id="chart-change-badge"></span>
+          </div>
+          <div class="range-btns">
+            <button class="range-btn active" data-range="D">1D</button>
+            <button class="range-btn" data-range="W">5D</button>
+            <button class="range-btn" data-range="M">1M</button>
+            <button class="range-btn" data-range="3M">3M</button>
+            <button class="range-btn" data-range="6M">6M</button>
+            <button class="range-btn" data-range="Y">1Y</button>
+            <button class="range-btn" data-range="5Y">5Y</button>
+          </div>
+        </div>
+        <div id="chart-wrap">
+          <div id="chart-placeholder">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+            Select a stock to view chart
+          </div>
+          <canvas id="price-chart" style="display: none"></canvas>
+          <div id="loading-overlay">
+            <div class="spinner"></div>
+            Loading…
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW LIST MODAL -->
+    <div id="modal-bg">
+      <div id="modal">
+        <h2 id="modal-title">New watchlist</h2>
+        <input
+          type="text"
+          id="modal-input"
+          placeholder="e.g. Tech, My Portfolio"
+          maxlength="24"
+        />
+        <div id="modal-btns">
+          <button id="modal-cancel">Cancel</button>
+          <button id="modal-confirm" class="primary">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const API_KEY_LS = "finnhub_api_key";
+      const STATE_LS = "stockpulse_state";
+
+      let apiKey = localStorage.getItem(API_KEY_LS) || "";
+      let state = JSON.parse(localStorage.getItem(STATE_LS) || "null") || {
+        lists: [
+          {
+            id: "default",
+            name: "My Watchlist",
+            tickers: ["AAPL", "TSLA", "NVDA"],
+          },
+        ],
+        activeList: "default",
+      };
+
+      let stockData = {};
+      let selectedTicker = null;
+      let currentRange = "D";
+      let sortCol = "ticker";
+      let sortDir = 1;
+      let chartInstance = null;
+
+      const $ = (id) => document.getElementById(id);
+
+      /* ── API KEY ── */
+      function initApiKey() {
+        if (apiKey) {
+          $("api-notice").classList.add("hidden");
+          $("key-status").style.display = "inline";
+        }
+        $("api-key-input").value = apiKey;
+      }
+
+      $("btn-save-key").onclick = () => {
+        apiKey = $("api-key-input").value.trim();
+        if (!apiKey) return;
+        localStorage.setItem(API_KEY_LS, apiKey);
+        $("api-notice").classList.add("hidden");
+        $("key-status").style.display = "inline";
+        fetchAll();
+      };
+
+      /* ── STATE ── */
+      function save() {
+        localStorage.setItem(STATE_LS, JSON.stringify(state));
+      }
+      function activeList() {
+        return state.lists.find((l) => l.id === state.activeList);
+      }
+
+      /* ── TABS ── */
+      function renderTabs() {
+        const container = $("tabs");
+        container.innerHTML = "";
+        state.lists.forEach((list) => {
+          const tab = document.createElement("div");
+          tab.className =
+            "tab" + (list.id === state.activeList ? " active" : "");
+          tab.innerHTML = `<span>${list.name}</span><span class="del" data-id="${list.id}" title="Delete list">✕</span>`;
+          tab.addEventListener("click", (e) => {
+            if (e.target.classList.contains("del")) return;
+            state.activeList = list.id;
+            selectedTicker = null;
+            save();
+            renderTabs();
+            renderTable();
+            clearChart();
+            fetchAll();
+          });
+          tab.querySelector(".del").addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (state.lists.length === 1)
+              return showError("Cannot delete the last watchlist");
+            state.lists = state.lists.filter((l) => l.id !== list.id);
+            if (state.activeList === list.id)
+              state.activeList = state.lists[0].id;
+            save();
+            renderTabs();
+            renderTable();
+            clearChart();
+          });
+          container.appendChild(tab);
+        });
+      }
+
+      /* ── NEW LIST MODAL ── */
+      $("btn-new-list").onclick = () => {
+        $("modal-input").value = "";
+        $("modal-title").textContent = "New watchlist";
+        $("modal-bg").classList.add("open");
+        setTimeout(() => $("modal-input").focus(), 50);
+      };
+      $("modal-cancel").onclick = () => $("modal-bg").classList.remove("open");
+      $("modal-confirm").onclick = createList;
+      $("modal-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") createList();
+      });
+
+      function createList() {
+        const name = $("modal-input").value.trim();
+        if (!name) return;
+        const id = "list_" + Date.now();
+        state.lists.push({ id, name, tickers: [] });
+        state.activeList = id;
+        save();
+        $("modal-bg").classList.remove("open");
+        renderTabs();
+        renderTable();
+        clearChart();
+      }
+
+      /* ── ADD TICKER ── */
+      $("btn-add").onclick = addTicker;
+      $("ticker-input").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") addTicker();
+      });
+
+      function addTicker() {
+        const t = $("ticker-input").value.trim().toUpperCase();
+        if (!t) return;
+        const list = activeList();
+        if (list.tickers.includes(t)) {
+          showError(`${t} is already in this watchlist`);
+          return;
+        }
+        if (!apiKey) {
+          showError("Please enter your Finnhub API key first");
+          return;
+        }
+        list.tickers.push(t);
+        save();
+        $("ticker-input").value = "";
+        fetchQuote(t).then(() => renderTable());
+      }
+
+      /* ── REMOVE TICKER ── */
+      function removeTicker(ticker) {
+        const list = activeList();
+        list.tickers = list.tickers.filter((t) => t !== ticker);
+        delete stockData[ticker];
+        if (selectedTicker === ticker) {
+          selectedTicker = null;
+          clearChart();
+        }
+        save();
+        renderTable();
+      }
+
+      /* ── FETCH ── */
+      async function fetchQuote(ticker) {
+        try {
+          const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=1d&interval=1d`;
+          const res = await fetch(
+            `https://corsproxy.io/?${encodeURIComponent(url)}`,
+          );
+          const d = await res.json();
+          const meta = d?.chart?.result?.[0]?.meta;
+          if (!meta) {
+            showError(`No data for ${ticker}`);
+            return;
+          }
+          stockData[ticker] = {
+            ticker,
+            price: meta.regularMarketPrice,
+            change: meta.regularMarketPrice - meta.chartPreviousClose,
+            pct:
+              ((meta.regularMarketPrice - meta.chartPreviousClose) /
+                meta.chartPreviousClose) *
+              100,
+            high52: meta.fiftyTwoWeekHigh,
+            low52: meta.fiftyTwoWeekLow,
+          };
+        } catch (e) {
+          showError(`Failed to fetch ${ticker}`);
+        }
+      }
+
+      async function fetchAll() {
+        if (!apiKey) return;
+        const list = activeList();
+        $("btn-refresh").classList.add("spinning");
+        await Promise.all(list.tickers.map(fetchQuote));
+        $("btn-refresh").classList.remove("spinning");
+        renderTable();
+        if (selectedTicker) fetchChart(selectedTicker, currentRange);
+      }
+
+      $("btn-refresh").onclick = fetchAll;
+
+      /* ── CHART DATA ── */
+      async function fetchChart(ticker, range) {
+        if (!ticker) return;
+        setLoading(true);
+        const ranges = {
+          D: { range: "1d", interval: "5m" },
+          W: { range: "5d", interval: "15m" },
+          M: { range: "1mo", interval: "1h" },
+          "3M": { range: "3mo", interval: "1d" },
+          "6M": { range: "6mo", interval: "1d" },
+          Y: { range: "1y", interval: "1d" },
+          "5Y": { range: "5y", interval: "1wk" },
+        };
+        const { range: r, interval } = ranges[range] || ranges["D"];
+        try {
+          const url = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=${r}&interval=${interval}`;
+          const res = await fetch(
+            `https://corsproxy.io/?${encodeURIComponent(url)}`,
+          );
+          const d = await res.json();
+          setLoading(false);
+          const result = d?.chart?.result?.[0];
+          if (!result) {
+            showError(`No chart data for ${ticker}`);
+            return;
+          }
+          const timestamps = result.timestamp;
+          const prices = result.indicators.quote[0].close;
+          drawChart(ticker, timestamps, prices, range);
+        } catch (e) {
+          setLoading(false);
+          showError("Chart fetch failed");
+        }
+      }
+
+      function drawChart(ticker, timestamps, prices, range) {
+        $("chart-placeholder").style.display = "none";
+        const canvas = $("price-chart");
+        canvas.style.display = "block";
+
+        // Update badge based on chart range
+        const validPrices = prices.filter((p) => p != null);
+        const first = validPrices[0];
+        const last = validPrices[validPrices.length - 1];
+        const diff = last - first;
+        const diffPct = (diff / first) * 100;
+        const rangeLabel =
+          {
+            D: "today",
+            W: "past week",
+            M: "past month",
+            "3M": "past 3 months",
+            Y: "past year",
+            "5Y": "past 5 years",
+          }[range] || "";
+        const isRangeUp = diff >= 0;
+        const badge = $("chart-change-badge");
+        badge.textContent = `${isRangeUp ? "+" : ""}$${Math.abs(diff).toFixed(2)} (${isRangeUp ? "+" : ""}${diffPct.toFixed(2)}%) ${rangeLabel}`;
+        badge.style.background = isRangeUp ? "var(--white)" : "var(--white)";
+        badge.style.color = isRangeUp ? "var(--green)" : "var(--red)";
+
+        const labels = timestamps.map((ts) => {
+          const d = new Date(ts * 1000);
+          if (range === "D")
+            return d.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+          if (range === "W")
+            return d.toLocaleDateString([], {
+              weekday: "short",
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+          return d.toLocaleDateString([], { month: "short", day: "numeric" });
+        });
+
+        const lineColor = isRangeUp ? "#22c87a" : "#f75a5a";
+        const fillColor = isRangeUp
+          ? "rgba(34,200,122,0.08)"
+          : "rgba(247,90,90,0.08)";
+
+        if (chartInstance) chartInstance.destroy();
+        chartInstance = new Chart(canvas, {
+          type: "line",
+          data: {
+            labels,
+            datasets: [
+              {
+                data: prices,
+                borderColor: lineColor,
+                backgroundColor: fillColor,
+                borderWidth: 1.5,
+                fill: true,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                pointHoverBackgroundColor: lineColor,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 300 },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                mode: "index",
+                intersect: false,
+                backgroundColor: "#1a1e27",
+                borderColor: "rgba(255,255,255,0.1)",
+                borderWidth: 1,
+                titleColor: "#7a7f8e",
+                bodyColor: "#e8eaf0",
+                callbacks: {
+                  label: (ctx) => ` $${ctx.parsed.y.toFixed(2)}`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                grid: { color: "rgba(255,255,255,0.04)" },
+                ticks: {
+                  color: "#7a7f8e",
+                  maxTicksLimit: 8,
+                  font: { size: 10 },
+                },
+                border: { display: false },
+              },
+              y: {
+                position: "right",
+                grid: { color: "rgba(255,255,255,0.04)" },
+                ticks: {
+                  color: "#7a7f8e",
+                  font: { size: 10 },
+                  callback: (v) => "$" + v.toFixed(2),
+                },
+                border: { display: false },
+              },
+            },
+            interaction: { mode: "nearest", axis: "x", intersect: false },
+          },
+        });
+      }
+
+      function clearChart() {
+        if (chartInstance) {
+          chartInstance.destroy();
+          chartInstance = null;
+        }
+        $("price-chart").style.display = "none";
+        $("chart-placeholder").style.display = "flex";
+        $("chart-ticker").textContent = "—";
+        $("chart-ticker").style.color = "var(--muted)";
+        $("chart-price").textContent = "";
+        $("chart-change-badge").textContent = "";
+        $("chart-change-badge").style.background = "";
+      }
+
+      /* ── RENDER TABLE ── */
+      function renderTable() {
+        const list = activeList();
+        const tickers = list.tickers;
+        const tbody = $("stock-tbody");
+        const empty = $("empty-state");
+        const table = $("stock-table");
+
+        if (tickers.length === 0) {
+          empty.style.display = "";
+          table.style.display = "none";
+          return;
+        }
+        empty.style.display = "none";
+        table.style.display = "";
+
+        let rows = tickers.map(
+          (t) =>
+            stockData[t] || {
+              ticker: t,
+              price: null,
+              change: null,
+              pct: null,
+              high52: null,
+              low52: null,
+            },
+        );
+
+        if (sortCol === "ticker")
+          rows.sort((a, b) => sortDir * a.ticker.localeCompare(b.ticker));
+        else if (sortCol === "price")
+          rows.sort((a, b) => sortDir * ((a.price || 0) - (b.price || 0)));
+        else if (sortCol === "change")
+          rows.sort((a, b) => sortDir * ((a.pct || 0) - (b.pct || 0)));
+
+        tbody.innerHTML = "";
+        rows.forEach((s) => {
+          const isUp = (s.pct || 0) >= 0;
+          const dir = isUp ? "up" : "down";
+          const sign = isUp ? "+" : "";
+          const tr = document.createElement("tr");
+          if (s.ticker === selectedTicker) tr.classList.add("selected");
+          tr.innerHTML = `
+                  <td class="ticker">${s.ticker}</td>
+                  <td class="price">${s.price != null ? "$" + s.price.toFixed(2) : "…"}</td>
+                  <td class="change ${dir}">${s.change != null ? sign + s.change.toFixed(2) : "…"}</td>
+                  <td class="pct"><span class="pct-badge ${dir}">${s.pct != null ? sign + s.pct.toFixed(2) + "%" : "…"}</span></td>
+                  <td class="week-range">${s.low52 != null ? "$" + s.low52.toFixed(0) + " – $" + s.high52.toFixed(0) : "—"}</td>
+                  <td class="remove"><button class="remove-btn" title="Remove">✕</button></td>
+                `;
+          tr.addEventListener("click", (e) => {
+            if (e.target.classList.contains("remove-btn")) return;
+            selectedTicker = s.ticker;
+            updateChartHeader(s);
+            fetchChart(s.ticker, currentRange);
+            fetchInfo(s.ticker);
+            renderTable();
+          });
+          tr.querySelector(".remove-btn").addEventListener("click", () =>
+            removeTicker(s.ticker),
+          );
+          tbody.appendChild(tr);
+        });
+      }
+
+      async function fetchInfo(ticker) {
+        $("info-placeholder").style.display = "none";
+        $("info-desc").style.display = "none";
+        $("info-news").style.display = "none";
+        $("info-ticker").textContent = ticker;
+        $("info-name").textContent = "";
+
+        try {
+          const [profRes, newsRes] = await Promise.all([
+            fetch(
+              `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${apiKey}`,
+            ),
+            fetch(
+              `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${new Date(Date.now() - 7 * 86400000).toISOString().split("T")[0]}&to=${new Date().toISOString().split("T")[0]}&token=${apiKey}`,
+            ),
+          ]);
+          const prof = await profRes.json();
+          const news = await newsRes.json();
+
+          if (prof.name) {
+            $("info-name").textContent = prof.name;
+            $("info-desc-text").textContent =
+              `${prof.name} is a ${prof.finnhubIndustry} company listed on ${prof.exchange}${prof.country ? ", headquartered in " + prof.country : ""}${prof.employeeTotal ? ", with " + Number(prof.employeeTotal).toLocaleString() + " employees" : ""}.`;
+            $("info-stats").innerHTML = [
+              ["Exchange", prof.exchange],
+              ["Industry", prof.finnhubIndustry],
+              [
+                "Market Cap",
+                prof.marketCapitalization
+                  ? "$" + (prof.marketCapitalization / 1000).toFixed(1) + "B"
+                  : "—",
+              ],
+              [
+                "Employees",
+                prof.employeeTotal
+                  ? Number(prof.employeeTotal).toLocaleString()
+                  : "—",
+              ],
+              ["IPO", prof.ipo || "—"],
+              ["Country", prof.country || "—"],
+            ]
+              .map(
+                ([label, val]) => `
+                    <div style="background:var(--gray10);border-radius:6px;padding:7px 10px;">
+                      <div style="font-size:10px;color:var(--muted);margin-bottom:2px;">${label}</div>
+                      <div style="font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${val || "—"}</div>
+                    </div>`,
+              )
+              .join("");
+            $("info-desc").style.display = "block";
+          }
+
+          if (Array.isArray(news) && news.length) {
+            $("news-list").innerHTML = news
+              .slice(0, 8)
+              .map(
+                (n) => `
+                    <a href="${n.url}" target="_blank" style="display:block;padding:9px 0;border-bottom:1px solid var(--border);text-decoration:none;cursor:pointer;">
+                      <div style="font-size:11px;color:var(--muted);margin-bottom:3px;">${new Date(n.datetime * 1000).toLocaleDateString()} · ${n.source}</div>
+                      <div style="font-size:12px;color:var(--text);line-height:1.4;">${n.headline}</div>
+                    </a>`,
+              )
+              .join("");
+            $("info-news").style.display = "block";
+          }
+        } catch (e) {
+          $("info-placeholder").textContent = "Could not load details";
+          $("info-placeholder").style.display = "block";
+        }
+      }
+
+      function updateChartHeader(s) {
+        $("chart-ticker").textContent = s.ticker;
+        $("chart-ticker").style.color = "var(--text)";
+        $("chart-price").textContent =
+          s.price != null ? "$" + s.price.toFixed(2) : "";
+        const badge = $("chart-change-badge");
+        const isUp = (s.pct || 0) >= 0;
+        badge.textContent =
+          s.pct != null ? (isUp ? "+" : "") + s.pct.toFixed(2) + "%" : "";
+        badge.style.background = isUp ? "var(--green-bg)" : "var(--red-bg)";
+        badge.style.color = isUp ? "var(--green)" : "var(--red)";
+      }
+
+      /* ── SORT ── */
+      document.querySelectorAll("thead th[data-col]").forEach((th) => {
+        th.addEventListener("click", () => {
+          const col = th.dataset.col;
+          if (sortCol === col) sortDir *= -1;
+          else {
+            sortCol = col;
+            sortDir = 1;
+          }
+          document
+            .querySelectorAll("thead th")
+            .forEach((t) => t.classList.remove("sorted"));
+          th.classList.add("sorted");
+          renderTable();
+        });
+      });
+
+      $("sort-select").addEventListener("change", () => {
+        sortCol = $("sort-select").value;
+        renderTable();
+      });
+
+      /* ── RANGE BUTTONS ── */
+      document.querySelectorAll(".range-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".range-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentRange = btn.dataset.range;
+          if (selectedTicker) fetchChart(selectedTicker, currentRange);
+        });
+      });
+
+      /* ── HELPERS ── */
+      function setLoading(v) {
+        $("loading-overlay").classList.toggle("visible", v);
+      }
+
+      function showError(msg) {
+        const el = document.querySelector("#error-msg") || $("error-msg");
+        if (!el) return;
+        el.style.display = "block";
+        el.textContent = msg;
+        setTimeout(() => (el.style.display = "none"), 4000);
+      }
+
+      /* ── INIT ── */
+      function init() {
+        initApiKey();
+        renderTabs();
+        renderTable();
+        if (apiKey) fetchAll();
+      }
+
+      const suggestBox = document.getElementById("ticker-suggestions");
+
+      $("ticker-input").addEventListener("input", async () => {
+        const q = $("ticker-input").value.trim();
+        if (q.length < 1) {
+          suggestBox.style.display = "none";
+          return;
+        }
+        try {
+          const res = await fetch(
+            `https://finnhub.io/api/v1/search?q=${encodeURIComponent(q)}&token=${apiKey}`,
+          );
+          const d = await res.json();
+          const results = (d.result || [])
+            .filter((r) => r.type === "Common Stock")
+            .slice(0, 8);
+          if (!results.length) {
+            suggestBox.style.display = "none";
+            return;
+          }
+          suggestBox.innerHTML = results
+            .map(
+              (r) => `
+                  <div class="suggestion" data-ticker="${r.symbol}" style="padding:8px 12px;cursor:pointer;font-size:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);">
+                    <span style=" font-family:var(--mono);font-weight:700;">${r.symbol}</span>
+                    <span style="color:var(--muted);font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:180px;">${r.description}</span>
+                  </div>`,
+            )
+            .join("");
+          suggestBox.style.display = "block";
+          suggestBox.querySelectorAll(".suggestion").forEach((el) => {
+            el.addEventListener(
+              "mouseenter",
+              () => (el.style.background = "var(--bg3)"),
+            );
+            el.addEventListener("mouseleave", () => (el.style.background = ""));
+            el.addEventListener("click", () => {
+              $("ticker-input").value = el.dataset.ticker;
+              suggestBox.style.display = "none";
+              addTicker();
+            });
+          });
+        } catch (e) {
+          suggestBox.style.display = "none";
+        }
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!$("search-bar").contains(e.target))
+          suggestBox.style.display = "none";
+      });
+
+      init();
+    </script>
+  </body>
+</html>

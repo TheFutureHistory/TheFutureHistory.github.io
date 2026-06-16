@@ -161,6 +161,16 @@ const portfolioItems = [
   },
   {
     imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",
+    alt: "STOCKY",
+    onClick: "openStocky()",
+    title: "STOCKY",
+    description:
+      "Lets users save their stocks in different watchlists while being able to see latest news & chart info.",
+    status: "project",
+  },
+  {
+    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/world.jpeg?updatedAt=1760137355015",
     alt: "World Conquer",
     onClick: "openWorldConquer()",
