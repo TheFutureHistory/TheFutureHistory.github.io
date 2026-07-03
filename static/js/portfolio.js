@@ -81,7 +81,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/ItineraryFlow%20-%20logo4.png?updatedAt=1779992391487",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219",
     alt: "Itinerary Flow",
     onClick: "openItineraryFlow()",
     title: "Itinerary Flow",
