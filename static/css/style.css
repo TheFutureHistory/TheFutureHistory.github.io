@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 :root {
-  --primary-color: #000;
+  --primary-color: #2c2c36;
   --secondary-color: #fff;
   --accent-blue: #0066ff;
   --accent-green: #00d084;
@@ -15,7 +15,7 @@
   --gray-100: #f7f7f7;
   --gray-200: #e5e5e5;
   --gray-300: #d4d4d4;
-  --gray-600: #6b7280;
+  --gray-600: #b7b7c4;
   --gray-900: #111827;
 }
 html {
@@ -146,19 +146,19 @@ body {
 }
 .hero h1 {
   font-size: 72px;
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.1;
   margin-bottom: 24px;
   color: var(--primary-color);
 }
 #h1Exceptional {
-  background: linear-gradient(135deg, #ff006e 0%, #8b5cf6 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-weight: 300;
+  color: var(--gray-600);
   display: inline-block;
 }
 .hero-subtitle {
   font-size: 20px;
+  font-weight: 300;
   color: var(--gray-600);
   margin-bottom: 20px;
   max-width: 600px;
@@ -198,8 +198,12 @@ body {
   border: 1px solid var(--gray-200);
 }
 .hero img {
-  height: 80vh;
+  height: 60vh;
   width: auto;
+  border: 5px solid white;
+  border-radius: 16px;
+  transform: rotate(2deg);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 /* Features Intro */
 .features-intro {
@@ -277,19 +281,10 @@ body {
   gap: 10px;
 }
 .solution-card {
-  background: var(--secondary-color);
+  background: var(--primary-color);
   padding: 40px;
   border-radius: 16px;
   position: relative;
-}
-.solution-card:nth-child(1) {
-  background: linear-gradient(135deg, #ff4d4d, #ff944d, #ffd24d);
-}
-.solution-card:nth-child(2) {
-  background: linear-gradient(135deg, #4d79ff, #4dd2ff, #4dffb8);
-}
-.solution-card:nth-child(3) {
-  background: linear-gradient(135deg, #6d28d9, #8b5cf6, #a855f7);
 }
 .card-number {
   font-size: 48px;

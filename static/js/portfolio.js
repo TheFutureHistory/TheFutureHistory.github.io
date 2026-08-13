@@ -60,14 +60,14 @@ function appendPortfolioItems(items) {
 }
 const portfolioItems = [
   {
-    imageSrc: "https://ik.imagekit.io/sebastienaugustin/images/GMC_black.png",
-    alt: "GoodMorningChat",
-    onClick: "openGoodMorningChat()",
-    title: "GoodMorningChat",
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219",
+    alt: "Itinerary Flow",
+    onClick: "openItineraryFlow()",
+    title: "Itinerary Flow",
     description:
-      "A Digital growth agency elevating Brands through strategic creativity & reputation management.",
-    status: "website",
-    category: "Founder",
+      "Create travel itineraries and easily manage your trips via a dashboard and CRM.",
+    status: "Web App",
   },
   {
     imageSrc:
@@ -80,14 +80,14 @@ const portfolioItems = [
     status: "Web App",
   },
   {
-    imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219",
-    alt: "Itinerary Flow",
-    onClick: "openItineraryFlow()",
-    title: "Itinerary Flow",
+    imageSrc: "https://ik.imagekit.io/sebastienaugustin/images/GMC_black.png",
+    alt: "GoodMorningChat",
+    onClick: "openGoodMorningChat()",
+    title: "GoodMorningChat",
     description:
-      "Create travel itineraries and easily manage your trips via a dashboard and CRM.",
-    status: "Web App",
+      "A Digital growth agency elevating Brands through strategic creativity & reputation management.",
+    status: "website",
+    category: "Founder",
   },
   {
     imageSrc:
