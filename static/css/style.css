@@ -166,6 +166,32 @@ body {
   margin-right: auto; */
   text-align: left;
 }
+.heroBTN {
+  display: flex;
+  flex-direction: row;
+  justify-content: Flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.btn-secondary {
+  background: var(--white);
+  color: var(--primary-color);
+  padding: 13px 48px;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
 .btn-cta {
   background: var(--primary-color);
   color: var(--secondary-color);
@@ -544,6 +570,15 @@ body {
   .integrations-grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 16px;
+  }
+  .heroBTN {
+    flex-direction: column;
+  }
+  .btn-cta {
+    width: 100%;
+  }
+  .btn-secondary {
+    width: 100%;
   }
 
   .integration-card {

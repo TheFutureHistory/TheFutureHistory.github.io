@@ -63,7 +63,8 @@ function appendPortfolioItems(items) {
 }
 const portfolioItems = [
   {
-    imageSrc: "./static/images/SebastienAugustin.png",
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202026-08-18%20at%206.50.45%20PM.png",
     alt: "Sebastien AI Agent",
     onClick: "openSebastienAI()",
     title: "TONY",
