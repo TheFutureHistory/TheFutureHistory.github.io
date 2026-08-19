@@ -1430,3 +1430,18 @@ body {
   width: 100%;
   height: auto;
 }
+
+#thomasCrownPreview {
+  display: none;
+  position: fixed;
+  top: 10vh;
+  left: 10vw;
+  width: 80vw;
+  height: auto;
+  margin: auto;
+  box-shadow: 0px 4px 20px var(--gray-600);
+}
+#thomasCrownPreview video {
+  width: 100%;
+  height: auto;
+}

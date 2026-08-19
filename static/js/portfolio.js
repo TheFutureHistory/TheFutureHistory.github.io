@@ -41,6 +41,9 @@ function appendPortfolioItems(items) {
     } else if (lowerStatus === "music") {
       statusEl.style.background = "#E8DFFF"; // new light purple for music
       statusEl.style.color = "#5C00B3";
+    } else if (lowerStatus === "video") {
+      statusEl.style.background = "#E8DFFF"; // new light purple for music
+      statusEl.style.color = "#5C00B3";
     } else if (lowerStatus === "design") {
       statusEl.style.background = "#DBEAFF";
       statusEl.style.color = "#1447E5";
@@ -59,6 +62,15 @@ function appendPortfolioItems(items) {
   });
 }
 const portfolioItems = [
+  {
+    imageSrc: "./static/images/SebastienAugustin.png",
+    alt: "Sebastien AI Agent",
+    onClick: "openSebastienAI()",
+    title: "TONY",
+    description:
+      "Tony is Sebastien's AI Assistant, here to help you learn more about his work, process, and approach.",
+    status: "Web App",
+  },
   {
     imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219",
@@ -311,6 +323,16 @@ const portfolioItems = [
   },
   {
     imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/CAPY%20WORLD%20-%20Logo%20(Black%20Background).png",
+    alt: "CAPŸ",
+    onClick: "openCapy()",
+    title: "CAPŸ",
+    description:
+      "Original Music produced by Always Skilled for quick access for listeners.",
+    status: "Music",
+  },
+  {
+    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/HydroFlora.jpg?updatedAt=1756756108318",
     alt: "Hydro Flora",
     onClick: "openHydroflora()",
@@ -318,6 +340,16 @@ const portfolioItems = [
     description:
       "A music composition contracted for an ad to match the Hydro Flora brand. Produced using Ableton Live.",
     status: "Music",
+  },
+  {
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/the-thomas-crown-affair-2027.jpg",
+    alt: "A Thomas Crown Affair Trailer",
+    onClick: "openThomasCrown()",
+    title: "A Thomas Crown Affair Trailer",
+    description:
+      "A Thomas Crown Affair Trailer (2027) with new editing and post-production implemented by myself.",
+    status: "Video",
   },
   {
     imageSrc:
