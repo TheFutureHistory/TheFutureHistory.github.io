@@ -344,16 +344,6 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/the-thomas-crown-affair-2027.jpg",
-    alt: "A Thomas Crown Affair Trailer",
-    onClick: "openThomasCrown()",
-    title: "A Thomas Crown Affair Trailer",
-    description:
-      "A Thomas Crown Affair Trailer (2027) with new editing and post-production implemented by myself.",
-    status: "Video",
-  },
-  {
-    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/terastacks_logo.jpg?updatedAt=1760052999268",
     alt: "Terastacks",
     onClick: "",

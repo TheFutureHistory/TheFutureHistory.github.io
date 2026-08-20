@@ -344,17 +344,6 @@
       ></video>
     </section>
 
-    <section id="thomasCrownPreview">
-      <video
-        id="thomasCrownVideo"
-        src="./static/videos/Thomas Crown Affair Trailer.mp4"
-        muted
-        playsinline
-        loop
-        controls
-      ></video>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -457,9 +446,6 @@
       function openHydroflora() {
         window.open("./project/HydroFlora/", "_self");
       }
-      function openThomasCrown() {
-        window.open("./project/ThomasCrown/", "_self");
-      }
     </script>
     <script src="./static/js/portfolio.js"></script>
     <!-- Portfolio Hover -->
@@ -537,35 +523,6 @@
       function openHydroflora() {
         const preview = document.getElementById("hydroFloraPreview");
         const video = document.getElementById("hydroFloraVideo");
-
-        // Reset video to start
-        video.pause();
-        video.currentTime = 0;
-        video.muted = false; // unmute if you want sound
-        video.play().catch((err) => console.log("Video play failed:", err));
-
-        // Show the section
-        preview.style.display = "block";
-
-        // Close on outside click
-        function hideVideo(e) {
-          if (!preview.contains(e.target)) {
-            preview.style.display = "none";
-            video.pause();
-            video.currentTime = 0;
-            window.removeEventListener("click", hideVideo);
-          }
-        }
-
-        // Delay attaching listener to avoid immediate trigger
-        setTimeout(() => window.addEventListener("click", hideVideo), 0);
-      }
-    </script>
-    <!-- Thomas Crown vid -->
-    <script>
-      function openThomasCrown() {
-        const preview = document.getElementById("thomasCrownPreview");
-        const video = document.getElementById("thomasCrownVideo");
 
         // Reset video to start
         video.pause();
