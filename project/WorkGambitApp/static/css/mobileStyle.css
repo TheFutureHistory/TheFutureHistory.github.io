@@ -1,0 +1,444 @@
+/* MOBILE RESPONSIVE STYLES - Add to existing CSS */
+
+@media (max-width: 1000px) {
+  /* Reset root font sizes for mobile */
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    overflow-y: auto;
+  }
+  .mainSiteBody{
+    overflow-y: scroll;
+}
+
+  /* SITE MENU - Mobile */
+  .siteMenu {
+    height: auto;
+    min-height: 60px;
+    padding: 1rem 4%;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .siteMenu h1 {
+    width: 100%;
+    font-size: 1.25rem;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--main_color_light);
+  }
+
+  /* Listing Actions - Mobile */
+  .listingActions {
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 0;
+  }
+
+  .listingActions button {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    height: auto;
+    min-height: 2.5rem;
+  }
+
+  /* MAIN - Mobile */
+  .main {
+    flex-direction: column;
+    height: auto;
+    min-height: calc(100vh - 60px);
+    margin-top: 60px;
+    overflow-y: auto;
+  }
+
+  /* MENU - Mobile (Collapsible Sidebar) */
+  .menu {
+    width: 100%;
+    margin-top: 5vh;
+    height: auto;
+    padding: 1rem;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .menu.open {
+    left: 0;
+  }
+
+  /* Mobile Menu Toggle Button */
+  .mobile-menu-toggle {
+    position: fixed;
+    top: 70px;
+    left: 1rem;
+    width: 50px;
+    height: 50px;
+    background: var(--main_color_dark);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 500;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+  }
+
+  /* Overlay for mobile menu */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* FILTERS - Mobile */
+  .filters {
+    height: auto;
+    max-height: calc(100vh - 300px);
+  }
+
+  .filtersSections {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: left;
+  }
+
+  .filterCheckboxes {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  #filtersCollapse {
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: auto;
+  }
+
+  .filterBTN,
+  #filterBTN:nth-child(1) {
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 1rem 1rem;
+  }
+
+  #filterSectionResult {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+
+  .resultsAmt,
+  #openTabs {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* LISTINGS - Mobile */
+  .listings {
+    width: 100%;
+    height: auto;
+    padding: 2rem 2rem;
+    gap: 1rem;
+  }
+
+  .listings h1 {
+    font-size: 1.25rem;
+    width: 90%;
+  }
+
+  .listings a {
+    width: 90%;
+  }
+
+  .listingInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .listingInfo::before {
+    display: none;
+  }
+
+  /* Listing Header - Image and Name */
+  .listing-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .listingInfo_img,
+  .listingInfo_imgMissing {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .listingInfo_nameCont {
+    flex: 1;
+  }
+
+  .listingInfo_name {
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  /* Listing Grid - Mobile Stack */
+  .listingInfo_grid {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .listingInfo_type,
+  .listingInfo_region,
+  .listingInfo_remote,
+  .listingInfo_access,
+  .listingInfo_industry {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    white-space: normal;
+    word-wrap: break-word;
+    margin: 0px;
+  }
+
+  /* Favorite Button - Mobile */
+  .favorite-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+  }
+
+  .star-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Listing Link - Mobile */
+  .listing-link {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .listings a.listing-link {
+    width: 100%;
+    display: flex;
+    align-items: left;
+  }
+
+  /* NEWS/ADS - Mobile */
+  .news {
+    width: 100%;
+    height: auto;
+    padding: 1rem 4%;
+    gap: 1rem;
+    border-left: none;
+    border-top: 1px solid var(--main_color_light);
+  }
+
+  .newsBox {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+  }
+
+  .newsInfo section:nth-child(1) img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .newsInfo section:nth-child(1) h3 {
+    font-size: 0.85rem;
+  }
+
+  .newsInfo section:nth-child(2) p {
+    font-size: 0.8rem;
+  }
+
+  /* SEARCH BAR - Mobile */
+  .searchContainer {
+    width: 90%;
+    margin: 1rem auto;
+  }
+
+  #searchInput {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* CALCULATOR - Mobile */
+  #salary_calc_section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  #salary_calc_box {
+    width: 90%;
+    padding: 2rem 5%;
+    min-height: auto;
+  }
+
+  .calc_row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .calc_row h3,
+  .calc_row input,
+  .dollar_sign {
+    width: 100%;
+    flex-basis: 100%;
+    text-align: left !important;
+  }
+
+  .calc_row input {
+    padding: 0.75rem;
+    background: var(--main_color_light);
+  }
+
+  /* LISTING FORM - Mobile */
+  .listingsForm {
+    width: 100%;
+    padding: 1rem 5% 3rem 5%;
+    margin-top: 15vh;
+    height: auto;
+  }
+
+  .listingsForm form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .listingsForm form h2 {
+    font-size: 1.25rem;
+  }
+
+  .listingsForm form h3 {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .listingsForm form label {
+    font-size: 0.85rem;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  .listingsForm form input,
+  .listingsForm form select,
+  .listingsForm form textarea {
+    width: 100%;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .listingsForm form textarea {
+    height: 120px !important;
+  }
+
+  .formButton {
+    height: 48px;
+    font-size: 0.9rem;
+  }
+
+  /* AD PACKAGES - Mobile */
+  .adPackages {
+    width: 100%;
+  }
+
+  .adPackagesDetails {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .adPackagesDetails img {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+  }
+
+  .adPackagesDetails p {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  /* FILE UPLOAD - Mobile */
+  .image-preview {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .file-upload-btn {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .remove-btn {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  /* TOAST NOTIFICATIONS - Mobile */
+  .favorites-toast {
+    top: auto;
+    bottom: 2rem;
+    right: 1rem;
+    left: 1rem;
+    height: 10vh;
+    max-width: calc(100% - 2rem);
+  }
+
+  /* NO MORE LISTINGS - Mobile */
+  .noMoreListing {
+    width: 90%;
+    padding: 2rem 1rem;
+  }
+
+  .noMoreListing p {
+    font-size: 0.9rem;
+  }
+
+  /* RESUME BUILDER */
+  .container{
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+  }
+
+  .listingActions button:nth-child(1){
+    display: none;
+  }
+}

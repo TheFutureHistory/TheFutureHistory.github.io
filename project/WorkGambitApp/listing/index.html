@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2Z7ELNGHH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q2Z7ELNGHH');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Gambit</title>
+    <meta name="description" content="Discover the best job boards and verified company career pages in North America all in one place. Browse our curated directory to find reliable job search resources and start applying today.">
+    <link rel="stylesheet" href="../static/css/modernStyle.css">
+    <link rel="stylesheet" href="../static/css/mobileStyle.css">
+    <link rel="icon" type="image/x-icon" href="../static/images/WGblackBox.PNG">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="siteMenu">
+        <h1 onclick="window.location.href='/'">Work Gambit</h1>
+        <section class="listingActions">
+            <button onclick="window.location.href='/app/resume_builder'">Resume Builder</button>
+            <button onclick="window.location.href='/listing'">Add a Listing</button>
+            <button onclick="window.location.href='/ad'">Post An Ad</button>
+            <button onclick="window.location.href='/feedback'">Give Feedback</button>
+        </section>
+    </section>
+    <section class="listingsForm">
+        <form action="https://formsubmit.co/e7cbefe06df4bfb98c4e6a6b08ad3cf7" method="POST" data-recaptcha="true">
+            <input type="hidden" name="_next" value="https://square.link/u/vgTIbaWw">
+
+            <h2>CONTACT INFORMATION</h2>
+            <h4>The information remains private and will only be used to contact you or send invoices.</h4>
+
+            <label for="formName">Name</label>
+            <input type="text" id="formName" name="name" required>
+
+            <label for="formEmail">Email</label>
+            <input type="email" id="formEmail" name="email" required>
+
+            <label for="formPhone">Phone</label>
+            <input type="tel" id="formPhone" name="phone" required>
+
+            <label for="formPosition">Position</label>
+            <input type="text" id="formPosition" name="position" required placeholder="CEO, CTO, COO, Brand Manager, Founder,...">
+
+            <label for="formInvoice">Invoice Address</label>
+            <textarea id="formInvoice" name="invoiceAddress"></textarea>
+            <p>If needed for your bookkeeping.</p>
+
+            <h2 class="formSectionTitle">COMPANY DETAILS</h2>
+            <div class="file-upload-container">
+                <label for="formLogo">Logo</label>
+                <input type="file" id="imageUpload" name="logo" accept="image/*" hidden>
+                <div id="preview-container" class="preview-container" style="display: none;">
+                    <img id="image-preview" class="image-preview" alt="Preview">
+                    <button type="button" id="remove-image" class="remove-btn">×</button>
+                </div>
+            </div>
+            <label for="imageUpload" class="custom-btn">Upload Image</label>
+            <p>The logo will be displayed in a circle container.</p>
+
+            <label for="formCompanyName">Company Name</label>
+            <input type="text" id="formCompanyName" name="companyName" required>
+            <p>Name of your Job Board, Company or Marketplace.</p>
+
+            <label for="formURL">URL</label>
+            <input type="url" id="formURL" name="url" required placeholder="https://www.mysite.com/jobs">
+            <p>- Provide your listing page URL if you are a Job Board<br>
+            - Provide your job opportunity page URL if you are a company<br>
+            - Apply URLs with a form an applicant can fill out generally receive a lot more applicants than having people apply by email.</p>
+
+            <label for="formType">Type</label>
+            <select id="formType" name="type" required>
+                <option value="Choose One" selected disabled>Choose One</option>
+                <option value="job board">Job Board</option>
+                <option value="company">Company</option>
+                <option value="marketplace">Marketplace</option>
+            </select>
+
+            <label for="formRegion">Region</label>
+            <select id="formRegion" name="region">
+                <option value="Choose One" selected disabled>Choose One</option>
+                <option value="northAmerica">North America</option>
+                <option value="unitedStates">United States</option>
+                <option value="canada">Canada</option>
+            </select>
+            <p>Your jobs are available in which region. Select North America if both United States & Canada</p>
+
+            <label for="formRemote">Remote</label>
+            <select id="formRemote" name="remote">
+                <option value="Choose One" selected disabled>Choose One</option>
+                <option value="remote">Remote</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="on site">On Site</option>
+            </select>
+            <p>Your jobs are under what status. Select Hybrid if Remote and on Site are available.</p>
+
+            <label for="formAccess">Access</label>
+            <select id="formAccess" name="access">
+                <option value="Choose One" selected disabled>Choose One</option>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+            </select>
+            <p>Do job seekers have to create an account to use your site?<br>
+            - If YES, select Private<br>
+            - If No, select Public</p>
+
+            <label for="formTwitter">Twitter</label>
+            <input type="text" id="formTwitter" name="twitter" placeholder="@">
+
+            <p>We send a reminder 7 days by email before listing expiration. Renewing will remain the same price for renewal even if our prices change in the future.</p>
+
+            <label>
+                <input type="checkbox" name="acknowledgeNonRefund" required class="formCheckbox"> By checking this box, I acknowledge that this purchase is Non-refundable.
+            </label>
+
+            <label for="formFeedback">Feedback</label>
+            <textarea id="formFeedback" name="feedback" placeholder="If you have any feedback you would like to see for the listings ..."></textarea>
+            <br>
+
+            <h4>Once you click POST LISTING, you will be redirected to the checkout page.
+            Do not click it if you are not ready to complete the payment.</h4>
+
+            <button type="submit" class="formButton">POST LISTING</button>
+        </form>
+    </section>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('image-preview');
+            const container = document.getElementById('preview-container');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    container.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('remove-image').addEventListener('click', function() {
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('preview-container').style.display = 'none';
+        });
+    });
+    </script>
+
+</body>
+</html>

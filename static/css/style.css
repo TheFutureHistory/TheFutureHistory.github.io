@@ -28,9 +28,9 @@ body {
   overflow-x: hidden;
 }
 .container {
-  max-width: 1200px;
+  max-width: 100vw;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 5vw;
 }
 .sectionTitle {
   font-size: 24px;
@@ -79,9 +79,11 @@ body {
 }
 .nav-links {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   list-style: none;
-  gap: 40px;
-  width: 33%;
+  gap: 20px;
+  width: 70%;
 }
 .nav-links a {
   text-decoration: none;

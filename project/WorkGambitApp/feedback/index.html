@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2Z7ELNGHH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q2Z7ELNGHH');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Gambit</title>
+    <meta name="description" content="Discover the best job boards and verified company career pages in North America all in one place. Browse our curated directory to find reliable job search resources and start applying today.">
+    <link rel="stylesheet" href="../static/css/modernStyle.css">
+    <link rel="stylesheet" href="../static/css/mobileStyle.css">
+    <link rel="icon" type="image/x-icon" href="../static/images/WGblackBox.PNG">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="siteMenu">
+        <h1 onclick="window.location.href='/'">Work Gambit</h1>
+        <section class="listingActions">
+            <button onclick="window.location.href='/app/resume_builder'">Resume Builder</button>
+            <button onclick="window.location.href='/listing'">Add a Listing</button>
+            <button onclick="window.location.href='/ad'">Post An Ad</button>
+            <button onclick="window.location.href='/feedback'">Leave Feedback</button>
+        </section>
+    </section>
+    <section class="listingsForm">
+        <form action="https://formsubmit.co/e7cbefe06df4bfb98c4e6a6b08ad3cf7" method="POST" data-recaptcha="true">
+            <h2>CONTACT INFORMATION</h2>
+            <h4>The information remains private and will only be used to contact you if needed.</h4>
+
+            <label for="formName">Name</label>
+            <input type="text" id="formName" name="name" required>
+
+            <label for="formEmail">Email</label>
+            <input type="email" id="formEmail" name="email" required>
+
+            <h2 class="formSectionTitle">FEEDBACK</h2>
+
+            <label for="formType">Type</label>
+            <select id="formType" name="type" required>
+                <option value="selected" selected disabled>Select One</option>
+                <option value="deadSite">Dead Site</option>
+                <option value="wrongInfo">Wrong Info</option>
+                <option value="wrongLogo">Wrong Logo</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="formCompany">Company Name</label>
+            <input type="text" id="formCompany" name="company" placeholder="Ex: Google">
+
+            <label for="formURL">Company URL</label>
+            <input type="url" id="formURL" name="url" placeholder="https://...">
+
+            <label for="formMessage">Message</label>
+            <textarea id="formMessage" name="message" placeholder="Provide details if needed ..."></textarea>
+            <br>
+
+            <button type="submit" class="formButton">SEND MESSAGE</button>
+        </form>
+    </section>
+    </section>
+
+</body>
+</html>

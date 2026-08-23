@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeCraft Pro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="resume.css" />
+  <link rel="stylesheet" href="../../static/css/modernStyle.css">
+  <link rel="stylesheet" href="../../static/css/mobileStyle.css">
+</head>
+<body class="bg-gray-50 font-sans resumeBuilderBody">
+    <section class="siteMenu">
+          <h1 onclick="window.location.href='/'">Work Gambit</h1>
+          <section class="listingActions">
+              <button onclick="window.location.href='/app/resume_builder'">Resume Builder</button>
+              <button onclick="window.location.href='/listing'">Add a Listing</button>
+              <button onclick="window.location.href='/ad'">Post An Ad</button>
+              <button onclick="window.location.href='/feedback'">Leave Feedback</button>
+          </section>
+  </section>
+
+  <div class="container mx-auto px-4 py-10">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left Side (Form) -->
+      <div class="w-full lg:w-1/2 no-print">
+        <div class="bg-white rounded-lg shadow-md p-6" id="formContainer">
+          <!-- Personal Info -->
+          <div class="mb-8">
+            <h2 class="section-title">Personal Information</h2>
+            <div class="space-y-4">
+              <input type="text" id="fullName" class="input-field " placeholder="John Doe" />
+              <input type="text" id="website" class="input-field personalInfo" placeholder="website.com or LinkedIn" />
+              <input type="email" id="email" class="input-field personalInfo" placeholder="john@example.com" />
+              <input type="tel" id="phone" class="input-field personalInfo" placeholder="(123) 456-7890" />
+              <input type="text" id="address" class="input-field personalInfo" placeholder="City, Country" />
+            </div>
+          </div>
+
+                    <!-- Skills -->
+            <div id="languages-section" class="mb-8">
+                <h2 class="section-heading text-xl font-semibold mb-4 text-gray-800 border-b pb-2">Languages</h2>
+                <div class="flex flex-wrap gap-2 mb-4" id="languagesContainer">
+                    <!-- Language tags will be added here -->
+                </div>
+                <div class="flex">
+                    <input type="text" id="languageInput" class="language-input flex-1 px-4 py-2 border rounded-l-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Add language">
+                    <button id="addLanguage" class="language-btn px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700">Add</button>
+                </div>
+            </div>
+
+          <!-- Summary -->
+          <div class="mb-8">
+            <h2 class="section-title">Professional Summary</h2>
+            <textarea id="summary" rows="4" class="input-field" placeholder="Brief background..."></textarea>
+          </div>
+
+          <!-- Work Experience -->
+          <div class="mb-8">
+            <h2 class="section-title">Work Experience</h2>
+            <div id="experienceContainer"></div>
+            <button id="addExperience" class="add-btn">
+              <i data-feather="plus"></i> Add Experience
+            </button>
+          </div>
+
+          <!-- Education -->
+          <div class="mb-8">
+            <h2 class="section-title">Education</h2>
+            <div id="educationContainer"></div>
+            <button id="addEducation" class="add-btn">
+              <i data-feather="plus"></i> Add Education
+            </button>
+          </div>
+
+          <!-- Skills -->
+          <div class="mb-8">
+            <h2 class="section-title">Skills</h2>
+            <div class="flex flex-wrap gap-2 mb-4" id="skillsContainer"></div>
+            <div class="flex">
+              <input type="text" id="skillInput" class="input-field rounded-l-lg" placeholder="Add skill" />
+              <button id="addSkill" class="px-4 py-2 bg-indigo-600 text-white rounded-r-lg hover:bg-indigo-700">Add</button>
+            </div>
+          </div>
+
+          <!-- Download Button -->
+          <button id="downloadBtn" class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700">
+            Download Resume (PDF)
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Side (Preview) -->
+      <div class="w-full lg:w-1/2 flex justify-center resumePage">
+        <div class="resume-page bg-white p-8" id="resumePreview"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="resumeBuilder.js"></script>
+  <script>
+    const textareas = document.getElementsByClassName("experience-description");
+
+    for (let i = 0; i < textareas.length; i++) {
+      const textarea = textareas[i];
+      textarea.addEventListener("input", function() {
+        this.style.height = "auto";               // reset height
+        this.style.height = this.scrollHeight + "px"; // grow to fit content
+      });
+    }
+
+  </script>
+</body>
+</html>

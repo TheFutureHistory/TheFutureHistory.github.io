@@ -174,6 +174,16 @@ const portfolioItems = [
   },
   {
     imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922",
+    alt: "WG Directory",
+    onClick: "openWGDirectory()",
+    title: "WG Directory",
+    description:
+      "A directory of job boards, companies, marketplaces and tools for people looking for work in the USA or Canada.",
+    status: "project",
+  },
+  {
+    imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",
     alt: "STOCKY",
     onClick: "openStocky()",

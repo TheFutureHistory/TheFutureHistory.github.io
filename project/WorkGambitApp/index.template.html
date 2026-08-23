@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2Z7ELNGHH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-Q2Z7ELNGHH');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Gambit - Top Job Board, Companies and Marketplace</title>
+    <meta name="description" content="Discover the best job boards and verified company career pages in North America all in one place. Browse our curated directory to find reliable job search resources and start applying today.">
+    <link rel="stylesheet" href="./static/css/modernStyle.css">
+    <link rel="stylesheet" href="./static/css/mobileStyle.css">
+    <link rel="icon" type="image/x-icon" href="./static/images/WGblackBox.PNG">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="mainSiteBody">
+    <section class="siteMenu">
+            <h1 onclick="window.location.href='/'">Work Gambit</h1>
+            <section class="listingActions">
+                <button onclick="window.location.href='/app/resume_builder'">Resume Builder</button>
+                <button onclick="window.location.href='listing'">Add a Listing</button>
+                <button onclick="window.location.href='ad'">Post An Ad</button>
+                <button onclick="window.location.href='feedback'">Leave Feedback</button>
+            </section>
+    </section>
+    <section class="main">
+        <section class="menu">
+            <section id="filtersCollapse">
+                <button id="filterBTNFav" class="filterBTN">Favorites</button>
+                <button id="filterBTN" class="filterBTN">Hide Filters</button>
+            </section>
+            <div id="filterSectionResult">
+                    <p class="resultsAmt" id="resultsAmt">0/0</p>
+                    <button id="openTabs">Open All Tabs</button>                    
+            </div>
+            <section class="filters">
+                <div class="filtersSections">
+                    <span>
+                        <input type="checkbox" id="jobBoard" class="filterInput">
+                        <label for="jobBoard" class="filterCheckboxes">Job&nbsp;Boards</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="company" class="filterInput">
+                        <label for="company" class="filterCheckboxes">Companies</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="marketplace" class="filterInput">
+                        <label for="marketplace" class="filterCheckboxes">Marketplaces</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="tool" class="filterInput">
+                        <label for="tool" class="filterCheckboxes">Tools</label>
+                    </span>
+                </div>
+
+                <div class="filtersSections">
+                    <span>
+                        <input type="checkbox" id="unitedStates" class="filterInput">
+                        <label for="unitedStates" class="filterCheckboxes">United&nbsp;States</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="canada" class="filterInput">
+                        <label for="canada" class="filterCheckboxes">Canada</label>
+                    </span>
+                </div>
+
+                <div class="filtersSections">
+                    <span>
+                        <input type="checkbox" id="remote" class="filterInput">
+                        <label for="remote" class="filterCheckboxes">Remote</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="freelance" class="filterInput">
+                        <label for="freelance" class="filterCheckboxes">Freelance</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="hybrid" class="filterInput">
+                        <label for="hybrid" class="filterCheckboxes">Hybrid</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="onSite" class="filterInput">
+                        <label for="onSite" class="filterCheckboxes">On&nbsp;Site</label>
+                    </span>
+                </div>
+
+                <div class="filtersSections">
+                    <span>
+                        <input type="checkbox" id="tech" class="filterInput">
+                        <label for="tech" class="filterCheckboxes">Tech</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="finance" class="filterInput">
+                        <label for="finance" class="filterCheckboxes">Finance</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="gig" class="filterInput">
+                        <label for="gig" class="filterCheckboxes">Gig</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="other" class="filterInput">
+                        <label for="other" class="filterCheckboxes">Other</label>
+                    </span>
+                </div>
+
+                <div class="filtersSections" id="filtersAccount">
+                    <span>
+                        <input type="checkbox" id="private" class="filterInput">
+                        <label for="private" class="filterCheckboxes">Private</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" id="public" class="filterInput">
+                        <label for="public" class="filterCheckboxes">Public</label>
+                    </span>
+                </div>
+            </section> 
+        </section>
+
+        
+        <section class="listings">
+            <h1>Explore Reliable Job Boards, Companies & Marketplaces with Work Gambit</h1>
+            <input type="text" placeholder="Search by Name" id="searchInput">
+            <!-- LISTINGS_PLACEHOLDER -->
+        </section>
+
+        <section class="news">
+            <a href="" class="newsBox">
+                <div class="newsInfo">
+                    <section>
+                        <img src="./static/images/fiverr.png" alt="">
+                        <div>
+                            <h3>Fiverr</h3>
+                            <p>Marketplace</p>
+                        </div>
+                    </section>
+                    <section>
+                        <p>Offer your services online and start earning as a freelancer today.</p>
+                    </section>
+                    <section>
+                        <p>Ad</p>
+                    </section>
+                </div>
+            </a>
+            <a href="" class="newsBox">
+                <div class="newsInfo">
+                    <section>
+                        <img src="./static/images/okta.png" alt="">
+                        <div>
+                            <h3>Okta</h3>
+                            <p>Company</p>
+                        </div>
+                    </section>
+                    <section>
+                        <p>Join Okta and grow your career while shaping the future of secure identity.</p>
+                    </section>
+                    <section>
+                        <p>Ad</p>
+                    </section>
+                </div>
+            </a>
+            <a href="" class="newsBox">
+                <div class="newsInfo">
+                    <section>
+                        <img src="./static/images/upwork.png" alt="">
+                        <div>
+                            <h3>Upwork</h3>
+                            <p>Marketplace</p>
+                        </div>
+                    </section>
+                    <section>
+                        <p>Build your freelance career and connect with clients worldwide.</p>
+                    </section>
+                    <section>
+                        <p>Ad</p>
+                    </section>
+                </div>
+            </a>
+            <a href="" class="newsBox">
+                <div class="newsInfo">
+                    <section>
+                        <img src="./static/images/flexjobs.png" alt="">
+                        <div>
+                            <h3>FlexJobs</h3>
+                            <p>Job Board</p>
+                        </div>
+                    </section>
+                    <section>
+                        <p>Kickstart your freelance journey and find projects that match your skills.</p>
+                    </section>
+                    <section>
+                        <p>Ad</p>
+                    </section>
+                </div>
+            </a>
+        </section>
+    </section>
+
+    <script>
+        const btn = document.getElementById("filterBTN");
+        const filters = document.querySelector(".filters");
+
+        btn.addEventListener("click", () => {
+        const isHidden = filters.classList.toggle("hidden");
+        btn.textContent = isHidden ? "Show Filters" : "Hide Filters";
+        });
+    </script>
+
+    <script src="./static/js/favoriteManage.js"></script>
+    <script src="./static/js/filter.js"></script>
+    <script src="./static/js/openTabs.js"></script>
+     <script src="./static/js/systemManagement.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</body>
+</html>

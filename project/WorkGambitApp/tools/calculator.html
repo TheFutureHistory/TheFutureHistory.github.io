@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Gambit</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/images/WGfav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html" class="logo">WORK GAMBIT</a>
+            <ul>
+                <li><a href="calculator.html">Salary Calculator</a></li>
+                <li><a href="contact.html" id="postListing">Post a Listing</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <div id="salary_calc_section">
+        <div id="salary_calc_box">
+            <div class="calc_row">
+                <h3 id="hours_per_week">Hours Per Week</h3>
+                <input type="number" class="amount" placeholder="0" id="sal_hours" onkeyup=sal_calc() onfocus="this.placeholder=''" value="40">
+                <h3 class="dollar_sign">Hrs</h3>
+            </div>
+            <div class="calc_row">
+                <h3>Annually</h3>
+                <input type="number" class="amount" placeholder="0.00" id="sal_annually" onkeyup=sal_calc() onfocus="this.placeholder=''">
+                <h3 class="dollar_sign">$</h3>
+            </div>
+            <div class="calc_row">
+                <h3>Monthly</h3>
+                <input type="number" class="amount" placeholder="0.00" id="sal_monthly" onkeyup=sal_calc() onfocus="this.placeholder=''">
+                <h3 class="dollar_sign">$</h3>
+            </div>
+            <div class="calc_row">
+                <h3>Weekly</h3>
+                <input type="number" class="amount" placeholder="0.00" id="sal_weekly" onkeyup=sal_calc() onfocus="this.placeholder=''">
+                <h3 class="dollar_sign">$</h3>
+            </div>
+            <div class="calc_row">
+                <h3>Daily</h3>
+                <input type="number" class="amount" placeholder="0.00" id="sal_daily" onkeyup=sal_calc() onfocus="this.placeholder=''">
+                <h3 class="dollar_sign">$</h3>
+            </div>
+            <div class="calc_row" id="calc_row6">
+                <h3>Hourly</h3>
+                <input type="number" class="amount" placeholder="0.00" id="sal_hourly" onkeyup=sal_calc() onfocus="this.placeholder=''">
+                <h3 class="dollar_sign">$</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>    
+        function sal_calc() {
+            var A = document.getElementById("sal_annually");
+            var M = document.getElementById("sal_monthly");
+            var W = document.getElementById("sal_weekly");
+            var D = document.getElementById("sal_daily");
+            var H = document.getElementById("sal_hourly");
+            var HPW = document.getElementById("sal_hours");
+    
+            
+            /* ANNUALLY CALCULATION */
+            if (A.value > 0 ){
+                M.placeholder = A.value / 12
+            }
+            if (A.value > 0){
+                W.placeholder = (A.value / 12) / 4
+            }
+            if (A.value > 0){
+                D.placeholder = ((A.value / 12) / 4) / 5
+            }
+            if (A.value > 0){
+                H.placeholder = ((A.value / 12) / 4) / HPW.value
+            }
+    
+            $(document).ready(function() {
+                $("#sal_annually").keydown(function(){
+                    $("#sal_monthly").val("");
+                    $("#sal_weekly").val("");
+                    $("#sal_daily").val("");
+                    $("#sal_hourly").val("");
+                })
+            });
+            /* MONTHLY CALCULATION */
+            if (M.value > 0 ){
+                A.placeholder = M.value * 12
+            }
+            if (M.value > 0){
+                W.placeholder = M.value / 4
+            }
+            if (M.value > 0){
+                D.placeholder = (M.value / 4) / 5
+            }
+            if (M.value > 0){
+                H.placeholder = ( M.value / 4 ) / HPW.value
+            }
+    
+            $(document).ready(function() {
+            $("#sal_monthly").keydown(function(){
+                $("#sal_nnually").val("");
+                $("#sal_eekly").val("");
+                $("#sal_aily").val("");
+                $("#sal_hourly").val("");
+            })
+            });
+            /* WEEKLY CALCULATION */
+            if (W.value > 0 ){
+                A.placeholder = (W.value * 4) * 12
+            }
+            if (W.value > 0){
+                M.placeholder = W.value * 4
+            }
+            if (W.value > 0){
+                D.placeholder = W.value / 5
+            }
+            if (W.value > 0){
+                H.placeholder = W.value / HPW.value
+            }
+    
+            $(document).ready(function() {
+            $("#sal_weekly").keydown(function(){
+                $("#sal_annually").val("");
+                $("#sal_monthly").val("");
+                $("#sal_daily").val("");
+                $("#sal_hourly").val("");
+            })
+            });
+            /* DAILY CALCULATION */
+            if (D.value > 0 ){
+                A.placeholder = (D.value * 5) * 4 * 12
+            }
+            if (D.value > 0){
+                M.placeholder = (D.value * 5) * 4
+            }
+            if (D.value > 0){
+                W.placeholder = D.value * 5
+            }
+            if (D.value > 0){
+                H.placeholder = D.value / HPW.value
+            }
+    
+            $(document).ready(function() {
+            $("#sal_daily").keydown(function(){
+                $("#sal_annually").val("");
+                $("#sal_monthly").val("");
+                $("#sal_weekly").val("");
+                $("#sal_hourly").val("");
+            })
+            });
+            /* HOURLY CALCULATION */
+            if (H.value > 0 ){
+                A.placeholder = ((H.value * HPW.value) * 4) * 12
+            }
+            if (H.value > 0){
+                M.placeholder = (H.value * HPW.value) * 4
+            }
+            if (H.value > 0){
+                W.placeholder = H.value * HPW.value
+            }
+            if (H.value > 0){
+                D.placeholder = H.value * (HPW.value / 5)
+            }
+    
+            $(document).ready(function() {
+            $("#sal_hourly").keydown(function(){
+                $("#sal_annually").val("");
+                $("#sal_monthly").val("");
+                $("#sal_weekly").val("");
+                $("#sal_daily").val("");
+            })
+            });
+    
+    
+        }
+    </script>
+
+</body>
+</html>

@@ -29,18 +29,36 @@
             <li><a href="#about">About</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#contact" id="contactBTN">Contact</a></li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/sebastien-augustin/"
+                id="contactBTN"
+                target="_blank"
+                >LinkedIn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://twitter.com/sebastientalks"
+                id="contactBTN"
+                target="_blank"
+                >Twitter</a
+              >
+            </li>
+            <li>
+              <button
+                class="btn-primary"
+                onclick="
+                  document
+                    .getElementById('contact')
+                    .scrollIntoView({ behavior: 'smooth' })
+                "
+                id="hireBTN"
+              >
+                Let's Work
+              </button>
+            </li>
           </ul>
-          <button
-            class="btn-primary"
-            onclick="
-              document
-                .getElementById('contact')
-                .scrollIntoView({ behavior: 'smooth' })
-            "
-            id="hireBTN"
-          >
-            Let's Work
-          </button>
         </div>
       </div>
     </nav>
@@ -394,6 +412,9 @@
       }
       function openMelinaPalacios() {
         window.open("https://melinapalaciosstylist.netlify.app/", "_blank");
+      }
+      function openWGDirectory() {
+        window.open("./project/WorkGambitApp/", "_self");
       }
       function openStocky() {
         window.open("./project/Stocky/", "_self");

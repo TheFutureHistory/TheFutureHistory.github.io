@@ -1,0 +1,367 @@
+:root {
+--main_color: hsl(217, 100%, 60%);
+--main_color_dark: hsl(217, 73%, 38%);
+--main_color_off: hsl(222, 28%, 60%);
+--main_color_light: 	hsl(223, 100%, 95%);
+--main_color_shadow: 	hsl(223, 50%, 95%, 0.5);
+--white: rgba(255, 255, 255, 1);
+--white75: rgba(255, 255, 255, 0.75);
+--white50: rgba(255, 255, 255, 0.5);
+--white25: rgba(255, 255, 255, 0.25);
+--black: rgba(0, 0, 0, 1);
+--black75: rgba(0, 0, 0, 0.75);
+--black50: rgba(0, 0, 0, 0.5);
+--black25: rgba(0, 0, 0, 0.25);
+--black10: rgba(0, 0, 0, 0.10);
+--fontOne: 0.8rem;
+--fontTwo: clamp(0.8rem, 0.306vw + 0.739rem, 1rem);
+--fontThree: clamp(1rem, 0.382vw + 0.924rem, 1.25rem);
+--fontFour: clamp(1.25rem, 0.382vw + 1.174rem, 1.5rem);
+--fontFive: clamp(1.5rem, 1.53vw + 1.194rem, 2.5rem);
+--fontHuge: clamp(3rem, 3.059vw + 2.388rem, 5rem);
+}
+
+html {
+height: 100%;
+margin: 0;
+font-family: "Poppins", sans-serif;
+font-size: 16px;
+background-color: var(--white);
+overflow: hidden;
+}
+body {
+height: 100%;
+margin: 0;
+font-family: "Poppins", sans-serif;
+background-color: var(--white);
+overflow: auto;
+}
+
+/* HEADER */
+.header {
+position: relative;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+height: 8vh;
+width: 100vw;
+overflow: hidden;
+background-color: var(--white);
+/* background-image: url('images/header_simon_abrams.jpeg');
+background-size: cover;
+background-position: center; */
+z-index: 50;
+}
+/* .header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(51, 129, 255, 0.25);
+    z-index: 60; 
+} */
+nav{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 95%;
+height: 8vh;
+padding: 0px 0px;
+z-index: 100;
+}
+.logo{
+    font-size: var(--fontTwo);
+    font-weight: 600;
+    color: var(--main_color);
+    text-decoration: none;
+}
+.tagline{
+    color: var(--main_color_off);
+    font-size: var(--fontOne);
+}
+nav ul{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+list-style: none;
+height: auto;
+}
+nav ul li a{
+font-size: var(--fontOne);
+text-decoration: none;
+margin-left: 1em;
+padding: 0.5em 1em;
+color: var(--white);
+}
+#postListing{
+background-color: var(--main_color);
+border-radius: 5px;
+}
+
+
+/* MAIN */
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    height: 92vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* FILTERS */
+.filters{
+position: relative;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+height: 10%;
+width: 95%;
+padding: 0% 2.5%;
+margin: auto;
+background-color: var(--white);
+border-style: solid;
+border-width: 0px 0px 1px 0px;
+border-color: var(--main_color_light);
+z-index: 100;
+/* overflow: hidden; */
+}
+.filterSection{
+    font-family: poppins, sans-serif;
+    font-size: var(--fontOne);
+    font-weight: 600;
+    color: var(--main_color);
+    margin: 0px;
+    margin-bottom: 0.5em;
+}
+.filterDivider{
+    height: 50%;
+    border: 0.5px solid var(--main_color_light);
+    margin: 0px
+}
+.filterCheckboxes{
+display: block;
+border: 1px solid var(--black10);
+border-radius: 5px;
+padding: 0.5em 1.25em;
+font-size: var(--fontOne);
+font-weight: 600;
+color: var(--black);
+background-color: transparent;
+cursor: pointer;
+}
+.filterInput{
+display: none;
+}
+input[type="checkbox"]:checked + .filterCheckboxes{
+background-color: var(--main_color);
+color:var(--white);
+border: 1px solid white;
+}
+.resultsAmt{
+    display: flex;
+    justify-content: center;
+    border: 0px solid var(--black10);
+    border-radius: 5px;
+    padding: 0.5em 1.25em;
+    font-size: var(--fontOne);
+    font-weight: 600;
+    color: var(--main_color);
+    background-color: transparent;
+    cursor: pointer;
+    width: 2em;
+}
+
+/* Listings */
+.listings{
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: flex-start;
+flex-wrap: wrap;
+height: 80%;
+width: 96%;
+min-width: 96%;
+padding: 2% 2% 10% 2%;
+overflow-y: scroll;
+overflow-x: hidden;
+}
+.listingInfo{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+width: 29%;
+min-height: 30%;
+margin: 1% 1%;
+padding: 2vh 1%;
+background-color: var(--white);
+border: 1px solid var(--main_color_light);
+border-radius: 12px;
+overflow: hidden;
+transition: 0.3s;
+cursor: pointer;
+}
+.listingInfo:hover{
+    box-shadow: 0px 2px 10px var(--main_color_light);
+
+}
+.listingInfoAd{
+background-color: var(--main_color_light);
+}
+.listingInfo_img,
+.listingInfo_imgMissing{
+flex-basis: 4rem;
+max-width: 4rem;
+height:4rem;
+border: 1px solid var(--main_color_light);
+border-radius: 50px;
+object-fit: contain;
+}
+.listingInfo_imgMissing{
+background-color: var(--main_color_light);
+}
+.listingInfoAd img{
+border: 1px solid var(--white);
+}
+.listingInfo_nameCont{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: left;
+flex-basis: 40%;
+height: 100%;
+}
+.listingInfo_name{
+margin: 0px;
+font-size: var(--fontThree);
+font-weight: 600;
+color: var(--black)
+}
+.listingInfo_site{
+margin: 0px;
+font-size: var(--fontTwo);
+font-weight: 300;
+color: var(--main_color)
+}
+.listingInfo_grid{
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+flex-basis: 50%;
+height: 100%;
+}
+.listingInfo_type,
+.listingInfo_location,
+.listingInfo_remote,
+.listingInfo_privacy{
+display: flex;
+flex-direction: row;
+justify-content: left;
+align-items: left;
+flex-basis: 25%;
+height: 100%;
+margin: 0px;
+font-size: var(--fontOne);
+font-weight: 400;
+color: var(--main_color_dark);
+}
+.listingInfo_type{
+border-width: 0px 0px 0px 0px;
+}
+
+.noMoreListing{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 29%;
+margin: 1% 1%;
+padding: 2vh 1%;
+background-color: var(--white);
+border: 1px solid var(--main_color_light);
+border-radius: 12px;
+overflow: hidden;
+}
+.noMoreListing p {
+    margin: 0px;
+}
+
+
+
+
+/* CALCULATOR */
+#salary_calc_section{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 75vh;
+background-color: var(--main_color_shadow);
+}
+#salary_calc_box{
+display:flex;
+flex-direction: column;
+align-items: center;
+height: 50vh;
+width: 40%;
+border-radius: var(--corner_tiny);
+border: 1px solid var(--main_color_light);
+border-radius: 12px;
+padding: 5vh 5%;
+background-color: var(--white);
+}
+.calc_row{
+height: 10vh;
+width: 100%;
+display: flex;
+flex-direction: row;
+border-style: dotted;
+border-color: var(--main_color_off);
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;
+align-items: center;
+justify-content: center;
+}
+#calc_row6{
+border-bottom: 0px !important;
+}
+.calc_row h3{
+color: var(--main_color_off);
+flex-basis: 50%;
+position: relative;
+margin-left: 5%;
+font-size: var(--fontTwo);
+font-weight: 500;
+margin: 0px 0px;
+}
+.calc_row input{
+color: var(--main_2nd);
+flex-basis: 40%;
+position: relative;
+margin-left: 5%;
+font-size: var(--fontTwo);
+font-weight: 500;
+text-align:right;
+height: 5vh;
+border: none;
+outline: none;
+margin-right: 1%;
+background-color: transparent;
+}
+.calc_row input::placeholder{
+color:var(--main_2nd)
+}
+.dollar_sign{
+flex-basis: 10% !important;
+text-align: left !important;
+}

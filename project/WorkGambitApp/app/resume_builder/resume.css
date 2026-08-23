@@ -1,0 +1,123 @@
+:root {
+--main_color: hsl(218, 74%, 15%);
+--main_color_dark: hsl(217, 73%, 38%);
+--main_color_off: hsl(222, 28%, 60%);
+--main_color_light: hsl(223, 100%, 95%);
+--main_color_shadow: hsl(223, 50%, 95%, 0.5);
+--white: rgba(255, 255, 255, 1);
+--white75: rgba(255, 255, 255, 0.75);
+--white50: rgba(255, 255, 255, 0.5);
+--white25: rgba(255, 255, 255, 0.25);
+--black: rgba(0, 0, 0, 1);
+--black75: rgba(0, 0, 0, 0.75);
+--black50: rgba(0, 0, 0, 0.5);
+--black25: rgba(0, 0, 0, 0.25);
+--black10: rgba(0, 0, 0, 0.1);
+--fontOne: 0.8rem;
+--fontTwo: clamp(0.8rem, 0.306vw + 0.739rem, 1rem);
+--fontThree: clamp(1rem, 0.382vw + 0.924rem, 1.25rem);
+--fontFour: clamp(1.25rem, 0.382vw + 1.174rem, 1.5rem);
+--fontFive: clamp(1.5rem, 1.53vw + 1.194rem, 2.5rem);
+--fontHuge: clamp(3rem, 3.059vw + 2.388rem, 5rem);
+}
+html {
+height: 100%;
+margin: 0;
+background: linear-gradient(135deg, var(--white) 0%, hsl(223, 100%, 98%) 100%);
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+  .container{
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+  }
+.resumeBuilderBody{
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.resume-page {
+  width: 210mm;
+  height: auto;
+  align-self: flex-start;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.skill-tag {
+  transition: all 0.2s;
+}
+.language-tag{
+     transition: all 0.2s; 
+}
+.skill-tag:hover {
+  transform: translateY(-1px);
+}
+.language-tag:hover {
+  transform: translateY(-1px);
+}
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+.input-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.personalInfo{
+  margin-top: 0.5rem !important;
+}
+.experienceInput,
+.educationInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+#skillInput, #languageInput{
+    margin-bottom: 0px !important;
+    border-radius: 0.5rem 0px 0px 0.5rem;
+}
+#skillInput:focus, #languageInput:focus{
+    margin-bottom: 0px !important;
+    border-radius: 0.5rem 0px 0px 0.5rem;
+}
+#addSkill, #addLanguage,
+#downloadBtn{
+    background-color: var(--main_color_dark);
+            transition: 0.3s;
+        cursor: pointer;
+}
+#addSkill:hover, #addLanguage:hover,
+#downloadBtn:hover{
+    background-color: var(--main_color);
+}
+.add-btn {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--main_color);
+  font-weight: 500;
+  transition: 0.3s;
+}
+.add-btn:hover {
+  color: #312e81;
+}
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .resume-page {
+    box-shadow: none;
+    margin: 0;
+    width: auto;
+    height: auto;
+  }
+}
