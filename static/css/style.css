@@ -234,7 +234,8 @@ body {
 /* Features Intro */
 .features-intro {
   padding: 0px 0px 30px 0px;
-  background: var(--white);
+  /* background: var(--white); */
+  background-color: var(--gray-100);
 }
 .features-grid {
   display: grid;
@@ -251,6 +252,7 @@ body {
     transform 0.3s,
     box-shadow 0.3s;
   border: 1px solid var(--gray-200);
+  background-color: var(--secondary-color);
 }
 .feature-card:hover {
   transform: translateY(-1px);
@@ -298,7 +300,8 @@ body {
 /* Solution Section */
 .solution-section {
   padding: 80px 0px 10px 0px;
-  background: var(--secondary-color);
+  /* background: var(--secondary-color); */
+  background-color: var(--gray-100);
 }
 
 .solution-cards {
