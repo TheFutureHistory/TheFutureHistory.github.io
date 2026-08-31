@@ -1,0 +1,3165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daybook · To-Do Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="icon" type="image/x-icon" href="/images/DB_logo.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #16213a;
+        --bg-soft: #1e2c4a;
+        --paper: #fbf8f1;
+        --paper-dim: #f1ecdf;
+        --ink: #1b2a4a;
+        --gray: #e3e3e3;
+        --line: #ded6c1;
+        --accent: #1e28e6;
+        --accent-ink: #cdddfa;
+        --sage: #5f8b6e;
+        --sage-soft: #e4eee6;
+        --coral: #dd5b44;
+        --coral-soft: #fbe6e1;
+        --blue-soft: #e7eef7;
+        --amber: #c98a1f;
+        --amber-soft: #faf0dc;
+        --radius: 14px;
+        --shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: white;
+        color: var(--ink);
+        min-height: 100vh;
+      }
+      #app {
+        display: flex;
+        flex-direction: column;
+        max-width: 100vw;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+      /* Sidebar */
+      .sidebar {
+        width: 100vw;
+        flex-shrink: 0;
+        padding: 2vh 5vw;
+        color: var(--paper);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+      .brand {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: black;
+      }
+      .brand .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-ink);
+      }
+      .brand-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 300;
+        margin-top: 2px;
+        letter-spacing: 0.03em;
+        color: black;
+      }
+      nav {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .nav-btn {
+        all: unset;
+        cursor: pointer;
+        padding: 12px 16px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 300;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        border: 1px solid var(--gray);
+      }
+      .nav-btn:hover {
+        opacity: 0.5;
+      }
+      .nav-btn.active {
+        background: black;
+        color: white;
+        border: 1px solid black;
+      }
+      .nav-btn .count {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        opacity: 0.85;
+        margin-left: 10px;
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .add-btn {
+        all: unset;
+        cursor: pointer;
+        background: black;
+        color: white;
+        font-weight: 700;
+        font-size: 14px;
+        font-family: "Space Grotesk", sans-serif;
+        padding: 12px 30px;
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.12s;
+      }
+      .add-btn:hover {
+        opacity: 0.9;
+      }
+      .icon-only-btn {
+        all: unset;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        border: 1px solid black;
+        color: black;
+        font-size: 16px;
+      }
+      .icon-only-btn:hover {
+        background: black;
+        color: white;
+      }
+
+      /* Main content */
+      .content {
+        flex: 1;
+        background: transparent;
+        border-radius: 22px;
+        margin: 14px 5vw;
+        padding: 34px 40px;
+        overflow-y: auto;
+        border: 1px solid var(--gray);
+      }
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+        animation: fadeIn 0.25s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .view-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .view-header h1 {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 26px;
+        margin: 0;
+        letter-spacing: -0.01em;
+        color: black;
+      }
+      .view-header .sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: black;
+      }
+
+      .section-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: black;
+        margin: 26px 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .section-label:first-of-type {
+        margin-top: 0;
+      }
+
+      .empty {
+        border: 1.5px dashed var(--gray);
+        border-radius: var(--radius);
+        padding: 26px;
+        color: black;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      /* Search input */
+      .search-input-wrap {
+        margin-bottom: 10px;
+      }
+      .search-input-wrap input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1.5px solid var(--gray);
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        color: var(--ink);
+      }
+      .search-input-wrap input:focus {
+        outline: 2px solid var(--accent-ink);
+        outline-offset: 1px;
+      }
+
+      /* Task cards */
+      .task-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .task-card {
+        background: #fff;
+        border: 1px solid var(--gray);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        transition: box-shadow 0.15s;
+        cursor: pointer;
+      }
+      .task-card:hover {
+        box-shadow: 0 4px 14px rgba(27, 42, 74, 0.08);
+      }
+      .task-card.overdue {
+        border-color: rgba(221, 91, 68, 0.4);
+        background: var(--coral-soft);
+      }
+      .task-card.complete {
+        background: var(--sage-soft);
+        border-color: rgba(95, 139, 110, 0.35);
+      }
+      .task-card.archived {
+        opacity: 0.65;
+      }
+      .task-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .task-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0;
+        color: black;
+      }
+      .task-title:hover {
+        text-decoration: underline dotted;
+      }
+      .badge-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 4px;
+      }
+      .badge {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10.5px;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: var(--blue-soft);
+        color: #34517f;
+        font-weight: 600;
+      }
+      .badge.daily {
+        background: var(--accent-ink);
+        color: var(--accent);
+      }
+      .badge.overdue {
+        background: var(--coral);
+        color: #fff;
+      }
+      .badge.done {
+        background: var(--sage);
+        color: #fff;
+      }
+      .badge.edited {
+        background: var(--amber-soft);
+        color: var(--amber);
+      }
+      .badge.archived-badge {
+        background: var(--gray);
+        color: #555;
+      }
+      .task-actions {
+        display: flex;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+      .icon-btn {
+        all: unset;
+        cursor: pointer;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 7px;
+        color: var(--gray);
+        font-size: 13px;
+        border: 1px solid var(--gray);
+        padding: 2px 10px;
+      }
+      .icon-btn:hover {
+        border: 1px solid black;
+        color: black;
+      }
+
+      .checklist {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        cursor: default;
+      }
+      .checklist-item.sub {
+        margin-left: 24px;
+      }
+      .checklist-item input[type="checkbox"] {
+        appearance: none;
+        width: 17px;
+        height: 17px;
+        border: 1.5px solid var(--gray);
+        border-radius: 5px;
+        cursor: pointer;
+        display: grid;
+        place-content: center;
+        flex-shrink: 0;
+        background: #fff;
+      }
+      .checklist-item input[type="checkbox"]:checked {
+        background: var(--sage);
+        border-color: var(--sage);
+      }
+      .checklist-item input[type="checkbox"]:checked::after {
+        content: "✓";
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .checklist-item label {
+        cursor: pointer;
+      }
+      .checklist-item.done label {
+        color: black;
+      }
+
+      .progress-track {
+        height: 5px;
+        background: var(--accent-ink);
+        border-radius: 10px;
+        margin-top: 10px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: var(--sage);
+        border-radius: 10px;
+        transition: width 0.2s;
+      }
+
+      /* Notes */
+      .notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 12px;
+      }
+      .note-card {
+        background: #fff;
+        border: 1px solid var(--gray);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: box-shadow 0.15s;
+        cursor: pointer;
+      }
+      .note-card:hover {
+        box-shadow: 0 4px 14px rgba(27, 42, 74, 0.08);
+      }
+      .note-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .note-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0;
+      }
+      .note-title:hover {
+        text-decoration: underline dotted;
+      }
+      .note-text {
+        font-size: 13px;
+        color: var(--ink);
+        white-space: pre-wrap;
+        line-height: 1.5;
+        max-height: 140px;
+        overflow-y: auto;
+      }
+      .note-date {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10px;
+        color: var(--gray);
+      }
+      .field textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 9px;
+        border: 1.5px solid var(--gray);
+        background: #fff;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        color: var(--ink);
+        resize: vertical;
+      }
+      .field textarea:focus {
+        outline: 2px solid var(--accent-ink);
+        outline-offset: 1px;
+      }
+
+      /* Calendar */
+      .cal-view-toggle {
+        margin-bottom: 14px;
+        max-width: 220px;
+      }
+      .cal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .cal-nav {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .cal-nav button {
+        all: unset;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        color: white;
+      }
+      .cal-nav button:hover {
+        background: var(--accent-ink);
+        color: var(--accent);
+      }
+      .cal-month {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        min-width: 170px;
+        text-align: center;
+      }
+      .cal-today-btn {
+        all: unset;
+        cursor: pointer;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        padding: 5px 10px;
+        border-radius: 100px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 700;
+      }
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+      }
+      .cal-weekday {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 10.5px;
+        color: var(--gray);
+        text-align: center;
+        padding-bottom: 4px;
+        text-transform: uppercase;
+      }
+      .cal-day {
+        all: unset;
+        cursor: pointer;
+        aspect-ratio: 1/0.85;
+        border-radius: 10px;
+        border: 1px solid var(--gray);
+        background: #fff;
+        padding: 6px 7px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+        transition:
+          transform 0.12s,
+          box-shadow 0.12s;
+      }
+      .cal-day:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(27, 42, 74, 0.1);
+      }
+      .cal-day.other-month {
+        opacity: 0.35;
+      }
+      .cal-day.today {
+        border: 1.5px solid var(--accent);
+      }
+      .cal-day.status-complete {
+        background: var(--sage-soft);
+      }
+      .cal-day.status-partial {
+        background: var(--blue-soft);
+      }
+      .cal-day.status-pending {
+        background: var(--accent-ink);
+      }
+      .cal-day-num {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .cal-day-seal {
+        align-self: flex-end;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--sage);
+        color: #fff;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .cal-day-dots {
+        display: flex;
+        gap: 3px;
+        align-self: flex-end;
+      }
+      .cal-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        opacity: 0.55;
+      }
+
+      .legend {
+        display: flex;
+        gap: 16px;
+        margin-top: 4px;
+        flex-wrap: wrap;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: black;
+      }
+      .legend-swatch {
+        width: 12px;
+        height: 12px;
+        border-radius: 4px;
+      }
+
+      /* Week / agenda view */
+      .week-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .week-days {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .week-day-block {
+        border: 1px solid var(--gray);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+      }
+      .week-day-block.is-today {
+        border-color: var(--accent);
+      }
+      .week-day-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .week-day-head .wd-name {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .week-day-head .wd-date {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: black;
+      }
+
+      /* Stats */
+      .stat-toggle {
+        max-width: 220px;
+        margin-bottom: 18px;
+      }
+      .stat-summary {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+      }
+      .stat-tile {
+        flex: 1;
+        min-width: 130px;
+        border: 1px solid var(--gray);
+        border-radius: var(--radius);
+        padding: 14px 16px;
+        background: #fff;
+      }
+      .stat-tile .num {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+      }
+      .stat-tile .lbl {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 180px;
+        border-bottom: 1.5px solid var(--gray);
+        padding-bottom: 4px;
+      }
+      .bar-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        gap: 4px;
+      }
+      .bar-fill {
+        width: 100%;
+        border-radius: 5px 5px 2px 2px;
+        background: var(--accent-ink);
+        min-height: 3px;
+        position: relative;
+      }
+      .bar-fill.complete {
+        background: var(--sage);
+      }
+      .bar-fill.partial {
+        background: var(--accent);
+      }
+      .bar-fill.none {
+        background: var(--paper-dim);
+      }
+      .bar-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9.5px;
+        color: black;
+        margin-top: 4px;
+        text-align: center;
+      }
+      .bar-pct {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 9px;
+        color: black;
+      }
+
+      /* Modal */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 25, 45, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+        padding: 20px;
+      }
+      .modal-overlay.hidden {
+        display: none;
+      }
+      .modal {
+        background: white;
+        border-radius: 18px;
+        border: 1px solid var(--gray);
+        width: 100%;
+        max-width: 460px;
+        max-height: 88vh;
+        overflow-y: auto;
+        padding: 26px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+      }
+      .modal h2 {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0 0 18px;
+        font-size: 20px;
+      }
+      .modal p.modal-desc {
+        font-size: 13px;
+        color: #555;
+        margin: -10px 0 18px;
+        line-height: 1.5;
+      }
+      .field {
+        margin-bottom: 16px;
+      }
+      .field label {
+        display: block;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: black;
+        margin-bottom: 6px;
+      }
+      .field input[type="text"],
+      .field input[type="date"],
+      .field input[type="number"],
+      .field select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 9px;
+        border: 1.5px solid var(--gray);
+        background: #fff;
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        color: var(--ink);
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: 2px solid var(--accent-ink);
+        outline-offset: 1px;
+      }
+      .checklist-editor {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+      .checklist-editor-row {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .checklist-editor-row.is-sub {
+        margin-left: 26px;
+      }
+      .checklist-editor-row input {
+        flex: 1;
+      }
+      .drag-handle {
+        cursor: grab;
+        color: var(--gray);
+        font-size: 13px;
+        padding: 0 2px;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .checklist-editor-row.dragging {
+        opacity: 0.4;
+      }
+      .row-sub,
+      .row-remove {
+        all: unset;
+        cursor: pointer;
+        width: 30px;
+        height: 36px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      .row-sub {
+        background: var(--blue-soft);
+        color: #34517f;
+      }
+      .row-remove {
+        background: var(--coral-soft);
+        color: var(--coral);
+      }
+      .add-row-btn {
+        all: unset;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 300;
+        color: black;
+        padding: 10px 2px;
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 8px;
+        margin-top: 10px;
+        text-align: center;
+        transition: 0.3s;
+      }
+      .add-row-btn:hover {
+        background: black;
+        color: white;
+      }
+      .segmented {
+        display: flex;
+        border: 1.5px solid var(--gray);
+        border-radius: 9px;
+        overflow: hidden;
+      }
+      .segmented button {
+        all: unset;
+        cursor: pointer;
+        flex: 1;
+        text-align: center;
+        padding: 9px 0;
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--gray);
+      }
+      .segmented button.active {
+        background: black;
+        color: white;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+      .chip {
+        all: unset;
+        cursor: pointer;
+        padding: 7px 12px;
+        border-radius: 100px;
+        border: 1.5px solid var(--gray);
+        font-size: 12.5px;
+        color: black;
+        font-family: "Inter", sans-serif;
+      }
+      .chip.active {
+        background: black;
+        border-color: black;
+        color: white;
+      }
+      .days-picker {
+        display: flex;
+        gap: 5px;
+        margin: 8px 0;
+      }
+      .day-toggle {
+        all: unset;
+        cursor: pointer;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1.5px solid var(--gray);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11.5px;
+        font-family: "IBM Plex Mono", monospace;
+      }
+      .day-toggle.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+      .inline-hint {
+        font-size: 12px;
+        color: #666;
+        margin-top: 6px;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .btn {
+        all: unset;
+        cursor: pointer;
+        padding: 11px 0;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 300;
+        font-family: "Space Grotesk", sans-serif;
+        flex: 1;
+      }
+      .btn.primary {
+        background: black;
+        color: white;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: black;
+        border: 1px solid var(--gray);
+      }
+      .btn.stack {
+        flex: none;
+        width: 100%;
+        padding: 14px 0;
+      }
+
+      .scope-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .scope-option {
+        all: unset;
+        cursor: pointer;
+        border: 1.5px solid var(--gray);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+      .scope-option:hover {
+        border-color: var(--accent);
+        background: var(--blue-soft);
+      }
+      .scope-option .so-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        display: block;
+        margin-bottom: 3px;
+      }
+      .scope-option .so-sub {
+        font-size: 12.5px;
+        color: #666;
+      }
+
+      /* Day panel */
+      .day-panel {
+        position: fixed;
+        right: 24px;
+        top: 24px;
+        bottom: 24px;
+        width: 50vw;
+        background: white;
+        border: 1px solid var(--gray);
+        border-radius: 18px;
+        padding: 22px;
+        overflow-y: auto;
+        z-index: 40;
+      }
+      .day-panel.hidden {
+        display: none;
+      }
+      .day-panel-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .day-panel-head h3 {
+        font-family: "Space Grotesk", sans-serif;
+        margin: 0;
+        font-size: 18px;
+      }
+      .day-panel-head .close {
+        all: unset;
+        cursor: pointer;
+        font-size: 18px;
+        color: var(--gray);
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 26px;
+        transform: translateX(-50%);
+        background: black;
+        color: white;
+        padding: 12px 12px 12px 18px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 13.5px;
+        z-index: 60;
+        box-shadow: var(--shadow);
+      }
+      .toast.hidden {
+        display: none;
+      }
+      .toast button {
+        all: unset;
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--accent-ink);
+        padding: 6px 10px;
+        border-radius: 8px;
+      }
+      .toast button:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      @media (max-width: 880px) {
+        #app {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          flex-direction: row;
+          align-items: center;
+          padding: 16px 18px;
+          gap: 12px;
+        }
+        nav {
+          flex-direction: row;
+        }
+        .content {
+          border-radius: 0;
+          margin: 0;
+        }
+        .day-panel {
+          left: 14px;
+          right: 14px;
+          width: auto;
+          top: auto;
+          bottom: 14px;
+          max-height: 60vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <aside class="sidebar">
+        <div>
+          <div class="brand"><span class="dot"></span>Daybook</div>
+          <div class="brand-sub">Tasks &amp; Calendar</div>
+        </div>
+        <nav>
+          <button class="nav-btn active" data-view="today">
+            Today <span class="count" id="count-today"></span>
+          </button>
+          <button class="nav-btn" data-view="calendar">Calendar</button>
+          <button class="nav-btn" data-view="all">
+            All Tasks <span class="count" id="count-all"></span>
+          </button>
+          <button class="nav-btn" data-view="notes">
+            Notes <span class="count" id="count-notes"></span>
+          </button>
+          <button class="nav-btn" data-view="search">Search</button>
+          <button class="nav-btn" data-view="stats">Stats</button>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="icon-only-btn"
+            id="open-settings"
+            title="Export / import data"
+          >
+            ⚙
+          </button>
+          <button class="add-btn" id="open-add">Add Task</button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <section id="view-today" class="view active">
+          <div class="view-header">
+            <h1>Today</h1>
+            <div class="sub" id="today-date"></div>
+          </div>
+          <div id="overdue-block"></div>
+          <div class="section-label">Due today</div>
+          <div id="today-list" class="task-list"></div>
+        </section>
+
+        <section id="view-calendar" class="view">
+          <div class="view-header">
+            <div>
+              <h1>Calendar</h1>
+              <div class="legend">
+                <div class="legend-item">
+                  <span
+                    class="legend-swatch"
+                    style="
+                      background: var(--sage-soft);
+                      border: 1px solid var(--sage);
+                    "
+                  ></span
+                  >All done
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-swatch"
+                    style="
+                      background: var(--blue-soft);
+                      border: 1px solid #9db4d6;
+                    "
+                  ></span
+                  >In progress
+                </div>
+                <div class="legend-item">
+                  <span
+                    class="legend-swatch"
+                    style="
+                      background: var(--paper-dim);
+                      border: 1px solid var(--line);
+                    "
+                  ></span
+                  >Not started
+                </div>
+              </div>
+            </div>
+            <div class="sub">click a day to view tasks</div>
+          </div>
+
+          <div class="segmented cal-view-toggle" id="cal-mode-segmented">
+            <button type="button" data-val="month" class="active">Month</button>
+            <button type="button" data-val="week">Week</button>
+          </div>
+
+          <div id="cal-month-mode">
+            <div class="cal-header">
+              <div class="cal-nav">
+                <button id="cal-prev">‹</button>
+                <div class="cal-month" id="cal-month-label"></div>
+                <button id="cal-next">›</button>
+              </div>
+              <button class="cal-today-btn" id="cal-today">Today</button>
+            </div>
+            <div class="cal-grid" id="cal-weekdays"></div>
+            <div class="cal-grid" id="cal-grid" style="margin-top: 6px"></div>
+          </div>
+
+          <div id="cal-week-mode" style="display: none">
+            <div class="week-nav">
+              <div class="cal-nav">
+                <button id="week-prev">‹</button>
+                <div class="cal-month" id="week-label"></div>
+                <button id="week-next">›</button>
+              </div>
+              <button class="cal-today-btn" id="week-today">This week</button>
+            </div>
+            <div class="week-days" id="week-days"></div>
+          </div>
+        </section>
+
+        <section id="view-all" class="view">
+          <div class="view-header">
+            <h1>All Tasks</h1>
+            <div class="sub" id="all-sub"></div>
+          </div>
+          <div class="section-label">Upcoming (one-time)</div>
+          <div id="all-upcoming" class="task-list"></div>
+          <div class="section-label">Recurring</div>
+          <div id="all-daily" class="task-list"></div>
+          <div class="section-label">Completed</div>
+          <div id="all-completed" class="task-list"></div>
+          <div class="section-label">Archived</div>
+          <div id="all-archived" class="task-list"></div>
+        </section>
+
+        <section id="view-notes" class="view">
+          <div class="view-header">
+            <h1>Notes</h1>
+            <div class="sub" id="notes-sub"></div>
+          </div>
+          <button
+            class="add-btn"
+            id="open-add-note"
+            style="margin-bottom: 20px"
+          >
+            Add Note
+          </button>
+          <div id="notes-list" class="notes-grid"></div>
+        </section>
+
+        <section id="view-search" class="view">
+          <div class="view-header">
+            <h1>Search</h1>
+            <div class="sub">across tasks &amp; notes</div>
+          </div>
+          <div class="search-input-wrap">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search titles, checklist items, note text…"
+            />
+          </div>
+          <div class="section-label">Tasks</div>
+          <div id="search-tasks" class="task-list"></div>
+          <div class="section-label">Notes</div>
+          <div id="search-notes" class="notes-grid"></div>
+        </section>
+
+        <section id="view-stats" class="view">
+          <div class="view-header">
+            <h1>Stats</h1>
+            <div class="sub">completion rate over time</div>
+          </div>
+          <div class="segmented stat-toggle" id="stat-range-segmented">
+            <button type="button" data-val="7" class="active">Week</button>
+            <button type="button" data-val="30">Month</button>
+          </div>
+          <div class="stat-summary" id="stat-summary"></div>
+          <div class="bar-chart" id="stat-chart"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-overlay hidden" id="modal-overlay">
+      <div class="modal">
+        <h2 id="modal-title">New Task</h2>
+        <form id="task-form">
+          <div class="field">
+            <label for="f-title">Title</label>
+            <input
+              type="text"
+              id="f-title"
+              placeholder="e.g. Prep client presentation"
+              required
+            />
+          </div>
+          <div class="field">
+            <label>Checklist</label>
+            <div class="checklist-editor" id="checklist-editor"></div>
+            <button type="button" class="add-row-btn" id="add-checklist-row">
+              Add Item
+            </button>
+          </div>
+          <div class="field">
+            <label>Schedule</label>
+            <div class="segmented" id="schedule-segmented">
+              <button type="button" data-val="once" class="active">
+                One-time
+              </button>
+              <button type="button" data-val="recurring">Recurring</button>
+            </div>
+          </div>
+
+          <div id="recurring-fields" style="display: none">
+            <div class="field">
+              <label>Repeats</label>
+              <div class="chip-row" id="pattern-chips">
+                <button type="button" class="chip active" data-val="daily">
+                  Every day
+                </button>
+                <button type="button" class="chip" data-val="weekdays">
+                  Weekdays
+                </button>
+                <button type="button" class="chip" data-val="weekends">
+                  Weekends
+                </button>
+                <button type="button" class="chip" data-val="custom">
+                  Custom days
+                </button>
+                <button type="button" class="chip" data-val="everyN">
+                  Every N days
+                </button>
+                <button type="button" class="chip" data-val="monthly">
+                  Monthly
+                </button>
+                <button type="button" class="chip" data-val="yearly">
+                  Yearly
+                </button>
+              </div>
+              <div
+                class="days-picker"
+                id="custom-days-row"
+                style="display: none"
+              ></div>
+              <div id="everyn-row" style="display: none">
+                <input type="number" id="f-interval" min="2" value="2" />
+                <div class="inline-hint">
+                  Repeats every N days starting from the start date.
+                </div>
+              </div>
+              <div class="inline-hint" id="pattern-hint"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label id="date-label" for="f-date">Due date</label>
+            <input type="date" id="f-date" required />
+          </div>
+
+          <div class="field" id="end-condition-field" style="display: none">
+            <label>Ends</label>
+            <div class="segmented" id="end-segmented">
+              <button type="button" data-val="never" class="active">
+                Never
+              </button>
+              <button type="button" data-val="until">On date</button>
+              <button type="button" data-val="count">After N times</button>
+            </div>
+            <input
+              type="date"
+              id="f-end-date"
+              style="display: none; margin-top: 8px"
+            />
+            <input
+              type="number"
+              id="f-end-count"
+              min="1"
+              value="10"
+              style="display: none; margin-top: 8px"
+            />
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn ghost" id="modal-cancel">
+              Cancel
+            </button>
+            <button type="submit" class="btn primary" id="modal-save">
+              Save Task
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="scope-modal-overlay">
+      <div class="modal">
+        <h2>Save changes to…</h2>
+        <p class="modal-desc">
+          This is a recurring task. Choose whether these edits apply to just the
+          day you're viewing or to every occurrence.
+        </p>
+        <div class="scope-options">
+          <button type="button" class="scope-option" id="scope-this-day">
+            <span class="so-title">Just this day</span>
+            <span class="so-sub" id="scope-this-day-sub"
+              >Only changes the occurrence on this date</span
+            >
+          </button>
+          <button type="button" class="scope-option" id="scope-all-days">
+            <span class="so-title">All days</span>
+            <span class="so-sub">Changes the entire recurring task</span>
+          </button>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn ghost" id="scope-cancel">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="note-modal-overlay">
+      <div class="modal">
+        <h2 id="note-modal-title">New Note</h2>
+        <form id="note-form">
+          <div class="field">
+            <label for="n-title">Title</label>
+            <input
+              type="text"
+              id="n-title"
+              placeholder="e.g. Meeting takeaways"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="n-text">Text</label>
+            <textarea
+              id="n-text"
+              rows="6"
+              placeholder="Write your note..."
+            ></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn ghost" id="note-modal-cancel">
+              Cancel
+            </button>
+            <button type="submit" class="btn primary" id="note-modal-save">
+              Save Note
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="settings-modal-overlay">
+      <div class="modal">
+        <h2>Settings</h2>
+        <p class="modal-desc">
+          All data is stored only in this browser. Export a backup regularly, or
+          before clearing your browser data / switching devices.
+        </p>
+        <button
+          type="button"
+          class="btn primary stack"
+          id="export-btn"
+          style="margin-bottom: 12px"
+        >
+          Export data (.json)
+        </button>
+        <button type="button" class="btn ghost stack" id="import-btn">
+          Import data (.json)
+        </button>
+        <input
+          type="file"
+          id="import-file"
+          accept="application/json"
+          style="display: none"
+        />
+        <div class="modal-actions">
+          <button type="button" class="btn ghost" id="settings-close">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-panel hidden" id="day-panel">
+      <div class="day-panel-head">
+        <h3 id="day-panel-title"></h3>
+        <button class="close" id="day-panel-close">✕</button>
+      </div>
+      <div id="day-panel-body" class="task-list"></div>
+    </div>
+
+    <div class="toast hidden" id="toast">
+      <span id="toast-text"></span>
+      <button id="toast-undo">UNDO</button>
+    </div>
+
+    <script>
+      (function () {
+        const STORAGE_KEY = "daybook_todos_v1";
+        const COMPLETIONS_KEY = "daybook_completions_v1";
+        const NOTES_KEY = "daybook_notes_v1";
+        const OVERRIDES_KEY = "daybook_overrides_v1";
+
+        let todos = load(STORAGE_KEY, []);
+        let completions = load(COMPLETIONS_KEY, {});
+        let notes = load(NOTES_KEY, []);
+        let overrides = load(OVERRIDES_KEY, {});
+
+        let editingId = null;
+        let editingDateStr = null; // date context the edit modal was opened from (relevant for recurring tasks)
+        let editingNoteId = null;
+        let calCursor = new Date();
+        let weekCursor = new Date();
+        let selectedDay = null;
+        let calMode = "month"; // 'month' | 'week'
+        let statRange = 7;
+        let pendingSubmit = null; // holds {title, items, date, pattern fields...} awaiting scope choice
+        let pendingDeletion = null; // {kind:'todo'|'note', item, index, timer}
+
+        function load(key, fallback) {
+          try {
+            const v = JSON.parse(localStorage.getItem(key));
+            return v || fallback;
+          } catch (e) {
+            return fallback;
+          }
+        }
+        function persist() {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+          localStorage.setItem(COMPLETIONS_KEY, JSON.stringify(completions));
+        }
+        function persistNotes() {
+          localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+        }
+        function persistOverrides() {
+          localStorage.setItem(OVERRIDES_KEY, JSON.stringify(overrides));
+        }
+        function uid() {
+          return Math.random().toString(36).slice(2, 10);
+        }
+        function fmtDate(d) {
+          const y = d.getFullYear(),
+            m = String(d.getMonth() + 1).padStart(2, "0"),
+            day = String(d.getDate()).padStart(2, "0");
+          return `${y}-${m}-${day}`;
+        }
+        function todayStr() {
+          return fmtDate(new Date());
+        }
+        function niceDate(dateStr) {
+          const [y, m, d] = dateStr.split("-").map(Number);
+          return new Date(y, m - 1, d).toLocaleDateString(undefined, {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+          });
+        }
+        function parseDate(dateStr) {
+          const [y, m, d] = dateStr.split("-").map(Number);
+          return new Date(y, m - 1, d);
+        }
+        function dayOfWeek(dateStr) {
+          return parseDate(dateStr).getDay();
+        }
+        function diffDays(aStr, bStr) {
+          const da = parseDate(aStr),
+            db = parseDate(bStr);
+          const a = Date.UTC(da.getFullYear(), da.getMonth(), da.getDate());
+          const b = Date.UTC(db.getFullYear(), db.getMonth(), db.getDate());
+          return Math.round((b - a) / 86400000);
+        }
+        function daysInMonth(year, monthIdx) {
+          return new Date(year, monthIdx + 1, 0).getDate();
+        }
+        function addDaysStr(dateStr, n) {
+          const d = parseDate(dateStr);
+          d.setDate(d.getDate() + n);
+          return fmtDate(d);
+        }
+
+        // ---------- Recurrence logic ----------
+        const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        function isRecurring(todo) {
+          return todo.recurrence !== "once";
+        }
+
+        function isApplicablePattern(todo, dateStr) {
+          if (dateStr < todo.date) return false;
+          switch (todo.recurrence) {
+            case "once":
+              return todo.date === dateStr;
+            case "daily":
+              return true;
+            case "weekdays": {
+              const dw = dayOfWeek(dateStr);
+              return dw >= 1 && dw <= 5;
+            }
+            case "weekends": {
+              const dw = dayOfWeek(dateStr);
+              return dw === 0 || dw === 6;
+            }
+            case "custom":
+              return (todo.customDays || []).includes(dayOfWeek(dateStr));
+            case "everyN": {
+              const n = Math.max(1, todo.interval || 1);
+              return diffDays(todo.date, dateStr) % n === 0;
+            }
+            case "monthly": {
+              const start = parseDate(todo.date);
+              const target = parseDate(dateStr);
+              const wantDay = start.getDate();
+              const lastDay = daysInMonth(
+                target.getFullYear(),
+                target.getMonth(),
+              );
+              return target.getDate() === Math.min(wantDay, lastDay);
+            }
+            case "yearly": {
+              const start = parseDate(todo.date);
+              const target = parseDate(dateStr);
+              if (start.getMonth() === 1 && start.getDate() === 29) {
+                const leap =
+                  target.getFullYear() % 4 === 0 &&
+                  (target.getFullYear() % 100 !== 0 ||
+                    target.getFullYear() % 400 === 0);
+                const wantDay = leap ? 29 : 28;
+                return target.getMonth() === 1 && target.getDate() === wantDay;
+              }
+              return (
+                target.getMonth() === start.getMonth() &&
+                target.getDate() === start.getDate()
+              );
+            }
+            default:
+              return false;
+          }
+        }
+        function countOccurrencesUpTo(todo, dateStr) {
+          let cursor = todo.date,
+            count = 0,
+            guard = 0;
+          while (cursor <= dateStr && guard < 20000) {
+            if (isApplicablePattern(todo, cursor)) count++;
+            cursor = addDaysStr(cursor, 1);
+            guard++;
+          }
+          return count;
+        }
+        function isApplicable(todo, dateStr) {
+          if (todo.archived) return false;
+          if (!isApplicablePattern(todo, dateStr)) return false;
+          if (todo.endType === "until" && todo.endDate)
+            return dateStr <= todo.endDate;
+          if (todo.endType === "count" && todo.endCount)
+            return countOccurrencesUpTo(todo, dateStr) <= todo.endCount;
+          return true;
+        }
+        function scheduleLabel(todo) {
+          switch (todo.recurrence) {
+            case "once":
+              return `Due ${todo.date}`;
+            case "daily":
+              return `Every day · since ${todo.date}`;
+            case "weekdays":
+              return `Weekdays · since ${todo.date}`;
+            case "weekends":
+              return `Weekends · since ${todo.date}`;
+            case "custom": {
+              const names = (todo.customDays || [])
+                .slice()
+                .sort()
+                .map((d) => DAY_NAMES[d])
+                .join(", ");
+              return `${names || "Custom"} · since ${todo.date}`;
+            }
+            case "everyN":
+              return `Every ${todo.interval || 1} days · since ${todo.date}`;
+            case "monthly":
+              return `Monthly · since ${todo.date}`;
+            case "yearly":
+              return `Yearly · since ${todo.date}`;
+            default:
+              return todo.date;
+          }
+        }
+
+        // ---------- Overrides (single-occurrence edits) ----------
+        function getOverride(todoId, dateStr) {
+          return overrides[todoId] && overrides[todoId][dateStr];
+        }
+        function effTitle(todo, dateStr) {
+          const ov = isRecurring(todo) ? getOverride(todo.id, dateStr) : null;
+          return ov ? ov.title : todo.title;
+        }
+        function effChecklist(todo, dateStr) {
+          const ov = isRecurring(todo) ? getOverride(todo.id, dateStr) : null;
+          return ov ? ov.checklist : todo.checklist;
+        }
+        function hasOverride(todo, dateStr) {
+          return !!(isRecurring(todo) && getOverride(todo.id, dateStr));
+        }
+
+        // ---------- Data helpers ----------
+        function getItemState(todo, itemId, dateStr) {
+          if (!isRecurring(todo)) {
+            const item = todo.checklist.find((i) => i.id === itemId);
+            return !!(item && item.done);
+          }
+          return !!(
+            completions[todo.id] &&
+            completions[todo.id][dateStr] &&
+            completions[todo.id][dateStr][itemId]
+          );
+        }
+        function toggleItem(todo, itemId, dateStr) {
+          if (!isRecurring(todo)) {
+            const item = todo.checklist.find((i) => i.id === itemId);
+            if (item) item.done = !item.done;
+          } else {
+            completions[todo.id] = completions[todo.id] || {};
+            completions[todo.id][dateStr] = completions[todo.id][dateStr] || {};
+            completions[todo.id][dateStr][itemId] =
+              !completions[todo.id][dateStr][itemId];
+          }
+          persist();
+          renderActiveView();
+          if (
+            !document.getElementById("day-panel").classList.contains("hidden")
+          )
+            renderDayPanel(selectedDay);
+        }
+        function completedCount(todo, dateStr) {
+          const list = effChecklist(todo, dateStr);
+          return list.filter((i) => getItemState(todo, i.id, dateStr)).length;
+        }
+        function isComplete(todo, dateStr) {
+          const list = effChecklist(todo, dateStr);
+          return (
+            list.length > 0 && completedCount(todo, dateStr) === list.length
+          );
+        }
+        function sortByCompletion(items, dateStr) {
+          return items.slice().sort((a, b) => {
+            const da = isComplete(a, dateStr) ? 1 : 0;
+            const db = isComplete(b, dateStr) ? 1 : 0;
+            return da - db;
+          });
+        }
+
+        function finalizeDelete() {
+          if (!pendingDeletion) return;
+          clearTimeout(pendingDeletion.timer);
+          if (pendingDeletion.kind === "todo") {
+            persist();
+          } else {
+            persistNotes();
+          }
+          pendingDeletion = null;
+        }
+        function deleteTodo(id) {
+          const idx = todos.findIndex((t) => t.id === id);
+          if (idx === -1) return;
+          if (pendingDeletion) finalizeDelete();
+          const [item] = todos.splice(idx, 1);
+          renderActiveView();
+          pendingDeletion = {
+            kind: "todo",
+            item,
+            index: idx,
+            timer: setTimeout(() => {
+              finalizeDelete();
+              hideToast();
+            }, 5000),
+          };
+          showToast(`Deleted "${item.title}"`, undoDelete);
+        }
+        function deleteNote(id) {
+          const idx = notes.findIndex((n) => n.id === id);
+          if (idx === -1) return;
+          if (pendingDeletion) finalizeDelete();
+          const [item] = notes.splice(idx, 1);
+          renderActiveView();
+          pendingDeletion = {
+            kind: "note",
+            item,
+            index: idx,
+            timer: setTimeout(() => {
+              finalizeDelete();
+              hideToast();
+            }, 5000),
+          };
+          showToast(`Deleted "${item.title}"`, undoDelete);
+        }
+        function undoDelete() {
+          if (!pendingDeletion) return;
+          clearTimeout(pendingDeletion.timer);
+          if (pendingDeletion.kind === "todo") {
+            todos.splice(pendingDeletion.index, 0, pendingDeletion.item);
+          } else {
+            notes.splice(pendingDeletion.index, 0, pendingDeletion.item);
+          }
+          pendingDeletion = null;
+          hideToast();
+          renderActiveView();
+        }
+        function duplicateTodo(todo) {
+          const idMap = {};
+          const newChecklist = todo.checklist.map((i) => {
+            const newId = uid();
+            idMap[i.id] = newId;
+            return {
+              id: newId,
+              text: i.text,
+              done: false,
+              parentId: i.parentId ? idMap[i.parentId] || null : null,
+            };
+          });
+          const copy = Object.assign({}, todo, {
+            id: uid(),
+            title: todo.title + " (copy)",
+            checklist: newChecklist,
+            archived: false,
+            createdAt: new Date().toISOString(),
+          });
+          todos.push(copy);
+          persist();
+          renderActiveView();
+        }
+        function archiveTodo(todo, archived) {
+          todo.archived = archived;
+          persist();
+          renderActiveView();
+        }
+
+        // ---------- Checklist rendering ----------
+        function renderChecklist(todo, dateStr) {
+          const wrap = document.createElement("div");
+          wrap.className = "checklist";
+          const list = effChecklist(todo, dateStr)
+            .slice()
+            .sort((a, b) => {
+              const doneA = getItemState(todo, a.id, dateStr) ? 1 : 0;
+              const doneB = getItemState(todo, b.id, dateStr) ? 1 : 0;
+              return doneA - doneB;
+            });
+          list.forEach((item) => {
+            const done = getItemState(todo, item.id, dateStr);
+            const row = document.createElement("div");
+            row.className =
+              "checklist-item" +
+              (done ? " done" : "") +
+              (item.parentId ? " sub" : "");
+            const cbId = `cb-${todo.id}-${item.id}-${dateStr}`;
+            row.innerHTML = `<input type="checkbox" id="${cbId}" ${done ? "checked" : ""}><label for="${cbId}"></label>`;
+            row.querySelector("label").textContent = item.text;
+            row.querySelector("input").addEventListener("change", (e) => {
+              e.stopPropagation();
+              toggleItem(todo, item.id, dateStr);
+            });
+            row.addEventListener("click", (e) => e.stopPropagation());
+            wrap.appendChild(row);
+          });
+          const track = document.createElement("div");
+          track.className = "progress-track";
+          const fill = document.createElement("div");
+          fill.className = "progress-fill";
+          const pct = list.length
+            ? Math.round((100 * completedCount(todo, dateStr)) / list.length)
+            : 0;
+          fill.style.width = pct + "%";
+          track.appendChild(fill);
+          wrap.appendChild(track);
+          return wrap;
+        }
+
+        function taskCard(todo, dateStr, opts) {
+          opts = opts || {};
+          const card = document.createElement("div");
+          const complete = isComplete(todo, dateStr);
+          const overdue =
+            !isRecurring(todo) && todo.date < todayStr() && !complete;
+          card.className =
+            "task-card" +
+            (complete ? " complete" : "") +
+            (overdue ? " overdue" : "") +
+            (todo.archived ? " archived" : "");
+
+          card.addEventListener("click", (e) => {
+            if (
+              e.target.closest(".task-actions") ||
+              e.target.closest(".checklist")
+            )
+              return;
+            openModal(todo, dateStr);
+          });
+
+          const top = document.createElement("div");
+          top.className = "task-top";
+
+          const left = document.createElement("div");
+          const title = document.createElement("p");
+          title.className = "task-title";
+          title.textContent = effTitle(todo, dateStr);
+          title.title = "Click to edit";
+          left.appendChild(title);
+
+          const badges = document.createElement("div");
+          badges.className = "badge-row";
+          const schedBadge = document.createElement("span");
+          schedBadge.className = "badge" + (isRecurring(todo) ? " daily" : "");
+          schedBadge.textContent = scheduleLabel(todo);
+          badges.appendChild(schedBadge);
+          if (overdue) {
+            const b = document.createElement("span");
+            b.className = "badge overdue";
+            b.textContent = "Overdue";
+            badges.appendChild(b);
+          }
+          if (complete) {
+            const b = document.createElement("span");
+            b.className = "badge done";
+            b.textContent = "Done";
+            badges.appendChild(b);
+          }
+          if (hasOverride(todo, dateStr)) {
+            const b = document.createElement("span");
+            b.className = "badge edited";
+            b.textContent = "Edited this day";
+            badges.appendChild(b);
+          }
+          if (todo.archived) {
+            const b = document.createElement("span");
+            b.className = "badge archived-badge";
+            b.textContent = "Archived";
+            badges.appendChild(b);
+          }
+          left.appendChild(badges);
+          top.appendChild(left);
+
+          const actions = document.createElement("div");
+          actions.className = "task-actions";
+
+          if (!opts.hideExtraActions) {
+            const dupBtn = document.createElement("button");
+            dupBtn.className = "icon-btn";
+            dupBtn.textContent = "Duplicate";
+            dupBtn.title = "Duplicate task";
+            dupBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              duplicateTodo(todo);
+            });
+            actions.appendChild(dupBtn);
+
+            const archBtn = document.createElement("button");
+            archBtn.className = "icon-btn";
+            archBtn.textContent = todo.archived ? "↩" : "Archive";
+            archBtn.title = todo.archived ? "Restore task" : "Archive task";
+            archBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              archiveTodo(todo, !todo.archived);
+            });
+            actions.appendChild(archBtn);
+          }
+
+          const delBtn = document.createElement("button");
+          delBtn.className = "icon-btn";
+          delBtn.textContent = "X";
+          delBtn.title = "Delete task";
+          delBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            deleteTodo(todo.id);
+          });
+          actions.appendChild(delBtn);
+          top.appendChild(actions);
+
+          card.appendChild(top);
+          if (!opts.hideChecklist)
+            card.appendChild(renderChecklist(todo, dateStr));
+          return card;
+        }
+
+        // ---------- Toast ----------
+        function showToast(text, onUndo) {
+          const toast = document.getElementById("toast");
+          document.getElementById("toast-text").textContent = text;
+          const btn = document.getElementById("toast-undo");
+          btn.onclick = onUndo;
+          toast.classList.remove("hidden");
+        }
+        function hideToast() {
+          document.getElementById("toast").classList.add("hidden");
+        }
+
+        // ---------- Views ----------
+        function renderActiveView() {
+          const active = document.querySelector(".view.active").id;
+          if (active === "view-today") renderToday();
+          if (active === "view-calendar") renderCalendar();
+          if (active === "view-all") renderAll();
+          if (active === "view-notes") renderNotes();
+          if (active === "view-search") renderSearch();
+          if (active === "view-stats") renderStats();
+          updateCounts();
+        }
+
+        function updateCounts() {
+          const t = todayStr();
+          const todays = todos.filter(
+            (td) => !td.archived && isApplicable(td, t),
+          );
+          const pending = todays.filter((td) => !isComplete(td, t)).length;
+          document.getElementById("count-today").textContent = pending
+            ? pending
+            : "";
+          document.getElementById("count-all").textContent =
+            todos.filter((t) => !t.archived).length || "";
+          document.getElementById("count-notes").textContent =
+            notes.length || "";
+        }
+
+        function renderToday() {
+          document.getElementById("today-date").textContent =
+            new Date().toLocaleDateString(undefined, {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+          const t = todayStr();
+
+          const overdueWrap = document.getElementById("overdue-block");
+          overdueWrap.innerHTML = "";
+          const overdue = todos.filter(
+            (td) =>
+              !td.archived &&
+              !isRecurring(td) &&
+              td.date < t &&
+              !isComplete(td, td.date),
+          );
+          if (overdue.length) {
+            const label = document.createElement("div");
+            label.className = "section-label";
+            label.textContent = "Overdue";
+            overdueWrap.appendChild(label);
+            const list = document.createElement("div");
+            list.className = "task-list";
+            overdue.forEach((td) => list.appendChild(taskCard(td, td.date)));
+            overdueWrap.appendChild(list);
+          }
+
+          const list = document.getElementById("today-list");
+          list.innerHTML = "";
+          const todays = sortByCompletion(
+            todos.filter((td) => !td.archived && isApplicable(td, t)),
+            t,
+          );
+          if (!todays.length) {
+            list.innerHTML =
+              '<div class="empty">Nothing scheduled for today. Add a task to get started.</div>';
+          } else {
+            todays.forEach((td) => list.appendChild(taskCard(td, t)));
+          }
+        }
+
+        function renderAll() {
+          const t = todayStr();
+          const active = todos.filter((td) => !td.archived);
+          document.getElementById("all-sub").textContent =
+            `${active.length} active task${active.length === 1 ? "" : "s"}`;
+
+          const upcoming = active.filter(
+            (td) =>
+              !isRecurring(td) && td.date >= t && !isComplete(td, td.date),
+          );
+          const recurring = active.filter((td) => isRecurring(td));
+          const completedOnce = active.filter(
+            (td) => !isRecurring(td) && isComplete(td, td.date),
+          );
+          const archived = todos.filter((td) => td.archived);
+
+          fillList("all-upcoming", upcoming, t, "No upcoming one-time tasks.");
+          fillList("all-daily", recurring, t, "No recurring tasks yet.");
+          fillList(
+            "all-completed",
+            completedOnce,
+            null,
+            "Nothing completed yet.",
+          );
+          fillList("all-archived", archived, t, "No archived tasks.");
+        }
+        function fillList(id, items, dateOverride, emptyMsg) {
+          const el = document.getElementById(id);
+          el.innerHTML = "";
+          if (!items.length) {
+            el.innerHTML = `<div class="empty">${emptyMsg}</div>`;
+            return;
+          }
+          const sorted = sortByCompletion(
+            items,
+            dateOverride === null ? null : dateOverride,
+          ).sort((a, b) => {
+            // sortByCompletion needs a concrete dateStr per item when dateOverride is null (per-item due date)
+            if (dateOverride !== null) return 0;
+            const da = isComplete(a, a.date) ? 1 : 0;
+            const db = isComplete(b, b.date) ? 1 : 0;
+            return da - db;
+          });
+          sorted.forEach((td) =>
+            el.appendChild(
+              taskCard(td, dateOverride === null ? td.date : dateOverride),
+            ),
+          );
+        }
+
+        // ---------- Notes ----------
+        function noteCard(note) {
+          const card = document.createElement("div");
+          card.className = "note-card";
+          card.addEventListener("click", (e) => {
+            if (e.target.closest(".icon-btn")) return;
+            openNoteModal(note);
+          });
+
+          const top = document.createElement("div");
+          top.className = "note-card-top";
+
+          const title = document.createElement("p");
+          title.className = "note-title";
+          title.textContent = note.title;
+          title.title = "Click to edit";
+          top.appendChild(title);
+
+          const delBtn = document.createElement("button");
+          delBtn.className = "icon-btn";
+          delBtn.textContent = "X";
+          delBtn.title = "Delete note";
+          delBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            deleteNote(note.id);
+          });
+          top.appendChild(delBtn);
+
+          card.appendChild(top);
+
+          if (note.text) {
+            const text = document.createElement("div");
+            text.className = "note-text";
+            text.textContent = note.text;
+            card.appendChild(text);
+          }
+
+          const date = document.createElement("div");
+          date.className = "note-date";
+          date.textContent = new Date(note.createdAt).toLocaleDateString(
+            undefined,
+            { month: "short", day: "numeric", year: "numeric" },
+          );
+          card.appendChild(date);
+
+          return card;
+        }
+        function renderNotes() {
+          document.getElementById("notes-sub").textContent =
+            `${notes.length} note${notes.length === 1 ? "" : "s"}`;
+          const list = document.getElementById("notes-list");
+          list.innerHTML = "";
+          if (!notes.length) {
+            list.innerHTML =
+              '<div class="empty">No notes yet. Add one to get started.</div>';
+            return;
+          }
+          notes
+            .slice()
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .forEach((n) => list.appendChild(noteCard(n)));
+        }
+
+        // ---------- Search ----------
+        function renderSearch() {
+          const q = (document.getElementById("search-input").value || "")
+            .trim()
+            .toLowerCase();
+          const taskWrap = document.getElementById("search-tasks");
+          const noteWrap = document.getElementById("search-notes");
+          taskWrap.innerHTML = "";
+          noteWrap.innerHTML = "";
+          if (!q) {
+            taskWrap.innerHTML =
+              '<div class="empty">Start typing to search.</div>';
+            noteWrap.innerHTML = "";
+            return;
+          }
+          const t = todayStr();
+          const matchedTodos = todos.filter((td) => {
+            if (td.title.toLowerCase().includes(q)) return true;
+            return (td.checklist || []).some((i) =>
+              i.text.toLowerCase().includes(q),
+            );
+          });
+          const matchedNotes = notes.filter(
+            (n) =>
+              n.title.toLowerCase().includes(q) ||
+              (n.text || "").toLowerCase().includes(q),
+          );
+
+          if (!matchedTodos.length)
+            taskWrap.innerHTML = '<div class="empty">No matching tasks.</div>';
+          else {
+            const sortedMatches = matchedTodos
+              .map((td) => ({ td, ctx: isApplicable(td, t) ? t : td.date }))
+              .sort((a, b) => {
+                const da = isComplete(a.td, a.ctx) ? 1 : 0;
+                const db = isComplete(b.td, b.ctx) ? 1 : 0;
+                return da - db;
+              });
+            sortedMatches.forEach(({ td, ctx }) =>
+              taskWrap.appendChild(taskCard(td, ctx)),
+            );
+          }
+
+          if (!matchedNotes.length)
+            noteWrap.innerHTML = '<div class="empty">No matching notes.</div>';
+          else matchedNotes.forEach((n) => noteWrap.appendChild(noteCard(n)));
+        }
+
+        // ---------- Stats ----------
+        function renderStats() {
+          const t = todayStr();
+          const days = [];
+          for (let i = statRange - 1; i >= 0; i--) days.push(addDaysStr(t, -i));
+
+          const summary = document.getElementById("stat-summary");
+          const chart = document.getElementById("stat-chart");
+          summary.innerHTML = "";
+          chart.innerHTML = "";
+
+          let totalTasks = 0,
+            totalDone = 0,
+            perfectDays = 0;
+          const dayStats = days.map((d) => {
+            const applicable = todos.filter(
+              (td) => !td.archived && isApplicable(td, d),
+            );
+            const done = applicable.filter((td) => isComplete(td, d)).length;
+            totalTasks += applicable.length;
+            totalDone += done;
+            if (applicable.length && done === applicable.length) perfectDays++;
+            return { date: d, total: applicable.length, done };
+          });
+
+          const overallPct = totalTasks
+            ? Math.round((100 * totalDone) / totalTasks)
+            : 0;
+
+          [
+            { num: overallPct + "%", lbl: "Completion rate" },
+            { num: perfectDays, lbl: "Perfect days" },
+            { num: totalDone + "/" + totalTasks, lbl: "Tasks done" },
+          ].forEach((s) => {
+            const tile = document.createElement("div");
+            tile.className = "stat-tile";
+            tile.innerHTML = `<div class="num">${s.num}</div><div class="lbl">${s.lbl}</div>`;
+            summary.appendChild(tile);
+          });
+
+          dayStats.forEach((s) => {
+            const col = document.createElement("div");
+            col.className = "bar-col";
+            const pct = s.total ? Math.round((100 * s.done) / s.total) : 0;
+            const pctLabel = document.createElement("div");
+            pctLabel.className = "bar-pct";
+            pctLabel.textContent = s.total ? pct + "%" : "–";
+            col.appendChild(pctLabel);
+            const bar = document.createElement("div");
+            bar.className =
+              "bar-fill " +
+              (s.total === 0
+                ? "none"
+                : pct === 100
+                  ? "complete"
+                  : pct > 0
+                    ? "partial"
+                    : "none");
+            bar.style.height = Math.max(3, pct) + "%";
+            col.appendChild(bar);
+            const label = document.createElement("div");
+            label.className = "bar-label";
+            const [, m, dd] = s.date.split("-");
+            label.textContent =
+              statRange === 7 ? DAY_NAMES[dayOfWeek(s.date)] : `${m}/${dd}`;
+            col.appendChild(label);
+            chart.appendChild(col);
+          });
+        }
+        document
+          .getElementById("stat-range-segmented")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            statRange = parseInt(btn.dataset.val, 10);
+            document
+              .querySelectorAll("#stat-range-segmented button")
+              .forEach((b) => b.classList.toggle("active", b === btn));
+            renderStats();
+          });
+        document
+          .getElementById("search-input")
+          .addEventListener("input", renderSearch);
+
+        // ---------- Calendar (month) ----------
+        const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        function renderCalendar() {
+          if (calMode === "month") renderMonth();
+          else renderWeek();
+        }
+        function renderMonth() {
+          const weekdaysEl = document.getElementById("cal-weekdays");
+          if (!weekdaysEl.children.length) {
+            WEEKDAYS.forEach((w) => {
+              const d = document.createElement("div");
+              d.className = "cal-weekday";
+              d.textContent = w;
+              weekdaysEl.appendChild(d);
+            });
+          }
+
+          const year = calCursor.getFullYear(),
+            month = calCursor.getMonth();
+          document.getElementById("cal-month-label").textContent =
+            calCursor.toLocaleDateString(undefined, {
+              month: "long",
+              year: "numeric",
+            });
+
+          const grid = document.getElementById("cal-grid");
+          grid.innerHTML = "";
+
+          const firstOfMonth = new Date(year, month, 1);
+          const startOffset = firstOfMonth.getDay();
+          const gridStart = new Date(year, month, 1 - startOffset);
+          const t = todayStr();
+
+          for (let i = 0; i < 42; i++) {
+            const cellDate = new Date(
+              gridStart.getFullYear(),
+              gridStart.getMonth(),
+              gridStart.getDate() + i,
+            );
+            const dStr = fmtDate(cellDate);
+            const cell = document.createElement("button");
+            cell.className = "cal-day";
+            if (cellDate.getMonth() !== month)
+              cell.classList.add("other-month");
+            if (dStr === t) cell.classList.add("today");
+
+            const applicable = todos.filter(
+              (td) => !td.archived && isApplicable(td, dStr),
+            );
+            if (applicable.length) {
+              const doneCount = applicable.filter((td) =>
+                isComplete(td, dStr),
+              ).length;
+              if (doneCount === applicable.length)
+                cell.classList.add("status-complete");
+              else if (doneCount > 0) cell.classList.add("status-partial");
+              else cell.classList.add("status-pending");
+            }
+
+            const num = document.createElement("span");
+            num.className = "cal-day-num";
+            num.textContent = cellDate.getDate();
+            cell.appendChild(num);
+
+            if (applicable.length) {
+              const doneCount = applicable.filter((td) =>
+                isComplete(td, dStr),
+              ).length;
+              if (doneCount === applicable.length) {
+                const seal = document.createElement("span");
+                seal.className = "cal-day-seal";
+                seal.textContent = "✓";
+                cell.appendChild(seal);
+              } else {
+                const dots = document.createElement("span");
+                dots.className = "cal-day-dots";
+                applicable.slice(0, 3).forEach(() => {
+                  const dot = document.createElement("span");
+                  dot.className = "cal-dot";
+                  dots.appendChild(dot);
+                });
+                cell.appendChild(dots);
+              }
+            }
+
+            cell.addEventListener("click", () => {
+              selectedDay = dStr;
+              renderDayPanel(dStr);
+            });
+            grid.appendChild(cell);
+          }
+        }
+
+        function startOfWeek(d) {
+          const c = new Date(d);
+          c.setDate(c.getDate() - c.getDay());
+          return c;
+        }
+        function renderWeek() {
+          const start = startOfWeek(weekCursor);
+          const end = new Date(start);
+          end.setDate(end.getDate() + 6);
+          document.getElementById("week-label").textContent =
+            `${start.toLocaleDateString(undefined, { month: "short", day: "numeric" })} – ${end.toLocaleDateString(undefined, { month: "short", day: "numeric" })}`;
+
+          const wrap = document.getElementById("week-days");
+          wrap.innerHTML = "";
+          const t = todayStr();
+          for (let i = 0; i < 7; i++) {
+            const d = new Date(start);
+            d.setDate(d.getDate() + i);
+            const dStr = fmtDate(d);
+            const block = document.createElement("div");
+            block.className =
+              "week-day-block" + (dStr === t ? " is-today" : "");
+
+            const head = document.createElement("div");
+            head.className = "week-day-head";
+            head.innerHTML = `<span class="wd-name">${DAY_NAMES[d.getDay()]}</span><span class="wd-date">${dStr}</span>`;
+            block.appendChild(head);
+
+            const applicable = sortByCompletion(
+              todos.filter((td) => !td.archived && isApplicable(td, dStr)),
+              dStr,
+            );
+            if (!applicable.length) {
+              const empty = document.createElement("div");
+              empty.className = "empty";
+              empty.textContent = "Nothing scheduled.";
+              block.appendChild(empty);
+            } else {
+              const list = document.createElement("div");
+              list.className = "task-list";
+              applicable.forEach((td) => list.appendChild(taskCard(td, dStr)));
+              block.appendChild(list);
+            }
+            wrap.appendChild(block);
+          }
+        }
+
+        function renderDayPanel(dStr) {
+          const panel = document.getElementById("day-panel");
+          panel.classList.remove("hidden");
+          document.getElementById("day-panel-title").textContent =
+            niceDate(dStr);
+          const body = document.getElementById("day-panel-body");
+          body.innerHTML = "";
+          const applicable = sortByCompletion(
+            todos.filter((td) => !td.archived && isApplicable(td, dStr)),
+            dStr,
+          );
+          if (!applicable.length) {
+            body.innerHTML = '<div class="empty">No tasks on this day.</div>';
+            return;
+          }
+          applicable.forEach((td) => body.appendChild(taskCard(td, dStr)));
+        }
+
+        // ---------- Navigation ----------
+        document.querySelectorAll(".nav-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document
+              .querySelectorAll(".nav-btn")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            document
+              .querySelectorAll(".view")
+              .forEach((v) => v.classList.remove("active"));
+            document
+              .getElementById("view-" + btn.dataset.view)
+              .classList.add("active");
+            renderActiveView();
+          });
+        });
+        document.getElementById("cal-prev").addEventListener("click", () => {
+          calCursor.setMonth(calCursor.getMonth() - 1);
+          renderCalendar();
+        });
+        document.getElementById("cal-next").addEventListener("click", () => {
+          calCursor.setMonth(calCursor.getMonth() + 1);
+          renderCalendar();
+        });
+        document.getElementById("cal-today").addEventListener("click", () => {
+          calCursor = new Date();
+          renderCalendar();
+        });
+        document.getElementById("week-prev").addEventListener("click", () => {
+          weekCursor.setDate(weekCursor.getDate() - 7);
+          renderCalendar();
+        });
+        document.getElementById("week-next").addEventListener("click", () => {
+          weekCursor.setDate(weekCursor.getDate() + 7);
+          renderCalendar();
+        });
+        document.getElementById("week-today").addEventListener("click", () => {
+          weekCursor = new Date();
+          renderCalendar();
+        });
+        document
+          .getElementById("cal-mode-segmented")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            calMode = btn.dataset.val;
+            document
+              .querySelectorAll("#cal-mode-segmented button")
+              .forEach((b) => b.classList.toggle("active", b === btn));
+            document.getElementById("cal-month-mode").style.display =
+              calMode === "month" ? "" : "none";
+            document.getElementById("cal-week-mode").style.display =
+              calMode === "week" ? "" : "none";
+            renderCalendar();
+          });
+        document
+          .getElementById("day-panel-close")
+          .addEventListener("click", () =>
+            document.getElementById("day-panel").classList.add("hidden"),
+          );
+
+        // ---------- Modal / Add & Edit ----------
+        const overlay = document.getElementById("modal-overlay");
+        const form = document.getElementById("task-form");
+        const checklistEditor = document.getElementById("checklist-editor");
+        let scheduleVal = "once"; // 'once' | 'recurring'
+        let patternVal = "daily";
+        let customDaysVal = [];
+        let endTypeVal = "never";
+
+        function addChecklistRow(item) {
+          item = item || {};
+          const row = document.createElement("div");
+          row.className =
+            "checklist-editor-row" + (item.parentId ? " is-sub" : "");
+          row.draggable = true;
+          row.dataset.id = item.id || uid();
+          row.dataset.parent = item.parentId || "";
+          row.dataset.done = item.done ? "1" : "";
+
+          const handle = document.createElement("span");
+          handle.className = "drag-handle";
+          handle.textContent = "⋮⋮";
+          row.appendChild(handle);
+
+          const input = document.createElement("input");
+          input.type = "text";
+          input.className = "ce-text";
+          input.placeholder = "Checklist item";
+          input.value = item.text || "";
+          row.appendChild(input);
+
+          if (!item.parentId) {
+            const subBtn = document.createElement("button");
+            subBtn.type = "button";
+            subBtn.className = "row-sub";
+            subBtn.title = "Add sub-item";
+            subBtn.textContent = "+";
+            subBtn.addEventListener("click", () => addSubRow(row));
+            row.appendChild(subBtn);
+          }
+
+          const removeBtn = document.createElement("button");
+          removeBtn.type = "button";
+          removeBtn.className = "row-remove";
+          removeBtn.title = "Remove";
+          removeBtn.textContent = "−";
+          removeBtn.addEventListener("click", () => {
+            // also remove any sub-items belonging to this row
+            checklistEditor
+              .querySelectorAll(`[data-parent="${row.dataset.id}"]`)
+              .forEach((r) => r.remove());
+            row.remove();
+          });
+          row.appendChild(removeBtn);
+
+          setupDrag(row);
+          checklistEditor.appendChild(row);
+          return row;
+        }
+        function addSubRow(parentRow) {
+          const parentId = parentRow.dataset.id;
+          const existingSubs = Array.from(
+            checklistEditor.querySelectorAll(`[data-parent="${parentId}"]`),
+          );
+          const anchor = existingSubs.length
+            ? existingSubs[existingSubs.length - 1]
+            : parentRow;
+          const row = addChecklistRow({ parentId, text: "" });
+          anchor.after(row);
+          row.querySelector(".ce-text").focus();
+        }
+        function setupDrag(row) {
+          row.addEventListener("dragstart", () =>
+            row.classList.add("dragging"),
+          );
+          row.addEventListener("dragend", () =>
+            row.classList.remove("dragging"),
+          );
+        }
+        checklistEditor.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          const dragging = checklistEditor.querySelector(".dragging");
+          if (!dragging) return;
+          const after = Array.from(
+            checklistEditor.querySelectorAll(
+              ".checklist-editor-row:not(.dragging)",
+            ),
+          ).find((el) => {
+            const rect = el.getBoundingClientRect();
+            return e.clientY < rect.top + rect.height / 2;
+          });
+          if (after) checklistEditor.insertBefore(dragging, after);
+          else checklistEditor.appendChild(dragging);
+        });
+
+        document
+          .getElementById("add-checklist-row")
+          .addEventListener("click", () => addChecklistRow());
+
+        document
+          .getElementById("schedule-segmented")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            scheduleVal = btn.dataset.val;
+            document
+              .querySelectorAll("#schedule-segmented button")
+              .forEach((b) => b.classList.toggle("active", b === btn));
+            document.getElementById("recurring-fields").style.display =
+              scheduleVal === "recurring" ? "" : "none";
+            document.getElementById("end-condition-field").style.display =
+              scheduleVal === "recurring" ? "" : "none";
+            document.getElementById("date-label").textContent =
+              scheduleVal === "recurring" ? "Start date" : "Due date";
+            updatePatternHint();
+          });
+
+        document
+          .getElementById("pattern-chips")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest(".chip");
+            if (!btn) return;
+            patternVal = btn.dataset.val;
+            document
+              .querySelectorAll("#pattern-chips .chip")
+              .forEach((b) => b.classList.toggle("active", b === btn));
+            document.getElementById("custom-days-row").style.display =
+              patternVal === "custom" ? "" : "none";
+            document.getElementById("everyn-row").style.display =
+              patternVal === "everyN" ? "" : "none";
+            updatePatternHint();
+          });
+
+        const customDaysRow = document.getElementById("custom-days-row");
+        DAY_NAMES.forEach((name, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "day-toggle";
+          b.textContent = name[0];
+          b.title = name;
+          b.dataset.day = idx;
+          b.addEventListener("click", () => {
+            const i = customDaysVal.indexOf(idx);
+            if (i === -1) customDaysVal.push(idx);
+            else customDaysVal.splice(i, 1);
+            b.classList.toggle("active");
+            updatePatternHint();
+          });
+          customDaysRow.appendChild(b);
+        });
+
+        document
+          .getElementById("end-segmented")
+          .addEventListener("click", (e) => {
+            const btn = e.target.closest("button");
+            if (!btn) return;
+            endTypeVal = btn.dataset.val;
+            document
+              .querySelectorAll("#end-segmented button")
+              .forEach((b) => b.classList.toggle("active", b === btn));
+            document.getElementById("f-end-date").style.display =
+              endTypeVal === "until" ? "" : "none";
+            document.getElementById("f-end-count").style.display =
+              endTypeVal === "count" ? "" : "none";
+          });
+
+        function updatePatternHint() {
+          const hint = document.getElementById("pattern-hint");
+          if (scheduleVal !== "recurring") {
+            hint.textContent = "";
+            return;
+          }
+          const map = {
+            daily: "Repeats every single day.",
+            weekdays: "Repeats Monday through Friday only.",
+            weekends: "Repeats Saturday and Sunday only.",
+            custom: "Pick the days of the week this repeats on.",
+            everyN: "Repeats every N days from the start date.",
+            monthly: "Repeats on the same day each month.",
+            yearly: "Repeats on the same date each year.",
+          };
+          hint.textContent = map[patternVal] || "";
+        }
+
+        function readChecklistFromEditor() {
+          const rows = Array.from(checklistEditor.children);
+          const items = [];
+          rows.forEach((row) => {
+            const text = row.querySelector(".ce-text").value.trim();
+            if (!text) return;
+            items.push({
+              id: row.dataset.id,
+              text,
+              done: row.dataset.done === "1",
+              parentId: row.dataset.parent || null,
+            });
+          });
+          return items.length
+            ? items
+            : [
+                {
+                  id: uid(),
+                  text: "Complete task",
+                  done: false,
+                  parentId: null,
+                },
+              ];
+        }
+
+        function openModal(todo, contextDateStr) {
+          editingId = todo ? todo.id : null;
+          editingDateStr = contextDateStr || todayStr();
+          document.getElementById("modal-title").textContent = todo
+            ? "Edit Task"
+            : "New Task";
+          document.getElementById("f-title").value = todo
+            ? effTitle(todo, editingDateStr)
+            : "";
+
+          checklistEditor.innerHTML = "";
+          const srcChecklist = todo ? effChecklist(todo, editingDateStr) : null;
+          if (srcChecklist && srcChecklist.length) {
+            srcChecklist.forEach((item) => addChecklistRow(item));
+          } else {
+            addChecklistRow();
+          }
+
+          scheduleVal = todo && isRecurring(todo) ? "recurring" : "once";
+          document
+            .querySelectorAll("#schedule-segmented button")
+            .forEach((b) =>
+              b.classList.toggle("active", b.dataset.val === scheduleVal),
+            );
+          document.getElementById("recurring-fields").style.display =
+            scheduleVal === "recurring" ? "" : "none";
+          document.getElementById("end-condition-field").style.display =
+            scheduleVal === "recurring" ? "" : "none";
+          document.getElementById("date-label").textContent =
+            scheduleVal === "recurring" ? "Start date" : "Due date";
+
+          patternVal = todo && isRecurring(todo) ? todo.recurrence : "daily";
+          document
+            .querySelectorAll("#pattern-chips .chip")
+            .forEach((b) =>
+              b.classList.toggle("active", b.dataset.val === patternVal),
+            );
+          document.getElementById("custom-days-row").style.display =
+            patternVal === "custom" ? "" : "none";
+          document.getElementById("everyn-row").style.display =
+            patternVal === "everyN" ? "" : "none";
+
+          customDaysVal =
+            todo && todo.customDays ? todo.customDays.slice() : [];
+          customDaysRow
+            .querySelectorAll(".day-toggle")
+            .forEach((b) =>
+              b.classList.toggle(
+                "active",
+                customDaysVal.includes(parseInt(b.dataset.day, 10)),
+              ),
+            );
+
+          document.getElementById("f-interval").value =
+            (todo && todo.interval) || 2;
+
+          endTypeVal = (todo && todo.endType) || "never";
+          document
+            .querySelectorAll("#end-segmented button")
+            .forEach((b) =>
+              b.classList.toggle("active", b.dataset.val === endTypeVal),
+            );
+          document.getElementById("f-end-date").style.display =
+            endTypeVal === "until" ? "" : "none";
+          document.getElementById("f-end-count").style.display =
+            endTypeVal === "count" ? "" : "none";
+          document.getElementById("f-end-date").value =
+            (todo && todo.endDate) || "";
+          document.getElementById("f-end-count").value =
+            (todo && todo.endCount) || 10;
+
+          document.getElementById("f-date").value = todo
+            ? todo.date
+            : todayStr();
+          updatePatternHint();
+
+          overlay.classList.remove("hidden");
+          document.getElementById("f-title").focus();
+        }
+        function closeModal() {
+          overlay.classList.add("hidden");
+          editingId = null;
+          editingDateStr = null;
+        }
+        document
+          .getElementById("open-add")
+          .addEventListener("click", () => openModal(null, todayStr()));
+        document
+          .getElementById("modal-cancel")
+          .addEventListener("click", closeModal);
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) closeModal();
+        });
+
+        function buildScheduleFields() {
+          const isRec = scheduleVal === "recurring";
+          return {
+            recurrence: isRec ? patternVal : "once",
+            customDays: patternVal === "custom" ? customDaysVal.slice() : [],
+            interval:
+              patternVal === "everyN"
+                ? Math.max(
+                    1,
+                    parseInt(document.getElementById("f-interval").value, 10) ||
+                      2,
+                  )
+                : null,
+            endType: isRec ? endTypeVal : "never",
+            endDate:
+              isRec && endTypeVal === "until"
+                ? document.getElementById("f-end-date").value
+                : null,
+            endCount:
+              isRec && endTypeVal === "count"
+                ? Math.max(
+                    1,
+                    parseInt(
+                      document.getElementById("f-end-count").value,
+                      10,
+                    ) || 10,
+                  )
+                : null,
+          };
+        }
+        function scheduleFieldsEqual(todo, sched, date) {
+          if (todo.date !== date) return false;
+          if (todo.recurrence !== sched.recurrence) return false;
+          if (sched.recurrence === "custom") {
+            const a = (todo.customDays || []).slice().sort().join(",");
+            const b = sched.customDays.slice().sort().join(",");
+            if (a !== b) return false;
+          }
+          if (
+            sched.recurrence === "everyN" &&
+            (todo.interval || null) !== sched.interval
+          )
+            return false;
+          if ((todo.endType || "never") !== sched.endType) return false;
+          if (sched.endType === "until" && todo.endDate !== sched.endDate)
+            return false;
+          if (sched.endType === "count" && todo.endCount !== sched.endCount)
+            return false;
+          return true;
+        }
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const title = document.getElementById("f-title").value.trim();
+          if (!title) return;
+          const date = document.getElementById("f-date").value || todayStr();
+          const items = readChecklistFromEditor();
+          const sched = buildScheduleFields();
+
+          if (editingId) {
+            const todo = todos.find((t) => t.id === editingId);
+            const scheduleUnchanged = scheduleFieldsEqual(todo, sched, date);
+            if (isRecurring(todo) && scheduleUnchanged) {
+              pendingSubmit = {
+                title,
+                items,
+                date,
+                sched,
+                todoId: editingId,
+                contextDate: editingDateStr,
+              };
+              openScopeModal(todo);
+              return;
+            }
+            // schedule changed (or task isn't recurring): always applies to the whole task
+            applyAllDaysSave(todo, title, items, sched, date);
+            // if the context date no longer matches an override, clear any stale override for cleanliness
+            closeModal();
+            renderActiveView();
+            return;
+          }
+
+          // creating a new task
+          todos.push({
+            id: uid(),
+            title,
+            recurrence: sched.recurrence,
+            customDays: sched.customDays,
+            interval: sched.interval,
+            endType: sched.endType,
+            endDate: sched.endDate,
+            endCount: sched.endCount,
+            date,
+            checklist: items.map((i) => ({
+              id: i.id,
+              text: i.text,
+              done: false,
+              parentId: i.parentId,
+            })),
+            archived: false,
+            createdAt: new Date().toISOString(),
+          });
+          persist();
+          closeModal();
+          renderActiveView();
+        });
+
+        function applyAllDaysSave(todo, title, items, sched, date) {
+          todo.title = title;
+          todo.date = date;
+          todo.recurrence = sched.recurrence;
+          todo.customDays = sched.customDays;
+          todo.interval = sched.interval;
+          todo.endType = sched.endType;
+          todo.endDate = sched.endDate;
+          todo.endCount = sched.endCount;
+          const oldById = {};
+          todo.checklist.forEach((i) => (oldById[i.id] = i));
+          todo.checklist = items.map((i) => ({
+            id: i.id,
+            text: i.text,
+            done: oldById[i.id] ? oldById[i.id].done : false,
+            parentId: i.parentId,
+          }));
+          persist();
+        }
+        function applyThisDaySave(todoId, dateStr, title, items) {
+          overrides[todoId] = overrides[todoId] || {};
+          overrides[todoId][dateStr] = {
+            title,
+            checklist: items.map((i) => ({
+              id: i.id,
+              text: i.text,
+              parentId: i.parentId,
+            })),
+          };
+          persistOverrides();
+        }
+
+        // ---------- Scope confirmation modal ----------
+        const scopeOverlay = document.getElementById("scope-modal-overlay");
+        function openScopeModal(todo) {
+          document.getElementById("scope-this-day-sub").textContent =
+            `Only changes the occurrence on ${niceDate(pendingSubmit.contextDate)}`;
+          scopeOverlay.classList.remove("hidden");
+        }
+        function closeScopeModal() {
+          scopeOverlay.classList.add("hidden");
+          pendingSubmit = null;
+        }
+        document
+          .getElementById("scope-this-day")
+          .addEventListener("click", () => {
+            if (!pendingSubmit) return;
+            applyThisDaySave(
+              pendingSubmit.todoId,
+              pendingSubmit.contextDate,
+              pendingSubmit.title,
+              pendingSubmit.items,
+            );
+            closeScopeModal();
+            closeModal();
+            renderActiveView();
+          });
+        document
+          .getElementById("scope-all-days")
+          .addEventListener("click", () => {
+            if (!pendingSubmit) return;
+            const todo = todos.find((t) => t.id === pendingSubmit.todoId);
+            applyAllDaysSave(
+              todo,
+              pendingSubmit.title,
+              pendingSubmit.items,
+              pendingSubmit.sched,
+              pendingSubmit.date,
+            );
+            closeScopeModal();
+            closeModal();
+            renderActiveView();
+          });
+        document
+          .getElementById("scope-cancel")
+          .addEventListener("click", closeScopeModal);
+        scopeOverlay.addEventListener("click", (e) => {
+          if (e.target === scopeOverlay) closeScopeModal();
+        });
+
+        // ---------- Notes modal ----------
+        const noteOverlay = document.getElementById("note-modal-overlay");
+        const noteForm = document.getElementById("note-form");
+
+        function openNoteModal(note) {
+          editingNoteId = note ? note.id : null;
+          document.getElementById("note-modal-title").textContent = note
+            ? "Edit Note"
+            : "New Note";
+          document.getElementById("n-title").value = note ? note.title : "";
+          document.getElementById("n-text").value = note ? note.text : "";
+          noteOverlay.classList.remove("hidden");
+          document.getElementById("n-title").focus();
+        }
+        function closeNoteModal() {
+          noteOverlay.classList.add("hidden");
+          editingNoteId = null;
+        }
+        document
+          .getElementById("open-add-note")
+          .addEventListener("click", () => openNoteModal(null));
+        document
+          .getElementById("note-modal-cancel")
+          .addEventListener("click", closeNoteModal);
+        noteOverlay.addEventListener("click", (e) => {
+          if (e.target === noteOverlay) closeNoteModal();
+        });
+
+        noteForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const title = document.getElementById("n-title").value.trim();
+          if (!title) return;
+          const text = document.getElementById("n-text").value.trim();
+
+          if (editingNoteId) {
+            const note = notes.find((n) => n.id === editingNoteId);
+            note.title = title;
+            note.text = text;
+          } else {
+            notes.push({
+              id: uid(),
+              title,
+              text,
+              createdAt: new Date().toISOString(),
+            });
+          }
+          persistNotes();
+          closeNoteModal();
+          renderActiveView();
+        });
+
+        // ---------- Settings: export / import ----------
+        const settingsOverlay = document.getElementById(
+          "settings-modal-overlay",
+        );
+        document
+          .getElementById("open-settings")
+          .addEventListener("click", () =>
+            settingsOverlay.classList.remove("hidden"),
+          );
+        document
+          .getElementById("settings-close")
+          .addEventListener("click", () =>
+            settingsOverlay.classList.add("hidden"),
+          );
+        settingsOverlay.addEventListener("click", (e) => {
+          if (e.target === settingsOverlay)
+            settingsOverlay.classList.add("hidden");
+        });
+
+        document.getElementById("export-btn").addEventListener("click", () => {
+          const payload = {
+            todos,
+            notes,
+            completions,
+            overrides,
+            exportedAt: new Date().toISOString(),
+            version: 1,
+          };
+          const blob = new Blob([JSON.stringify(payload, null, 2)], {
+            type: "application/json",
+          });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `daybook-backup-${todayStr()}.json`;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+
+        const importFile = document.getElementById("import-file");
+        document
+          .getElementById("import-btn")
+          .addEventListener("click", () => importFile.click());
+        importFile.addEventListener("change", () => {
+          const file = importFile.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const data = JSON.parse(reader.result);
+              if (!data || !Array.isArray(data.todos))
+                throw new Error("Invalid file");
+              if (
+                !confirm(
+                  "Importing will replace all current tasks and notes in this browser. Continue?",
+                )
+              )
+                return;
+              todos = data.todos || [];
+              notes = data.notes || [];
+              completions = data.completions || {};
+              overrides = data.overrides || {};
+              persist();
+              persistNotes();
+              persistOverrides();
+              settingsOverlay.classList.add("hidden");
+              renderActiveView();
+              alert("Import complete.");
+            } catch (err) {
+              alert(
+                "Couldn't read that file — make sure it's a Daybook export.",
+              );
+            }
+          };
+          reader.readAsText(file);
+          importFile.value = "";
+        });
+
+        // ---------- Init ----------
+        renderToday();
+        renderActiveView();
+      })();
+    </script>
+  </body>
+</html>

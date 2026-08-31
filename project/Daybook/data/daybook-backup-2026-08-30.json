@@ -1,0 +1,571 @@
+{
+  "todos": [
+    {
+      "id": "rssorc5a",
+      "title": "LinkedIn",
+      "recurrence": "daily",
+      "date": "2026-08-30",
+      "checklist": [
+        {
+          "id": "yej8lxgh",
+          "text": "5–10 connection requests",
+          "done": false
+        },
+        {
+          "id": "yu8vlmmd",
+          "text": "3–5 comments on posts from travel professionals",
+          "done": false
+        },
+        {
+          "id": "yyhxfnj5",
+          "text": "1 company-page post",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-08-30T18:41:19.523Z",
+      "archived": false
+    },
+    {
+      "id": "rwpz7zf9",
+      "title": "Facebook",
+      "recurrence": "daily",
+      "date": "2026-08-30",
+      "checklist": [
+        {
+          "id": "21teg3pm",
+          "text": "Comment in 2–3 relevant travel-agent groups",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-08-30T18:42:22.417Z"
+    },
+    {
+      "id": "ko6ylamw",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "sbkjh0cm",
+          "text": "Jamie Biesiada - jbiesiada@travelweekly.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "createdAt": "2026-08-30T20:10:22.299Z",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null
+    },
+    {
+      "id": "vnx4fkki",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-09-01",
+      "checklist": [
+        {
+          "id": "s1n3e9s9",
+          "text": "Rebecca Tobin - rtobin@travelweekly.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "createdAt": "2026-08-30T20:13:02.791Z",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null
+    },
+    {
+      "id": "i6keta71",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-09-02",
+      "checklist": [
+        {
+          "id": "uk41ofcb",
+          "text": "Johanna Jainchill - jjainchill@travelweekly.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "createdAt": "2026-08-30T20:14:21.641Z",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null
+    },
+    {
+      "id": "gcggc3b6",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-09-03",
+      "checklist": [
+        {
+          "id": "hz6owj7j",
+          "text": "Kimberly Scholz - kscholz@travelweekly.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "createdAt": "2026-08-30T20:17:28.961Z",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null
+    },
+    {
+      "id": "6rnsllcq",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "3gdryh52",
+          "text": "TravelAge West - letters@travelagewest.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "createdAt": "2026-08-30T20:24:18.986Z",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null
+    },
+    {
+      "id": "1m1gnecg",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "llzhg1ob",
+          "text": "https://travelprofessionalnews.com/contact/",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-08-30T20:32:32.241Z"
+    },
+    {
+      "id": "hckq5ql2",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "n23o7zoi",
+          "text": "Margo Van Ness - mvanness@asta.org",
+          "done": false
+        }
+      ],
+      "createdAt": "2026-08-30T21:08:01.438Z"
+    },
+    {
+      "id": "yvn6x9mu",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-09-01",
+      "checklist": [
+        {
+          "id": "scac5de1",
+          "text": "Krystle Kimes - kkimes@asta.org",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T22:29:43.800Z"
+    },
+    {
+      "id": "8nnakub0",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "j2g1v5yz",
+          "text": "travel planners internation - marketing@tpionline.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:20:15.348Z"
+    },
+    {
+      "id": "xdin1wx4",
+      "title": "Intragram",
+      "recurrence": "weekdays",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-30",
+      "checklist": [
+        {
+          "id": "5x724p4k",
+          "text": "20–30 targeted travel-agent DMs",
+          "done": false,
+          "parentId": null
+        },
+        {
+          "id": "8r33dbox",
+          "text": "5–10 follow-ups",
+          "done": false,
+          "parentId": null
+        },
+        {
+          "id": "cf7nd7wa",
+          "text": "3–5 meaningful comments on travel-agent posts",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:21:39.659Z"
+    },
+    {
+      "id": "w2mkeikv",
+      "title": "Intagram",
+      "recurrence": "daily",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-30",
+      "checklist": [
+        {
+          "id": "vwznzxqm",
+          "text": "1 post",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:22:43.353Z"
+    },
+    {
+      "id": "ebyqgavz",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "jjhkp2rz",
+          "text": "Avoya Travel - PublicRelations@AvoyaTravel.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:30:56.104Z"
+    },
+    {
+      "id": "5oxcsqgz",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "alvqjhqk",
+          "text": "travel agent central - wtn@worldteanews.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:42:20.519Z"
+    },
+    {
+      "id": "om0v1sib",
+      "title": "CAPŸ",
+      "recurrence": "daily",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "2f2knpjj",
+          "text": "Post on subreddit",
+          "done": false,
+          "parentId": null
+        },
+        {
+          "id": "nxzb94xf",
+          "text": "r/musicimade",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "mrnoil5n",
+          "text": "r/MusicPromotion",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "cvvqq0j2",
+          "text": "r/mymusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "q967bcrx",
+          "text": "r/newmusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "mzvj4ikz",
+          "text": "r/NewMusicSpot",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "0ackdjf2",
+          "text": "indieheads",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "dioolqw3",
+          "text": "sampling",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "4ir5v45j",
+          "text": "beatmakers",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "qp7jvojj",
+          "text": "promoteyourmusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "aqom70z6",
+          "text": "shareyourmusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "riis0emr",
+          "text": "spotify",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "b6it401s",
+          "text": "thisisourmusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "88ipo9go",
+          "text": "unheardof",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "kd2q305f",
+          "text": "wearethemusicmakers",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "jn5usu0d",
+          "text": "music",
+          "done": false,
+          "parentId": "2f2knpjj"
+        },
+        {
+          "id": "lo34qebu",
+          "text": "originalmusic",
+          "done": false,
+          "parentId": "2f2knpjj"
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:45:15.554Z"
+    },
+    {
+      "id": "v714kig8",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-08-31",
+      "checklist": [
+        {
+          "id": "f0i0vwiv",
+          "text": "travel pulse - Eric Bowman ebowman@travelpulse.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:49:28.525Z"
+    },
+    {
+      "id": "p2i7huqp",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-09-07",
+      "checklist": [
+        {
+          "id": "joivef2r",
+          "text": "travel pulse - Lacey Pfalz - lpfalz@travelpulse.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:51:00.465Z"
+    },
+    {
+      "id": "a5lm13oi",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-09-14",
+      "checklist": [
+        {
+          "id": "decfb70x",
+          "text": "travel pulse - Claudette Covey - ccovey@travelpulse.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:51:45.002Z"
+    },
+    {
+      "id": "5rz3m0er",
+      "title": "Publication Contact",
+      "recurrence": "once",
+      "customDays": [],
+      "interval": null,
+      "endType": "never",
+      "endDate": null,
+      "endCount": null,
+      "date": "2026-09-21",
+      "checklist": [
+        {
+          "id": "kzj0eipb",
+          "text": "travel pulse - Patrick Clarke - pclarke@travelpulse.com",
+          "done": false,
+          "parentId": null
+        }
+      ],
+      "archived": false,
+      "createdAt": "2026-08-30T23:52:45.808Z"
+    }
+  ],
+  "notes": [
+    {
+      "id": "yvojcywr",
+      "title": "First DM",
+      "text": "Hey!\n\nQuick question, what are you currently using to create and manage client itineraries?",
+      "createdAt": "2026-08-30T19:08:09.998Z"
+    },
+    {
+      "id": "r0i4y0nd",
+      "title": "Post 1 — The Time-Saver",
+      "text": "How much time are you spending building itineraries every week?\n\nBetween flights, hotels, activities, pricing, client details, and constantly updating trip information, creating a professional itinerary can become a job by itself.\n\nItineraryFlow brings it all together.\n- Build beautiful client-ready itineraries\n- Organize hotels, flights, activities & more\n- Keep track of trip costs and profit\n- Share trips with clients instantly\n- Manage your client relationships\n\nSpend less time building itineraries and more time selling travel.\nSee what ItineraryFlow can do for your travel business:\n\nLearn more and start your 7-day free trial at https://www.itineraryflow.com/",
+      "createdAt": "2026-08-30T19:36:55.985Z"
+    },
+    {
+      "id": "imyjgtal",
+      "title": "Post 2 — The Business Angle",
+      "text": "Your travel business needs more than a pretty itinerary!\nYou need a better way to manage the entire trip.\n\nItineraryFlow is built to manage trips, clients, and the business behind every booking, all in one place.\n- Create professional itineraries.\n- Manage trip details.\n- Track your costs and profit.\n- Keep your clients information organized.\n- Create polished experience from start to finish.\n\nLess jumping between tools. Less administrative work. More time focused on your clients and growing your business.\n\nLearn more and start your 7-day free trial at https://www.itineraryflow.com/",
+      "createdAt": "2026-08-30T19:37:15.721Z"
+    },
+    {
+      "id": "oxv3uke5",
+      "title": "Post 3 — The Pain Point",
+      "text": "Still creating travel itineraries manually?\nCopying information between different tools, spreadsheets, documents and emails shouldn't be part of your everyday workflow.\n\nItineraryFlow was built to simplify it.\n- Create your itinerary.\n- Organize the trip.\n- Manage your client.\n- Track the numbers.\n- Easily share the finished experience. \nYour clients see the finished itinerary.\nYou should see the system behind it.\n\nAll from one platform designed specifically with travel professionals in mind.\nIf you're an independent travel advisor or run a travel agency, learn more and start your 7-day free trial at\nhttps://www.itineraryflow.com/",
+      "createdAt": "2026-08-30T19:37:33.261Z"
+    },
+    {
+      "id": "rr1cw9z1",
+      "title": "FB GROUP - New Agent Comment",
+      "text": "Congrats on getting started! 🙌 \n\nI actually built a tool specifically for travel advisors that helps create professional, shareable itineraries and manage trips. If you’re interested, you can check it out here: https://www.itineraryflow.com/",
+      "createdAt": "2026-08-30T19:39:29.401Z"
+    },
+    {
+      "id": "yw6zeid9",
+      "title": "Publication",
+      "text": "A New Tool Helping Travel Advisors Work Faster without Sacrificing Professionalism.\n\nHi [Name],\n\nI’m reaching out to introduce ItineraryFlow, a tool built specifically to help travel advisors streamline their workflow and create polished, shareable, professional client itineraries faster.\n\nTravel advisors spend a significant amount of time organizing trip details, formatting itineraries, preparing client presentations, and managing trip information. ItineraryFlow brings these tasks into one simple platform so advisors can spend less time on administrative work and more time focusing on acquiring more clients.\n\nAdvisors can create itineraries that include flights, hotels, restaurants, activities, transfers, maps, trip details, and more without spending hours formatting documents.\n\nWe would love to explore whether it could be a useful resource for your advisors/readers/members.\nIf this sounds relevant to your audience, I’d be happy to provide additional information or screenshots. \n\nAnyone can sign up and try ItineraryFlow FREE for 7 days.\nNo commitments required.\n\nYou can take a look here:\nhttps://www.itineraryflow.com/\n\nHave a great day,\n Sebastien Augustin Founder & CEO of ItineraryFlow",
+      "createdAt": "2026-08-30T20:05:57.579Z"
+    }
+  ],
+  "completions": {
+    "xfkh7kox": {
+      "2026-08-30": {
+        "7tf8e0cw": false,
+        "mgdbwja7": false,
+        "j4l8ogw6": false,
+        "cp2vzcwm": false
+      }
+    },
+    "rwpz7zf9": {
+      "2026-08-30": {
+        "21teg3pm": true
+      }
+    },
+    "rssorc5a": {
+      "2026-08-30": {
+        "yej8lxgh": true
+      }
+    }
+  },
+  "overrides": {},
+  "exportedAt": "2026-08-31T02:36:01.204Z",
+  "version": 1
+}

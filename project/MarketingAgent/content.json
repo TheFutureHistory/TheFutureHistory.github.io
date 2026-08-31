@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Make Every Trip Easier to Sell",
+    "paragraph": "Create clear, professional itineraries that help clients understand their trip and feel confident booking.",
+    "backgroundImage": "images/beach.jpg"
+  },
+  {
+    "title": "Stop Building Trips Manually",
+    "paragraph": "Spend less time formatting itineraries and more time focusing on your clients and growing your business.",
+    "backgroundImage": "images/vacation.jpg"
+  },
+  {
+    "title": "Give Clients a Better Experience",
+    "paragraph": "Present every trip in a clean, professional format that makes planning easier for both you and your clients.",
+    "backgroundImage": "images/hotel.jpg"
+  },
+  {
+    "title": "Turn Trip Ideas Into Proposals",
+    "paragraph": "Build polished travel proposals faster and give clients everything they need to make a decision.",
+    "backgroundImage": "images/beach.jpg"
+  },
+  {
+    "title": "Spend Less Time on PDFs",
+    "paragraph": "Stop wasting hours creating and formatting travel documents. Build beautiful itineraries in less time.",
+    "backgroundImage": "images/vacation.jpg"
+  }
+]

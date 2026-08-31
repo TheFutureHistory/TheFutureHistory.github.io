@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Story Studio | Marketing Agent</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="generator">
+      <header class="generator-header">
+        <div>
+          <p class="eyebrow">MARKETING AGENT · STUDIO</p>
+          <h1>Automate your <em>content.</em></h1>
+          <p class="header-note">
+            A focused 9:16 image generator for your next social post.
+          </p>
+        </div>
+        <div class="format-note">
+          <strong>9:16</strong><span>1080 × 1920</span>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="controls" aria-label="Generator controls">
+          <div class="control-group">
+            <label for="postSelect">Content set</label>
+            <select id="postSelect"></select>
+          </div>
+
+          <div class="navigation">
+            <button id="previousButton" aria-label="Previous post">
+              ← <span>Previous</span>
+            </button>
+            <button id="nextButton" aria-label="Next post">
+              <span>Next</span> →
+            </button>
+          </div>
+
+          <button id="exportButton" class="export-button">
+            Export PNG <span>↓</span>
+          </button>
+
+          <div id="status" class="status"></div>
+        </aside>
+
+        <section class="preview-container" aria-label="Story preview">
+          <div id="instagramCanvas" class="instagram-canvas">
+            <img id="backgroundImage" class="background-image" src="" alt="" />
+
+            <div class="overlay"></div>
+            <div id="fallbackText" class="fallback-text">
+              ADD A BACKGROUND<br />IN CONTENT.JSON
+            </div>
+
+            <div class="content">
+              <div class="contentContainer">
+                <section class="contentHeader">
+                  <img
+                    class="contentLogo"
+                    src="https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219"
+                    alt="ITINERARYFLOWLogo"
+                  />
+                  <p class="contentBrand">ITINERARYFLOW</p>
+                </section>
+                <section class="contentBottom">
+                  <div class="contentTitleCont">
+                    <h1 id="postTitle"></h1>
+                  </div>
+                  <section class="contentDescriptionCont">
+                    <p id="postParagraph"></p>
+                  </section>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

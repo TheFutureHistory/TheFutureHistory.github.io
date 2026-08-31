@@ -182,6 +182,26 @@ const portfolioItems = [
       "A directory of job boards, companies, marketplaces and tools for people looking for work in the USA or Canada.",
     status: "project",
   },
+  // {
+  //   imageSrc:
+  //     "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",
+  //   alt: "MarketingAgent",
+  //   onClick: "openMarketingAgent()",
+  //   title: "MarketingAgent",
+  //   description:
+  //     "The marketing agent automates the creation of marketing content and social platforms publishing.",
+  //   status: "project",
+  // },
+  {
+    imageSrc:
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/DB_logo.png",
+    alt: "DayBook",
+    onClick: "openDaybook()",
+    title: "Daybook",
+    description:
+      "Todo app that lets you add to-dos per day and general notes for quick access. Also with a stat page to monitor your progress. ",
+    status: "project",
+  },
   {
     imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",

@@ -1,0 +1,9 @@
+{
+  "name": "marketing-agent",
+  "private": true,
+  "version": "1.0.0",
+  "description": "JSON-powered 9:16 social media image generator",
+  "scripts": {
+    "check": "node --check script.js"
+  }
+}

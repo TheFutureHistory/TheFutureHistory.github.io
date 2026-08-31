@@ -1,0 +1,409 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: #f3f0ea;
+  color: #173b45;
+}
+
+.generator {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 54px 40px 70px;
+}
+
+.generator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #d46b45;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.generator-header h1 {
+  margin: 0 0 8px;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.generator-header h1 em {
+  color: #d46b45;
+  font-weight: 400;
+}
+
+.header-note {
+  margin: 16px 0 0;
+  color: #718085;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.format-note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+}
+
+.format-note strong {
+  color: #d46b45;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.format-note span {
+  color: #718085;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+  padding: 20px;
+  background: #fffdf9;
+  border: 1px solid #d9d4cc;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  gap: 26px;
+  align-items: stretch;
+  min-height: calc(100vh - 230px);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.control-group label {
+  font-size: 13px;
+  color: #718085;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+select,
+button {
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #d9d4cc;
+  border-radius: 3px;
+  background: #fffdf9;
+  color: #173b45;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+select {
+  min-width: 180px;
+}
+
+button:hover {
+  background: #f3f0ea;
+}
+
+.navigation {
+  display: flex;
+  gap: 8px;
+}
+
+.navigation button {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.export-button {
+  margin-left: auto;
+  background: #d46b45;
+  color: #fff;
+  border-color: #d46b45;
+  font-weight: 700;
+}
+
+.export-button:hover {
+  background: #b95635;
+}
+
+.export-button span {
+  font-size: 18px;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 230px);
+  padding: 28px;
+  background: #fffdf9;
+  border-radius: 4px;
+  border: 1px solid #d9d4cc;
+  overflow: hidden;
+}
+
+/*
+  Instagram portrait format:
+  1080 × 1920
+*/
+.instagram-canvas {
+  position: relative;
+
+  width: auto;
+  height: min(calc(100vh - 286px), 720px);
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+
+  overflow: hidden;
+
+  background: linear-gradient(145deg, #173b45, #d46b45);
+
+  flex-shrink: 0;
+}
+
+.background-image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.background-image.is-hidden {
+  display: none;
+}
+
+.fallback-text {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.28);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 70%;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  --content-padding: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: var(--content-padding);
+  color: #fff;
+}
+.contentContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-start;
+}
+.contentHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.contentLogo {
+  height: 20px;
+  width: 20px;
+}
+.contentBrand {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.contentBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: auto;
+  height: 40%;
+  width: 100%;
+}
+.contentTitleCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+#postTitle {
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.contentDescriptionCont {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 0 0 auto;
+  margin-top: 0;
+  width: 100%;
+}
+
+#postParagraph {
+  max-width: 780px;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+.bottom-brand {
+  margin-top: 70px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.status {
+  min-height: 24px;
+  margin-top: 15px;
+
+  text-align: left;
+
+  font-size: 14px;
+  color: #718085;
+}
+
+@media (max-width: 1200px) {
+  .generator {
+    padding: 20px;
+  }
+
+  .preview-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .generator {
+    padding: 30px 16px 45px;
+  }
+
+  .generator-header {
+    align-items: flex-start;
+  }
+
+  .format-note {
+    display: none;
+  }
+
+  .controls {
+    align-items: stretch;
+  }
+
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .navigation {
+    width: 100%;
+  }
+
+  .navigation button {
+    flex: 1;
+  }
+
+  .export-button {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .preview-container {
+    padding: 24px 12px;
+    min-height: 0;
+  }
+
+  .instagram-canvas {
+    width: min(100%, 540px);
+    height: auto;
+  }
+
+  .generator-header h1 {
+    font-size: 42px;
+  }
+
+  .content h1 {
+    font-size: 36px;
+  }
+
+  .content h2 {
+    font-size: 20px;
+  }
+
+  .content p {
+    font-size: 14px;
+  }
+}
