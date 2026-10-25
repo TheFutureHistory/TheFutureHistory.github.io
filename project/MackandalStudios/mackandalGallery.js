@@ -2,26 +2,26 @@
 function appendPortfolioItems(items) {
   const portfolioContainer = document.getElementById("portfolioGallery");
   if (!portfolioContainer) {
-    console.error("❌ portfolioGallery container not found in DOM");
+    console.error("portfolioGallery container not found in DOM");
     return;
   }
 
-  console.log("✅ Appending portfolio items...");
-  items.forEach((item, i) => {
-    const section = document.createElement("section");
-    section.className = "portfolioItem";
-
-    section.innerHTML = `
-      <img src="${item.imageSrc}" alt="${item.alt}" class="portfolioItemPhoto">
-      <div class="portfolioItemInfo">
-        <p class="portfolioItemInformation">${item.title}</p>
-        <p class="portfolioItemDescription">${item.description}</p>
-      </div>
-    `;
-
-    portfolioContainer.appendChild(section);
-    console.log(`🖼️ Added portfolio item #${i + 1}: ${item.title}`);
-  });
+  portfolioContainer.innerHTML = items
+    .map((item) => {
+      const key = item.title.toLowerCase().replace(/\s+/g, "");
+      return `
+        <button class="gallery-card project-gallery-card" type="button" data-gallery="${key}">
+          <div class="gallery-media">
+            <img src="${item.imageSrc}" alt="${item.alt}" loading="lazy" draggable="false" />
+            <div class="gallery-glass"><p>${item.description}</p></div>
+          </div>
+          <div class="gallery-meta">
+            <h3>${item.title}</h3>
+            <span class="gallery-cat">Art</span>
+          </div>
+        </button>`;
+    })
+    .join("");
 }
 
 // === Portfolio items data ===
@@ -108,7 +108,7 @@ const projectGrid = document.querySelector(".projectGrid");
 const projectPreview = document.querySelector(".project_preview");
 
 if (!projectTitle || !projectGrid || !projectPreview) {
-  console.error("❌ Missing .projectTitle, .projectGrid, or .project_preview in DOM");
+  console.error("Missing project gallery elements in DOM");
 }
 
 // === Open/close functions ===
@@ -118,139 +118,103 @@ function openProjectPreview(titleText, gallery) {
   const projectPreview = document.querySelector(".project_preview");
 
   if (!projectTitle || !projectGrid || !projectPreview) {
-    console.error("❌ Missing .projectTitle, .projectGrid, or .project_preview in DOM");
+    console.error("Missing project gallery elements in DOM");
     return;
   }
 
-  console.log(`🟢 Opening project preview for: ${titleText}`);
-
   projectTitle.textContent = titleText;
-  projectGrid.innerHTML = "";
-
-  gallery.forEach((imgUrl, i) => {
-    const img = document.createElement("img");
-    img.src = imgUrl;
-    img.classList.add("project_gallery");
-    img.alt = `${titleText} image ${i + 1}`;
-    projectGrid.appendChild(img);
-    console.log(`   ➕ Added image ${i + 1}: ${imgUrl}`);
-  });
-
+  projectGrid.innerHTML = gallery
+    .map(
+      (imgUrl, i) => `
+        <div class="gallery-media">
+          <img
+            src="${imgUrl}"
+            class="project-preview-image"
+            alt="${titleText} image ${i + 1}"
+            loading="lazy"
+            draggable="false"
+          />
+        </div>`,
+    )
+    .join("");
   projectPreview.classList.add("active");
-
-  // Add click listeners to gallery images
-  const galleryImages = document.querySelectorAll(".project_gallery");
-  galleryImages.forEach((img) => {
-    img.addEventListener("click", (e) => {
-      e.stopPropagation();
-      openLargeImage(img.src);
-    });
-  });
+  projectPreview.setAttribute("aria-hidden", "false");
+  document.querySelector(".project-preview-close").focus();
 }
 
 
 function closeProjectPreview() {
-  console.log("🔴 Closing project preview...");
   projectPreview.classList.remove("active");
   projectGrid.innerHTML = "";
   projectTitle.textContent = "";
+  projectPreview.setAttribute("aria-hidden", "true");
 }
 
 // === Run after DOM is loaded ===
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ DOM fully loaded");
   appendPortfolioItems(portfolioItemsData);
 
   const portfolioGallery = document.getElementById("portfolioGallery");
   if (!portfolioGallery) {
-    console.error("❌ portfolioGallery not found for event delegation");
     return;
   }
 
-  // Event delegation — detect clicks anywhere in a portfolioItem
   portfolioGallery.addEventListener("click", (e) => {
-    const portfolioItem = e.target.closest(".portfolioItem");
-    if (!portfolioItem) {
-      console.log("⚠️ Click not inside a .portfolioItem");
-      return;
-    }
-
-    e.stopPropagation();
-
-    // Find the title text within the clicked item
-    const info = portfolioItem.querySelector(".portfolioItemInformation");
-    if (!info) {
-      console.error("❌ No .portfolioItemInformation found inside clicked item");
-      return;
-    }
-
-    const titleText = info.textContent.trim();
-    const key = titleText.toLowerCase().replace(/\s+/g, "");
-    console.log(`🖱️ Clicked project: "${titleText}" → key: "${key}"`);
-
-    if (galleries[key]) {
-      openProjectPreview(titleText, galleries[key]);
-    } else {
-      console.warn(`⚠️ No gallery found for key: "${key}"`);
-      projectTitle.textContent = titleText;
-      projectGrid.innerHTML = `<p>No gallery found for "${titleText}".</p>`;
-      projectPreview.classList.add("active");
-    }
+    const card = e.target.closest(".project-gallery-card");
+    if (!card) return;
+    const key = card.dataset.gallery;
+    const item = portfolioItemsData.find(
+      (galleryItem) =>
+        galleryItem.title.toLowerCase().replace(/\s+/g, "") === key,
+    );
+    if (!item || !galleries[key]) return;
+    openProjectPreview(item.title, galleries[key]);
   });
+
 });
 
 
-// === Click outside to close ===
 document.addEventListener("click", (e) => {
-  if (projectPreview.classList.contains("active") && !projectPreview.contains(e.target)) {
-    console.log("🖱️ Clicked outside of project preview");
+  if (e.target.closest(".project-preview-close")) {
+    closeProjectPreview();
+    return;
+  }
+  if (projectPreview.classList.contains("active") && e.target === projectPreview) {
     closeProjectPreview();
   }
 });
 
-
-
-// Function to open image in large view
 function openLargeImage(imgSrc) {
-  // Create overlay
   const overlay = document.createElement("div");
-  overlay.style.position = "fixed";
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.width = "100%";
-  overlay.style.height = "100%";
-  overlay.style.backgroundColor = "rgba(0,0,0,0.8)";
-  overlay.style.display = "flex";
-  overlay.style.justifyContent = "center";
-  overlay.style.alignItems = "center";
-  overlay.style.zIndex = 9999;
-  overlay.style.cursor = "pointer";
-
-  // Create image
+  overlay.className = "project-image-lightbox";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Expanded project image");
+  overlay.tabIndex = -1;
   const img = document.createElement("img");
   img.src = imgSrc;
-  img.style.height = "80vh";
-  img.style.maxWidth = "80vw"; // 80% of viewport height
-  img.style.width = "auto"; // width adjusts proportionally
-  img.style.objectFit = "contain";
+  img.alt = "Expanded project artwork";
   overlay.appendChild(img);
-
-  // Click overlay to close
-  overlay.addEventListener("click", () => {
-    document.body.removeChild(overlay);
-  });
-
+  overlay.addEventListener("click", () => overlay.remove());
   document.body.appendChild(overlay);
+  overlay.focus();
 }
 
-// Add event listener to all project_gallery images after project preview is opened
-function addGalleryClickListeners() {
-  const galleryImages = document.querySelectorAll(".project_gallery");
-  galleryImages.forEach((img) => {
-    img.addEventListener("click", (e) => {
-      e.stopPropagation(); // prevent closing project preview
-      openLargeImage(img.src);
-    });
-  });
-}
+document.addEventListener("click", (e) => {
+  const image = e.target.closest(".project-preview-image");
+  if (!image) return;
+  e.stopPropagation();
+  openLargeImage(image.src);
+});
 
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const lightbox = document.querySelector(".project-image-lightbox");
+    if (lightbox) {
+      lightbox.remove();
+      return;
+    }
+  }
+  if (e.key === "Escape" && projectPreview.classList.contains("active"))
+    closeProjectPreview();
+});

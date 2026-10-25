@@ -1,80 +1,160 @@
+/* ------------------------------------------------------------------
+   Replace your existing appendPortfolioItems() with this function.
+   Keep `const portfolioItems = [...]` and the final
+   `appendPortfolioItems(portfolioItems);` call exactly as they are.
+------------------------------------------------------------------- */
 function appendPortfolioItems(items) {
-  const portfolioContainer = document.getElementById("build-grid"); // Assume this is the container where you want to append the items
+  const grid = document.getElementById("portfolio-grid");
+  const section = document.getElementById("portfolio");
+  const total = items.length;
+  if (!grid || !section || !total) return;
 
-  items.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "build-card";
-    const status = item.status || "Website";
+  const pad = (n) => String(n).padStart(2, "0");
 
-    card.innerHTML = `
-        <div class="build-visual" onclick="${item.onClick}">
-          <div class="build-row">
-            <img src="${item.imageSrc}" alt="${item.alt}" >
-            <div>
-              <p class="build-status">${status}</p>
-            </div>
+  /* ---------- 1. Build markup ---------- */
+  const infoHTML = items
+    .map((item) => {
+      const category = item.status || "Website";
+      const click = item.onClick ? `onclick="${item.onClick}"` : "";
+      return `
+        <div class="portfolio-info-item" aria-hidden="true">
+          <span class="portfolio-info-category">${category}</span>
+          <h3 class="portfolio-info-title">${item.title}</h3>
+          <p class="portfolio-info-description">${item.description}</p>
+          ${
+            item.onClick
+              ? `<button type="button" class="portfolio-info-btn" ${click}>view project</button>`
+              : ""
+          }
+        </div>`;
+    })
+    .join("");
 
+  const cardsHTML = items
+    .map((item) => {
+      const category = (item.status || "Website").toLowerCase();
+      const click = item.onClick ? `onclick="${item.onClick}"` : "";
+      return `
+        <div class="portfolio-card" data-status="${category}" ${click}>
+          <div class="portfolio-card-details">
+            <img src="${item.imageSrc}" alt="${item.alt}" draggable="false" />
           </div>
-          <div class="build-row">
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-          </div>
+        </div>`;
+    })
+    .join("");
+
+  grid.innerHTML = `
+    <div class="portfolio-layout">
+      <div class="portfolio-info">
+        <div class="portfolio-counter">
+          <span class="portfolio-counter-current">01</span>
+          <span class="portfolio-counter-total">/ ${pad(total)}</span>
         </div>
-      `;
+        <div class="portfolio-info-stack">${infoHTML}</div>
+        <div class="portfolio-progress"><span class="portfolio-progress-bar"></span></div>
+      </div>
+      <div class="portfolio-deck">${cardsHTML}</div>
+    </div>`;
 
-    const statusEl = card.querySelector(".build-status");
-    const lowerStatus = status.toLowerCase();
-    if (lowerStatus === "website") {
-      statusEl.style.background = "#CFFAE4";
-      statusEl.style.color = "#007A55";
-    } else if (lowerStatus === "web app") {
-      statusEl.style.background = "#CFFAE4";
-      statusEl.style.color = "#007A55";
-    } else if (lowerStatus === "offline") {
-      statusEl.style.background = "#FEE2E2";
-      statusEl.style.color = "#C2000C";
-    } else if (lowerStatus === "art") {
-      statusEl.style.background = "#FFF0D9";
-    } else if (lowerStatus === "game") {
-      statusEl.style.background = "#FFF0D9"; // new light orange for art
-      statusEl.style.color = "#B35C00";
-    } else if (lowerStatus === "music") {
-      statusEl.style.background = "#E8DFFF"; // new light purple for music
-      statusEl.style.color = "#5C00B3";
-    } else if (lowerStatus === "video") {
-      statusEl.style.background = "#E8DFFF"; // new light purple for music
-      statusEl.style.color = "#5C00B3";
-    } else if (lowerStatus === "design") {
-      statusEl.style.background = "#DBEAFF";
-      statusEl.style.color = "#1447E5";
-    } else if (lowerStatus === "project") {
-      statusEl.style.background = "#fff3cd";
-      statusEl.style.color = "#BA4D00";
-    } else if (lowerStatus === "in progress") {
-      statusEl.style.background = "#fff3cd";
-      statusEl.style.color = "#BA4D00";
+  /* ---------- 2. Grab elements ---------- */
+  const stickyEl = section.querySelector(".container");
+  const cards = Array.from(grid.querySelectorAll(".portfolio-card"));
+  const infos = Array.from(grid.querySelectorAll(".portfolio-info-item"));
+  const counter = grid.querySelector(".portfolio-counter-current");
+  const bar = grid.querySelector(".portfolio-progress-bar");
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  // Gives the section its extra scroll runway (see CSS)
+  section.style.setProperty("--steps", total - 1);
+  section.classList.add("is-roller");
+
+  /* ---------- 3. Scroll -> position ---------- */
+  let target = 0; // where the scroll says we should be (0 .. total-1)
+  let current = 0; // smoothed value used for rendering
+  let active = -1;
+  let running = false;
+
+  function readScroll() {
+    const stickyTop = parseFloat(getComputedStyle(stickyEl).top) || 0;
+    const rect = section.getBoundingClientRect();
+    const max = section.offsetHeight - stickyEl.offsetHeight;
+    const scrolled = stickyTop - rect.top;
+    const p = max > 0 ? Math.min(Math.max(scrolled / max, 0), 1) : 0;
+    target = p * (total - 1);
+    start();
+  }
+
+  function setActive(idx) {
+    active = idx;
+    infos.forEach((el, i) => {
+      el.classList.toggle("is-active", i === idx);
+      el.setAttribute("aria-hidden", i === idx ? "false" : "true");
+    });
+    cards.forEach((el, i) => el.classList.toggle("is-active", i === idx));
+    counter.textContent = pad(idx + 1);
+  }
+
+  /* ---------- 4. Render the roller ---------- */
+  function render() {
+    current += (target - current) * (reduceMotion ? 1 : 0.14);
+    if (Math.abs(target - current) < 0.001) current = target;
+
+    cards.forEach((card, i) => {
+      const d = i - current; // offset from the centre: 0 = front and centre
+      const a = Math.abs(d);
+      const opacity = Math.max(0, 1 - a * 0.8);
+
+      if (opacity <= 0) {
+        card.style.visibility = "hidden";
+        return;
+      }
+
+      card.style.visibility = "visible";
+      card.style.opacity = opacity;
+      card.style.zIndex = 100 - Math.round(a * 10);
+      card.style.transform = `translateY(${d * 92}%) rotateX(${-d * 38}deg) scale(${1 - Math.min(a, 1) * 0.1})`;
+    });
+
+    const idx = Math.round(current);
+    if (idx !== active) setActive(idx);
+    bar.style.transform = `scaleX(${total > 1 ? current / (total - 1) : 1})`;
+
+    if (current !== target) {
+      requestAnimationFrame(render);
     } else {
-      statusEl.style.background = "#E6E7EB";
-      statusEl.style.color = "#394456";
+      running = false;
     }
+  }
 
-    portfolioContainer.appendChild(card);
-  });
+  function start() {
+    if (running) return;
+    running = true;
+    requestAnimationFrame(render);
+  }
+
+  window.addEventListener("scroll", readScroll, { passive: true });
+  window.addEventListener("resize", readScroll);
+
+  setActive(0);
+  readScroll();
+  render();
 }
 const portfolioItems = [
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202026-08-18%20at%206.50.45%20PM.png",
-    alt: "Sebastien AI Agent",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/GoodMorningChat.png?updatedAt=1792865238413",
+    alt: "Sebastien Augustin AI",
     onClick: "openSebastienAI()",
-    title: "TONY",
+    title: "Sebastien Augustin AI",
     description:
-      "Tony is Sebastien's AI Assistant, here to help you learn more about his work, process, and approach.",
+      "Sebastien Augustin's AI Assistant, here to help you learn more about his work, process, and approach.",
     status: "Web App",
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/TravelBuilder/IF%20-%20LOGO7.png?updatedAt=1782258423219",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Buddha.avif?updatedAt=1792865093296",
     alt: "Itinerary Flow",
     onClick: "openItineraryFlow()",
     title: "Itinerary Flow",
@@ -84,7 +164,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/like2.jpg?updatedAt=1792865298568",
     alt: "Work Gambit",
     onClick: "openWorkGambit()",
     title: "Work Gambit",
@@ -93,18 +173,8 @@ const portfolioItems = [
     status: "Web App",
   },
   {
-    imageSrc: "https://ik.imagekit.io/sebastienaugustin/images/GMC_black.png",
-    alt: "GoodMorningChat",
-    onClick: "openGoodMorningChat()",
-    title: "GoodMorningChat",
-    description:
-      "A Digital growth agency elevating Brands through strategic creativity & reputation management.",
-    status: "website",
-    category: "Founder",
-  },
-  {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Nocturne/NocturneLogo.png?updatedAt=1778098060281",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/NocturneVIP.jpg?updatedAt=1792865330810",
     alt: "Nocturne VIP",
     onClick: "openNocturneVIP()",
     title: "Nocturne VIP",
@@ -114,7 +184,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/High%20Vibez%20-%20Logo%20(Black)%20_Print_.png?updatedAt=1760058060512",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/HighVibez.avif?updatedAt=1792865023411",
     alt: "High Vibez Global",
     onClick: "openHighVibez()",
     title: "High Vibez Global",
@@ -124,7 +194,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202025-10-09%20at%205.04.28%20PM.png?updatedAt=1760051086124",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/MAPS3.jpg?updatedAt=1792865345891",
     alt: "MAPS Canada",
     onClick: "openMapsCanada()",
     title: "MAPS Canada",
@@ -134,7 +204,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/LuxuryFleetFavicon.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/LuxuryFleetStudio.jpg?updatedAt=1792865234288",
     alt: "LuxuryFleetStudio",
     onClick: "openLuxuryFleetStudio()",
     title: "LuxuryFleetStudio",
@@ -144,7 +214,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Logo.png?updatedAt=1762197005313",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/AkajouLibrary.jpg?updatedAt=1792865045571",
     alt: "Akajou Library",
     onClick: "openAkajouLibrary()",
     title: "Akajou Library",
@@ -164,7 +234,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/MelinaPalacios-icons.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/MelinaPalacios3.jpg?updatedAt=1792865344016",
     alt: "Melina Palacios",
     onClick: "openMelinaPalacios()",
     title: "Melina Palacios",
@@ -174,7 +244,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/WG_blackBox.PNG?updatedAt=1757627966922",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/like.jpg?updatedAt=1792865185468",
     alt: "WG Directory",
     onClick: "openWGDirectory()",
     title: "WG Directory",
@@ -182,19 +252,9 @@ const portfolioItems = [
       "A directory of job boards, companies, marketplaces and tools for people looking for work in the USA or Canada.",
     status: "project",
   },
-  // {
-  //   imageSrc:
-  //     "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",
-  //   alt: "MarketingAgent",
-  //   onClick: "openMarketingAgent()",
-  //   title: "MarketingAgent",
-  //   description:
-  //     "The marketing agent automates the creation of marketing content and social platforms publishing.",
-  //   status: "project",
-  // },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/DB_logo.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Daybook3.jpg?updatedAt=1792865214065",
     alt: "DayBook",
     onClick: "openDaybook()",
     title: "Daybook",
@@ -204,7 +264,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/STOCKY.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Stocky3.jpg?updatedAt=1792865338855",
     alt: "STOCKY",
     onClick: "openStocky()",
     title: "STOCKY",
@@ -214,7 +274,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/world.jpeg?updatedAt=1760137355015",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/worldConquer.jpg?updatedAt=1792865373649",
     alt: "World Conquer",
     onClick: "openWorldConquer()",
     title: "World Conquer",
@@ -224,7 +284,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202026-03-24%20at%2010.07.30%20AM.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/ColorPalette.jpg?updatedAt=1792865133946",
     alt: "Palette Studio",
     onClick: "openPaletteStudio()",
     title: "Palette Studio",
@@ -234,7 +294,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/invoicegenerator.jpg?updatedAt=1760220049982",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/InvoiceBuilder.jpg?updatedAt=1792865387544",
     alt: "Invoice Creator",
     onClick: "openInvoiceBuilder()",
     title: "Invoice Creator",
@@ -244,7 +304,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/DrumMachine.png?updatedAt=1756756059303",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/DrumMachine.jpg?updatedAt=1792865322214",
     alt: "Drum Machine",
     onClick: "openDrumMachine()",
     title: "Drum Machine",
@@ -254,7 +314,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/emailgenerator.jpg?updatedAt=1760220049884",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/EmailGenerator2.png?updatedAt=1792865270898",
     alt: "Email Generator",
     onClick: "openEmailGenerator()",
     title: "Email Generator",
@@ -264,7 +324,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/emailgenerator.jpg?updatedAt=1760220049884",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/EmailExtractor.png?updatedAt=1792865255175",
     alt: "Email Extractor",
     onClick: "",
     title: "Email Extractor",
@@ -274,7 +334,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/ProductiveP.png?updatedAt=1760214036489",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/club4.jpg?updatedAt=1792865181213",
     alt: "ProductivPro",
     onClick: "",
     title: "ProductivPro",
@@ -284,7 +344,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/icon192.png?updatedAt=1760214942716",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/todolist.jpg?updatedAt=1792865230965",
     alt: "TodoList",
     onClick: "",
     title: "TodoList",
@@ -294,7 +354,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Haitiflag.jpg",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Haiti4.jpg?updatedAt=1792865345824",
     alt: "Haiti Runner Game",
     onClick: "openHaitiGame()",
     title: "The Haïtian Runner",
@@ -324,7 +384,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/FrontendPortfolio-1000.webp?updatedAt=1756756236423",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Frontend%20Design.png?updatedAt=1792865283536",
     alt: "Front-end",
     onClick: "openFrontend()",
     title: "Front-end Design",
@@ -334,7 +394,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/GraphicDesign2.png?updatedAt=1756756329601",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/GraphicDesign2.png?updatedAt=1792865243416",
     alt: "Graphic Design",
     onClick: "openGraphicDesign()",
     title: "Graphic Design",
@@ -364,7 +424,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/HydroFlora.jpg?updatedAt=1756756108318",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/HidroFlora.jpg?updatedAt=1792865307989",
     alt: "Hydro Flora",
     onClick: "openHydroflora()",
     title: "Hydro Flora",
@@ -374,7 +434,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/terastacks_logo.jpg?updatedAt=1760052999268",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Terastacks.png?updatedAt=1792865140617",
     alt: "Terastacks",
     onClick: "",
     title: "Terastacks",
@@ -384,7 +444,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Screenshot%202025-10-09%20at%205.37.11%20PM.png?updatedAt=1760053049149",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/TerastacksApp.png?updatedAt=1792865276682",
     alt: "Terastacks App",
     onClick: "",
     title: "Terastacks App",
@@ -394,7 +454,7 @@ const portfolioItems = [
   },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/diggit_logo.png?updatedAt=1760053091338",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Diggit3.jpg?updatedAt=1792865261588",
     alt: "Diggit",
     onClick: "",
     title: "Diggit",

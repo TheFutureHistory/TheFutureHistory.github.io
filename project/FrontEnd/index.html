@@ -1,108 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sebastien Augustin - FrontEnd</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"
+    <meta
+      name="description"
+      content="A collection of front-end design concepts and web experiences by Sebastien Augustin."
     />
-    <link rel="stylesheet" href="../../static/css/style.css" />
+    <title>Front-End Designs · Sebastien Augustin</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/Logos/GMC.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Zalando+Sans+Expanded:wght@200..900&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/12a535f370.js"
-      crossorigin="anonymous"
-    ></script>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css" />
+    <script src="../../static/js/shared.js" defer></script>
   </head>
-
-  <body id="projectPage">
-      <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <a href="../../#sebastien">Sebastien Augustin</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../../#about">About</a></li>
-                    <li><a href="../../#work">Work</a></li>
-                    <li><a href="" id="contactBTN">Contact</a></li>
-                </ul>
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Hire Me</button>
-            </div>
-        </div>
-    </nav>
-    <div class="project_container">
-      <h1 class="sectionTitle">Front-End Designs</h1>
-    </div>
-
-      <div class="projectGridWide">
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd7.png?updatedAt=1756756302217" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/TicketPRO-1000.webp?updatedAt=1756756177149" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd10.png?updatedAt=1756756135036" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd12.png?updatedAt=1756756228193" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd2.png?updatedAt=1756756323216" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd3.png?updatedAt=1756756236657" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd8.png?updatedAt=1756756486086" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd9.png?updatedAt=1756756470601" alt="" />
-      <img class="project_gallery" src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd14.png?updatedAt=1756756102432" alt="" />
+  <body class="project-page" data-page="project">
+    <main class="page">
+      <div class="sectionTitleContainer project-intro">
+        <h1 class="sectionTitle">Front-End Designs</h1>
+        <p class="sectionDescription">
+          A collection of digital experiences combining thoughtful layouts,
+          expressive visuals, and polished interface design.
+        </p>
       </div>
-    
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 Sebastien Augustin. All rights reserved.</p>
+
+      <section class="project-content" aria-label="Front-end design gallery">
+        <div class="gallery-grid project-image-grid">
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd7.png?updatedAt=1756756302217"
+                alt="Front-end design concept 1"
+                loading="lazy"
+              />
             </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/TicketPRO-1000.webp?updatedAt=1756756177149"
+                alt="TicketPRO interface design"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd10.png?updatedAt=1756756135036"
+                alt="Front-end design concept 2"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd12.png?updatedAt=1756756228193"
+                alt="Front-end design concept 3"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd2.png?updatedAt=1756756323216"
+                alt="Front-end design concept 4"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd3.png?updatedAt=1756756236657"
+                alt="Front-end design concept 5"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd8.png?updatedAt=1756756486086"
+                alt="Front-end design concept 6"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd9.png?updatedAt=1756756470601"
+                alt="Front-end design concept 7"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+          <figure class="gallery-card">
+            <div class="gallery-media">
+              <img
+                src="https://ik.imagekit.io/sebastienaugustin/images/projects/FrontEnd14.png?updatedAt=1756756102432"
+                alt="Front-end design concept 8"
+                loading="lazy"
+              />
+            </div>
+          </figure>
         </div>
-    </footer>
-
-    <!-- Open Virtual Assistant -->
-    <script>
-        document.getElementById('contactBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-        document.getElementById('hireBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-    </script>
-    <script src="../../GoodMorningChat.js" data-chatbot-id="sebastienaugustin" async defer></script>
-    <!-- Navbar Scroll -->
-    <script>
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        });
-    </script>
-
+      </section>
+    </main>
   </body>
 </html>
-
-
-

@@ -1,113 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sebastien Augustin - Mackandal Studios</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="https://ik.imagekit.io/sebastienaugustin/images/icons/SA_FAVICON2.png?updatedAt=1756756052921"
+    <meta
+      name="description"
+      content="Generative AI art and concept scenes from Mackandal Studios."
     />
-    <link rel="stylesheet" href="../../static/css/style.css" />
+    <title>Mackandal Studios · Sebastien Augustin</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/Logos/GMC.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Zalando+Sans+Expanded:wght@200..900&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/12a535f370.js"
-      crossorigin="anonymous"
-    ></script>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lexend:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css" />
+    <script src="../../static/js/shared.js" defer></script>
   </head>
+  <body class="project-page" data-page="project">
+    <main class="page">
+      <div class="sectionTitleContainer project-intro">
+        <h1 class="sectionTitle">Mackandal Studios</h1>
+        <p class="sectionDescription">
+          Exploring the future of generative AI through art, concept scenes,
+          and visual stories at the edge of reality. All artwork is generated
+          and copyrighted by Sebastien A.
+        </p>
+        <a
+          href="https://www.instagram.com/mackandal.studios"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="services-text-link"
+        >
+          Follow on Instagram <span aria-hidden="true">↗</span>
+        </a>
+      </div>
 
-  <body id="projectPage">
-      <nav class="navbar">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo">
-                    <a href="../../#sebastien">Sebastien Augustin</a>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="../../#about">About</a></li>
-                    <li><a href="../../#work">Work</a></li>
-                    <li><a href="" id="contactBTN">Contact</a></li>
-                </ul>
-                <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" id="hireBTN">Hire Me</button>
-            </div>
+      <section class="project-content" aria-label="Mackandal Studios galleries">
+        <div class="gallery-grid" id="portfolioGallery"></div>
+      </section>
+    </main>
+
+    <section
+      class="project_preview"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Selected project gallery"
+      aria-hidden="true"
+    >
+      <div class="project-preview-panel">
+        <div class="project-preview-heading">
+          <h2 class="projectTitle"></h2>
+          <button
+            class="project-preview-close"
+            type="button"
+            aria-label="Close gallery"
+          >
+            &times;
+          </button>
         </div>
-    </nav>
-    <div class="project_container">
-      <h1 class="sectionTitle">Mackandal Studios</h1>
-      <p class="project_description">
-        Showcasing the evolution of generative AI through art pieces.<br />
-        As AI evolves, the distinction between the real and the fake gets lost in the abyss.<br/>
-        <span>All images are generated and copyrighted by Sebastien A.</span>
-      </p>
-      <a href="https://www.instagram.com/mackandal.studios" target="_blank" class="project_site">Follow on Instagram</a>
-    </div>
-
-    <section class="portfolioSection" id="MackandalPortfolioSection">
-        <section class="portfolioGallery" id="portfolioGallery"></section>
+        <div class="projectGrid"></div>
+      </div>
     </section>
 
-    <section class="project_preview">
-          <p class="projectTitle"></p>
-          <div class="projectGrid">
-          </div>
-    </section>
-    
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2025 Sebastien Augustin. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Open Virtual Assistant -->
-    <script>
-        document.getElementById('contactBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-        document.getElementById('hireBTN').addEventListener('click', (e) => {
-        e.preventDefault();
-        const chatbotButton = document.querySelector('.chatbot-widget-button, .chatbot-widget-window');
-        if (chatbotButton) {
-            chatbotButton.click(); // simulate real click
-        } else {
-            console.warn('Chatbot trigger not found.');
-        }
-        });
-    </script>
-
-    <!-- Gallery open -->
-     <script src="mackandalGallery.js"></script>
-
-    <script src="../../GoodMorningChat.js" data-chatbot-id="sebastienaugustin" async defer></script>
-    <!-- Navbar Scroll -->
-    <script>
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        });
-    </script>
-
+    <script src="mackandalGallery.js"></script>
   </body>
 </html>
