@@ -710,6 +710,9 @@ body {
   padding: 24px;
   background: rgba(0, 0, 0, 0.9);
 }
+.hydroflora-preview[aria-hidden="false"] {
+  display: flex;
+}
 .hydroflora-preview-panel {
   position: relative;
   width: min(1100px, 100%);
