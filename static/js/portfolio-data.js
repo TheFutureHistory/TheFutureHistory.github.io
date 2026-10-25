@@ -17,7 +17,7 @@ const portfolioItems = [
     imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/GoodMorningChat.png?updatedAt=1792865238413",
     alt: "GoodMorningChat AI",
-    link: "GoodMorningChat.com",
+    link: "agent.sebastienaugustin.com",
     title: "GoodMorningChat AI",
     description:
       "GoodMorningChat is Sebastien's AI Assistant, here to help you learn more about his work, process, and approach.",
