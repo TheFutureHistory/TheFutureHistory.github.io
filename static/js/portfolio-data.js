@@ -5,6 +5,8 @@
                        industry: "AI" (shown as "Industry" on the homepage roller;
                                        hidden when missing)
    button: "Visit site" (custom roller button label)
+   view: "home" (show in the homepage roller and portfolio grid)
+         "grid" (show only in the portfolio grid; omitted defaults to both)
    link: "https://..."  (or an internal path)
    - with `link`    -> the card/button goes to the link
    - without `link` -> falls back to an existing `onClick` function, if provided
@@ -23,6 +25,7 @@ const portfolioItems = [
     status: "SAAS",
     state: "Live",
     industry: "AI",
+    view: "home",
   },
   {
     imageSrc:
@@ -36,6 +39,7 @@ const portfolioItems = [
     status: "SAAS",
     state: "Live",
     industry: "Travel",
+    view: "home",
   },
   {
     imageSrc:
@@ -49,6 +53,7 @@ const portfolioItems = [
     status: "SAAS",
     state: "Live",
     industry: "Perosnal Life",
+    view: "home",
   },
   {
     imageSrc:
@@ -62,6 +67,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Nightlife",
+    view: "home",
   },
   {
     imageSrc:
@@ -75,6 +81,7 @@ const portfolioItems = [
     status: "website",
     state: "pending",
     industry: "pending",
+    view: "home",
   },
   {
     imageSrc:
@@ -88,6 +95,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Non-profit",
+    view: "home",
   },
   {
     imageSrc:
@@ -101,6 +109,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Transportation",
+    view: "home",
   },
   {
     imageSrc:
@@ -114,6 +123,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Education",
+    view: "home",
   },
   {
     imageSrc:
@@ -127,6 +137,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Men's Health",
+    view: "grid",
   },
   {
     imageSrc:
@@ -140,6 +151,7 @@ const portfolioItems = [
     status: "Website",
     state: "Live",
     industry: "Beauty",
+    view: "home",
   },
   {
     imageSrc:
@@ -149,10 +161,11 @@ const portfolioItems = [
     title: "WG Directory",
     description:
       "A directory of job boards, companies, marketplaces and tools for people looking for work in the USA or Canada.",
-    button: "visit site",
+    button: "view project",
     status: "Project",
     state: "Live",
     industry: "Work",
+    view: "home",
   },
   {
     imageSrc:
@@ -166,6 +179,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Management",
+    view: "grid",
   },
   {
     imageSrc:
@@ -179,6 +193,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Finance",
+    view: "grid",
   },
   {
     imageSrc:
@@ -192,6 +207,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Travel",
+    view: "grid",
   },
   {
     imageSrc:
@@ -205,6 +221,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Design",
+    view: "grid",
   },
   {
     imageSrc:
@@ -218,6 +235,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Business",
+    view: "grid",
   },
   {
     imageSrc:
@@ -231,6 +249,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Music",
+    view: "grid",
   },
   {
     imageSrc:
@@ -244,6 +263,7 @@ const portfolioItems = [
     status: "Project",
     state: "Portfolio",
     industry: "Business",
+    view: "grid",
   },
   {
     imageSrc:
@@ -256,6 +276,7 @@ const portfolioItems = [
     status: "Chrome Extension",
     state: "Offline",
     industry: "Business",
+    view: "grid",
   },
   {
     imageSrc:
@@ -268,6 +289,7 @@ const portfolioItems = [
     status: "Chrome Extension",
     state: "Offline",
     industry: "Time Management",
+    view: "grid",
   },
   {
     imageSrc:
@@ -280,6 +302,7 @@ const portfolioItems = [
     status: "Chrome Extension",
     state: "Offline",
     industry: "Productivity",
+    view: "grid",
   },
   {
     imageSrc:
@@ -289,10 +312,11 @@ const portfolioItems = [
     title: "The Haïtian Runner",
     description:
       "A 2D Haïti themed running game with objective of collecting coins and avoiding obstacles.",
-    button: "view project",
+    button: "play game",
     status: "Game",
     state: "Portfolio",
     industry: "Gaming",
+    view: "home",
   },
   {
     imageSrc:
@@ -306,6 +330,7 @@ const portfolioItems = [
     status: "Art",
     state: "Portfolio",
     industry: "Art",
+    view: "home",
   },
   {
     imageSrc:
@@ -319,6 +344,7 @@ const portfolioItems = [
     status: "Art",
     state: "Portfolio",
     industry: "Art",
+    view: "grid",
   },
   {
     imageSrc:
@@ -332,43 +358,49 @@ const portfolioItems = [
     status: "Design",
     state: "Portfolio",
     industry: "Design",
+    view: "grid",
   },
+  // {
+  //   imageSrc:
+  //     "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/GraphicDesign2.png?updatedAt=1792865243416",
+  //   alt: "Graphic Design",
+  //   link: "/project/GraphicDesign/",
+  //   title: "Graphic Design",
+  //   description:
+  //     "A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.",
+  //   button: "view gallery",
+  //   status: "Design",
+  //   state: "Portfolio",
+  //   industry: "Design",
+  //   view: "grid",
+  // },
   {
     imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/GraphicDesign2.png?updatedAt=1792865243416",
-    alt: "Graphic Design",
-    link: "/project/GraphicDesign/",
-    title: "Graphic Design",
-    description:
-      "A collection of flyers and branding materials showcasing my ability to create visually compelling designs using Figma.",
-    button: "view gallery",
-    status: "Design",
-    state: "Portfolio",
-    industry: "Design",
-  },
-  {
-    imageSrc:
-      "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/Screen%20Shot%202022-08-18%20at%202.26.29%20PM.png",
+      "https://ik.imagekit.io/sebastienaugustin/images/projects/alwaysSkilled.png?updatedAt=1756756456507",
     alt: "Always Skilled",
+    link: "alwaysskilled.com",
     title: "Always Skilled",
     description:
       "Original Music produced by Always Skilled for quick access for listeners via the artist website.",
     button: "visit site",
-    status: "Music",
+    status: "Website",
     state: "Live",
     industry: "Music",
+    view: "home",
   },
   {
     imageSrc:
       "https://ik.imagekit.io/sebastienaugustin/images/projects/Sebastien%20Portfolio/Portfolio/TSSC%20-%20Youtube.png",
     alt: "CAPŸ",
+    link: "listentocapy.com",
     title: "CAPŸ",
     description:
       "Original Music by Capÿ for quick access for listeners  via the artist website.",
     button: "visit site",
-    status: "Music",
+    status: "Website",
     state: "Live",
     industry: "Music",
+    view: "home",
   },
   {
     imageSrc:
@@ -378,9 +410,11 @@ const portfolioItems = [
     description:
       "A music composition contracted for an ad to match the Hydro Flora brand. Produced using Ableton Live.",
     button: "view video",
+    onClick: "openHydroflora()",
     status: "Music",
     state: "Portfolio",
     industry: "Hydroponics",
+    view: "home",
   },
   {
     imageSrc:
@@ -393,6 +427,7 @@ const portfolioItems = [
     status: "Offline",
     state: "Portfolio",
     industry: "Finance",
+    view: "grid",
   },
   {
     imageSrc:
@@ -405,6 +440,7 @@ const portfolioItems = [
     status: "Offline",
     state: "Portfolio",
     industry: "Finance",
+    view: "grid",
   },
   {
     imageSrc:
@@ -417,6 +453,7 @@ const portfolioItems = [
     status: "Offline",
     state: "Portfolio",
     industry: "Social Media",
+    view: "grid",
   },
   {
     imageSrc:
@@ -429,5 +466,6 @@ const portfolioItems = [
     status: "Offline",
     state: "Portfolio",
     industry: "Hospitality",
+    view: "grid",
   },
 ];

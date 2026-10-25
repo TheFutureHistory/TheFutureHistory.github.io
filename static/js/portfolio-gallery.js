@@ -54,6 +54,14 @@ function initPortfolioGallery(items) {
   const cards = Array.from(grid.children);
   const buttons = Array.from(bar.children);
 
+  grid.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const card = e.target.closest('.gallery-card[role="button"]');
+    if (!card) return;
+    e.preventDefault();
+    card.click();
+  });
+
   function applyFilter(status) {
     if (status !== "all" && !counts[status]) status = "all";
     cards.forEach(

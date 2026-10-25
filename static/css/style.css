@@ -625,6 +625,9 @@ body {
 .gallery-card[href],
 .gallery-card[onclick] {
 }
+.gallery-card[role="button"] {
+  cursor: pointer !important;
+}
 .gallery-media {
   position: relative;
   aspect-ratio: 4 / 2;
@@ -695,6 +698,37 @@ body {
   .gallery-glass {
     display: none;
   }
+}
+
+.hydroflora-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.9);
+}
+.hydroflora-preview-panel {
+  position: relative;
+  width: min(1100px, 100%);
+}
+.hydroflora-preview video {
+  display: block;
+  width: 100%;
+  max-height: 85vh;
+  background: #000;
+}
+.hydroflora-preview-close {
+  position: absolute;
+  top: -42px;
+  right: 0;
+  border: 0;
+  background: transparent;
+  color: var(--secondary-color);
+  font-size: 32px;
+  line-height: 1;
 }
 
 /* ============ Project galleries ============ */
@@ -1473,6 +1507,12 @@ dialog.modal::backdrop {
   }
   .project-intro .sectionDescription {
     font-size: 16px;
+  }
+  .hydroflora-preview {
+    padding: 16px;
+  }
+  .hydroflora-preview video {
+    max-height: 75vh;
   }
   .legalSection {
     padding: 64px 1.25rem 80px;

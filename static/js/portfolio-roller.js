@@ -6,7 +6,8 @@
 function initPortfolioRoller(items) {
   const grid = document.getElementById("roller-grid");
   const section = document.getElementById("roller");
-  const total = items.length;
+  const rollerItems = items.filter((item) => item.view !== "grid");
+  const total = rollerItems.length;
   if (!grid || !section || !total) return;
 
   const pad = (n) => String(n).padStart(2, "0");
@@ -25,7 +26,7 @@ function initPortfolioRoller(items) {
   const ARROW = `<svg viewBox="6 6 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>`;
   const GRID = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>`;
 
-  const infoHTML = items
+  const infoHTML = rollerItems
     .map(
       (item) => `
       <div class="roller-info-item" aria-hidden="true">
@@ -43,10 +44,10 @@ function initPortfolioRoller(items) {
     )
     .join("");
 
-  const cardsHTML = items
+  const cardsHTML = rollerItems
     .map(
       (item) => `
-      <div class="roller-card" ${action(item)}>
+      <div class="roller-card" ${action(item)}${item.link || item.onClick ? ' role="button" tabindex="0"' : ""}>
         <div class="roller-card-details">
           <img src="${item.imageSrc}" alt="${item.alt}" draggable="false" />
         </div>
@@ -74,6 +75,13 @@ function initPortfolioRoller(items) {
   const cards = Array.from(grid.querySelectorAll(".roller-card"));
   const infos = Array.from(grid.querySelectorAll(".roller-info-item"));
   const counter = grid.querySelector(".roller-counter-current");
+  grid.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const card = e.target.closest('.roller-card[role="button"]');
+    if (!card) return;
+    e.preventDefault();
+    card.click();
+  });
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
