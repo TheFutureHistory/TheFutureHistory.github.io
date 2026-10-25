@@ -5,6 +5,7 @@ hydrofloraPreview.setAttribute("role", "dialog");
 hydrofloraPreview.setAttribute("aria-modal", "true");
 hydrofloraPreview.setAttribute("aria-label", "Hydro Flora video");
 hydrofloraPreview.setAttribute("aria-hidden", "true");
+hydrofloraPreview.hidden = true;
 hydrofloraPreview.innerHTML = `
   <div class="hydroflora-preview-panel">
     <button class="hydroflora-preview-close" type="button" aria-label="Close video">
@@ -12,7 +13,7 @@ hydrofloraPreview.innerHTML = `
     </button>
     <video
       id="hydroFloraVideo"
-      src="/static/videos/Hydro%20Flora.mp4"
+      data-src="/static/videos/Hydro%20Flora.mp4"
       playsinline
       loop
       controls
@@ -22,7 +23,7 @@ document.body.appendChild(hydrofloraPreview);
 
 function closeHydroflora() {
   const video = document.getElementById("hydroFloraVideo");
-  hydrofloraPreview.style.display = "none";
+  hydrofloraPreview.hidden = true;
   hydrofloraPreview.setAttribute("aria-hidden", "true");
   video.pause();
   video.currentTime = 0;
@@ -30,10 +31,14 @@ function closeHydroflora() {
 
 function openHydroflora() {
   const video = document.getElementById("hydroFloraVideo");
+  if (!video.src) {
+    video.src = video.dataset.src;
+    video.load();
+  }
   video.pause();
   video.currentTime = 0;
   video.muted = false;
-  hydrofloraPreview.style.display = "flex";
+  hydrofloraPreview.hidden = false;
   hydrofloraPreview.setAttribute("aria-hidden", "false");
   video.play().catch((error) => {
     console.error("Hydro Flora video playback failed:", error);
